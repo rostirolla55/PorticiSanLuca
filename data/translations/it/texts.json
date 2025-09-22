@@ -558,5 +558,5 @@
     "pauseAudioButton": "Metti in pausa",
 	"_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
     "audioSource": "assets/audio/it/psontuoso.mp3"
-   },
+   } 
 }
