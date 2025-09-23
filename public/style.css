@@ -199,3 +199,47 @@ p {
         padding: 0; 
     }
 }
+
+/* Nascondi il bottone per PC */
+.menu-toggle {
+    display: none;
+}
+
+/* Regole per schermi piccoli (es. smartphone) */
+@media (max-width: 768px) {
+    /* Mostra il bottone e nascondi la lista */
+    .menu-toggle {
+        display: block;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 1000;
+    }
+
+    .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: #333; /* Colore delle "barre" del menu */
+        margin: 5px 0;
+        transition: 0.4s;
+    }
+
+    .nav-list {
+        /* Nascondi la lista per default */
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px; /* Sotto l'header */
+        left: 0;
+        background-color: #f0f0f0;
+        z-index: 999;
+    }
+
+    /* Mostra la lista quando ha la classe 'active' */
+    .nav-list.active {
+        display: flex;
+    }
+}

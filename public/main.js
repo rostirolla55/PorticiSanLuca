@@ -16,6 +16,18 @@ const updateTextContent = (id, value) => {
         element.textContent = value || '';
     }
 };
+// Aggiungi questo codice per gestire il menu a scomparsa
+document.addEventListener('DOMContentLoaded', () => {
+    // Trova il bottone del menu e la lista di navigazione
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navList = document.querySelector('.nav-list');
+    
+    // Aggiungi un ascoltatore di eventi per il clic sul bottone
+    menuToggle.addEventListener('click', () => {
+        // Alterna la classe 'active' sulla lista per mostrarla o nasconderla
+        navList.classList.toggle('active');
+    });
+});
 
 // Funzione principale per impostare la lingua
 const setLanguage = async (lang) => {
