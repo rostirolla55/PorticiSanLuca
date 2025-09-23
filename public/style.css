@@ -169,65 +169,28 @@ p {
 /* 6. MEDIA QUERIES (Smartphone) */
 /* ======================================= */
 
-@media screen and (max-width: 768px) {
-    
-    /* NUOVA REGOLA: Menu di navigazione a blocchi */
-    .nav-list {
-        flex-wrap: wrap; 
-        gap: 0;
-    }
-    .nav-list li {
-        flex: 1 1 100%; /* Ogni link su una riga intera */
-        text-align: center;
-    }
-
-    /* NUOVA REGOLA: Layout immagine diventa verticale */
-    .image-text-container {
-        flex-direction: column; 
-        gap: 15px;
-    }
-    
-    .image-wrapper {
-        /* CRUCIALE: Permette all'immagine di occupare il 100% sullo smartphone */
-        flex: 1 1 100%; 
-        max-width: 100%; 
-        order: -1; /* Mette l'immagine sopra il testo */
-    }
-    
-    .text-content {
-        flex: 1 1 100%; /* Il testo torna a larghezza intera */
-        padding: 0; 
-    }
-}
-
-/* Nascondi il bottone per PC */
-.menu-toggle {
-    display: none;
-}
-
-/* Regole per schermi piccoli (es. smartphone) */
 @media (max-width: 768px) {
-    /* Mostra il bottone e nascondi la lista */
+    /* Regole per il BOTTONE HAMBURGER */
     .menu-toggle {
-        display: block;
+        display: block; /* Mostra il bottone */
         background-color: transparent;
         border: none;
         cursor: pointer;
         padding: 10px;
         z-index: 1000;
     }
-
     .bar {
         display: block;
         width: 25px;
         height: 3px;
-        background-color: #333; /* Colore delle "barre" del menu */
+        background-color: white; /* Cambia il colore a bianco per vederlo sulla barra nera */
         margin: 5px 0;
         transition: 0.4s;
     }
-
+    
+    /* Regole per la LISTA DI NAVIGAZIONE */
     .nav-list {
-        /* Nascondi la lista per default */
+        /* Nasconde la lista per default su schermi piccoli */
         display: none;
         flex-direction: column;
         width: 100%;
@@ -238,8 +201,28 @@ p {
         z-index: 999;
     }
 
-    /* Mostra la lista quando ha la classe 'active' */
+    /* Mostra la lista solo quando ha la classe 'active' */
     .nav-list.active {
         display: flex;
     }
+
+    /* Regole per il layout delle immagini */
+    .image-text-container {
+        flex-direction: column; 
+        gap: 15px;
+    }
+    .image-wrapper {
+        flex: 1 1 100%; 
+        max-width: 100%; 
+        order: -1;
+    }
+    .text-content {
+        flex: 1 1 100%; 
+        padding: 0; 
+    }
+}
+
+/* Questa regola va FUORI dalla media query */
+.menu-toggle {
+    display: none; /* Nasconde il bottone su schermi grandi */
 }
