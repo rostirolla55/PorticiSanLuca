@@ -54,6 +54,17 @@ p {
     justify-content: center; /* Centra i link */
     gap: 20px;
 }
+/* NUOVA REGOLA: Stile specifico per i link del menu a scomparsa */
+    .nav-list a {
+        color: #333; /* Rendi il testo dei link scuro, visibile sullo sfondo chiaro */
+        background-color: #f0f0f0; /* Opzionale: aggiunge un colore di sfondo al link */
+        padding: 15px; /* Aumenta l'area cliccabile */
+        border-bottom: 1px solid #ccc; /* Aggiunge un separatore */
+    }
+
+    .nav-list a:hover {
+        background-color: #ddd; /* Cambia colore al passaggio del mouse */
+    }
 
     .nav-list li a {
         color: white; /* Assicurati che il testo del link sia bianco */
@@ -200,6 +211,17 @@ p {
         background-color: #333; /* Cambia questo: un colore scuro, come quello dell'header */
         z-index: 999;
     }
+/* NUOVA REGOLA: Stile specifico per i link del menu a scomparsa */
+.nav-list a {
+    color: #333; /* Rendi il testo dei link scuro, visibile sullo sfondo chiaro */
+    background-color: #f0f0f0; /* Opzionale: aggiunge un colore di sfondo al link */
+    padding: 15px; /* Aumenta l'area cliccabile */
+    border-bottom: 1px solid #ccc; /* Aggiunge un separatore */
+}
+
+.nav-list a:hover {
+    background-color: #ddd; /* Cambia colore al passaggio del mouse */
+}
 
     /* Mostra la lista solo quando ha la classe 'active' */
     .nav-list.active {
