@@ -9,17 +9,17 @@ body {
     color: #333;
     line-height: 1.6;
     background-color: #f4f4f4;
-    padding-bottom: 50px; /* Spazio per evitare che il footer si sovrapponga */
+    padding-bottom: 50px;
 }
 
 main {
     padding: 20px;
-    max-width: 900px; /* Limita la larghezza del contenuto principale */
-    margin: 0 auto; /* Centra il contenuto principale sulla pagina */
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 h1.page-title, #pageTitle {
-    color: #004d99; /* Blu scuro */
+    color: #004d99;
     border-bottom: 2px solid #ddd;
     padding-bottom: 10px;
     margin-top: 0;
@@ -31,7 +31,7 @@ p {
 }
 
 /* ======================================= */
-/* 2. MENU DI NAVIGAZIONE (REGOLA BASE PER DESKTOP) */
+/* 2. MENU DI NAVIGAZIONE (DESKTOP) */
 /* ======================================= */
 
 /* Questa regola nasconde il bottone hamburger su schermi grandi */
@@ -40,9 +40,9 @@ p {
 }
 
 .main-header {
-    background-color: #333; /* Sfondo scuro per la barra */
+    background-color: #333;
     padding: 10px 0;
-    margin-bottom: 30px; /* Spazio sotto il menu */
+    margin-bottom: 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -50,17 +50,16 @@ p {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex; /* La chiave per l'allineamento orizzontale */
-    justify-content: center; /* Centra i link */
+    display: flex;
+    justify-content: center;
     gap: 20px;
-    overflow-x: auto; /* Abilita lo scorrimento orizzontale */
-    white-space: nowrap; /* Impedisce il ritorno a capo */
-    background-color: #333; /* Rende lo sfondo del menu scuro su desktop */
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 /* Stile dei link del menu per desktop */
 .nav-list li a {
-    color: white; /* Testo bianco per un contrasto alto su desktop */
+    color: white; /* Testo bianco per contrasto */
     text-decoration: none;
     padding: 10px 15px;
     display: block;
@@ -89,12 +88,12 @@ p {
 }
 
 .play-style {
-    background-color: #007bff; /* Blu: pronto a suonare */
+    background-color: #007bff;
     color: white;
 }
 
 .pause-style {
-    background-color: #dc3545; /* Rosso: sta suonando (metti in pausa) */
+    background-color: #dc3545;
     color: white;
 }
 
@@ -162,7 +161,7 @@ p {
 }
 
 /* ======================================= */
-/* 6. MEDIA QUERIES (Smartphone) */
+/* 6. MEDIA QUERIES (SMARTPHONE E FINESTRA PICCOLA) */
 /* ======================================= */
 
 @media (max-width: 768px) {
@@ -179,23 +178,23 @@ p {
         display: block;
         width: 25px;
         height: 3px;
-        background-color: white; /* Rende le barre bianche per contrasto sulla barra nera */
+        background-color: white;
         margin: 5px 0;
         transition: 0.4s;
     }
     
     /* Regole per la lista di navigazione a scomparsa */
     .nav-list {
-        display: none; /* Nasconde la lista per default */
+        display: none;
         flex-direction: column;
         width: 100%;
         position: absolute;
-        top: 60px; /* Sotto l'header */
+        top: 60px;
         left: 0;
         background-color: #f0f0f0; /* Sfondo chiaro del menu a tendina */
         z-index: 999;
-        white-space: normal; /* Permette il ritorno a capo su schermi piccoli */
-        overflow-x: hidden; /* Nasconde lo scorrimento orizzontale non necessario */
+        white-space: normal;
+        overflow-x: hidden;
     }
 
     /* Mostra la lista quando ha la classe 'active' */
@@ -203,13 +202,17 @@ p {
         display: flex;
     }
 
-    /* Stile dei link del menu per smartphone */
+    /* Stile dei link del menu per smartphone e finestra piccola */
     .nav-list li a {
         color: #333; /* Rende il testo scuro per il contrasto */
-        background-color: #f0f0f0; /* Sfondo chiaro del link */
-        padding: 15px; 
-        border-bottom: 1px solid #ddd; /* Aggiunge un separatore per ogni link */
-        text-align: left; /* Allinea il testo a sinistra per leggibilità */
+        background-color: transparent; /* Rimuove lo sfondo del link per usare quello del genitore */
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
+
+    .nav-list li a:hover {
+        background-color: #ddd; /* Cambia colore al passaggio del mouse/tocco */
     }
 
     /* Regole per il layout delle immagini */
