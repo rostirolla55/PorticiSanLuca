@@ -34,7 +34,10 @@ p {
 /* ======================================= */
 /* 2. MENU DI NAVIGAZIONE */
 /* ======================================= */
-
+/* Questa regola va FUORI dalla media query */
+.menu-toggle {
+    display: none; /* Nasconde il bottone su schermi grandi */
+}
 .main-header {
     background-color: #333; /* Sfondo scuro per la barra */
     padding: 10px 0;
@@ -219,9 +222,4 @@ p {
         flex: 1 1 100%; 
         padding: 0; 
     }
-}
-
-/* Questa regola va FUORI dalla media query */
-.menu-toggle {
-    display: none; /* Nasconde il bottone su schermi grandi */
 }
