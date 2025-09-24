@@ -187,7 +187,6 @@ p {
         margin: 5px 0;
         transition: 0.4s;
     }
-    
     /* Regole per la LISTA DI NAVIGAZIONE */
     .nav-list {
         /* Nasconde la lista per default su schermi piccoli */
@@ -203,7 +202,7 @@ p {
 
     /* Mostra la lista solo quando ha la classe 'active' */
     .nav-list.active {
-        display: flex;
+        display: flex; /* La lista si mostra solo quando ha la classe 'active' */
     }
 
     /* Regole per il layout delle immagini */
