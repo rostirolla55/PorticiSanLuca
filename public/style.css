@@ -55,14 +55,12 @@ p {
     gap: 20px;
 }
 
-.nav-list li a {
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-    display: block;
-    font-size: 1.1em;
-    transition: background-color 0.3s;
-}
+    .nav-list li a {
+        color: white; /* Assicurati che il testo del link sia bianco */
+        padding: 15px 0; /* Aumenta il padding per un tocco più facile */
+        text-align: center; /* Centra il testo */
+        border-bottom: 1px solid #555; /* Aggiungi una riga separatrice per i link */
+    }
 
 .nav-list li a:hover {
     background-color: #555;
@@ -199,7 +197,7 @@ p {
         position: absolute;
         top: 60px; /* Sotto l'header */
         left: 0;
-        background-color: #f0f0f0;
+        background-color: #333; /* Cambia questo: un colore scuro, come quello dell'header */
         z-index: 999;
     }
 
