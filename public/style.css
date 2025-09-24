@@ -53,6 +53,11 @@ p {
     display: flex; /* La chiave per l'allineamento orizzontale */
     justify-content: center; /* Centra i link */
     gap: 20px;
+
+    /* Aggiungi questa regola per consentire lo scorrimento orizzontale */
+    overflow-x: auto;
+    /* E questa per evitare che il contenuto vada a capo */
+    white-space: nowrap;
 }
 /* NUOVA REGOLA: Stile specifico per i link del menu a scomparsa */
     .nav-list a {
@@ -208,7 +213,7 @@ p {
         position: absolute;
         top: 60px; /* Sotto l'header */
         left: 0;
-        background-color: #333; /* Cambia questo: un colore scuro, come quello dell'header */
+        background-color: #f0f0f0; /* Cambia questo: un colore scuro, come quello dell'header */
         z-index: 999;
     }
 /* NUOVA REGOLA: Stile specifico per i link del menu a scomparsa */
