@@ -30,14 +30,15 @@ p {
     margin-bottom: 1em;
 }
 
+/* ======================================= */
+/* 2. MENU DI NAVIGAZIONE (REGOLA BASE PER DESKTOP) */
+/* ======================================= */
 
-/* ======================================= */
-/* 2. MENU DI NAVIGAZIONE */
-/* ======================================= */
-/* Questa regola va FUORI dalla media query */
+/* Questa regola nasconde il bottone hamburger su schermi grandi */
 .menu-toggle {
-    display: none; /* Nasconde il bottone su schermi grandi */
+    display: none;
 }
+
 .main-header {
     background-color: #333; /* Sfondo scuro per la barra */
     padding: 10px 0;
@@ -49,40 +50,28 @@ p {
     list-style: none;
     padding: 0;
     margin: 0;
-    
     display: flex; /* La chiave per l'allineamento orizzontale */
     justify-content: center; /* Centra i link */
     gap: 20px;
-
-    /* Aggiungi questa regola per consentire lo scorrimento orizzontale */
-    overflow-x: auto;
-    /* E questa per evitare che il contenuto vada a capo */
-    white-space: nowrap;
+    overflow-x: auto; /* Abilita lo scorrimento orizzontale */
+    white-space: nowrap; /* Impedisce il ritorno a capo */
+    background-color: #333; /* Rende lo sfondo del menu scuro su desktop */
 }
-/* NUOVA REGOLA: Stile specifico per i link del menu a scomparsa */
-    .nav-list a {
-        color: #333; /* Rendi il testo dei link scuro, visibile sullo sfondo chiaro */
-        background-color: #f0f0f0; /* Opzionale: aggiunge un colore di sfondo al link */
-        padding: 15px; /* Aumenta l'area cliccabile */
-        border-bottom: 1px solid #ccc; /* Aggiunge un separatore */
-    }
 
-    .nav-list a:hover {
-        background-color: #ddd; /* Cambia colore al passaggio del mouse */
-    }
-
-    .nav-list li a {
-        color: white; /* Assicurati che il testo del link sia bianco */
-        padding: 15px 0; /* Aumenta il padding per un tocco più facile */
-        text-align: center; /* Centra il testo */
-        border-bottom: 1px solid #555; /* Aggiungi una riga separatrice per i link */
-    }
+/* Stile dei link del menu per desktop */
+.nav-list li a {
+    color: white; /* Testo bianco per un contrasto alto su desktop */
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+}
 
 .nav-list li a:hover {
     background-color: #555;
     border-radius: 4px;
 }
-
 
 /* ======================================= */
 /* 3. BOTTONE AUDIO (PLAY/PAUSE) */
@@ -96,7 +85,7 @@ p {
     border-radius: 5px;
     transition: background-color 0.2s, transform 0.1s;
     margin-top: 15px;
-    display: block; /* NUOVA REGOLA: Rende il bottone un blocco per allineamento */
+    display: block;
 }
 
 .play-style {
@@ -112,7 +101,6 @@ p {
 #playAudio:active {
     transform: scale(0.98);
 }
-
 
 /* ======================================= */
 /* 4. SELETTORE LINGUA */
@@ -140,56 +128,47 @@ p {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-
 /* ======================================= */
-/* 5. LAYOUT IMMAGINI RESPONSIVE (CRITICO!) */
+/* 5. LAYOUT IMMAGINI RESPONSIVE */
 /* ======================================= */
-
-/* --- A. REGOLA BASE (DESKTOP: Immagine affiancata) --- */
 
 .image-text-container {
-    /* NUOVA REGOLA: Abilita affiancamento per desktop */
-    display: flex; 
-    gap: 30px; 
-    align-items: flex-start; 
-    margin: 30px 0; /* Spazio sopra e sotto il blocco immagine */
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    margin: 30px 0;
 }
 
 .image-wrapper {
-    /* NUOVA REGOLA: Larghezza fissa per l'immagine su PC */
-    flex: 0 0 350px; 
+    flex: 0 0 350px;
     max-width: 350px;
 }
 
 .responsive-image {
-    /* NUOVA REGOLA: Impedisce all'immagine di uscire dal contenitore */
     max-width: 100%;
     height: auto;
-    display: block; 
+    display: block;
 }
 
 .text-content {
-    /* NUOVA REGOLA: Il testo occupa il resto dello spazio */
-    flex-grow: 1; 
-    padding: 0; /* Rimuove padding che può causare problemi di allineamento */
+    flex-grow: 1;
+    padding: 0;
 }
 
-/* NUOVA REGOLA: Risoluzione Testo Piccolo (mainText4) */
 .text-content p {
-    font-size: 16px; 
+    font-size: 16px;
     line-height: 1.6;
-    margin-top: 0; /* Rimuove lo spazio extra superiore */
+    margin-top: 0;
 }
-
 
 /* ======================================= */
 /* 6. MEDIA QUERIES (Smartphone) */
 /* ======================================= */
 
 @media (max-width: 768px) {
-    /* Regole per il BOTTONE HAMBURGER */
+    /* Mostra il bottone hamburger su schermi piccoli */
     .menu-toggle {
-        display: block; /* Mostra il bottone */
+        display: block;
         background-color: transparent;
         border: none;
         cursor: pointer;
@@ -200,51 +179,51 @@ p {
         display: block;
         width: 25px;
         height: 3px;
-        background-color: white; /* Cambia il colore a bianco per vederlo sulla barra nera */
+        background-color: white; /* Rende le barre bianche per contrasto sulla barra nera */
         margin: 5px 0;
         transition: 0.4s;
     }
-    /* Regole per la LISTA DI NAVIGAZIONE */
+    
+    /* Regole per la lista di navigazione a scomparsa */
     .nav-list {
-        /* Nasconde la lista per default su schermi piccoli */
-        display: none;
+        display: none; /* Nasconde la lista per default */
         flex-direction: column;
         width: 100%;
         position: absolute;
         top: 60px; /* Sotto l'header */
         left: 0;
-        background-color: #f0f0f0; /* Cambia questo: un colore scuro, come quello dell'header */
+        background-color: #f0f0f0; /* Sfondo chiaro del menu a tendina */
         z-index: 999;
+        white-space: normal; /* Permette il ritorno a capo su schermi piccoli */
+        overflow-x: hidden; /* Nasconde lo scorrimento orizzontale non necessario */
     }
-/* NUOVA REGOLA: Stile specifico per i link del menu a scomparsa */
-.nav-list a {
-    color: #333; /* Rendi il testo dei link scuro, visibile sullo sfondo chiaro */
-    background-color: #f0f0f0; /* Opzionale: aggiunge un colore di sfondo al link */
-    padding: 15px; /* Aumenta l'area cliccabile */
-    border-bottom: 1px solid #ccc; /* Aggiunge un separatore */
-}
 
-.nav-list a:hover {
-    background-color: #ddd; /* Cambia colore al passaggio del mouse */
-}
-
-    /* Mostra la lista solo quando ha la classe 'active' */
+    /* Mostra la lista quando ha la classe 'active' */
     .nav-list.active {
-        display: flex; /* La lista si mostra solo quando ha la classe 'active' */
+        display: flex;
+    }
+
+    /* Stile dei link del menu per smartphone */
+    .nav-list li a {
+        color: #333; /* Rende il testo scuro per il contrasto */
+        background-color: #f0f0f0; /* Sfondo chiaro del link */
+        padding: 15px; 
+        border-bottom: 1px solid #ddd; /* Aggiunge un separatore per ogni link */
+        text-align: left; /* Allinea il testo a sinistra per leggibilità */
     }
 
     /* Regole per il layout delle immagini */
     .image-text-container {
-        flex-direction: column; 
+        flex-direction: column;
         gap: 15px;
     }
     .image-wrapper {
-        flex: 1 1 100%; 
-        max-width: 100%; 
+        flex: 1 1 100%;
+        max-width: 100%;
         order: -1;
     }
     .text-content {
-        flex: 1 1 100%; 
-        padding: 0; 
+        flex: 1 1 100%;
+        padding: 0;
     }
 }
