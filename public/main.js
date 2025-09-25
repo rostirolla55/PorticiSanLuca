@@ -1,3 +1,18 @@
+// ===========================================
+// DATI: Punti di Interesse GPS
+// ===========================================
+const ARCO_LOCATIONS = [
+    // Devi popolare questa lista con le coordinate reali dei tuoi archi.
+    // L'ID deve corrispondere al nome del file HTML (es. 'arco119')
+    // Esempio:
+    // { id: 'arco119', lat: 44.4984, lon: 11.3392, distanceThreshold: 20 }, 
+    // { id: 'arco182', lat: 44.4975, lon: 11.3385, distanceThreshold: 20 },
+];
+// ===========================================
+// FINE DATI GPS
+// ===========================================
+
+
 // Funzione per determinare l'ID della pagina corrente
 const getCurrentPageId = () => {
     const path = window.location.pathname;
@@ -18,7 +33,83 @@ const updateTextContent = (id, value) => {
     }
 };
 
-// Gestione del menu a scomparsa
+// ===========================================
+// FUNZIONI UTILITY PER GPS
+// ===========================================
+
+// Calcola la distanza tra due coordinate (Formula di Haversine)
+const calculateDistance = (lat1, lon1, lat2, lon2) => {
+    const R = 6371e3; // Raggio della terra in metri
+    const φ1 = lat1 * Math.PI/180; 
+    const φ2 = lat2 * Math.PI/180;
+    const Δφ = (lat2-lat1) * Math.PI/180;
+    const Δλ = (lon2-lon1) * Math.PI/180;
+
+    const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+              Math.cos(φ1) * Math.cos(φ2) *
+              Math.sin(Δλ/2) * Math.sin(Δλ/2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+    return R * c; // Distanza in metri
+};
+
+// Funzione principale che verifica la vicinanza
+const checkProximity = (position) => {
+    const userLat = position.coords.latitude;
+    const userLon = position.coords.longitude;
+    const userLang = document.documentElement.lang || 'it'; // Ottiene la lingua attuale
+
+    for (const location of ARCO_LOCATIONS) {
+        const distance = calculateDistance(userLat, userLon, location.lat, location.lon);
+
+        if (distance <= location.distanceThreshold) {
+            console.log(`Vicino a ${location.id}! Distanza: ${distance.toFixed(1)}m`);
+            
+            // Reindirizza l'utente alla pagina dell'arco nella LINGUA CORRETTA
+            const currentPath = window.location.pathname;
+            let targetPage = `${location.id}.html`;
+            
+            if (userLang !== 'it') {
+                targetPage = `${location.id}-${userLang}.html`;
+            }
+            
+            // Reindirizza solo se non siamo già sulla pagina corretta (per evitare loop)
+            if (!currentPath.includes(targetPage)) {
+                window.location.href = targetPage;
+            }
+            return; 
+        }
+    }
+};
+
+// Funzione di gestione degli errori GPS
+const handleGeolocationError = (error) => {
+    console.warn(`ERRORE GPS: ${error.code}: ${error.message}`);
+    // Qui puoi mostrare un messaggio all'utente in caso di fallimento GPS
+};
+
+
+// Funzione per avviare il monitoraggio GPS
+const startGeolocation = () => {
+    if (navigator.geolocation) {
+        // Usa watchPosition per monitorare la posizione continuamente
+        navigator.geolocation.watchPosition(checkProximity, handleGeolocationError, {
+            enableHighAccuracy: true,
+            timeout: 5000,           
+            maximumAge: 0             
+        });
+        console.log("Monitoraggio GPS avviato.");
+    } else {
+        console.error("Il tuo browser non supporta la geolocalizzazione.");
+    }
+};
+
+// ===========================================
+// FINE FUNZIONI UTILITY PER GPS
+// ===========================================
+
+
+// Gestione del menu a scomparsa e dell'evento 'ended'
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.querySelector('.menu-toggle');
     const navList = document.querySelector('.nav-list');
@@ -27,19 +118,13 @@ document.addEventListener('DOMContentLoaded', () => {
         navList.classList.toggle('active');
     });
 
-    // 💡 NUOVO CODICE AGGIUNTO QUI: Gestisce la fine della riproduzione audio
     const audioPlayer = document.getElementById('audioPlayer');
     const playButton = document.getElementById('playAudio');
 
     if (audioPlayer && playButton) {
         audioPlayer.addEventListener('ended', () => {
-            // 1. Ferma e resetta il tempo di riproduzione
             audioPlayer.currentTime = 0;
-
-            // 2. Aggiorna la scritta del bottone usando il testo Play salvato in data-
             playButton.textContent = playButton.dataset.playText || "Ascolta l'audio!";
-
-            // 3. Resetta lo stile CSS al colore di default (Play/Blu)
             playButton.classList.remove('pause-style');
             playButton.classList.add('play-style');
         });
@@ -53,17 +138,18 @@ const setLanguage = async (lang) => {
     const audioPlayer = document.getElementById('audioPlayer');
     const playButton = document.getElementById('playAudio');
 
-    if (audioPlayer) { // Controllo robusto audio player
+    if (audioPlayer) {
         audioPlayer.pause();
         audioPlayer.currentTime = 0;
     }
+    
+    // 💡 AGGIUNTA FONDAMENTALE 1: Salva la lingua selezionata dall'utente nel browser
+    localStorage.setItem('userLanguage', lang);
 
-    // ⬇️ TUTTO IL CODICE RELATIVO AL FETCH E AGGIORNAMENTO DATI ⬇️
     try {
-        // Correzione: La getCurrentPageId ora gestisce anche i suffissi di lingua (es. arco119-en)
         const pageId = getCurrentPageId();
 
-        // fetch su JSON
+        // fetch su JSON (rimane invariato)
         const response = await fetch(`data/translations/${lang}/texts.json`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -72,14 +158,13 @@ const setLanguage = async (lang) => {
 
         const data = translations[pageId];
 
-        console.log('Dati JSON caricati per la pagina:', data);
-
+        // ... (Log e gestione errore data non trovati) ...
         if (!data) {
              console.error(`Dati non trovati per la pagina: ${pageId} nella lingua: ${lang}`);
              return;
         }
 
-        // AGGIORNAMENTO DEL CONTENUTO
+        // AGGIORNAMENTO DEL CONTENUTO (invariato)
         updateTextContent('pageTitle', data.pageTitle);
         updateTextContent('mainText', data.mainText);
         updateTextContent('mainText1', data.mainText1);
@@ -88,17 +173,14 @@ const setLanguage = async (lang) => {
         updateTextContent('mainText4', data.mainText4);
         updateTextContent('mainText5', data.mainText5);
 
-        // Aggiorna il testo del bottone (e lo imposta su Play, lo stile predefinito)
         updateTextContent('playAudio', data.playAudioButton);
 
-        // 🚨 Imposta SRC solo se l'audio player esiste
         if (audioPlayer) {
             audioPlayer.src = data.audioSource;
         }
 
-        // 🚨 Controlla se il bottone audio esiste prima di usare dataset/classList
         if (playButton) {
-            // 1. SALVA I TESTI PLAY/PAUSE PER il toggleAudio e l'evento 'ended'
+            // 1. SALVA I TESTI PLAY/PAUSE
             playButton.dataset.playText = data.playAudioButton;
             playButton.dataset.pauseText = data.pauseAudioButton;
 
@@ -111,13 +193,12 @@ const setLanguage = async (lang) => {
         document.documentElement.lang = lang;
 
     } catch (error) {
-        // Blocco catch finale
         console.error('Errore nel caricamento dei testi:', error);
     }
 };
 
 
-// Funzione per gestire la riproduzione e pausa dell'audio
+// Funzione per gestire la riproduzione e pausa dell'audio (invariato)
 const toggleAudio = () => {
     const audioPlayer = document.getElementById('audioPlayer');
     const playButton = document.getElementById('playAudio');
@@ -139,12 +220,16 @@ const toggleAudio = () => {
 
 // Imposta la lingua di default (italiano) al caricamento della pagina
 window.onload = () => {
-    // 🚨 CORREZIONE: Controlla se il bottone esiste prima di agganciare l'evento
     const playButton = document.getElementById('playAudio');
 
     if (playButton) {
         playButton.addEventListener('click', toggleAudio);
     }
 
-    setLanguage('it');
+    // 💡 AGGIUNTA FONDAMENTALE 2: Carica la lingua salvata, altrimenti usa 'it'
+    const savedLang = localStorage.getItem('userLanguage') || 'it';
+    setLanguage(savedLang);
+    
+    // 💡 AVVIA IL MONITORAGGIO GPS
+    startGeolocation();
 };
