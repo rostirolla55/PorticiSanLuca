@@ -60,17 +60,17 @@ p {
 }
 
 .nav-list {
-    /* Nasconde la lista per default su TUTTI gli schermi */
-    display: none;
+    /* Deve apparire SOLO così di default: */
+    display: none; /* Nasconde la lista per default su TUTTI gli schermi */
     list-style: none;
     padding: 0;
     margin: 0;
-    flex-direction: column; /* Imposta sempre la visualizzazione verticale */
+    flex-direction: column; /* FORZA la visualizzazione verticale */
     width: 100%;
     position: absolute;
-    top: 60px; /* Sotto l'header */
+    top: 60px;
     left: 0;
-    background-color: #f0f0f0; /* Sfondo chiaro del menu */
+    background-color: #f0f0f0;
     z-index: 999;
 }
 
