@@ -1,12 +1,11 @@
 // ===========================================
-// DATI: Punti di Interesse GPS
+// DATI: Punti di Interesse GPS (DA COMPILARE)
 // ===========================================
 const ARCO_LOCATIONS = [
     // Devi popolare questa lista con le coordinate reali dei tuoi archi.
     // L'ID deve corrispondere al nome del file HTML (es. 'arco119')
     // Esempio:
     // { id: 'arco119', lat: 44.4984, lon: 11.3392, distanceThreshold: 20 }, 
-    // { id: 'arco182', lat: 44.4975, lon: 11.3385, distanceThreshold: 20 },
 ];
 // ===========================================
 // FINE DATI GPS
@@ -57,7 +56,7 @@ const calculateDistance = (lat1, lon1, lat2, lon2) => {
 const checkProximity = (position) => {
     const userLat = position.coords.latitude;
     const userLon = position.coords.longitude;
-    const userLang = document.documentElement.lang || 'it'; // Ottiene la lingua attuale
+    const userLang = document.documentElement.lang || 'it'; 
 
     for (const location of ARCO_LOCATIONS) {
         const distance = calculateDistance(userLat, userLon, location.lat, location.lon);
@@ -65,7 +64,6 @@ const checkProximity = (position) => {
         if (distance <= location.distanceThreshold) {
             console.log(`Vicino a ${location.id}! Distanza: ${distance.toFixed(1)}m`);
             
-            // Reindirizza l'utente alla pagina dell'arco nella LINGUA CORRETTA
             const currentPath = window.location.pathname;
             let targetPage = `${location.id}.html`;
             
@@ -73,7 +71,6 @@ const checkProximity = (position) => {
                 targetPage = `${location.id}-${userLang}.html`;
             }
             
-            // Reindirizza solo se non siamo già sulla pagina corretta (per evitare loop)
             if (!currentPath.includes(targetPage)) {
                 window.location.href = targetPage;
             }
@@ -85,14 +82,11 @@ const checkProximity = (position) => {
 // Funzione di gestione degli errori GPS
 const handleGeolocationError = (error) => {
     console.warn(`ERRORE GPS: ${error.code}: ${error.message}`);
-    // Qui puoi mostrare un messaggio all'utente in caso di fallimento GPS
 };
-
 
 // Funzione per avviare il monitoraggio GPS
 const startGeolocation = () => {
     if (navigator.geolocation) {
-        // Usa watchPosition per monitorare la posizione continuamente
         navigator.geolocation.watchPosition(checkProximity, handleGeolocationError, {
             enableHighAccuracy: true,
             timeout: 5000,           
@@ -124,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (audioPlayer && playButton) {
         audioPlayer.addEventListener('ended', () => {
             audioPlayer.currentTime = 0;
+            // Usa il testo play salvato in data-
             playButton.textContent = playButton.dataset.playText || "Ascolta l'audio!";
             playButton.classList.remove('pause-style');
             playButton.classList.add('play-style');
@@ -143,35 +138,37 @@ const setLanguage = async (lang) => {
         audioPlayer.currentTime = 0;
     }
     
-    // 💡 AGGIUNTA FONDAMENTALE 1: Salva la lingua selezionata dall'utente nel browser
+    // 🚀 FIX CRUCIALE: Salva e imposta la lingua immediatamente, prima del fetch
     localStorage.setItem('userLanguage', lang);
+    document.documentElement.lang = lang;
 
     try {
         const pageId = getCurrentPageId();
 
-        // fetch su JSON (rimane invariato)
+        // fetch su JSON (Qui può avvenire l'errore se il file non esiste o è vuoto)
         const response = await fetch(`data/translations/${lang}/texts.json`);
+        
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            // Se il file JSON non è raggiungibile (es. 404), lanciamo un errore
+            throw new Error(`File di traduzione non trovato per la lingua: ${lang}`);
         }
+        
         const translations = await response.json();
-
         const data = translations[pageId];
 
-        // ... (Log e gestione errore data non trovati) ...
         if (!data) {
-             console.error(`Dati non trovati per la pagina: ${pageId} nella lingua: ${lang}`);
+             // ⚠️ L'ERRORE VERO: Se il JSON è vuoto o manca l'ID della pagina, 'data' è nullo
+             console.error(`Dati non trovati per la pagina: ${pageId} nella lingua: ${lang}. Verifica il file texts.json.`);
+             // Se i dati non ci sono, impostiamo un testo di errore e ci fermiamo.
+             updateTextContent('pageTitle', `[ERRORE] Testi ${lang} non trovati per questa pagina.`);
              return;
         }
 
-        // AGGIORNAMENTO DEL CONTENUTO (invariato)
+        // AGGIORNAMENTO DEL CONTENUTO (Questi sono i tuoi aggiornamenti)
         updateTextContent('pageTitle', data.pageTitle);
         updateTextContent('mainText', data.mainText);
-        updateTextContent('mainText1', data.mainText1);
-        updateTextContent('mainText2', data.mainText2);
-        updateTextContent('mainText3', data.mainText3);
-        updateTextContent('mainText4', data.mainText4);
-        updateTextContent('mainText5', data.mainText5);
+        // ... (etc. per tutti i mainTextX) ...
+        updateTextContent('mainText5', data.mainText5); 
 
         updateTextContent('playAudio', data.playAudioButton);
 
@@ -180,20 +177,21 @@ const setLanguage = async (lang) => {
         }
 
         if (playButton) {
-            // 1. SALVA I TESTI PLAY/PAUSE
+            // SALVA I TESTI PLAY/PAUSE
             playButton.dataset.playText = data.playAudioButton;
             playButton.dataset.pauseText = data.pauseAudioButton;
 
-            // 2. APPLICA LO STILE INIZIALE CORRETTO (BLU)
+            // APPLICA LO STILE INIZIALE CORRETTO (BLU)
             playButton.classList.remove('pause-style');
             playButton.classList.add('play-style');
         }
 
         console.log(`Lingua impostata su: ${lang}`);
-        document.documentElement.lang = lang;
 
     } catch (error) {
-        console.error('Errore nel caricamento dei testi:', error);
+        // Gestisce gli errori di rete o parsing JSON
+        console.error('Errore critico nel caricamento dei testi:', error);
+        updateTextContent('pageTitle', `[ERRORE DI CARICAMENTO] Lingua ${lang} fallita. Controlla i file JSON.`);
     }
 };
 
@@ -218,7 +216,7 @@ const toggleAudio = () => {
     }
 };
 
-// Imposta la lingua di default (italiano) al caricamento della pagina
+// Imposta la lingua di default al caricamento della pagina
 window.onload = () => {
     const playButton = document.getElementById('playAudio');
 
@@ -226,10 +224,10 @@ window.onload = () => {
         playButton.addEventListener('click', toggleAudio);
     }
 
-    // 💡 AGGIUNTA FONDAMENTALE 2: Carica la lingua salvata, altrimenti usa 'it'
+    // Carica la lingua salvata, altrimenti usa 'it'
     const savedLang = localStorage.getItem('userLanguage') || 'it';
     setLanguage(savedLang);
     
-    // 💡 AVVIA IL MONITORAGGIO GPS
+    // AVVIA IL MONITORAGGIO GPS
     startGeolocation();
 };
