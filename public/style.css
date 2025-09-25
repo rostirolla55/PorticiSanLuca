@@ -31,12 +31,25 @@ p {
 }
 
 /* ======================================= */
-/* 2. MENU DI NAVIGAZIONE (DESKTOP) */
+/* 2. MENU DI NAVIGAZIONE (ORA TUTTO È GESTITO COME MENU A SCOMPARSA) */
 /* ======================================= */
 
-/* Questa regola nasconde il bottone hamburger su schermi grandi */
 .menu-toggle {
-    display: none;
+    /* Mostra il bottone hamburger su TUTTI gli schermi */
+    display: block; 
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1000;
+}
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white; /* Rende le barre bianche per contrasto sulla barra nera */
+    margin: 5px 0;
+    transition: 0.4s;
 }
 
 .main-header {
@@ -47,31 +60,41 @@ p {
 }
 
 .nav-list {
+    /* Nasconde la lista per default su TUTTI gli schermi */
+    display: none;
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    overflow-x: auto;
-    white-space: nowrap;
+    flex-direction: column; /* Imposta sempre la visualizzazione verticale */
+    width: 100%;
+    position: absolute;
+    top: 60px; /* Sotto l'header */
+    left: 0;
+    background-color: #f0f0f0; /* Sfondo chiaro del menu */
+    z-index: 999;
 }
 
-/* Stile dei link del menu per desktop */
+/* Mostra la lista quando ha la classe 'active' */
+.nav-list.active {
+    display: flex;
+}
+
+/* Stile dei link (valido per tutti gli schermi) */
 .nav-list li a {
-    color: white; /* Testo bianco per contrasto */
+    color: #333; /* Testo scuro sul fondo chiaro del menu */
     text-decoration: none;
-    padding: 10px 15px;
+    padding: 15px;
     display: block;
     font-size: 1.1em;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
     transition: background-color 0.3s;
 }
 
 .nav-list li a:hover {
-    background-color: #555;
-    border-radius: 4px;
+    background-color: #ddd;
+    border-radius: 0; /* Rimuove il bordo tondo ereditato dal vecchio stile */
 }
-
 /* ======================================= */
 /* 3. BOTTONE AUDIO (PLAY/PAUSE) */
 /* ======================================= */
@@ -161,61 +184,11 @@ p {
 }
 
 /* ======================================= */
-/* 6. MEDIA QUERIES (SMARTPHONE E FINESTRA PICCOLA) */
+/* 6. MEDIA QUERIES (SEMPLIFICATE) */
 /* ======================================= */
 
 @media (max-width: 768px) {
-    /* Mostra il bottone hamburger su schermi piccoli */
-    .menu-toggle {
-        display: block;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 10px;
-        z-index: 1000;
-    }
-    .bar {
-        display: block;
-        width: 25px;
-        height: 3px;
-        background-color: white;
-        margin: 5px 0;
-        transition: 0.4s;
-    }
-    
-    /* Regole per la lista di navigazione a scomparsa */
-    .nav-list {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        background-color: #f0f0f0; /* Sfondo chiaro del menu a tendina */
-        z-index: 999;
-        white-space: normal;
-        overflow-x: hidden;
-    }
-
-    /* Mostra la lista quando ha la classe 'active' */
-    .nav-list.active {
-        display: flex;
-    }
-
-    /* Stile dei link del menu per smartphone e finestra piccola */
-    .nav-list li a {
-        color: #333; /* Rende il testo scuro per il contrasto */
-        background-color: transparent; /* Rimuove lo sfondo del link per usare quello del genitore */
-        padding: 15px;
-        border-bottom: 1px solid #ddd;
-        text-align: left;
-    }
-
-    .nav-list li a:hover {
-        background-color: #ddd; /* Cambia colore al passaggio del mouse/tocco */
-    }
-
-    /* Regole per il layout delle immagini */
+    /* Manteniamo solo le regole di adattamento immagine, ma non di navigazione */
     .image-text-container {
         flex-direction: column;
         gap: 15px;
