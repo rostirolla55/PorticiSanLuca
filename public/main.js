@@ -167,7 +167,10 @@ const setLanguage = async (lang) => {
         // AGGIORNAMENTO DEL CONTENUTO (Questi sono i tuoi aggiornamenti)
         updateTextContent('pageTitle', data.pageTitle);
         updateTextContent('mainText', data.mainText);
-        // ... (etc. per tutti i mainTextX) ...
+        updateTextContent('mainText1', data.mainText1); 
+        updateTextContent('mainText2', data.mainText2); 
+        updateTextContent('mainText3', data.mainText3); 
+        updateTextContent('mainText4', data.mainText4); 
         updateTextContent('mainText5', data.mainText5); 
 
         updateTextContent('playAudio', data.playAudioButton);
