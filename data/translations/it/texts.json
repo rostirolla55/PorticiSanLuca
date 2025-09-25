@@ -13,7 +13,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/Home_Bologna.mp3"
+    "audioSource": "Assets/Audio/it/Home_Bologna.mp3"
   },
   "arco119": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -29,7 +29,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco119.mp3"
+    "audioSource": "Assets/Audio/it/arco119.mp3"
    },
   "arco126b": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -45,7 +45,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco126b.mp3"
+    "audioSource": "Assets/Audio/it/arco126b.mp3"
    },
   "arco132a": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -61,7 +61,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco132a.mp3"
+    "audioSource": "Assets/Audio/it/arco132a.mp3"
    },
   "arco133a": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -77,7 +77,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco133a.mp3"
+    "audioSource": "Assets/Audio/it/arco133a.mp3"
    },
   "arco136b": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -93,7 +93,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco136b.mp3"
+    "audioSource": "Assets/Audio/it/arco136b.mp3"
    },
   "arco142a": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -109,7 +109,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco142a.mp3"
+    "audioSource": "Assets/Audio/it/arco142a.mp3"
    },
   "arco143c": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -125,7 +125,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco143c.mp3"
+    "audioSource": "Assets/Audio/it/arco143c.mp3"
    },
   "arco148": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -141,7 +141,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco148.mp3"
+    "audioSource": "Assets/Audio/it/arco148.mp3"
    },
   "arco163": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -157,7 +157,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco163.mp3"
+    "audioSource": "Assets/Audio/it/arco163.mp3"
    },
   "arco171b": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -173,7 +173,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco171b.mp3"
+    "audioSource": "Assets/Audio/it/arco171b.mp3"
    },
   "arco180": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -189,7 +189,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco180.mp3"
+    "audioSource": "Assets/Audio/it/arco180.mp3"
    },
   "arco182": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -205,7 +205,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco182.mp3"
+    "audioSource": "Assets/Audio/it/arco182.mp3"
    },
   "arco183": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -221,7 +221,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco183.mp3"
+    "audioSource": "Assets/Audio/it/arco183.mp3"
    },
   "arco186b": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -237,7 +237,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco186b.mp3"
+    "audioSource": "Assets/Audio/it/arco186b.mp3"
    },
   "arco188b": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -253,7 +253,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco188b.mp3"
+    "audioSource": "Assets/Audio/it/arco188b.mp3"
    },
   "arco190": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -269,7 +269,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco190.mp3"
+    "audioSource": "Assets/Audio/it/arco190.mp3"
    },
   "arco192c": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -285,7 +285,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco192c.mp3"
+    "audioSource": "Assets/Audio/it/arco192c.mp3"
    },
   "arco201a": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -301,7 +301,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco201a.mp3"
+    "audioSource": "Assets/Audio/it/arco201a.mp3"
    },
   "arco202a": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -317,7 +317,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco202a.mp3"
+    "audioSource": "Assets/Audio/it/arco202a.mp3"
    },
   "arco203b": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -333,7 +333,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco203b.mp3"
+    "audioSource": "Assets/Audio/it/arco203b.mp3"
    },
   "arco208b": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -349,7 +349,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco208b.mp3"
+    "audioSource": "Assets/Audio/it/arco208b.mp3"
    },
   "arco211b": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -365,7 +365,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco211b.mp3"
+    "audioSource": "Assets/Audio/it/arco211b.mp3"
    },
   "arco218b": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -381,7 +381,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco218b.mp3"
+    "audioSource": "Assets/Audio/it/arco218b.mp3"
    },
   "arco249a": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -397,7 +397,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco249a.mp3"
+    "audioSource": "Assets/Audio/it/arco249a.mp3"
    },
   "arco252a": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -413,7 +413,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco252a.mp3"
+    "audioSource": "Assets/Audio/it/arco252a.mp3"
    },
   "arco282a": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -429,7 +429,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco282a.mp3"
+    "audioSource": "Assets/Audio/it/arco282a.mp3"
    },
   "arco283a": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -445,7 +445,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco283a.mp3"
+    "audioSource": "Assets/Audio/it/arco283a.mp3"
    },
   "arco306b": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -461,7 +461,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco306b.mp3"
+    "audioSource": "Assets/Audio/it/arco306b.mp3"
    },
   "arco307a": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -477,7 +477,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco307a.mp3"
+    "audioSource": "Assets/Audio/it/arco307a.mp3"
    },
   "arco256": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -493,7 +493,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco256.mp3"
+    "audioSource": "Assets/Audio/it/arco256.mp3"
    },
   "arco53c": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -509,7 +509,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/arco53c.mp3"
+    "audioSource": "Assets/Audio/it/arco53c.mp3"
    },
   "lapide1": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -525,7 +525,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/lapide1.mp3"
+    "audioSource": "Assets/Audio/it/lapide1.mp3"
    },
   "lapide2": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -541,7 +541,7 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/lapide2.mp3"
+    "audioSource": "Assets/Audio/it/lapide2.mp3"
    },
   "psontuoso": {
     "_indicazione01": "qui sotto riporta il titolo che compare in testa alla pagina",
@@ -557,6 +557,6 @@
     "playAudioButton": "Ascolta l'audio in italiano!",
     "pauseAudioButton": "Metti in pausa",
     "_indicazione04": " inserire il nome file audio in formato mp3; in assenza dell'audio usare un mp3 di musica",
-    "audioSource": "assets/audio/it/psontuoso.mp3"
+    "audioSource": "Assets/Audio/it/psontuoso.mp3"
    } 
 }
