@@ -2,6 +2,21 @@
   "home": {
     "pageTitle": "Home Page Portici San Luca (it)",
     "mainText": "Benvenuto nel nuovo progetto PorticiSanLuca. Sostituisci questo testo.",
+    "mainText1": "",
+    "mainText2": "",
+    "mainText3": "",
+    "mainText4": "",
+    "mainText5": "",
+    "playAudioButton": "Ascolta l'audio in italiano!",
+    "pauseAudioButton": "Metti in pausa",
+    "imageSource1": "public/images/arco119.jpg",
+    "imageSource2": "",
+    "imageSource3": "",
+    "imageSource4": "",
+    "imageSource5": "",
+    "sourceText": "Archivio Storico del Comune di Bologna.",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Home.mp3"
   },
   "nav": {
@@ -25,8 +40,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco119.mp3"
   },
   "arco126b": {
@@ -45,8 +60,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco126b.mp3"
   },
   "arco132a": {
@@ -65,8 +80,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco132a.mp3"
   },
   "arco133a": {
@@ -85,8 +100,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco133a.mp3"
   },
   "arco136b": {
@@ -105,8 +120,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco136b.mp3"
   },
   "arco142a": {
@@ -125,8 +140,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco142a.mp3"
   },
   "arco143c": {
@@ -145,8 +160,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco143c.mp3"
   },
   "arco148": {
@@ -165,8 +180,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco148.mp3"
   },
   "arco163": {
@@ -185,8 +200,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco163.mp3"
   },
   "arco171b": {
@@ -205,8 +220,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco171b.mp3"
   },
   "arco180": {
@@ -225,8 +240,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco180.mp3"
   },
   "arco182": {
@@ -245,8 +260,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco182.mp3"
   },
   "arco183": {
@@ -265,8 +280,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco183.mp3"
   },
   "arco186b": {
@@ -285,8 +300,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco186b.mp3"
   },
   "arco188b": {
@@ -305,8 +320,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco188b.mp3"
   },
   "arco190": {
@@ -325,8 +340,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco190.mp3"
   },
   "arco192c": {
@@ -345,8 +360,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco192c.mp3"
   },
   "arco201a": {
@@ -365,8 +380,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco201a.mp3"
   },
   "arco202a": {
@@ -385,8 +400,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco202a.mp3"
   },
   "arco203b": {
@@ -405,8 +420,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco203b.mp3"
   },
   "arco208b": {
@@ -425,8 +440,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco208b.mp3"
   },
   "arco211b": {
@@ -445,8 +460,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco211b.mp3"
   },
   "arco218b": {
@@ -465,8 +480,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco218b.mp3"
   },
   "arco249a": {
@@ -485,8 +500,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco249a.mp3"
   },
   "arco252a": {
@@ -505,8 +520,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco252a.mp3"
   },
   "arco256": {
@@ -525,8 +540,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco256.mp3"
   },
   "arco282a": {
@@ -545,8 +560,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco282a.mp3"
   },
   "arco283a": {
@@ -565,8 +580,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco283a.mp3"
   },
   "arco306b": {
@@ -585,8 +600,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco306b.mp3"
   },
   "arco307a": {
@@ -605,8 +620,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco307a.mp3"
   },
   "arco53c": {
@@ -625,8 +640,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Arco53c.mp3"
   },
   "lapide1": {
@@ -645,8 +660,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Lapide1.mp3"
   },
   "lapide2": {
@@ -665,8 +680,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/Lapide2.mp3"
   },
   "psontuoso": {
@@ -685,8 +700,8 @@
     "imageSource4": "",
     "imageSource5": "",
     "sourceText": "Archivio Storico del Comune di Bologna.",
-    "creationDate": "2025-08-30",
-    "lastUpdate": "2025-10-01",
+    "creationDate": "30-08-2025",
+    "lastUpdate": "01-10-2025",
     "audioSource": "Assets/Audio/it/PSontuoso.mp3"
   }
 }
