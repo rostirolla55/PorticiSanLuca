@@ -1,4 +1,5 @@
 /* GENERA_JSON_4_LINGUE.REX */
+trace o
 Parse ARG LangList TemplateDir NavJSON
 
 /* ---------------------------------------------------- */
@@ -46,7 +47,7 @@ audioButton.fr.audio_path = "Assets/Audio/fr"
 /* ---------------------------------------------------- */
 Do l = 1 To Langs~size
     lang = Langs[l]
-    FileName = "data/translations/" || lang || "/texts.json" /* Il percorso corretto */
+    FileName = "data\translations\" || lang || "\texts.json" /* Il percorso corretto */
     
     Say "Generazione del file: " || FileName
 
