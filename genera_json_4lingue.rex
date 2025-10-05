@@ -85,8 +85,8 @@ Do l = 1 To Langs~size
     /* 3. Scrivi il blocco NAV (NUOVA LOGICA: GENERAZIONE HTML COMPLETA) */
     
     /* Inizializzazione della stringa nav */
-    nav_html = '<nav class="nav-bar nav-list">'
-    nav_html = nav_html || '<ul class="nav-links">'
+    nav_html = '<nav class=@#nav-bar nav-list@#>'
+    nav_html = nav_html || '<ul class=@#nav-links@#>'
 
     /* Aggiungi il link Home (index-XX.html) */
     nav_html = nav_html || '<li><a id=@#navHome@# href=@#index-' || lang || '.html@#>Home (' || lang_upper || ')</a></li>'
@@ -115,10 +115,10 @@ Do l = 1 To Langs~size
     say escaped_nav_html
    
     /* Scrivi il blocco NAV nel JSON */
-    rc = LineOut(FileName, '  "nav": {')
+    rc = LineOut(FileName, '    "nav": {')
     /* 2. Scrive la variabile con le virgolette escapate */
-    rc = LineOut(FileName, '    "nav_content": "' || escaped_nav_html || '"')
-    rc = LineOut(FileName, '  },')
+    rc = LineOut(FileName, '        "nav_content": "' || escaped_nav_html || '"')
+    rc = LineOut(FileName, '    },')
     
     /* 4. Ciclo per tutte le pagine POI (TUTTO UNIFORME) */
     Do p = 1 To PAGES_COUNT
