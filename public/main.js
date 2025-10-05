@@ -17,10 +17,11 @@ const getCurrentPageId = () => {
     const path = window.location.pathname;
     const fileName = path.substring(path.lastIndexOf('/') + 1);
 
-    // Se l'URL è vuoto o index-xx.html, ritorna 'home'
-    if (fileName.startsWith('index')) {
+    // 🔥 FIX: Gestisce index.html o index-xx.html
+    if (fileName === '' || fileName.startsWith('index')) {
         return 'home';
     }
+    
     // Rimuove l'estensione e qualsiasi suffisso di lingua (-en, -fr, ecc.)
     return fileName.replace(/-[a-z]{2}\.html/i, '').replace('.html', '').toLowerCase();
 };
@@ -161,7 +162,7 @@ const setLanguage = async (lang) => {
         const data = translations[pageId];
         
         // ==========================================================
-        // 🔥 NUOVA LOGICA: INIETTA LA BARRA DI NAVIGAZIONE COMPLETA
+        // 🔥 LOGICA: INIETTA LA BARRA DI NAVIGAZIONE COMPLETA
         // ==========================================================
         if (translations.nav && translations.nav.nav_content) {
             // Iniettiamo il blocco nav_content generato da Rexx nell'elemento con ID 'nav-container'
@@ -195,10 +196,7 @@ const setLanguage = async (lang) => {
         updateTextContent('mainText4', data.mainText4); 
         updateTextContent('mainText5', data.mainText5); 
 
-        // Rimuoviamo i vecchi updateTextContent('navHome', ...) perché ora usiamo l'HTML iniettato
-
         updateTextContent('playAudio', data.playAudioButton);
-        // AGGIUNGIAMO updateTextContent per sourceText, creationDate e lastUpdate
         updateTextContent('sourceText', data.sourceText);
         updateTextContent('creationDate', data.creationDate);
         updateTextContent('lastUpdate', data.lastUpdate);
