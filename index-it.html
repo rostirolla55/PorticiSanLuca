@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="it">
 
 <head>
     <meta charset="UTF-8">
@@ -12,21 +12,21 @@
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-28GJXYWCQW"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-        // 🔥 CONFIGURAZIONE: Associa 'dimension1' al nome parametro 'lingua_pagina'
-        gtag('config', 'G-28GJXYWCQW', {
-            'custom_map': { 'dimension1': 'lingua_pagina' }
-        });
+      // 🔥 CONFIGURAZIONE: Associa 'dimension1' al nome parametro 'lingua_pagina'
+      gtag('config', 'G-28GJXYWCQW', {
+          'custom_map': {'dimension1': 'lingua_pagina'} 
+      });
     </script>
 
     <script>
         // Funzione helper per ottenere il nome del file di destinazione (coerente con la nuova struttura)
         function getDestinationPageName(pageId, langCode) {
             // Es. ('index', 'en') -> index-en.html
-            // Es. ('pugliole', 'it') -> pugliole-es.html
+            // Es. ('pugliole', 'it') -> pugliole-it.html
             return `${pageId}-${langCode}.html`;
         }
 
@@ -46,7 +46,6 @@
         }
     </script>
 </head>
-
 <body id="home">
     <header class="main-header">
 
@@ -58,10 +57,10 @@
 
         <nav class="nav-bar nav-list">
             <ul class="nav-links">
-                <li><a id="navHome" href="index-es.html">Home</a></li>
-                <li><a id="navPugliole" href="pugliole-es.html">Pugliole</a></li>
-                <li><a id="navLastre" href="lastre-es.html">Lastre</a></li>
-                <li><a id="navCarracci" href="carracci-es.html">Carracci</a></li>
+                <li><a id="navHome" href="index-it.html">Home</a></li>
+                <li><a id="navPugliole" href="pugliole-it.html">Pugliole</a></li>
+                <li><a id="navLastre" href="lastre-it.html">Lastre</a></li>
+                <li><a id="navCarracci" href="carracci-it.html">Carracci</a></li>
             </ul>
         </nav>
 
@@ -97,8 +96,8 @@
 
         <div class="info-footer">
             <p><span id="infoSource"></span></p>
-            <p>Fecha de creación: <span id="infoCreatedDate"></span></p>
-            <p>Última actualización: <span id="infoUpdatedDate"></span></p>
+            <p>Data Creazione: <span id="infoCreatedDate"></span></p>
+            <p>Ultimo Aggiornamento: <span id="infoUpdatedDate"></span></p>
         </div>
     </main>
 
