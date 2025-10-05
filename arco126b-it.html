@@ -1,13 +1,26 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="it">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" content="notranslate">
-    <title>Benvenuto nel Quartiere Porto</title>
+    
+    <title>Benvenuto nel portico di San Luca</title>
 
     <link rel="stylesheet" href="public/style.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-28GJXYWCQW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      // 🔥 CONFIGURAZIONE: Associa 'dimension1' al nome parametro 'lingua_pagina'
+      gtag('config', 'G-28GJXYWCQW', {
+          'custom_map': {'dimension1': 'lingua_pagina'} 
+      });
+    </script>
 
     <script>
         // Funzione helper per ottenere il nome del file di destinazione (coerente con la nuova struttura)
@@ -33,7 +46,6 @@
         }
     </script>
 </head>
-
 <body id="home">
     <header class="main-header">
 
@@ -43,14 +55,8 @@
             <span class="bar"></span>
         </button>
 
-        <nav class="nav-bar nav-list">
-            <ul class="nav-links">
-                <li><a id="navHome" href="index-it.html">Home</a></li>
-                <li><a id="navPugliole" href="pugliole-it.html">Pugliole</a></li>
-                <li><a id="navLastre" href="lastre-it.html">Lastre</a></li>
-                <li><a id="navCarracci" href="carracci-it.html">Carracci</a></li>
-            </ul>
-        </nav>
+        <div id="nav-container">
+            </div>
 
         <div class="language-selector">
             <button onclick="setLanguageRedirect('it')"><img src="public/flag/it.png" alt="Italiano"></button>
@@ -84,11 +90,9 @@
 
         <div class="info-footer">
             <p><span id="infoSource"></span></p>
-            <p>Date de création: <span id="infoCreatedDate"></span></p>
-            <p>Dernière mise à jour: <span id="infoUpdatedDate"></span></p>
+            <p>Data Creazione: <span id="infoCreatedDate"></span></p>
+            <p>Ultimo Aggiornamento: <span id="infoUpdatedDate"></span></p>
         </div>
-
-
     </main>
 
     <script src="public/main.js"></script>
