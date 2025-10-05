@@ -1,4 +1,4 @@
-/* GENERA_JSON_4_LINGUE.REX - Implementazione con rc = LineOut(...) e accesso VALUE() */
+/* GENERA_JSON_4_LINGUE.REX - TUTTI I POI, Bottoni Estesi, Date Fisse, NAV HTML Completo */
 Parse ARG LangList TemplateDir NavJSON
 
 rc = 0
@@ -21,11 +21,9 @@ Langs = .array~of("it", "en", "es", "fr")
 CreationDate = "30-08-2025"
 LastUpdate = "01-10-2025"
 
-
 /* ---------------------------------------------------- */
 /* 2. DATI DI TEMPLATE E TRADUZIONI BOTTONI */
 /* ---------------------------------------------------- */
-
 /* TRADUZIONI UNIFORMI (Home e POI) */
 audioButton.it.play = "Ascolta l'audio in italiano!"
 audioButton.it.pause = "Metti in pausa"
@@ -53,6 +51,7 @@ audioButton.fr.audio_path = "Assets/Audio/fr"
 /* ---------------------------------------------------- */
 Do l = 1 To Langs~size
     lang = Langs[l]
+    lang_upper = TRANSLATE(lang) /* Usato per formattare i titoli */
     
     DirName = "data\translations\" || lang || "\"
     FileName = DirName || "texts.json"
@@ -68,10 +67,10 @@ Do l = 1 To Langs~size
     
     /* 2. Scrivi il blocco HOME (CON BOTTONI E DATE UNIFORMI) */
     rc = LineOut(FileName, '  "home": {')
-    rc = LineOut(FileName, '    "pageTitle": "Home Page Portici San Luca (' || lang || ')",')
+    rc = LineOut(FileName, '    "pageTitle": "Home Page Portici San Luca (' || lang_upper || ')",')
     rc = LineOut(FileName, '    "mainText": "Benvenuto nel nuovo progetto PorticiSanLuca. Sostituisci questo testo.",')
     
-    /* 🔥 ACCESSO INDIRETTO CON VALUE() */
+    /* Bottoni e Fonte */
     rc = LineOut(FileName, '    "playAudioButton": "' || value('audioButton.' || lang || '.play') || '",')
     rc = LineOut(FileName, '    "pauseAudioButton": "' || value('audioButton.' || lang || '.pause') || '",')
     rc = LineOut(FileName, '    "sourceText": "' || value('audioButton.' || lang || '.source') || '",')
@@ -83,11 +82,33 @@ Do l = 1 To Langs~size
     rc = LineOut(FileName, '    "audioSource": "' || value('audioButton.' || lang || '.audio_path') || '/Home.mp3"')
     rc = LineOut(FileName, '  },')
 
-    /* 3. Scrivi il blocco NAV (PLACEHOLDER - SOSTITUIRE MANUALMENTE!) */
+    /* 3. Scrivi il blocco NAV (NUOVA LOGICA: GENERAZIONE HTML COMPLETA) */
+    
+    /* Inizializzazione della stringa nav */
+    nav_html = '<nav class="nav-bar nav-list">'
+    nav_html = nav_html || '<ul class="nav-links">'
+
+    /* Aggiungi il link Home (index-XX.html) */
+    nav_html = nav_html || '<li><a id="navHome" href="index-' || lang || '.html">Home (' || lang_upper || ')</a></li>'
+    
+    /* Aggiungi i link per tutti i 34 POI */
+    Do p = 1 To PAGES_COUNT
+        key = Pagine.p /* es. arco119, lapide1 */
+        
+        /* Determina il testo del link */
+        link_text = key
+        If key = "psontuoso" Then link_text = "Ponte Sontuoso"
+        If LEFT(key, 6) = "lapide" Then link_text = "Lapide " || SUBSTR(key, 7)
+
+        nav_html = nav_html || '<li><a id="nav' || TRANSLATE(key) || '" href="' || key || '-' || lang || '.html">' || TRANSLATE(link_text) || '</a></li>'
+    End
+    
+    /* Chiudi la nav */
+    nav_html = nav_html || '</ul></nav>'
+    
+    /* Scrivi il blocco NAV nel JSON */
     rc = LineOut(FileName, '  "nav": {')
-    rc = LineOut(FileName, '    "navHome": "Home",')
-    rc = LineOut(FileName, '    "navLastre": "Lastre",')
-    rc = LineOut(FileName, '    "navPugliole": "Pugliole"')
+    rc = LineOut(FileName, '    "nav_content": "' || nav_html || '"') /* Inserisce l'HTML completo */
     rc = LineOut(FileName, '  },')
 
     
@@ -115,7 +136,7 @@ Do l = 1 To Langs~size
         rc = LineOut(FileName, '    "mainText4": "",')
         rc = LineOut(FileName, '    "mainText5": "",')
         
-        /* 🔥 ACCESSO INDIRETTO CON VALUE() */
+        /* Bottoni Audio */
         rc = LineOut(FileName, '    "playAudioButton": "' || value('audioButton.' || lang || '.play') || '",')
         rc = LineOut(FileName, '    "pauseAudioButton": "' || value('audioButton.' || lang || '.pause') || '",')
         
