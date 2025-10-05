@@ -18,7 +18,7 @@
         }
 
         // 🖱️ CAMBIO MANUALE LINGUA (Chiamato dai pulsanti bandiera)
-        function setLanguage(langCode) {
+        function setLanguageRedirect(langCode) {
             // 1. Salva la lingua scelta dall'utente (Requisito 11)
             localStorage.setItem('userLanguage', langCode);
 
@@ -53,10 +53,10 @@
         </nav>
 
         <div class="language-selector">
-            <button onclick="setLanguage('it')"><img src="public/flag/it.png" alt="Italiano"></button>
-            <button onclick="setLanguage('en')"><img src="public/flag/en.png" alt="English"></button>
-            <button onclick="setLanguage('fr')"><img src="public/flag/fr.png" alt="Français"></button>
-            <button onclick="setLanguage('es')"><img src="public/flag/es.png" alt="Español"></button>
+            <button onclick="setLanguageRedirect('it')"><img src="public/flag/it.png" alt="Italiano"></button>
+            <button onclick="setLanguageRedirect('en')"><img src="public/flag/en.png" alt="English"></button>
+            <button onclick="setLanguageRedirect('fr')"><img src="public/flag/fr.png" alt="Français"></button>
+            <button onclick="setLanguageRedirect('es')"><img src="public/flag/es.png" alt="Español"></button>
         </div>
     </header>
 
