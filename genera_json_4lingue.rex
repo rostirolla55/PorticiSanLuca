@@ -89,7 +89,7 @@ Do l = 1 To Langs~size
     nav_html = nav_html || '<ul class="nav-links">'
 
     /* Aggiungi il link Home (index-XX.html) */
-    nav_html = nav_html || '<li><a id="navHome" href="index-' || lang || '.html">Home (' || lang_upper || ')</a></li>'
+    nav_html = nav_html || '<li><a id=@#navHome@# href=@#index-' || lang || '.html@#>Home (' || lang_upper || ')</a></li>'
     
     /* Aggiungi i link per tutti i 34 POI */
     Do p = 1 To PAGES_COUNT
@@ -97,20 +97,28 @@ Do l = 1 To Langs~size
         
         /* Determina il testo del link */
         link_text = key
-        If key = "psontuoso" Then link_text = "Ponte Sontuoso"
+        If key = "psontuoso" Then link_text = "Portico Sontuoso"
         If LEFT(key, 6) = "lapide" Then link_text = "Lapide " || SUBSTR(key, 7)
 
-        nav_html = nav_html || '<li><a id="nav' || TRANSLATE(key) || '" href="' || key || '-' || lang || '.html">' || TRANSLATE(link_text) || '</a></li>'
+        nav_html = nav_html || '<li><a id=@#nav' || TRANSLATE(key) || '@# href=@#' || key || '-' || lang || '.html@#>' || TRANSLATE(link_text) || '</a></li>'
     End
-    
+ 
     /* Chiudi la nav */
     nav_html = nav_html || '</ul></nav>'
-    
+    say "------------------------ prima  della translate "
+    say nav_html
+     
     /* Scrivi il blocco NAV nel JSON */
-    rc = LineOut(FileName, '  "nav": {')
-    rc = LineOut(FileName, '    "nav_content": "' || nav_html || '"') /* Inserisce l'HTML completo */
-    rc = LineOut(FileName, '  },')
-
+     /* 1. Esegue l'escape delle virgolette doppie (" -> \") nell'HTML */
+    escaped_nav_html = TRANSLATE(nav_html, '\"', '@#')
+    say "------------------------ dopo  della translate "
+    say escaped_nav_html
+   
+    /* Scrivi il blocco NAV nel JSON */
+    rc = LineOut(FileName, '  "nav": {')
+    /* 2. Scrive la variabile con le virgolette escapate */
+    rc = LineOut(FileName, '    "nav_content": "' || escaped_nav_html || '"')
+    rc = LineOut(FileName, '  },')
     
     /* 4. Ciclo per tutte le pagine POI (TUTTO UNIFORME) */
     Do p = 1 To PAGES_COUNT
