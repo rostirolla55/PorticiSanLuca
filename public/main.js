@@ -17,7 +17,8 @@ const getCurrentPageId = () => {
     const path = window.location.pathname;
     const fileName = path.substring(path.lastIndexOf('/') + 1);
 
-    if (fileName === '' || fileName === 'index.html') {
+    // Se l'URL è vuoto o index-xx.html, ritorna 'home'
+    if (fileName.startsWith('index')) {
         return 'home';
     }
     // Rimuove l'estensione e qualsiasi suffisso di lingua (-en, -fr, ecc.)
@@ -29,6 +30,14 @@ const updateTextContent = (id, value) => {
     const element = document.getElementById(id);
     if (element) {
         element.textContent = value || '';
+    }
+};
+
+// Funzione flessibile per iniettare HTML solo se l'elemento esiste
+const updateHTMLContent = (id, htmlContent) => {
+    const element = document.getElementById(id);
+    if (element) {
+        element.innerHTML = htmlContent || '';
     }
 };
 
@@ -89,8 +98,8 @@ const startGeolocation = () => {
     if (navigator.geolocation) {
         navigator.geolocation.watchPosition(checkProximity, handleGeolocationError, {
             enableHighAccuracy: true,
-            timeout: 5000,           
-            maximumAge: 0             
+            timeout: 5000, 
+            maximumAge: 0 
         });
         console.log("Monitoraggio GPS avviato.");
     } else {
@@ -105,12 +114,8 @@ const startGeolocation = () => {
 
 // Gestione del menu a scomparsa e dell'evento 'ended'
 document.addEventListener('DOMContentLoaded', () => {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navList = document.querySelector('.nav-list');
-
-    menuToggle.addEventListener('click', () => {
-        navList.classList.toggle('active');
-    });
+    // Si noti che .nav-list è ora dentro l'HTML iniettato
+    // La gestione degli eventi per il toggle deve essere aggiornata o gestita dopo l'iniezione.
 
     const audioPlayer = document.getElementById('audioPlayer');
     const playButton = document.getElementById('playAudio');
@@ -138,33 +143,50 @@ const setLanguage = async (lang) => {
         audioPlayer.currentTime = 0;
     }
     
-    // 🚀 FIX CRUCIALE: Salva e imposta la lingua immediatamente, prima del fetch
+    // 🚀 Salva e imposta la lingua immediatamente
     localStorage.setItem('userLanguage', lang);
     document.documentElement.lang = lang;
 
     try {
         const pageId = getCurrentPageId();
 
-        // fetch su JSON (Qui può avvenire l'errore se il file non esiste o è vuoto)
+        // fetch su JSON 
         const response = await fetch(`data/translations/${lang}/texts.json`);
         
         if (!response.ok) {
-            // Se il file JSON non è raggiungibile (es. 404), lanciamo un errore
             throw new Error(`File di traduzione non trovato per la lingua: ${lang}`);
         }
         
         const translations = await response.json();
         const data = translations[pageId];
-
+        
+        // ==========================================================
+        // 🔥 NUOVA LOGICA: INIETTA LA BARRA DI NAVIGAZIONE COMPLETA
+        // ==========================================================
+        if (translations.nav && translations.nav.nav_content) {
+            // Iniettiamo il blocco nav_content generato da Rexx nell'elemento con ID 'nav-container'
+            updateHTMLContent('nav-container', translations.nav.nav_content);
+            
+            // Ricolleghiamo il toggle del menu (se presente e necessario)
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navList = document.querySelector('.nav-list');
+             if (menuToggle && navList) {
+                menuToggle.addEventListener('click', () => {
+                    navList.classList.toggle('active');
+                });
+            }
+        } else {
+            console.warn("Il blocco 'nav' o la chiave 'nav_content' non sono stati trovati nel JSON.");
+        }
+        // ==========================================================
+        
         if (!data) {
-             // ⚠️ L'ERRORE VERO: Se il JSON è vuoto o manca l'ID della pagina, 'data' è nullo
              console.error(`Dati non trovati per la pagina: ${pageId} nella lingua: ${lang}. Verifica il file texts.json.`);
-             // Se i dati non ci sono, impostiamo un testo di errore e ci fermiamo.
              updateTextContent('pageTitle', `[ERRORE] Testi ${lang} non trovati per questa pagina.`);
              return;
         }
 
-        // AGGIORNAMENTO DEL CONTENUTO (Questi sono i tuoi aggiornamenti)
+        // AGGIORNAMENTO DEL CONTENUTO DELLA PAGINA
         updateTextContent('pageTitle', data.pageTitle);
         updateTextContent('mainText', data.mainText);
         updateTextContent('mainText1', data.mainText1); 
@@ -173,7 +195,13 @@ const setLanguage = async (lang) => {
         updateTextContent('mainText4', data.mainText4); 
         updateTextContent('mainText5', data.mainText5); 
 
+        // Rimuoviamo i vecchi updateTextContent('navHome', ...) perché ora usiamo l'HTML iniettato
+
         updateTextContent('playAudio', data.playAudioButton);
+        // AGGIUNGIAMO updateTextContent per sourceText, creationDate e lastUpdate
+        updateTextContent('sourceText', data.sourceText);
+        updateTextContent('creationDate', data.creationDate);
+        updateTextContent('lastUpdate', data.lastUpdate);
 
         if (audioPlayer) {
             audioPlayer.src = data.audioSource;
