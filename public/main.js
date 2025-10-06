@@ -196,10 +196,22 @@ const setLanguage = async (lang) => {
         updateTextContent('mainText4', data.mainText4); 
         updateTextContent('mainText5', data.mainText5); 
 
+        // 🔥 AGGIORNAMENTO INFORMAZIONI SULLA FONTE E DATA
+        if (pageData.sourceText) {
+            // Usiamo il testo come etichetta e valore
+            updateTextContent('infoSource', `Fonte: ${pageData.sourceText}`);
+        }
+
+        if (pageData.creationDate) {
+            updateTextContent('infoCreatedDate', pageData.creationDate);
+        }
+
+        if (pageData.lastUpdate) {
+            updateTextContent('infoUpdatedDate', pageData.lastUpdate);
+        }
+
+
         updateTextContent('playAudio', data.playAudioButton);
-        updateTextContent('sourceText', data.sourceText);
-        updateTextContent('creationDate', data.creationDate);
-        updateTextContent('lastUpdate', data.lastUpdate);
 
         if (audioPlayer) {
             audioPlayer.src = data.audioSource;
