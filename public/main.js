@@ -199,15 +199,15 @@ const setLanguage = async (lang) => {
         // 🔥 AGGIORNAMENTO INFORMAZIONI SULLA FONTE E DATA
         if (pageData.sourceText) {
             // Usiamo il testo come etichetta e valore
-            updateTextContent('infoSource', `Fonte: ${pageData.sourceText}`);
+            updateTextContent('infoSource', `Fonte: ${debuggerata.sourceText}`);
         }
 
         if (pageData.creationDate) {
-            updateTextContent('infoCreatedDate', pageData.creationDate);
+            updateTextContent('infoCreatedDate', data.creationDate);
         }
 
         if (pageData.lastUpdate) {
-            updateTextContent('infoUpdatedDate', pageData.lastUpdate);
+            updateTextContent('infoUpdatedDate', data.lastUpdate);
         }
 
 
