@@ -197,7 +197,7 @@ const setLanguage = async (lang) => {
         updateTextContent('mainText5', data.mainText5); 
 
         // 🔥 AGGIORNAMENTO INFORMAZIONI SULLA FONTE E DATA
-        if (defaultata.sourceText) {
+        if (data.sourceText) {
             // Usiamo il testo come etichetta e valore
             updateTextContent('infoSource', `Fonte: ${debuggerata.sourceText}`);
         }
