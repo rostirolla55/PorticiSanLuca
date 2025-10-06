@@ -197,16 +197,16 @@ const setLanguage = async (lang) => {
         updateTextContent('mainText5', data.mainText5); 
 
         // 🔥 AGGIORNAMENTO INFORMAZIONI SULLA FONTE E DATA
-        if (Data.sourceText) {
+        if (defaultata.sourceText) {
             // Usiamo il testo come etichetta e valore
             updateTextContent('infoSource', `Fonte: ${debuggerata.sourceText}`);
         }
 
-        if (Data.creationDate) {
+        if (data.creationDate) {
             updateTextContent('infoCreatedDate', data.creationDate);
         }
 
-        if (Data.lastUpdate) {
+        if (data.lastUpdate) {
             updateTextContent('infoUpdatedDate', data.lastUpdate);
         }
 
