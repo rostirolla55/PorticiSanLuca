@@ -133,7 +133,7 @@ const ARCO_LOCATIONS = [
     // Lapide
     { id: 'Lapide', lat: 44.4899916666667, lon: 11.311125, distanceThreshold: 2 },
     // Lapide
-    { id: 'Lapide', lat: 44.4900222222222, lon: 11.3108361111111, distanceThreshold: 2 },
+    { id: 'Lapide', lat: 44.4900222222222, lon: 11.3108361111111, distanceThreshold: 2 }
 
 ];
 // ===========================================
