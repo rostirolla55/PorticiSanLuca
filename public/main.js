@@ -288,7 +288,7 @@ const setLanguage = async (lang) => {
         }
 
         const translations = await response.json();
-        const data = translations[pageId];
+        const data = translations[pageId]; // <-- 'data' è la variabile corretta
 
         // ==========================================================
         // 🔥 LOGICA: INIETTA LA BARRA DI NAVIGAZIONE COMPLETA
@@ -313,6 +313,9 @@ const setLanguage = async (lang) => {
         if (!data) {
             console.error(`Dati non trovati per la pagina: ${pageId} nella lingua: ${lang}. Verifica il file texts.json.`);
             updateTextContent('pageTitle', `[ERRORE] Testi ${lang} non trovati per questa pagina.`);
+            
+            // Rendi visibile anche in caso di errore dati, ma lascia che l'errore sia mostrato
+            document.body.classList.add('content-loaded');
             return;
         }
 
@@ -325,18 +328,18 @@ const setLanguage = async (lang) => {
         updateTextContent('mainText4', data.mainText4);
         updateTextContent('mainText5', data.mainText5);
 
-        // 🔥 AGGIORNAMENTO INFORMAZIONI SULLA FONTE E DATA
-        if (data.sourceText) {
+        // 🔥 AGGIORNAMENTO INFORMAZIONI SULLA FONTE E DATA (Correzione ReferenceError)
+        if (data.sourceText) { // <--- CORRETTO: Usiamo 'data'
             // Usiamo il testo come etichetta e valore
-            updateTextContent('infoSource', `Fonte: ${data.sourceText}`);
+            updateTextContent('infoSource', `Fonte: ${data.sourceText}`); // <--- CORRETTO: Usiamo 'data'
         }
 
-        if (data.creationDate) {
-            updateTextContent('infoCreatedDate', data.creationDate);
+        if (data.creationDate) { // <--- CORRETTO: Usiamo 'data'
+            updateTextContent('infoCreatedDate', data.creationDate); // <--- CORRETTO: Usiamo 'data'
         }
 
-        if (data.lastUpdate) {
-            updateTextContent('infoUpdatedDate', data.lastUpdate);
+        if (data.lastUpdate) { // <--- CORRETTO: Usiamo 'data'
+            updateTextContent('infoUpdatedDate', data.lastUpdate); // <--- CORRETTO: Usiamo 'data'
         }
 
 
@@ -357,11 +360,18 @@ const setLanguage = async (lang) => {
         }
 
         console.log(`Lingua impostata su: ${lang}`);
+        
+        // 🔥 NUOVO: Rendi visibile il corpo della pagina (Correzione FOUT)
+        document.body.classList.add('content-loaded');
+
 
     } catch (error) {
         // Gestisce gli errori di rete o parsing JSON
         console.error('Errore critico nel caricamento dei testi:', error);
         updateTextContent('pageTitle', `[ERRORE DI CARICAMENTO] Lingua ${lang} fallita. Controlla i file JSON.`);
+        
+        // 🔥 NUOVO: Rendi comunque visibile il corpo per non lasciare la pagina vuota
+        document.body.classList.add('content-loaded');
     }
 };
 
