@@ -5,135 +5,135 @@ const ARCO_LOCATIONS = [
     // Devi popolare questa lista con le coordinate reali dei tuoi archi.
     // L'ID deve corrispondere al nome del file HTML (es. 'arco119')
     // Esempio:
-    // { id: 'arco119', lat: 44.4984, lon: 11.3392, distanceThreshold: 20 },
-    // Chiesa_Santa_Caterina_di_Saragozza
-    { id: 'Chiesa_Santa_Caterina_di_Saragozza', lat: 44.4899888888889, lon: 11.3327638888889, distanceThreshold: 2 },
-    // Chiesa_Santa_Caterina_di_Saragozza
-    { id: 'Chiesa_Santa_Caterina_di_Saragozza', lat: 44.4900444444444, lon: 11.3328472222222, distanceThreshold: 2 },
-    // Chiesa_Santa_Caterina_di_Saragozza
-    { id: 'Chiesa_Santa_Caterina_di_Saragozza', lat: 44.4900305555556, lon: 11.3328472222222, distanceThreshold: 2 },
-    // Numero_civico_vecchio_di_Saragozza
-    { id: 'Numero_civico_vecchio_di_Saragozza', lat: 44.4900055555556, lon: 11.3328444444444, distanceThreshold: 2 },
-    // Rione_Falansterio
-    { id: 'Rione_Falansterio', lat: 44.4903861111111, lon: 11.3311861111111, distanceThreshold: 2 },
-    // Rione_Falansterio
-    { id: 'Rione_Falansterio', lat: 44.4903944444444, lon: 11.3310305555556, distanceThreshold: 2 },
-    // Portone_Sontuoso
-    { id: 'Portone_Sontuoso', lat: 44.4906555555556, lon: 11.3292888888889, distanceThreshold: 2 },
-    // Lapide_Saragozza_inizio
-    { id: 'Lapide_Saragozza_inizio', lat: 44.4905777777778, lon: 11.3291777777778, distanceThreshold: 2 },
-    // Lapide_Saragozza_inizio
-    { id: 'Lapide_Saragozza_inizio', lat: 44.4905694444444, lon: 11.3291861111111, distanceThreshold: 2 },
-    // Arco53
-    { id: 'Arco53', lat: 44.4904611111111, lon: 11.325975, distanceThreshold: 2 },
-    // Arco52
-    { id: 'Arco52', lat: 44.4904611111111, lon: 11.325975, distanceThreshold: 2 },
-    // Arco53
-    { id: 'Arco53', lat: 44.4895444444444, lon: 11.3256527777778, distanceThreshold: 2 },
-    // Arco53
-    { id: 'Arco53', lat: 44.4905555555556, lon: 11.3260166666667, distanceThreshold: 2 },
-    // Arco119
-    { id: 'Arco119', lat: 44.4899083333333, lon: 11.3221305555556, distanceThreshold: 2 },
-    // Arco119
-    { id: 'Arco119', lat: 44.4899083333333, lon: 11.3223944444444, distanceThreshold: 2 },
-    // Arco119
-    { id: 'Arco119', lat: 44.4899416666667, lon: 11.3221583333333, distanceThreshold: 2 },
-    // Arco126
-    { id: 'Arco126', lat: 44.4898138888889, lon: 11.3217194444444, distanceThreshold: 2 },
-    // Arco126
-    { id: 'Arco126', lat: 44.4898166666667, lon: 11.3216722222222, distanceThreshold: 2 },
-    // Arco126
-    { id: 'Arco126', lat: 44.4898166666667, lon: 11.3216722222222, distanceThreshold: 2 },
-    // Arco132a
-    { id: 'Arco132a', lat: 44.4897666666667, lon: 11.3214361111111, distanceThreshold: 2 },
-    // Arco132a
-    { id: 'Arco132a', lat: 44.4897666666667, lon: 11.3214361111111, distanceThreshold: 2 },
-    // Arco132a
-    { id: 'Arco132a', lat: 44.489775, lon: 11.3214083333333, distanceThreshold: 2 },
-    // Arco131
-    { id: 'Arco131', lat: 44.4897777777778, lon: 11.3214666666667, distanceThreshold: 2 },
-    // Arco132
-    { id: 'Arco132', lat: 44.4897777777778, lon: 11.3214666666667, distanceThreshold: 2 },
-    // Arco133
-    { id: 'Arco133', lat: 44.4897611111111, lon: 11.3214111111111, distanceThreshold: 2 },
-    // Arco136b
-    { id: 'Arco136b', lat: 44.4897472222222, lon: 11.3212333333333, distanceThreshold: 2 },
-    // Arco142a
-    { id: 'Arco142a', lat: 44.4897111111111, lon: 11.3209055555556, distanceThreshold: 2 },
-    // Arco142a
-    { id: 'Arco142a', lat: 44.4897111111111, lon: 11.3209055555556, distanceThreshold: 2 },
-    // Arco143c
-    { id: 'Arco143c', lat: 44.4896972222222, lon: 11.3208805555556, distanceThreshold: 2 },
-    // Arco148
-    { id: 'Arco148', lat: 44.4895333333333, lon: 11.3204222222222, distanceThreshold: 2 },
-    // Arco163
-    { id: 'Arco163', lat: 44.48935, lon: 11.3195666666667, distanceThreshold: 2 },
-    // Arco171
-    { id: 'Arco171', lat: 44.4892611111111, lon: 11.3191833333333, distanceThreshold: 2 },
-    // Arco180
-    { id: 'Arco180', lat: 44.489075, lon: 11.3185305555556, distanceThreshold: 2 },
-    // Arco182
-    { id: 'Arco182', lat: 44.4890333333333, lon: 11.3184555555556, distanceThreshold: 2 },
-    // Arco
-    { id: 'Arco', lat: 44.4890416666667, lon: 11.3184583333333, distanceThreshold: 2 },
-    // Arco183
-    { id: 'Arco183', lat: 44.4890416666667, lon: 11.3184583333333, distanceThreshold: 2 },
-    // Arco
-    { id: 'Arco', lat: 44.489025, lon: 11.3184055555556, distanceThreshold: 2 },
-    // Arco186b
-    { id: 'Arco186b', lat: 44.4889527777778, lon: 11.3182138888889, distanceThreshold: 2 },
-    // Arco188
-    { id: 'Arco188', lat: 44.4889111111111, lon: 11.3180777777778, distanceThreshold: 2 },
-    // Arco190
-    { id: 'Arco190', lat: 44.4888888888889, lon: 11.3180111111111, distanceThreshold: 2 },
-    // Arco192
-    { id: 'Arco192', lat: 44.4889055555556, lon: 11.3180277777778, distanceThreshold: 2 },
-    // Arco192c
-    { id: 'Arco192c', lat: 44.4889083333333, lon: 11.318025, distanceThreshold: 2 },
-    // Arco201a
-    { id: 'Arco201a', lat: 44.488775, lon: 11.3177194444444, distanceThreshold: 2 },
-    // Arco202a
-    { id: 'Arco202a', lat: 44.4888222222222, lon: 11.3176722222222, distanceThreshold: 2 },
-    // Arco203b
-    { id: 'Arco203b', lat: 44.4888416666667, lon: 11.3175222222222, distanceThreshold: 2 },
-    // Arco208
-    { id: 'Arco208', lat: 44.4888722222222, lon: 11.3168722222222, distanceThreshold: 2 },
-    // Arco208b
-    { id: 'Arco208b', lat: 44.4888722222222, lon: 11.3168722222222, distanceThreshold: 2 },
-    // Arco211
-    { id: 'Arco211', lat: 44.4887916666667, lon: 11.3164027777778, distanceThreshold: 2 },
-    // Arco
-    { id: 'Arco', lat: 44.4887916666667, lon: 11.3164027777778, distanceThreshold: 2 },
-    // Arco218
-    { id: 'Arco218', lat: 44.4888694444444, lon: 11.3161555555556, distanceThreshold: 2 },
-    // Arco249a
-    { id: 'Arco249a', lat: 44.489775, lon: 11.3150916666667, distanceThreshold: 2 },
-    // Lapide1
-    { id: 'Lapide1', lat: 44.4898805555556, lon: 11.3145527777778, distanceThreshold: 2 },
-    // Arco256
-    { id: 'Arco256', lat: 44.4899638888889, lon: 11.3144055555556, distanceThreshold: 2 },
-    // Arco256
-    { id: 'Arco256', lat: 44.4899638888889, lon: 11.3143611111111, distanceThreshold: 2 },
-    // Arco258
-    { id: 'Arco258', lat: 44.4900722222222, lon: 11.3141138888889, distanceThreshold: 2 },
-    // Arco283
-    { id: 'Arco283', lat: 44.4900694444444, lon: 11.3127166666667, distanceThreshold: 2 },
+    // { id: 'arco119', lat: 44.4984, lon: 11.3392, distancethreshold: 20 },
+    // chiesa_santa_caterina_di_saragozza
+    { id: 'chiesa_santa_caterina_di_saragozza', lat: 44.4899888888889, lon: 11.3327638888889, distancethreshold: 2 },
+    // chiesa_santa_caterina_di_saragozza
+    { id: 'chiesa_santa_caterina_di_saragozza', lat: 44.4900444444444, lon: 11.3328472222222, distancethreshold: 2 },
+    // chiesa_santa_caterina_di_saragozza
+    { id: 'chiesa_santa_caterina_di_saragozza', lat: 44.4900305555556, lon: 11.3328472222222, distancethreshold: 2 },
+    // numero_civico_vecchio_di_saragozza
+    { id: 'numero_civico_vecchio_di_saragozza', lat: 44.4900055555556, lon: 11.3328444444444, distancethreshold: 2 },
+    // rione_falansterio
+    { id: 'rione_falansterio', lat: 44.4903861111111, lon: 11.3311861111111, distancethreshold: 2 },
+    // rione_falansterio
+    { id: 'rione_falansterio', lat: 44.4903944444444, lon: 11.3310305555556, distancethreshold: 2 },
+    // psontuoso
+    { id: 'psontuoso', lat: 44.4906555555556, lon: 11.3292888888889, distancethreshold: 2 },
+    // lapide_saragozza_inizio
+    { id: 'lapide1', lat: 44.4905777777778, lon: 11.3291777777778, distancethreshold: 2 },
+    // lapide_saragozza_inizio
+    { id: 'lapide2', lat: 44.4905694444444, lon: 11.3291861111111, distancethreshold: 2 },
+    // arco53
+    { id: 'arco53', lat: 44.4904611111111, lon: 11.325975, distancethreshold: 2 },
+    // arco52
+    { id: 'arco52', lat: 44.4904611111111, lon: 11.325975, distancethreshold: 2 },
+    // arco53
+    { id: 'arco53', lat: 44.4895444444444, lon: 11.3256527777778, distancethreshold: 2 },
+    // arco53
+    { id: 'arco53', lat: 44.4905555555556, lon: 11.3260166666667, distancethreshold: 2 },
+    // arco119
+    { id: 'arco119', lat: 44.4899083333333, lon: 11.3221305555556, distancethreshold: 2 },
+    // arco119
+    { id: 'arco119', lat: 44.4899083333333, lon: 11.3223944444444, distancethreshold: 2 },
+    // arco119
+    { id: 'arco119', lat: 44.4899416666667, lon: 11.3221583333333, distancethreshold: 2 },
+    // arco126
+    { id: 'arco126', lat: 44.4898138888889, lon: 11.3217194444444, distancethreshold: 2 },
+    // arco126
+    { id: 'arco126', lat: 44.4898166666667, lon: 11.3216722222222, distancethreshold: 2 },
+    // arco126
+    { id: 'arco126', lat: 44.4898166666667, lon: 11.3216722222222, distancethreshold: 2 },
+    // arco132a
+    { id: 'arco132a', lat: 44.4897666666667, lon: 11.3214361111111, distancethreshold: 2 },
+    // arco132a
+    { id: 'arco132a', lat: 44.4897666666667, lon: 11.3214361111111, distancethreshold: 2 },
+    // arco132a
+    { id: 'arco132a', lat: 44.489775, lon: 11.3214083333333, distancethreshold: 2 },
+    // arco131
+    { id: 'arco131', lat: 44.4897777777778, lon: 11.3214666666667, distancethreshold: 2 },
+    // arco132
+    { id: 'arco132', lat: 44.4897777777778, lon: 11.3214666666667, distancethreshold: 2 },
+    // arco133
+    { id: 'arco133', lat: 44.4897611111111, lon: 11.3214111111111, distancethreshold: 2 },
+    // arco136b
+    { id: 'arco136b', lat: 44.4897472222222, lon: 11.3212333333333, distancethreshold: 2 },
+    // arco142a
+    { id: 'arco142a', lat: 44.4897111111111, lon: 11.3209055555556, distancethreshold: 2 },
+    // arco142a
+    { id: 'arco142a', lat: 44.4897111111111, lon: 11.3209055555556, distancethreshold: 2 },
+    // arco143c
+    { id: 'arco143c', lat: 44.4896972222222, lon: 11.3208805555556, distancethreshold: 2 },
+    // arco148
+    { id: 'arco148', lat: 44.4895333333333, lon: 11.3204222222222, distancethreshold: 2 },
+    // arco163
+    { id: 'arco163', lat: 44.48935, lon: 11.3195666666667, distancethreshold: 2 },
+    // arco171
+    { id: 'arco171', lat: 44.4892611111111, lon: 11.3191833333333, distancethreshold: 2 },
+    // arco180
+    { id: 'arco180', lat: 44.489075, lon: 11.3185305555556, distancethreshold: 2 },
+    // arco182
+    { id: 'arco182', lat: 44.4890333333333, lon: 11.3184555555556, distancethreshold: 2 },
+    // arco
+    { id: 'arco', lat: 44.4890416666667, lon: 11.3184583333333, distancethreshold: 2 },
+    // arco183
+    { id: 'arco183', lat: 44.4890416666667, lon: 11.3184583333333, distancethreshold: 2 },
+    // arco
+    { id: 'arco', lat: 44.489025, lon: 11.3184055555556, distancethreshold: 2 },
+    // arco186b
+    { id: 'arco186b', lat: 44.4889527777778, lon: 11.3182138888889, distancethreshold: 2 },
+    // arco188
+    { id: 'arco188', lat: 44.4889111111111, lon: 11.3180777777778, distancethreshold: 2 },
+    // arco190
+    { id: 'arco190', lat: 44.4888888888889, lon: 11.3180111111111, distancethreshold: 2 },
+    // arco192
+    { id: 'arco192', lat: 44.4889055555556, lon: 11.3180277777778, distancethreshold: 2 },
+    // arco192c
+    { id: 'arco192c', lat: 44.4889083333333, lon: 11.318025, distancethreshold: 2 },
+    // arco201a
+    { id: 'arco201a', lat: 44.488775, lon: 11.3177194444444, distancethreshold: 2 },
+    // arco202a
+    { id: 'arco202a', lat: 44.4888222222222, lon: 11.3176722222222, distancethreshold: 2 },
+    // arco203b
+    { id: 'arco203b', lat: 44.4888416666667, lon: 11.3175222222222, distancethreshold: 2 },
+    // arco208
+    { id: 'arco208', lat: 44.4888722222222, lon: 11.3168722222222, distancethreshold: 2 },
+    // arco208b
+    { id: 'arco208b', lat: 44.4888722222222, lon: 11.3168722222222, distancethreshold: 2 },
+    // arco211
+    { id: 'arco211', lat: 44.4887916666667, lon: 11.3164027777778, distancethreshold: 2 },
+    // arco
+    { id: 'arco', lat: 44.4887916666667, lon: 11.3164027777778, distancethreshold: 2 },
+    // arco218
+    { id: 'arco218', lat: 44.4888694444444, lon: 11.3161555555556, distancethreshold: 2 },
+    // arco249a
+    { id: 'arco249a', lat: 44.489775, lon: 11.3150916666667, distancethreshold: 2 },
+    // lapide1
+    { id: 'lapide1', lat: 44.4898805555556, lon: 11.3145527777778, distancethreshold: 2 },
+    // arco256
+    { id: 'arco256', lat: 44.4899638888889, lon: 11.3144055555556, distancethreshold: 2 },
+    // arco256
+    { id: 'arco256', lat: 44.4899638888889, lon: 11.3143611111111, distancethreshold: 2 },
+    // arco258
+    { id: 'arco258', lat: 44.4900722222222, lon: 11.3141138888889, distancethreshold: 2 },
+    // arco283
+    { id: 'arco283', lat: 44.4900694444444, lon: 11.3127166666667, distancethreshold: 2 },
     // lapide
-    { id: 'lapide', lat: 44.4902444444444, lon: 11.3111833333333, distanceThreshold: 2 },
-    // Lapide
-    { id: 'Lapide', lat: 44.4901805555556, lon: 11.3111888888889, distanceThreshold: 2 },
-    // Lapide
-    { id: 'Lapide', lat: 44.4901638888889, lon: 11.3112527777778, distanceThreshold: 2 },
-    // Lapide
-    { id: 'Lapide', lat: 44.4901694444444, lon: 11.3111944444444, distanceThreshold: 2 },
-    // Lapide1
-    { id: 'Lapide1', lat: 44.4901694444444, lon: 11.3111944444444, distanceThreshold: 2 },
-    // Lapide
-    { id: 'Lapide', lat: 44.4899916666667, lon: 11.311125, distanceThreshold: 2 },
-    // Lapide
-    { id: 'Lapide', lat: 44.4899916666667, lon: 11.311125, distanceThreshold: 2 },
-    // Lapide
-    { id: 'Lapide', lat: 44.4900222222222, lon: 11.3108361111111, distanceThreshold: 2 }
+    { id: 'lapide', lat: 44.4902444444444, lon: 11.3111833333333, distancethreshold: 2 },
+    // lapide
+    { id: 'lapide', lat: 44.4901805555556, lon: 11.3111888888889, distancethreshold: 2 },
+    // lapide
+    { id: 'lapide', lat: 44.4901638888889, lon: 11.3112527777778, distancethreshold: 2 },
+    // lapide
+    { id: 'lapide', lat: 44.4901694444444, lon: 11.3111944444444, distancethreshold: 2 },
+    // lapide1
+    { id: 'lapide1', lat: 44.4901694444444, lon: 11.3111944444444, distancethreshold: 2 },
+    // lapide
+    { id: 'lapide', lat: 44.4899916666667, lon: 11.311125, distancethreshold: 2 },
+    // lapide
+    { id: 'lapide', lat: 44.4899916666667, lon: 11.311125, distancethreshold: 2 },
+    // lapide
+    { id: 'lapide', lat: 44.4900222222222, lon: 11.3108361111111, distancethreshold: 2 }
 
 ];
 // ===========================================
@@ -568,24 +568,41 @@ const startGeolocation = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 🔥 ASSEGNAZIONE SICURA DELLE VARIABILI GLOBALI (INCLUSI I NUOVI ELEMENTI)
+    // 🔥 1. INIETTA IL MARKUP DEL MENU NEL CONTENITORE (#nav-container) 🔥
+    const navContainer = document.getElementById('nav-container');
+    if (navContainer) {
+        navContainer.innerHTML = NAV_MARKUP_TEMPLATE; 
+    }
+
+    // 2. ASSEGNAZIONE SICURA DELLE VARIABILI GLOBALI (RESTO DELLE ASSEGNAZIONI)
+    // Queste assegnazioni rimangono qui e funzionano anche se i loro elementi non sono ancora nella pagina.
     audioPlayer = document.getElementById('audioPlayer');
     playButton = document.getElementById('playAudio');
     menuButton = document.getElementById('show-contextual-menu'); // Bottone GPS
     menuContainer = document.getElementById('contextual-menu-container'); // Menu contenitore
 
 
-    // Gestione Menu Hamburger (Requisito 5)
+    // 🔥 3. Gestione Menu Hamburger (Requisito 5) - ORA GLI ELEMENTI ESISTONO!
+    // Selezioniamo gli elementi *dopo* l'iniezione (Passo 1)
     const menuToggle = document.querySelector('.menu-toggle');
-    const navList = document.querySelector('.nav-list');
+    const navList = document.querySelector('.nav-list'); // Classe usata nel markup REXX
 
     if (menuToggle && navList) {
         menuToggle.addEventListener('click', () => {
             navList.classList.toggle('active');
             menuToggle.classList.toggle('active');
         });
+
+        // Aggiungi la chiusura del menu dopo aver cliccato un link
+        navList.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navList.classList.remove('active');
+            });
+        });
     }
 
+    // 4. ESECUZIONE DELLE FUNZIONI
     setupAudioControl();
     startGeolocation();
 
@@ -593,7 +610,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentHTMLlang = document.documentElement.lang;
     loadContent(currentHTMLlang);
 
-    // 🔥 NUOVO BLOCCO: Invia la lingua corrente a Google Analytics
+    // 🔥 5. NUOVO BLOCCO: Invia la lingua corrente a Google Analytics
     if (typeof gtag === 'function') {
         gtag('set', { 'lingua_pagina': currentHTMLlang });
 
