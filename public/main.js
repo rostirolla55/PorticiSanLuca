@@ -2,131 +2,75 @@
 // DATI: Punti di Interesse GPS (DA COMPILARE)
 // ===========================================
 const ARCO_LOCATIONS = [
-    // Devi popolare questa lista con le coordinate reali dei tuoi archi.
     // L'ID deve corrispondere al nome del file HTML (es. 'arco119')
-    // Esempio:
-    // { id: 'arco119', lat: 44.4984, lon: 11.3392, distancethreshold: 20 },
-    // chiesa_santa_caterina_di_saragozza
-    // psontuoso
+    // Nota: Ho corretto gli ID generici (es. 'arco', 'lapide') per puntare a ID specifici che hai nel menu.
+    
     { id: 'psontuoso', lat: 44.4906555555556, lon: 11.3292888888889, distancethreshold: 2 },
-    // lapide_saragozza_inizio
     { id: 'lapide1', lat: 44.4905777777778, lon: 11.3291777777778, distancethreshold: 2 },
-    // lapide_saragozza_inizio
     { id: 'lapide2', lat: 44.4905694444444, lon: 11.3291861111111, distancethreshold: 2 },
-    // arco53
-    { id: 'arco53', lat: 44.4904611111111, lon: 11.325975, distancethreshold: 2 },
-    // arco52
-    { id: 'arco52', lat: 44.4904611111111, lon: 11.325975, distancethreshold: 2 },
-    // arco53
-    { id: 'arco53', lat: 44.4895444444444, lon: 11.3256527777778, distancethreshold: 2 },
-    // arco53
-    { id: 'arco53', lat: 44.4905555555556, lon: 11.3260166666667, distancethreshold: 2 },
-    // arco119
+    { id: 'arco53c', lat: 44.4904611111111, lon: 11.325975, distancethreshold: 2 },
+    // arco52 è un ID mancante nel menu, uso arco53c come fallback
+    { id: 'arco53c', lat: 44.4904611111111, lon: 11.325975, distancethreshold: 2 }, 
+    { id: 'arco53c', lat: 44.4895444444444, lon: 11.3256527777778, distancethreshold: 2 },
+    { id: 'arco53c', lat: 44.4905555555556, lon: 11.3260166666667, distancethreshold: 2 },
     { id: 'arco119', lat: 44.4899083333333, lon: 11.3221305555556, distancethreshold: 2 },
-    // arco119
     { id: 'arco119', lat: 44.4899083333333, lon: 11.3223944444444, distancethreshold: 2 },
-    // arco119
     { id: 'arco119', lat: 44.4899416666667, lon: 11.3221583333333, distancethreshold: 2 },
-    // arco126
-    { id: 'arco126', lat: 44.4898138888889, lon: 11.3217194444444, distancethreshold: 2 },
-    // arco126
-    { id: 'arco126', lat: 44.4898166666667, lon: 11.3216722222222, distancethreshold: 2 },
-    // arco126
-    { id: 'arco126', lat: 44.4898166666667, lon: 11.3216722222222, distancethreshold: 2 },
-    // arco132a
+    // arco126 è un ID mancante nel menu, uso arco126b come fallback
+    { id: 'arco126b', lat: 44.4898138888889, lon: 11.3217194444444, distancethreshold: 2 },
+    { id: 'arco126b', lat: 44.4898166666667, lon: 11.3216722222222, distancethreshold: 2 },
+    { id: 'arco126b', lat: 44.4898166666667, lon: 11.3216722222222, distancethreshold: 2 },
     { id: 'arco132a', lat: 44.4897666666667, lon: 11.3214361111111, distancethreshold: 2 },
-    // arco132a
     { id: 'arco132a', lat: 44.4897666666667, lon: 11.3214361111111, distancethreshold: 2 },
-    // arco132a
     { id: 'arco132a', lat: 44.489775, lon: 11.3214083333333, distancethreshold: 2 },
-    // arco131
-    { id: 'arco131', lat: 44.4897777777778, lon: 11.3214666666667, distancethreshold: 2 },
-    // arco132
-    { id: 'arco132', lat: 44.4897777777778, lon: 11.3214666666667, distancethreshold: 2 },
-    // arco133
-    { id: 'arco133', lat: 44.4897611111111, lon: 11.3214111111111, distancethreshold: 2 },
-    // arco136b
+    // arco131, arco132, arco133 sono IDs mancanti nel menu, uso i più vicini (arco133a)
+    { id: 'arco133a', lat: 44.4897777777778, lon: 11.3214666666667, distancethreshold: 2 }, 
+    { id: 'arco133a', lat: 44.4897777777778, lon: 11.3214666666667, distancethreshold: 2 }, 
+    { id: 'arco133a', lat: 44.4897611111111, lon: 11.3214111111111, distancethreshold: 2 }, 
     { id: 'arco136b', lat: 44.4897472222222, lon: 11.3212333333333, distancethreshold: 2 },
-    // arco142a
     { id: 'arco142a', lat: 44.4897111111111, lon: 11.3209055555556, distancethreshold: 2 },
-    // arco142a
     { id: 'arco142a', lat: 44.4897111111111, lon: 11.3209055555556, distancethreshold: 2 },
-    // arco143c
     { id: 'arco143c', lat: 44.4896972222222, lon: 11.3208805555556, distancethreshold: 2 },
-    // arco148
     { id: 'arco148', lat: 44.4895333333333, lon: 11.3204222222222, distancethreshold: 2 },
-    // arco163
     { id: 'arco163', lat: 44.48935, lon: 11.3195666666667, distancethreshold: 2 },
-    // arco171
-    { id: 'arco171', lat: 44.4892611111111, lon: 11.3191833333333, distancethreshold: 2 },
-    // arco180
+    { id: 'arco171b', lat: 44.4892611111111, lon: 11.3191833333333, distancethreshold: 2 },
     { id: 'arco180', lat: 44.489075, lon: 11.3185305555556, distancethreshold: 2 },
-    // arco182
     { id: 'arco182', lat: 44.4890333333333, lon: 11.3184555555556, distancethreshold: 2 },
-    // arco
-    { id: 'arco', lat: 44.4890416666667, lon: 11.3184583333333, distancethreshold: 2 },
-    // arco183
+    { id: 'arco182', lat: 44.4890416666667, lon: 11.3184583333333, distancethreshold: 2 }, // Corretto 'arco' -> 'arco182'
     { id: 'arco183', lat: 44.4890416666667, lon: 11.3184583333333, distancethreshold: 2 },
-    // arco
-    { id: 'arco', lat: 44.489025, lon: 11.3184055555556, distancethreshold: 2 },
-    // arco186b
+    { id: 'arco182', lat: 44.489025, lon: 11.3184055555556, distancethreshold: 2 }, // Corretto 'arco' -> 'arco182'
     { id: 'arco186b', lat: 44.4889527777778, lon: 11.3182138888889, distancethreshold: 2 },
-    // arco188
-    { id: 'arco188', lat: 44.4889111111111, lon: 11.3180777777778, distancethreshold: 2 },
-    // arco190
+    { id: 'arco188b', lat: 44.4889111111111, lon: 11.3180777777778, distancethreshold: 2 },
     { id: 'arco190', lat: 44.4888888888889, lon: 11.3180111111111, distancethreshold: 2 },
-    // arco192
-    { id: 'arco192', lat: 44.4889055555556, lon: 11.3180277777778, distancethreshold: 2 },
-    // arco192c
+    { id: 'arco192c', lat: 44.4889055555556, lon: 11.3180277777778, distancethreshold: 2 },
     { id: 'arco192c', lat: 44.4889083333333, lon: 11.318025, distancethreshold: 2 },
-    // arco201a
     { id: 'arco201a', lat: 44.488775, lon: 11.3177194444444, distancethreshold: 2 },
-    // arco202a
     { id: 'arco202a', lat: 44.4888222222222, lon: 11.3176722222222, distancethreshold: 2 },
-    // arco203b
     { id: 'arco203b', lat: 44.4888416666667, lon: 11.3175222222222, distancethreshold: 2 },
-    // arco208
-    { id: 'arco208', lat: 44.4888722222222, lon: 11.3168722222222, distancethreshold: 2 },
-    // arco208b
     { id: 'arco208b', lat: 44.4888722222222, lon: 11.3168722222222, distancethreshold: 2 },
-    // arco211
-    { id: 'arco211', lat: 44.4887916666667, lon: 11.3164027777778, distancethreshold: 2 },
-    // arco
-    { id: 'arco', lat: 44.4887916666667, lon: 11.3164027777778, distancethreshold: 2 },
-    // arco218
-    { id: 'arco218', lat: 44.4888694444444, lon: 11.3161555555556, distancethreshold: 2 },
-    // arco249a
+    { id: 'arco208b', lat: 44.4888722222222, lon: 11.3168722222222, distancethreshold: 2 },
+    { id: 'arco211b', lat: 44.4887916666667, lon: 11.3164027777778, distancethreshold: 2 }, // Corretto da arco211
+    { id: 'arco211b', lat: 44.4887916666667, lon: 11.3164027777778, distancethreshold: 2 }, // Corretto 'arco' -> 'arco211b'
+    { id: 'arco218b', lat: 44.4888694444444, lon: 11.3161555555556, distancethreshold: 2 }, // Corretto da arco218
     { id: 'arco249a', lat: 44.489775, lon: 11.3150916666667, distancethreshold: 2 },
-    // lapide1
     { id: 'lapide1', lat: 44.4898805555556, lon: 11.3145527777778, distancethreshold: 2 },
-    // arco256
     { id: 'arco256', lat: 44.4899638888889, lon: 11.3144055555556, distancethreshold: 2 },
-    // arco256
     { id: 'arco256', lat: 44.4899638888889, lon: 11.3143611111111, distancethreshold: 2 },
-    // arco258
-    { id: 'arco258', lat: 44.4900722222222, lon: 11.3141138888889, distancethreshold: 2 },
-    // arco283
-    { id: 'arco283', lat: 44.4900694444444, lon: 11.3127166666667, distancethreshold: 2 },
-    // lapide
-    { id: 'lapide', lat: 44.4902444444444, lon: 11.3111833333333, distancethreshold: 2 },
-    // lapide
-    { id: 'lapide', lat: 44.4901805555556, lon: 11.3111888888889, distancethreshold: 2 },
-    // lapide
-    { id: 'lapide', lat: 44.4901638888889, lon: 11.3112527777778, distancethreshold: 2 },
-    // lapide
-    { id: 'lapide', lat: 44.4901694444444, lon: 11.3111944444444, distancethreshold: 2 },
-    // lapide1
+    // arco258 è un ID mancante nel menu, uso arco256 come fallback
+    { id: 'arco256', lat: 44.4900722222222, lon: 11.3141138888889, distancethreshold: 2 }, 
+    { id: 'arco283a', lat: 44.4900694444444, lon: 11.3127166666667, distancethreshold: 2 }, // Corretto da arco283
+    { id: 'lapide1', lat: 44.4902444444444, lon: 11.3111833333333, distancethreshold: 2 }, // Corretto 'lapide' -> 'lapide1'
+    { id: 'lapide1', lat: 44.4901805555556, lon: 11.3111888888889, distancethreshold: 2 }, // Corretto 'lapide' -> 'lapide1'
+    { id: 'lapide2', lat: 44.4901638888889, lon: 11.3112527777778, distancethreshold: 2 }, // Corretto 'lapide' -> 'lapide2'
+    { id: 'lapide1', lat: 44.4901694444444, lon: 11.3111944444444, distancethreshold: 2 }, // Corretto 'lapide' -> 'lapide1'
     { id: 'lapide1', lat: 44.4901694444444, lon: 11.3111944444444, distancethreshold: 2 },
-    // lapide
-    { id: 'lapide', lat: 44.4899916666667, lon: 11.311125, distancethreshold: 2 },
-    // lapide
-    { id: 'lapide', lat: 44.4899916666667, lon: 11.311125, distancethreshold: 2 },
-    // lapide
-    { id: 'lapide', lat: 44.4900222222222, lon: 11.3108361111111, distancethreshold: 2 }
-
+    { id: 'lapide2', lat: 44.4899916666667, lon: 11.311125, distancethreshold: 2 }, // Corretto 'lapide' -> 'lapide2'
+    { id: 'lapide2', lat: 44.4899916666667, lon: 11.311125, distancethreshold: 2 }, // Corretto 'lapide' -> 'lapide2'
+    { id: 'lapide2', lat: 44.4900222222222, lon: 11.3108361111111, distancethreshold: 2 } // Corretto 'lapide' -> 'lapide2'
 ];
+
 // ===========================================
-// NAVIGAZIONE DINAMICA (Generato da REXX)
+// NAVIGAZIONE DINAMICA (Generato da REXX, IDs uniformati in minuscolo)
 // ===========================================
 const NAV_MARKUP_TEMPLATE = `
 <button class="menu-toggle" aria-label="Toggle menu">
@@ -137,42 +81,41 @@ const NAV_MARKUP_TEMPLATE = `
 
 <nav class="nav-bar nav-list">
     <ul class="nav-links">
-
-            <li><a id="navHome" href="#">Home</a></li>
-            <li><a id="navARCO119" href="#">ARCO119</a></li>
-            <li><a id="navARCO126B" href="#">ARCO126B</a></li>
-            <li><a id="navARCO132A" href="#">ARCO132A</a></li>
-            <li><a id="navARCO133A" href="#">ARCO133A</a></li>
-            <li><a id="navARCO136B" href="#">ARCO136B</a></li>
-            <li><a id="navARCO142A" href="#">ARCO142A</a></li>
-            <li><a id="navARCO143C" href="#">ARCO143C</a></li>
-            <li><a id="navARCO148" href="#">ARCO148</a></li>
-            <li><a id="navARCO163" href="#">ARCO163</a></li>
-            <li><a id="navARCO171B" href="#">ARCO171B</a></li>
-            <li><a id="navARCO180" href="#">ARCO180</a></li>
-            <li><a id="navARCO182" href="#">ARCO182</a></li>
-            <li><a id="navARCO183" href="#">ARCO183</a></li>
-            <li><a id="navARCO186B" href="#">ARCO186B</a></li>
-            <li><a id="navARCO188B" href="#">ARCO188B</a></li>
-            <li><a id="navARCO190" href="#">ARCO190</a></li>
-            <li><a id="navARCO192C" href="#">ARCO192C</a></li>
-            <li><a id="navARCO201A" href="#">ARCO201A</a></li>
-            <li><a id="navARCO202A" href="#">ARCO202A</a></li>
-            <li><a id="navARCO203B" href="#">ARCO203B</a></li>
-            <li><a id="navARCO208B" href="#">ARCO208B</a></li>
-            <li><a id="navARCO211B" href="#">ARCO211B</a></li>
-            <li><a id="navARCO218B" href="#">ARCO218B</a></li>
-            <li><a id="navARCO249A" href="#">ARCO249A</a></li>
-            <li><a id="navARCO252A" href="#">ARCO252A</a></li>
-            <li><a id="navARCO256" href="#">ARCO256</a></li>
-            <li><a id="navARCO282A" href="#">ARCO282A</a></li>
-            <li><a id="navARCO283A" href="#">ARCO283A</a></li>
-            <li><a id="navARCO306B" href="#">ARCO306B</a></li>
-            <li><a id="navARCO307A" href="#">ARCO307A</a></li>
-            <li><a id="navARCO53C" href="#">ARCO53C</a></li>
-            <li><a id="navLAPIDE1" href="#">LAPIDE1</a></li>
-            <li><a id="navLAPIDE2" href="#">LAPIDE2</a></li>
-            <li><a id="navPSONTUOSO" href="#">PSONTUOSO</a></li>
+        <li><a id="navhome" href="#">Home</a></li>
+        <li><a id="navarco119" href="#">ARCO119</a></li>
+        <li><a id="navarco126b" href="#">ARCO126B</a></li>
+        <li><a id="navarco132a" href="#">ARCO132A</a></li>
+        <li><a id="navarco133a" href="#">ARCO133A</a></li>
+        <li><a id="navarco136b" href="#">ARCO136B</a></li>
+        <li><a id="navarco142a" href="#">ARCO142A</a></li>
+        <li><a id="navarco143c" href="#">ARCO143C</a></li>
+        <li><a id="navarco148" href="#">ARCO148</a></li>
+        <li><a id="navarco163" href="#">ARCO163</a></li>
+        <li><a id="navarco171b" href="#">ARCO171B</a></li>
+        <li><a id="navarco180" href="#">ARCO180</a></li>
+        <li><a id="navarco182" href="#">ARCO182</a></li>
+        <li><a id="navarco183" href="#">ARCO183</a></li>
+        <li><a id="navarco186b" href="#">ARCO186B</a></li>
+        <li><a id="navarco188b" href="#">ARCO188B</a></li>
+        <li><a id="navarco190" href="#">ARCO190</a></li>
+        <li><a id="navarco192c" href="#">ARCO192C</a></li>
+        <li><a id="navarco201a" href="#">ARCO201A</a></li>
+        <li><a id="navarco202a" href="#">ARCO202A</a></li>
+        <li><a id="navarco203b" href="#">ARCO203B</a></li>
+        <li><a id="navarco208b" href="#">ARCO208B</a></li>
+        <li><a id="navarco211b" href="#">ARCO211B</a></li>
+        <li><a id="navarco218b" href="#">ARCO218B</a></li>
+        <li><a id="navarco249a" href="#">ARCO249A</a></li>
+        <li><a id="navarco252a" href="#">ARCO252A</a></li>
+        <li><a id="navarco256" href="#">ARCO256</a></li>
+        <li><a id="navarco282a" href="#">ARCO282A</a></li>
+        <li><a id="navarco283a" href="#">ARCO283A</a></li>
+        <li><a id="navarco306b" href="#">ARCO306B</a></li>
+        <li><a id="navarco307a" href="#">ARCO307A</a></li>
+        <li><a id="navarco53c" href="#">ARCO53C</a></li>
+        <li><a id="navlapide1" href="#">LAPIDE1</a></li>
+        <li><a id="navlapide2" href="#">LAPIDE2</a></li>
+        <li><a id="navpsontuoso" href="#">PSONTUOSO</a></li>
     </ul>
 </nav>
 `;
@@ -189,7 +132,7 @@ let menuContainer; // Riferimento al nuovo menu
 // FUNZIONI UTILITY
 // ===========================================
 
-// Restituisce l'ID base della pagina (es. 'home', 'pugliole') leggendolo dall'ID del body
+// Restituisce l'ID base della pagina (es. 'home', 'arco119') leggendolo dall'ID del body
 const getCurrentPageId = () => {
     // Legge l'ID dal tag body (es. <body id="home">)
     const bodyId = document.body.id;
@@ -210,8 +153,9 @@ const updateTextContent = (id, value) => {
     }
 };
 
-// Funzione helper per ottenere il nome del file di destinazione
+// Funzione helper per ottenere il nome del file di destinazione (usata da GPS)
 const getDestinationPageName = (pageId, langCode) => {
+    // pageId è già in minuscolo (es. 'arco119')
     return `${pageId}-${langCode}.html`;
 };
 
@@ -256,8 +200,6 @@ const loadContent = async (lang) => {
         if (!pageData) {
             console.warn(`Dati non trovati per la chiave pagina: ${pageId} nel file JSON per la lingua: ${lang}.`);
             updateTextContent('pageTitle', `[ERRORE] Dati mancanti (${pageId}/${lang})`);
-
-            // Rendi visibile anche in caso di errore dati, ma lascia l'errore in console
             document.body.classList.add('content-loaded');
             return;
         }
@@ -266,80 +208,80 @@ const loadContent = async (lang) => {
         if (data.nav) {
             const suffix = `-${lang}.html`;
 
-            // Aggiorna gli href del menu (usando i nuovi nomi file XX-lingua.html)
+            // Aggiorna gli href del menu (USANDO GLI ID IN MINUSCOLO)
+            document.getElementById('navarco119').href = `arco119${suffix}`;
+            document.getElementById('navarco126b').href = `arco126b${suffix}`;
+            document.getElementById('navarco132a').href = `arco132a${suffix}`;
+            document.getElementById('navarco133a').href = `arco133a${suffix}`;
+            document.getElementById('navarco136b').href = `arco136b${suffix}`;
+            document.getElementById('navarco142a').href = `arco142a${suffix}`;
+            document.getElementById('navarco143c').href = `arco143c${suffix}`;
+            document.getElementById('navarco148').href = `arco148${suffix}`;
+            document.getElementById('navarco163').href = `arco163${suffix}`;
+            document.getElementById('navarco171b').href = `arco171b${suffix}`;
+            document.getElementById('navarco180').href = `arco180${suffix}`;
+            document.getElementById('navarco182').href = `arco182${suffix}`;
+            document.getElementById('navarco183').href = `arco183${suffix}`;
+            document.getElementById('navarco186b').href = `arco186b${suffix}`;
+            document.getElementById('navarco188b').href = `arco188b${suffix}`;
+            document.getElementById('navarco190').href = `arco190${suffix}`;
+            document.getElementById('navarco192c').href = `arco192c${suffix}`;
+            document.getElementById('navarco201a').href = `arco201a${suffix}`;
+            document.getElementById('navarco202a').href = `arco202a${suffix}`;
+            document.getElementById('navarco203b').href = `arco203b${suffix}`;
+            document.getElementById('navarco208b').href = `arco208b${suffix}`;
+            document.getElementById('navarco211b').href = `arco211b${suffix}`;
+            document.getElementById('navarco218b').href = `arco218b${suffix}`;
+            document.getElementById('navarco249a').href = `arco249a${suffix}`;
+            document.getElementById('navarco252a').href = `arco252a${suffix}`;
+            document.getElementById('navarco256').href = `arco256${suffix}`;
+            document.getElementById('navarco282a').href = `arco282a${suffix}`;
+            document.getElementById('navarco283a').href = `arco283a${suffix}`;
+            document.getElementById('navarco306b').href = `arco306b${suffix}`;
+            document.getElementById('navarco307a').href = `arco307a${suffix}`;
+            document.getElementById('navarco53c').href = `arco53c${suffix}`;
+            document.getElementById('navhome').href = `index${suffix}`;
+            document.getElementById('navlapide1').href = `lapide1${suffix}`;
+            document.getElementById('navlapide2').href = `lapide2${suffix}`;
+            document.getElementById('navpsontuoso').href = `psontuoso${suffix}`;
 
-            document.getElementById('navARCO119').href = `arco119${suffix}`;
-            document.getElementById('navARCO126B').href = `arco126b${suffix}`;
-            document.getElementById('navARCO132A').href = `arco132a${suffix}`;
-            document.getElementById('navARCO133A').href = `arco133a${suffix}`;
-            document.getElementById('navARCO136B').href = `arco136b${suffix}`;
-            document.getElementById('navARCO142A').href = `arco142a${suffix}`;
-            document.getElementById('navARCO143C').href = `arco143c${suffix}`;
-            document.getElementById('navARCO148').href = `arco148${suffix}`;
-            document.getElementById('navARCO163').href = `arco163${suffix}`;
-            document.getElementById('navARCO171B').href = `arco171b${suffix}`;
-            document.getElementById('navARCO180').href = `arco180${suffix}`;
-            document.getElementById('navARCO182').href = `arco182${suffix}`;
-            document.getElementById('navARCO183').href = `arco183${suffix}`;
-            document.getElementById('navARCO186B').href = `arco186b${suffix}`;
-            document.getElementById('navARCO188B').href = `arco188b${suffix}`;
-            document.getElementById('navARCO190').href = `arco190${suffix}`;
-            document.getElementById('navARCO192C').href = `arco192c${suffix}`;
-            document.getElementById('navARCO201A').href = `arco201a${suffix}`;
-            document.getElementById('navARCO202A').href = `arco202a${suffix}`;
-            document.getElementById('navARCO203B').href = `arco203b${suffix}`;
-            document.getElementById('navARCO208B').href = `arco208b${suffix}`;
-            document.getElementById('navARCO211B').href = `arco211b${suffix}`;
-            document.getElementById('navARCO218B').href = `arco218b${suffix}`;
-            document.getElementById('navARCO249A').href = `arco249a${suffix}`;
-            document.getElementById('navARCO252A').href = `arco252a${suffix}`;
-            document.getElementById('navARCO256').href = `arco256${suffix}`;
-            document.getElementById('navARCO282A').href = `arco282a${suffix}`;
-            document.getElementById('navARCO283A').href = `arco283a${suffix}`;
-            document.getElementById('navARCO306B').href = `arco306b${suffix}`;
-            document.getElementById('navARCO307A').href = `arco307a${suffix}`;
-            document.getElementById('navARCO53C').href = `arco53c${suffix}`;
-            document.getElementById('navHome').href = `index${suffix}`;
-            document.getElementById('navLAPIDE1').href = `lapide1${suffix}`;
-            document.getElementById('navLAPIDE2').href = `lapide2${suffix}`;
-            document.getElementById('navPSONTUOSO').href = `psontuoso${suffix}`;
-
-            // Aggiorna il testo dei link
-            updateTextContent('navARCO119', data.nav.navARCO119);
-            updateTextContent('navARCO126B', data.nav.navARCO126B);
-            updateTextContent('navARCO132A', data.nav.navARCO132A);
-            updateTextContent('navARCO133A', data.nav.navARCO133A);
-            updateTextContent('navARCO136B', data.nav.navARCO136B);
-            updateTextContent('navARCO142A', data.nav.navARCO142A);
-            updateTextContent('navARCO143C', data.nav.navARCO143C);
-            updateTextContent('navARCO148', data.nav.navARCO148);
-            updateTextContent('navARCO163', data.nav.navARCO163);
-            updateTextContent('navARCO171B', data.nav.navARCO171B);
-            updateTextContent('navARCO180', data.nav.navARCO180);
-            updateTextContent('navARCO182', data.nav.navARCO182);
-            updateTextContent('navARCO183', data.nav.navARCO183);
-            updateTextContent('navARCO186B', data.nav.navARCO186B);
-            updateTextContent('navARCO188B', data.nav.navARCO188B);
-            updateTextContent('navARCO190', data.nav.navARCO190);
-            updateTextContent('navARCO192C', data.nav.navARCO192C);
-            updateTextContent('navARCO201A', data.nav.navARCO201A);
-            updateTextContent('navARCO202A', data.nav.navARCO202A);
-            updateTextContent('navARCO203B', data.nav.navARCO203B);
-            updateTextContent('navARCO208B', data.nav.navARCO208B);
-            updateTextContent('navARCO211B', data.nav.navARCO211B);
-            updateTextContent('navARCO218B', data.nav.navARCO218B);
-            updateTextContent('navARCO249A', data.nav.navARCO249A);
-            updateTextContent('navARCO252A', data.nav.navARCO252A);
-            updateTextContent('navARCO256', data.nav.navARCO256);
-            updateTextContent('navARCO282A', data.nav.navARCO282A);
-            updateTextContent('navARCO283A', data.nav.navARCO283A);
-            updateTextContent('navARCO306B', data.nav.navARCO306B);
-            updateTextContent('navARCO307A', data.nav.navARCO307A);
-            updateTextContent('navARCO53C', data.nav.navARCO53C);
-            updateTextContent('navHome', data.nav.navHome);
-            updateTextContent('navLAPIDE1', data.nav.navLAPIDE1);
-            updateTextContent('navLAPIDE2', data.nav.navLAPIDE2);
-            updateTextContent('navPSONTUOSO', data.nav.navPSONTUOSO);
+            // Aggiorna il testo dei link (USANDO GLI ID IN MINUSCOLO PER updateTextContent)
+            // Mantengo le chiavi JSON (data.nav.navXXXX) come le avevi definite (presumibilmente in maiuscolo nel JSON)
+            updateTextContent('navarco119', data.nav.navARCO119);
+            updateTextContent('navarco126b', data.nav.navARCO126B);
+            updateTextContent('navarco132a', data.nav.navARCO132A);
+            updateTextContent('navarco133a', data.nav.navARCO133A);
+            updateTextContent('navarco136b', data.nav.navARCO136B);
+            updateTextContent('navarco142a', data.nav.navARCO142A);
+            updateTextContent('navarco143c', data.nav.navARCO143C);
+            updateTextContent('navarco148', data.nav.navARCO148);
+            updateTextContent('navarco163', data.nav.navARCO163);
+            updateTextContent('navarco171b', data.nav.navARCO171B);
+            updateTextContent('navarco180', data.nav.navARCO180);
+            updateTextContent('navarco182', data.nav.navARCO182);
+            updateTextContent('navarco183', data.nav.navARCO183);
+            updateTextContent('navarco186b', data.nav.navARCO186B);
+            updateTextContent('navarco188b', data.nav.navARCO188B);
+            updateTextContent('navarco190', data.nav.navARCO190);
+            updateTextContent('navarco192c', data.nav.navARCO192C);
+            updateTextContent('navarco201a', data.nav.navARCO201A);
+            updateTextContent('navarco202a', data.nav.navARCO202A);
+            updateTextContent('navarco203b', data.nav.navARCO203B);
+            updateTextContent('navarco208b', data.nav.navARCO208B);
+            updateTextContent('navarco211b', data.nav.navARCO211B);
+            updateTextContent('navarco218b', data.nav.navARCO218B);
+            updateTextContent('navarco249a', data.nav.navARCO249A);
+            updateTextContent('navarco252a', data.nav.navARCO252A);
+            updateTextContent('navarco256', data.nav.navARCO256);
+            updateTextContent('navarco282a', data.nav.navARCO282A);
+            updateTextContent('navarco283a', data.nav.navARCO283A);
+            updateTextContent('navarco306b', data.nav.navARCO306B);
+            updateTextContent('navarco307a', data.nav.navARCO307A);
+            updateTextContent('navarco53c', data.nav.navARCO53C);
+            updateTextContent('navhome', data.nav.navHome);
+            updateTextContent('navlapide1', data.nav.navLAPIDE1);
+            updateTextContent('navlapide2', data.nav.navLAPIDE2);
+            updateTextContent('navpsontuoso', data.nav.navPSONTUOSO);
         }
 
         // AGGIORNAMENTO IMMAGINE DI FONDO TESTATA (Requisito 8)
@@ -357,9 +299,8 @@ const loadContent = async (lang) => {
         updateTextContent('mainText4', pageData.mainText4);
         updateTextContent('mainText5', pageData.mainText5);
 
-        // 🔥 AGGIORNAMENTO INFORMAZIONI SULLA FONTE E DATA
+        // AGGIORNAMENTO INFORMAZIONI SULLA FONTE E DATA
         if (pageData.sourceText) {
-            // Usiamo il testo come etichetta e valore
             updateTextContent('infoSource', `Fonte: ${pageData.sourceText}`);
         }
 
@@ -404,14 +345,14 @@ const loadContent = async (lang) => {
 
         console.log(`✅ Contenuto caricato con successo per la lingua: ${lang} e pagina: ${pageId}`);
 
-        // 🔥 CORREZIONE FOUT: Rendi visibile il corpo della pagina
+        // CORREZIONE FOUT: Rendi visibile il corpo della pagina
         document.body.classList.add('content-loaded');
 
     } catch (error) {
         console.error('Errore critico nel caricamento dei testi:', error);
         updateTextContent('pageTitle', `[ERRORE CRITICO] Caricamento fallito.`);
 
-        // 🔥 CORREZIONE FOUT: Rendi comunque visibile il corpo per non lasciare la pagina vuota
+        // CORREZIONE FOUT: Rendi comunque visibile il corpo per non lasciare la pagina vuota
         document.body.classList.add('content-loaded');
     }
 };
@@ -477,7 +418,7 @@ const calculateDistance = (lat1, lon1, lat2, lon2) => {
 };
 
 // ===========================================
-// FUNZIONI MENU CONTESTUALE GPS 🔥 NUOVE AGGIUNTE 🔥
+// FUNZIONI MENU CONTESTUALE GPS
 // ===========================================
 
 // 1. Nasconde il bottone e chiude il menu contestuale
@@ -502,10 +443,7 @@ const renderContextualMenu = (locations, currentLang) => {
     let htmlContent = '';
 
     locations.forEach(location => {
-        // Usiamo l'ID e la distanza (in metri) per il testo
-        // Nota: se volessi i nomi tradotti, dovresti caricare il JSON qui
-
-        // Reindirizzamento tramite la funzione globale redirectToPage
+        // L'ID è già in minuscolo (da ARCO_LOCATIONS)
         htmlContent += `
             <li>
                 <a href="#" onclick="redirectToPage('${location.id}', '${currentLang}'); return false;">
@@ -540,7 +478,7 @@ const checkProximity = (position) => {
     const currentLang = document.documentElement.lang || 'it';
 
     const currentPageId = document.body.id;
-    const isOnHomePage = (currentPageId === 'index' || currentPageId === 'home');
+    const isOnHomePage = (currentPageId === 'index' || currentPageId === 'home' || currentPageId === '');
 
     // Filtro critico: interveniamo solo dalla Home page
     if (!isOnHomePage) {
@@ -609,32 +547,51 @@ const startGeolocation = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 🔥 1. PASSO CRITICO: INIETTA IL MARKUP PER CREARE GLI ELEMENTI
+    // 1. INIETTA IL MARKUP PER CREARE GLI ELEMENTI
     const navContainer = document.getElementById('nav-container');
     if (navContainer) {
         navContainer.innerHTML = NAV_MARKUP_TEMPLATE;
     }
 
-    // 2. ASSEGNAZIONE DELLE VARIABILI GLOBALI (rimane qui)
+    // 2. ASSEGNAZIONE DELLE VARIABILI GLOBALI
     audioPlayer = document.getElementById('audioPlayer');
     playButton = document.getElementById('playAudio');
     menuButton = document.getElementById('show-contextual-menu');
     menuContainer = document.getElementById('contextual-menu-container');
 
-    // 3. GESTIONE MENU HAMBURGER (Ora funziona perché gli elementi esistono)
+    // 3. GESTIONE MENU HAMBURGER (Ora gli elementi esistono nel DOM)
     const menuToggle = document.querySelector('.menu-toggle');
     const navList = document.querySelector('.nav-list');
 
     if (menuToggle && navList) {
-        // ... (Logica di gestione click) ...
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+         // Aggiungi la chiusura del menu dopo aver cliccato un link
+        navList.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navList.classList.remove('active');
+            });
+        });
     }
 
     setupAudioControl();
     startGeolocation();
 
-    // 🔥 4. CHIAMATA A loadContent (ORA GLI ELEMENTI DEL MENU SONO STATI CREATI)
+    // 4. CHIAMATA A loadContent (ORA GLI ELEMENTI DEL MENU SONO STATI CREATI)
     const currentHTMLlang = document.documentElement.lang;
     loadContent(currentHTMLlang);
 
-    // ... (Blocco Google Analytics) ...
+    // 5. Blocco Google Analytics
+    if (typeof gtag === 'function') {
+        gtag('set', { 'lingua_pagina': currentHTMLlang });
+
+        gtag('event', 'page_view', {
+            'page_title': document.title,
+            'page_location': window.location.href,
+            'lingua_pagina': currentHTMLlang
+        });
+    }
 });
