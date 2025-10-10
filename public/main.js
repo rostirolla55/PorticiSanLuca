@@ -125,15 +125,17 @@ const ARCO_LOCATIONS = [
     { id: 'lapide', lat: 44.4900222222222, lon: 11.3108361111111, distancethreshold: 2 }
 
 ];
-// ASSICURATI CHE QUESTA COSTANTE SIA PRESENTE E CONTENGA TUTTO IL MARKUP REXX
+// ===========================================
+// NAVIGAZIONE DINAMICA (Generato da REXX)
+// ===========================================
 const NAV_MARKUP_TEMPLATE = `
-<button class="menu-toggle">
+<button class="menu-toggle" aria-label="Toggle menu">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
 </button>
 <nav class="nav-bar nav-list">
-        <ul class="nav-links">
+    <ul class="nav-links">
             <li><a id="navHome" href="index${suffix}">${HomeLabel}</a></li>
             <li><a id="navARCO119" href="arco119${suffix}">${ARCO119Label}</a></li>
             <li><a id="navARCO126B" href="arco126b${suffix}">${ARCO126BLabel}</a></li>
@@ -169,10 +171,10 @@ const NAV_MARKUP_TEMPLATE = `
             <li><a id="navLAPIDE1" href="lapide1${suffix}">${LAPIDE1Label}</a></li>
             <li><a id="navLAPIDE2" href="lapide2${suffix}">${LAPIDE2Label}</a></li>
             <li><a id="navPSONTUOSO" href="psontuoso${suffix}">${PSONTUOSOLabel}</a></li>
-        </ul>
-    </nav>
-    </>
-`
+    </ul>
+</nav>
+`;
+
 // ===========================================
 // VARIABILI GLOBALI (Dichiarate, non inizializzate subito)
 // ===========================================
@@ -608,18 +610,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // 🔥 1. PASSO CRITICO: INIETTA IL MARKUP PER CREARE GLI ELEMENTI
     const navContainer = document.getElementById('nav-container');
     if (navContainer) {
-        navContainer.innerHTML = NAV_MARKUP_TEMPLATE; 
+        navContainer.innerHTML = NAV_MARKUP_TEMPLATE;
     }
 
     // 2. ASSEGNAZIONE DELLE VARIABILI GLOBALI (rimane qui)
     audioPlayer = document.getElementById('audioPlayer');
     playButton = document.getElementById('playAudio');
-    menuButton = document.getElementById('show-contextual-menu'); 
-    menuContainer = document.getElementById('contextual-menu-container'); 
+    menuButton = document.getElementById('show-contextual-menu');
+    menuContainer = document.getElementById('contextual-menu-container');
 
     // 3. GESTIONE MENU HAMBURGER (Ora funziona perché gli elementi esistono)
     const menuToggle = document.querySelector('.menu-toggle');
-    const navList = document.querySelector('.nav-list'); 
+    const navList = document.querySelector('.nav-list');
 
     if (menuToggle && navList) {
         // ... (Logica di gestione click) ...
