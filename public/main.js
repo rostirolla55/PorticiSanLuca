@@ -7,18 +7,7 @@ const ARCO_LOCATIONS = [
     // Esempio:
     // { id: 'arco119', lat: 44.4984, lon: 11.3392, distancethreshold: 20 },
     // chiesa_santa_caterina_di_saragozza
-    { id: 'chiesa_santa_caterina_di_saragozza', lat: 44.4899888888889, lon: 11.3327638888889, distancethreshold: 2 },
-    // chiesa_santa_caterina_di_saragozza
-    { id: 'chiesa_santa_caterina_di_saragozza', lat: 44.4900444444444, lon: 11.3328472222222, distancethreshold: 2 },
-    // chiesa_santa_caterina_di_saragozza
-    { id: 'chiesa_santa_caterina_di_saragozza', lat: 44.4900305555556, lon: 11.3328472222222, distancethreshold: 2 },
-    // numero_civico_vecchio_di_saragozza
-    { id: 'numero_civico_vecchio_di_saragozza', lat: 44.4900055555556, lon: 11.3328444444444, distancethreshold: 2 },
-    // rione_falansterio
-    { id: 'rione_falansterio', lat: 44.4903861111111, lon: 11.3311861111111, distancethreshold: 2 },
-    // rione_falansterio
-    { id: 'rione_falansterio', lat: 44.4903944444444, lon: 11.3310305555556, distancethreshold: 2 },
-    // psontuoso
+   // psontuoso
     { id: 'psontuoso', lat: 44.4906555555556, lon: 11.3292888888889, distancethreshold: 2 },
     // lapide_saragozza_inizio
     { id: 'lapide1', lat: 44.4905777777778, lon: 11.3291777777778, distancethreshold: 2 },
