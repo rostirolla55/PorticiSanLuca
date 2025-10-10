@@ -18,8 +18,8 @@ const ARCO_LOCATIONS = [
     { id: 'Rione_Falansterio', lat: 44.4903861111111, lon: 11.3311861111111, distanceThreshold: 2 },
     // Rione_Falansterio
     { id: 'Rione_Falansterio', lat: 44.4903944444444, lon: 11.3310305555556, distanceThreshold: 2 },
-    // Arco_Bonaccorsi
-    { id: 'Arco_Bonaccorsi', lat: 44.4906555555556, lon: 11.3292888888889, distanceThreshold: 2 },
+    // Portone_Sontuoso
+    { id: 'Portone_Sontuoso', lat: 44.4906555555556, lon: 11.3292888888889, distanceThreshold: 2 },
     // Lapide_Saragozza_inizio
     { id: 'Lapide_Saragozza_inizio', lat: 44.4905777777778, lon: 11.3291777777778, distanceThreshold: 2 },
     // Lapide_Saragozza_inizio
@@ -126,8 +126,8 @@ const ARCO_LOCATIONS = [
     { id: 'Lapide', lat: 44.4901638888889, lon: 11.3112527777778, distanceThreshold: 2 },
     // Lapide
     { id: 'Lapide', lat: 44.4901694444444, lon: 11.3111944444444, distanceThreshold: 2 },
-    // PSontuoso
-    { id: 'PSontuoso', lat: 44.4901694444444, lon: 11.3111944444444, distanceThreshold: 2 },
+    // Lapide1
+    { id: 'Lapide1', lat: 44.4901694444444, lon: 11.3111944444444, distanceThreshold: 2 },
     // Lapide
     { id: 'Lapide', lat: 44.4899916666667, lon: 11.311125, distanceThreshold: 2 },
     // Lapide
@@ -137,25 +137,31 @@ const ARCO_LOCATIONS = [
 
 ];
 // ===========================================
-// FINE DATI GPS
+// VARIABILI GLOBALI (Dichiarate, non inizializzate subito)
+// ===========================================
+let audioPlayer;
+let playButton;
+let menuButton; // Riferimento al nuovo bottone
+let menuContainer; // Riferimento al nuovo menu
+
+// ===========================================
+// FUNZIONI UTILITY
 // ===========================================
 
-
-// Funzione per determinare l'ID della pagina corrente
+// Restituisce l'ID base della pagina (es. 'home', 'pugliole') leggendolo dall'ID del body
 const getCurrentPageId = () => {
-    const path = window.location.pathname;
-    const fileName = path.substring(path.lastIndexOf('/') + 1);
-
-    // 🔥 FIX: Gestisce index.html o index-xx.html
-    if (fileName === '' || fileName.startsWith('index')) {
-        return 'home';
+    // Legge l'ID dal tag body (es. <body id="home">)
+    const bodyId = document.body.id;
+    if (bodyId) {
+        return bodyId.toLowerCase();
     }
-
-    // Rimuove l'estensione e qualsiasi suffisso di lingua (-en, -fr, ecc.)
-    return fileName.replace(/-[a-z]{2}\.html/i, '').replace('.html', '').toLowerCase();
+    // Fallback se l'ID non è impostato o è index, usa 'home'
+    const path = window.location.pathname;
+    let baseId = path.substring(path.lastIndexOf('/') + 1).replace(/-[a-z]{2}\.html/i, '').replace('.html', '').toLowerCase();
+    return baseId || 'home';
 };
 
-// Funzione flessibile per aggiornare il contenuto solo se l'elemento esiste
+// Aggiorna il testo solo se l'elemento esiste
 const updateTextContent = (id, value) => {
     const element = document.getElementById(id);
     if (element) {
@@ -163,21 +169,259 @@ const updateTextContent = (id, value) => {
     }
 };
 
-// Funzione flessibile per iniettare HTML solo se l'elemento esiste
-const updateHTMLContent = (id, htmlContent) => {
-    const element = document.getElementById(id);
-    if (element) {
-        element.innerHTML = htmlContent || '';
+// Funzione helper per ottenere il nome del file di destinazione
+const getDestinationPageName = (pageId, langCode) => {
+    return `${pageId}-${langCode}.html`;
+};
+
+// Funzione helper per il reindirizzamento (Ora definita SOLO qui)
+function redirectToPage(targetId, currentLang) {
+    const targetPage = getDestinationPageName(targetId, currentLang);
+    const currentPath = window.location.pathname;
+
+    // Evita un reindirizzamento infinito
+    if (!currentPath.includes(targetPage)) {
+        // Nascondi il menu prima di reindirizzare
+        hideContextualMenu();
+        console.log(`GPS: Reindirizzamento a ${targetPage}`);
+        window.location.href = targetPage;
     }
 };
 
 // ===========================================
-// FUNZIONI UTILITY PER GPS
+// LOGICA CARICAMENTO CONTENUTI (Requisito 5, 7, 8, 9, 11)
 // ===========================================
 
-// Calcola la distanza tra due coordinate (Formula di Haversine)
+const loadContent = async (lang) => {
+    document.documentElement.lang = lang;
+
+    try {
+        const pageId = getCurrentPageId();
+
+        const response = await fetch(`data/translations/${lang}/texts.json`);
+
+        if (!response.ok) {
+            console.error(`File di traduzione non trovato per la lingua: ${lang}. Tentativo di fallback su 'it'.`);
+            if (lang !== 'it') {
+                loadContent('it');
+                return;
+            }
+            throw new Error(`Impossibile caricare i dati per ${lang}.`);
+        }
+
+        const data = await response.json();
+        const pageData = data[pageId];
+
+        if (!pageData) {
+            console.warn(`Dati non trovati per la chiave pagina: ${pageId} nel file JSON per la lingua: ${lang}.`);
+            updateTextContent('pageTitle', `[ERRORE] Dati mancanti (${pageId}/${lang})`);
+
+            // Rendi visibile anche in caso di errore dati, ma lascia l'errore in console
+            document.body.classList.add('content-loaded');
+            return;
+        }
+
+        // AGGIORNAMENTO NAVIGAZIONE (Requisito 5)
+        if (data.nav) {
+            const suffix = `-${lang}.html`;
+
+            // Aggiorna gli href del menu (usando i nuovi nomi file XX-lingua.html)
+
+            document.getElementById('navARCO119').href = `ARCO119${suffix}`;
+            document.getElementById('navARCO126B').href = `ARCO126B${suffix}`;
+            document.getElementById('navARCO132A').href = `ARCO132A${suffix}`;
+            document.getElementById('navARCO133A').href = `ARCO133A${suffix}`;
+            document.getElementById('navARCO136B').href = `ARCO136B${suffix}`;
+            document.getElementById('navARCO142A').href = `ARCO142A${suffix}`;
+            document.getElementById('navARCO143C').href = `ARCO143C${suffix}`;
+            document.getElementById('navARCO148').href = `ARCO148${suffix}`;
+            document.getElementById('navARCO163').href = `ARCO163${suffix}`;
+            document.getElementById('navARCO171B').href = `ARCO171B${suffix}`;
+            document.getElementById('navARCO180').href = `ARCO180${suffix}`;
+            document.getElementById('navARCO182').href = `ARCO182${suffix}`;
+            document.getElementById('navARCO183').href = `ARCO183${suffix}`;
+            document.getElementById('navARCO186B').href = `ARCO186B${suffix}`;
+            document.getElementById('navARCO188B').href = `ARCO188B${suffix}`;
+            document.getElementById('navARCO190').href = `ARCO190${suffix}`;
+            document.getElementById('navARCO192C').href = `ARCO192C${suffix}`;
+            document.getElementById('navARCO201A').href = `ARCO201A${suffix}`;
+            document.getElementById('navARCO202A').href = `ARCO202A${suffix}`;
+            document.getElementById('navARCO203B').href = `ARCO203B${suffix}`;
+            document.getElementById('navARCO208B').href = `ARCO208B${suffix}`;
+            document.getElementById('navARCO211B').href = `ARCO211B${suffix}`;
+            document.getElementById('navARCO218B').href = `ARCO218B${suffix}`;
+            document.getElementById('navARCO249A').href = `ARCO249A${suffix}`;
+            document.getElementById('navARCO252A').href = `ARCO252A${suffix}`;
+            document.getElementById('navARCO256').href = `ARCO256${suffix}`;
+            document.getElementById('navARCO282A').href = `ARCO282A${suffix}`;
+            document.getElementById('navARCO283A').href = `ARCO283A${suffix}`;
+            document.getElementById('navARCO306B').href = `ARCO306B${suffix}`;
+            document.getElementById('navARCO307A').href = `ARCO307A${suffix}`;
+            document.getElementById('navARCO53C').href = `ARCO53C${suffix}`;
+            document.getElementById('navHome').href = `index${suffix}`;
+            document.getElementById('navLAPIDE1').href = `LAPIDE1${suffix}`;
+            document.getElementById('navLAPIDE2').href = `LAPIDE2${suffix}`;
+            document.getElementById('navPSONTUOSO').href = `PSONTUOSO${suffix}`;
+
+            // Aggiorna il testo dei link
+            updateTextContent('navARCO119', data.nav.navARCO119);
+            updateTextContent('navARCO126B', data.nav.navARCO126B);
+            updateTextContent('navARCO132A', data.nav.navARCO132A);
+            updateTextContent('navARCO133A', data.nav.navARCO133A);
+            updateTextContent('navARCO136B', data.nav.navARCO136B);
+            updateTextContent('navARCO142A', data.nav.navARCO142A);
+            updateTextContent('navARCO143C', data.nav.navARCO143C);
+            updateTextContent('navARCO148', data.nav.navARCO148);
+            updateTextContent('navARCO163', data.nav.navARCO163);
+            updateTextContent('navARCO171B', data.nav.navARCO171B);
+            updateTextContent('navARCO180', data.nav.navARCO180);
+            updateTextContent('navARCO182', data.nav.navARCO182);
+            updateTextContent('navARCO183', data.nav.navARCO183);
+            updateTextContent('navARCO186B', data.nav.navARCO186B);
+            updateTextContent('navARCO188B', data.nav.navARCO188B);
+            updateTextContent('navARCO190', data.nav.navARCO190);
+            updateTextContent('navARCO192C', data.nav.navARCO192C);
+            updateTextContent('navARCO201A', data.nav.navARCO201A);
+            updateTextContent('navARCO202A', data.nav.navARCO202A);
+            updateTextContent('navARCO203B', data.nav.navARCO203B);
+            updateTextContent('navARCO208B', data.nav.navARCO208B);
+            updateTextContent('navARCO211B', data.nav.navARCO211B);
+            updateTextContent('navARCO218B', data.nav.navARCO218B);
+            updateTextContent('navARCO249A', data.nav.navARCO249A);
+            updateTextContent('navARCO252A', data.nav.navARCO252A);
+            updateTextContent('navARCO256', data.nav.navARCO256);
+            updateTextContent('navARCO282A', data.nav.navARCO282A);
+            updateTextContent('navARCO283A', data.nav.navARCO283A);
+            updateTextContent('navARCO306B', data.nav.navARCO306B);
+            updateTextContent('navARCO307A', data.nav.navARCO307A);
+            updateTextContent('navARCO53C', data.nav.navARCO53C);
+            updateTextContent('navHome', data.nav.navHome);
+            updateTextContent('navLAPIDE1', data.nav.navLAPIDE1);
+            updateTextContent('navLAPIDE2', data.nav.navLAPIDE2);
+            updateTextContent('navPSONTUOSO', data.nav.navPSONTUOSO);
+        }
+
+        // AGGIORNAMENTO IMMAGINE DI FONDO TESTATA (Requisito 8)
+        const headerImage = document.getElementById('headerImage');
+        if (headerImage && pageData.headerImageSource) {
+            headerImage.src = pageData.headerImageSource;
+        }
+
+        // AGGIORNAMENTO DEL CONTENUTO (Requisito 7: Testi principali)
+        updateTextContent('pageTitle', pageData.pageTitle);
+        updateTextContent('mainText', pageData.mainText);
+        updateTextContent('mainText1', pageData.mainText1);
+        updateTextContent('mainText2', pageData.mainText2);
+        updateTextContent('mainText3', pageData.mainText3);
+        updateTextContent('mainText4', pageData.mainText4);
+        updateTextContent('mainText5', pageData.mainText5);
+
+        // 🔥 AGGIORNAMENTO INFORMAZIONI SULLA FONTE E DATA
+        if (pageData.sourceText) {
+            // Usiamo il testo come etichetta e valore
+            updateTextContent('infoSource', `Fonte: ${pageData.sourceText}`);
+        }
+
+        if (pageData.creationDate) {
+            updateTextContent('infoCreatedDate', pageData.creationDate);
+        }
+
+        if (pageData.lastUpdate) {
+            updateTextContent('infoUpdatedDate', pageData.lastUpdate);
+        }
+
+        // AGGIORNAMENTO AUDIO E BOTTONE (Requisito 3)
+        if (audioPlayer && playButton && pageData.audioSource) {
+            if (!audioPlayer.paused) {
+                audioPlayer.pause();
+                audioPlayer.currentTime = 0;
+            }
+
+            // Imposta i testi del bottone
+            playButton.textContent = pageData.playAudioButton;
+            playButton.dataset.playText = pageData.playAudioButton;
+            playButton.dataset.pauseText = pageData.pauseAudioButton;
+
+            // Imposta la sorgente audio
+            audioPlayer.src = pageData.audioSource;
+            audioPlayer.load();
+
+            playButton.classList.remove('pause-style');
+            playButton.classList.add('play-style');
+        }
+
+        // AGGIORNAMENTO IMMAGINI DINAMICHE (Requisito 9: Max 5 immagini)
+        for (let i = 1; i <= 5; i++) {
+            const imageElement = document.getElementById(`pageImage${i}`);
+            const imageSource = pageData[`imageSource${i}`];
+
+            if (imageElement) {
+                imageElement.src = imageSource || '';
+                imageElement.style.display = imageSource ? 'block' : 'none';
+            }
+        }
+
+        console.log(`✅ Contenuto caricato con successo per la lingua: ${lang} e pagina: ${pageId}`);
+
+        // 🔥 CORREZIONE FOUT: Rendi visibile il corpo della pagina
+        document.body.classList.add('content-loaded');
+
+    } catch (error) {
+        console.error('Errore critico nel caricamento dei testi:', error);
+        updateTextContent('pageTitle', `[ERRORE CRITICO] Caricamento fallito.`);
+
+        // 🔥 CORREZIONE FOUT: Rendi comunque visibile il corpo per non lasciare la pagina vuota
+        document.body.classList.add('content-loaded');
+    }
+};
+// ===========================================
+// FUNZIONI DI GESTIONE EVENTI AUDIO
+// ===========================================
+
+const handleAudioClick = function () {
+    const currentPlayText = playButton.dataset.playText || "Ascolta";
+    const currentPauseText = playButton.dataset.pauseText || "Pausa";
+
+    if (audioPlayer.paused) {
+        audioPlayer.play();
+        playButton.textContent = currentPauseText;
+        playButton.classList.replace('play-style', 'pause-style');
+    } else {
+        audioPlayer.pause();
+        playButton.textContent = currentPlayText;
+        playButton.classList.replace('pause-style', 'play-style');
+    }
+};
+
+const handleAudioEnded = function () {
+    const currentPlayText = playButton.dataset.playText || "Ascolta";
+    audioPlayer.currentTime = 0;
+    playButton.textContent = currentPlayText;
+    playButton.classList.replace('pause-style', 'play-style');
+};
+
+
+// ===========================================
+// LOGICA AUDIO E GPS
+// ===========================================
+
+// Gestione Play/Pause (Requisito 3)
+const setupAudioControl = () => {
+    if (audioPlayer && playButton) {
+
+        // Rimuovi listener precedenti (più robusto)
+        playButton.removeEventListener('click', handleAudioClick);
+        audioPlayer.removeEventListener('ended', handleAudioEnded);
+
+        // Aggiungi listener usando le funzioni nominate
+        playButton.addEventListener('click', handleAudioClick);
+        audioPlayer.addEventListener('ended', handleAudioEnded);
+    }
+};
+
+// Funzioni GPS (Requisito 6.3)
 const calculateDistance = (lat1, lon1, lat2, lon2) => {
-    const R = 6371e3; // Raggio della terra in metri
+    const R = 6371e3;
     const φ1 = lat1 * Math.PI / 180;
     const φ2 = lat2 * Math.PI / 180;
     const Δφ = (lat2 - lat1) * Math.PI / 180;
@@ -188,226 +432,176 @@ const calculateDistance = (lat1, lon1, lat2, lon2) => {
         Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-    return R * c; // Distanza in metri
+    return R * c;
 };
 
-// Funzione principale che verifica la vicinanza
+// ===========================================
+// FUNZIONI MENU CONTESTUALE GPS 🔥 NUOVE AGGIUNTE 🔥
+// ===========================================
+
+// 1. Nasconde il bottone e chiude il menu contestuale
+const hideContextualMenu = () => {
+    if (menuButton) {
+        menuButton.style.display = 'none';
+        menuButton.onclick = null; // Rimuove il listener di click
+    }
+    if (menuContainer) {
+        menuContainer.classList.remove('active');
+    }
+};
+
+// 2. Mostra il bottone e popola il menu contestuale con i POI vicini
+const renderContextualMenu = (locations, currentLang) => {
+    if (!menuButton || !menuContainer) {
+        console.error("Mancano gli elementi HTML per il menu contestuale.");
+        return;
+    }
+
+    // 1. Popola il menu
+    let htmlContent = '';
+
+    locations.forEach(location => {
+        // Usiamo l'ID e la distanza (in metri) per il testo
+        // Nota: se volessi i nomi tradotti, dovresti caricare il JSON qui
+
+        // Reindirizzamento tramite la funzione globale redirectToPage
+        htmlContent += `
+            <li>
+                <a href="#" onclick="redirectToPage('${location.id}', '${currentLang}'); return false;">
+                    Vai a: ${location.id} (${location.distance} m)
+                </a>
+            </li>
+        `;
+    });
+
+    // Inserisci il contenuto nella lista del menu
+    const ul = menuContainer.querySelector('ul');
+    if (ul) {
+        ul.innerHTML = htmlContent;
+    }
+
+    // 2. Rendi visibile il bottone e gestisci l'apertura del menu
+    menuButton.style.display = 'block';
+
+    // Toggle menu: Se il bottone è cliccato, mostra/nascondi il contenitore
+    menuButton.onclick = () => {
+        menuContainer.classList.toggle('active');
+    };
+};
+
+// ===========================================
+// FUNZIONI DI GEOLOCALIZZAZIONE (GPS) - Versione Stabile
+// ===========================================
+
 const checkProximity = (position) => {
     const userLat = position.coords.latitude;
     const userLon = position.coords.longitude;
-    const userLang = document.documentElement.lang || 'it';
+    const currentLang = document.documentElement.lang || 'it';
 
+    const currentPageId = document.body.id;
+    const isOnHomePage = (currentPageId === 'index' || currentPageId === 'home');
+
+    // Filtro critico: interveniamo solo dalla Home page
+    if (!isOnHomePage) {
+        // Assicurati che il menu sia nascosto se l'utente si sposta dalla home
+        hideContextualMenu();
+        return;
+    }
+
+    let nearbyLocations = []; // Array per collezionare TUTTI i POI vicini
+
+    // 1. SCORRI TUTTI I POI PER TROVARE QUELLI NEL RAGGIO CONSENTITO
     for (const location of ARCO_LOCATIONS) {
         const distance = calculateDistance(userLat, userLon, location.lat, location.lon);
 
-        if (distance <= location.distanceThreshold) {
-            console.log(`Vicino a ${location.id}! Distanza: ${distance.toFixed(1)}m`);
-
-            const currentPath = window.location.pathname;
-            let targetPage = `${location.id}.html`;
-
-            if (userLang !== 'it') {
-                targetPage = `${location.id}-${userLang}.html`;
-            }
-
-            if (!currentPath.includes(targetPage)) {
-                window.location.href = targetPage;
-            }
-            return;
+        if (distance <= 20) { // Usiamo 20 metri come soglia massima
+            // Aggiungiamo i dati necessari (ID pagina e distanza)
+            nearbyLocations.push({
+                id: location.id,
+                distance: distance.toFixed(1)
+            });
         }
     }
-};
 
-// Funzione di gestione degli errori GPS
-const handleGeolocationError = (error) => {
-    console.warn(`ERRORE GPS: ${error.code}: ${error.message}`);
-};
+    // 2. ELIMINA I DUPLICATI E ORDINA PER DISTANZA
+    const uniqueLocations = nearbyLocations.reduce((acc, current) => {
+        const x = acc.find(item => item.id === current.id);
+        if (!x) {
+            return acc.concat([current]);
+        }
+        return acc;
+    }, []).sort((a, b) => a.distance - b.distance); // Ordina dal più vicino al più lontano
 
-// Funzione per avviare il monitoraggio GPS
-const startGeolocation = () => {
-    if (navigator.geolocation) {
-        navigator.geolocation.watchPosition(checkProximity, handleGeolocationError, {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0
-        });
-        console.log("Monitoraggio GPS avviato.");
+
+    // 3. DECISIONE SUL DISPLAY
+    if (uniqueLocations.length === 0) {
+        // Nessun POI vicino
+        console.log("GPS: Nessun POI significativo nelle vicinanze.");
+        hideContextualMenu();
+    } else if (uniqueLocations.length === 1) {
+        // UN SOLO POI VICINO: Reindirizzamento immediato
+        console.log(`GPS: Trovato un solo POI: ${uniqueLocations[0].id}. Reindirizzamento automatico.`);
+        hideContextualMenu(); // Nascondi il bottone prima di reindirizzare
+        redirectToPage(uniqueLocations[0].id, currentLang);
+
     } else {
-        console.error("Il tuo browser non supporta la geolocalizzazione.");
+        // DUE O PIÙ POI VICINI: Mostra il menu di selezione
+        console.log(`GPS: Trovati ${uniqueLocations.length} POI concorrenti. Mostro menu.`);
+        renderContextualMenu(uniqueLocations, currentLang);
     }
 };
 
-// ===========================================
-// FINE FUNZIONI UTILITY PER GPS
-// ===========================================
+const startGeolocation = () => {
+    if (navigator.geolocation && ARCO_LOCATIONS.length > 0) {
+        navigator.geolocation.watchPosition(checkProximity,
+            (error) => console.warn(`ERRORE GPS: ${error.code}: ${error.message}`),
+            { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+        );
+        console.log("GPS: Monitoraggio avviato.");
+    }
+};
 
 
-// Gestione del menu a scomparsa e dell'evento 'ended'
+// ===========================================
+// INIZIALIZZAZIONE
+// ===========================================
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Si noti che .nav-list è ora dentro l'HTML iniettato
-    // La gestione degli eventi per il toggle deve essere aggiornata o gestita dopo l'iniezione.
 
-    const audioPlayer = document.getElementById('audioPlayer');
-    const playButton = document.getElementById('playAudio');
+    // 🔥 ASSEGNAZIONE SICURA DELLE VARIABILI GLOBALI (INCLUSI I NUOVI ELEMENTI)
+    audioPlayer = document.getElementById('audioPlayer');
+    playButton = document.getElementById('playAudio');
+    menuButton = document.getElementById('show-contextual-menu'); // Bottone GPS
+    menuContainer = document.getElementById('contextual-menu-container'); // Menu contenitore
 
-    if (audioPlayer && playButton) {
-        audioPlayer.addEventListener('ended', () => {
-            audioPlayer.currentTime = 0;
-            // Usa il testo play salvato in data-
-            playButton.textContent = playButton.dataset.playText || "Ascolta l'audio!";
-            playButton.classList.remove('pause-style');
-            playButton.classList.add('play-style');
+
+    // Gestione Menu Hamburger (Requisito 5)
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navList = document.querySelector('.nav-list');
+
+    if (menuToggle && navList) {
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+    }
+
+    setupAudioControl();
+    startGeolocation();
+
+    // Carica i contenuti nella lingua dell'HTML
+    const currentHTMLlang = document.documentElement.lang;
+    loadContent(currentHTMLlang);
+
+    // 🔥 NUOVO BLOCCO: Invia la lingua corrente a Google Analytics
+    if (typeof gtag === 'function') {
+        gtag('set', { 'lingua_pagina': currentHTMLlang });
+
+        // Invia un evento di visualizzazione di pagina con il dato della lingua associato
+        gtag('event', 'page_view', {
+            'page_title': document.title,
+            'page_location': window.location.href,
+            'lingua_pagina': currentHTMLlang // Parametro da tracciare!
         });
     }
 });
-
-
-// Funzione principale per impostare la lingua
-const setLanguage = async (lang) => {
-
-    const audioPlayer = document.getElementById('audioPlayer');
-    const playButton = document.getElementById('playAudio');
-
-    if (audioPlayer) {
-        audioPlayer.pause();
-        audioPlayer.currentTime = 0;
-    }
-
-    // 🚀 Salva e imposta la lingua immediatamente
-    localStorage.setItem('userLanguage', lang);
-    document.documentElement.lang = lang;
-
-    try {
-        const pageId = getCurrentPageId();
-
-        // fetch su JSON 
-        const response = await fetch(`data/translations/${lang}/texts.json`);
-
-        if (!response.ok) {
-            throw new Error(`File di traduzione non trovato per la lingua: ${lang}`);
-        }
-
-        const translations = await response.json();
-        const data = translations[pageId]; // <-- 'data' è la variabile corretta
-
-        // ==========================================================
-        // 🔥 LOGICA: INIETTA LA BARRA DI NAVIGAZIONE COMPLETA
-        // ==========================================================
-        if (translations.nav && translations.nav.nav_content) {
-            // Iniettiamo il blocco nav_content generato da Rexx nell'elemento con ID 'nav-container'
-            updateHTMLContent('nav-container', translations.nav.nav_content);
-
-            // Ricolleghiamo il toggle del menu (se presente e necessario)
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navList = document.querySelector('.nav-list');
-            if (menuToggle && navList) {
-                menuToggle.addEventListener('click', () => {
-                    navList.classList.toggle('active');
-                });
-            }
-        } else {
-            console.warn("Il blocco 'nav' o la chiave 'nav_content' non sono stati trovati nel JSON.");
-        }
-        // ==========================================================
-
-        if (!data) {
-            console.error(`Dati non trovati per la pagina: ${pageId} nella lingua: ${lang}. Verifica il file texts.json.`);
-            updateTextContent('pageTitle', `[ERRORE] Testi ${lang} non trovati per questa pagina.`);
-            
-            // Rendi visibile anche in caso di errore dati, ma lascia che l'errore sia mostrato
-            document.body.classList.add('content-loaded');
-            return;
-        }
-
-        // AGGIORNAMENTO DEL CONTENUTO DELLA PAGINA
-        updateTextContent('pageTitle', data.pageTitle);
-        updateTextContent('mainText', data.mainText);
-        updateTextContent('mainText1', data.mainText1);
-        updateTextContent('mainText2', data.mainText2);
-        updateTextContent('mainText3', data.mainText3);
-        updateTextContent('mainText4', data.mainText4);
-        updateTextContent('mainText5', data.mainText5);
-
-        // 🔥 AGGIORNAMENTO INFORMAZIONI SULLA FONTE E DATA (Correzione ReferenceError)
-        if (data.sourceText) { // <--- CORRETTO: Usiamo 'data'
-            // Usiamo il testo come etichetta e valore
-            updateTextContent('infoSource', `Fonte: ${data.sourceText}`); // <--- CORRETTO: Usiamo 'data'
-        }
-
-        if (data.creationDate) { // <--- CORRETTO: Usiamo 'data'
-            updateTextContent('infoCreatedDate', data.creationDate); // <--- CORRETTO: Usiamo 'data'
-        }
-
-        if (data.lastUpdate) { // <--- CORRETTO: Usiamo 'data'
-            updateTextContent('infoUpdatedDate', data.lastUpdate); // <--- CORRETTO: Usiamo 'data'
-        }
-
-
-        updateTextContent('playAudio', data.playAudioButton);
-
-        if (audioPlayer) {
-            audioPlayer.src = data.audioSource;
-        }
-
-        if (playButton) {
-            // SALVA I TESTI PLAY/PAUSE
-            playButton.dataset.playText = data.playAudioButton;
-            playButton.dataset.pauseText = data.pauseAudioButton;
-
-            // APPLICA LO STILE INIZIALE CORRETTO (BLU)
-            playButton.classList.remove('pause-style');
-            playButton.classList.add('play-style');
-        }
-
-        console.log(`Lingua impostata su: ${lang}`);
-        
-        // 🔥 NUOVO: Rendi visibile il corpo della pagina (Correzione FOUT)
-        document.body.classList.add('content-loaded');
-
-
-    } catch (error) {
-        // Gestisce gli errori di rete o parsing JSON
-        console.error('Errore critico nel caricamento dei testi:', error);
-        updateTextContent('pageTitle', `[ERRORE DI CARICAMENTO] Lingua ${lang} fallita. Controlla i file JSON.`);
-        
-        // 🔥 NUOVO: Rendi comunque visibile il corpo per non lasciare la pagina vuota
-        document.body.classList.add('content-loaded');
-    }
-};
-
-
-// Funzione per gestire la riproduzione e pausa dell'audio (invariato)
-const toggleAudio = () => {
-    const audioPlayer = document.getElementById('audioPlayer');
-    const playButton = document.getElementById('playAudio');
-
-    if (!audioPlayer || !playButton) return;
-
-    if (audioPlayer.paused) {
-        audioPlayer.play();
-        playButton.textContent = playButton.dataset.pauseText;
-        playButton.classList.remove('play-style');
-        playButton.classList.add('pause-style');
-    } else {
-        audioPlayer.pause();
-        playButton.textContent = playButton.dataset.playText;
-        playButton.classList.remove('pause-style');
-        playButton.classList.add('play-style');
-    }
-};
-
-// Imposta la lingua di default al caricamento della pagina
-window.onload = () => {
-    const playButton = document.getElementById('playAudio');
-
-    if (playButton) {
-        playButton.addEventListener('click', toggleAudio);
-    }
-
-    // Carica la lingua salvata, altrimenti usa 'it'
-    const savedLang = localStorage.getItem('userLanguage') || 'it';
-    setLanguage(savedLang);
-
-    // AVVIA IL MONITORAGGIO GPS
-    startGeolocation();
-};
