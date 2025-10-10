@@ -134,43 +134,45 @@ const NAV_MARKUP_TEMPLATE = `
     <span class="bar"></span>
     <span class="bar"></span>
 </button>
+
 <nav class="nav-bar nav-list">
     <ul class="nav-links">
-            <li><a id="navHome" href="index${suffix}">${HomeLabel}</a></li>
-            <li><a id="navARCO119" href="arco119${suffix}">${ARCO119Label}</a></li>
-            <li><a id="navARCO126B" href="arco126b${suffix}">${ARCO126BLabel}</a></li>
-            <li><a id="navARCO132A" href="arco132a${suffix}">${ARCO132ALabel}</a></li>
-            <li><a id="navARCO133A" href="arco133a${suffix}">${ARCO133ALabel}</a></li>
-            <li><a id="navARCO136B" href="arco136b${suffix}">${ARCO136BLabel}</a></li>
-            <li><a id="navARCO142A" href="arco142a${suffix}">${ARCO142ALabel}</a></li>
-            <li><a id="navARCO143C" href="arco143c${suffix}">${ARCO143CLabel}</a></li>
-            <li><a id="navARCO148" href="arco148${suffix}">${ARCO148Label}</a></li>
-            <li><a id="navARCO163" href="arco163${suffix}">${ARCO163Label}</a></li>
-            <li><a id="navARCO171B" href="arco171b${suffix}">${ARCO171BLabel}</a></li>
-            <li><a id="navARCO180" href="arco180${suffix}">${ARCO180Label}</a></li>
-            <li><a id="navARCO182" href="arco182${suffix}">${ARCO182Label}</a></li>
-            <li><a id="navARCO183" href="arco183${suffix}">${ARCO183Label}</a></li>
-            <li><a id="navARCO186B" href="arco186b${suffix}">${ARCO186BLabel}</a></li>
-            <li><a id="navARCO188B" href="arco188b${suffix}">${ARCO188BLabel}</a></li>
-            <li><a id="navARCO190" href="arco190${suffix}">${ARCO190Label}</a></li>
-            <li><a id="navARCO192C" href="arco192c${suffix}">${ARCO192CLabel}</a></li>
-            <li><a id="navARCO201A" href="arco201a${suffix}">${ARCO201ALabel}</a></li>
-            <li><a id="navARCO202A" href="arco202a${suffix}">${ARCO202ALabel}</a></li>
-            <li><a id="navARCO203B" href="arco203b${suffix}">${ARCO203BLabel}</a></li>
-            <li><a id="navARCO208B" href="arco208b${suffix}">${ARCO208BLabel}</a></li>
-            <li><a id="navARCO211B" href="arco211b${suffix}">${ARCO211BLabel}</a></li>
-            <li><a id="navARCO218B" href="arco218b${suffix}">${ARCO218BLabel}</a></li>
-            <li><a id="navARCO249A" href="arco249a${suffix}">${ARCO249ALabel}</a></li>
-            <li><a id="navARCO252A" href="arco252a${suffix}">${ARCO252ALabel}</a></li>
-            <li><a id="navARCO256" href="arco256${suffix}">${ARCO256Label}</a></li>
-            <li><a id="navARCO282A" href="arco282a${suffix}">${ARCO282ALabel}</a></li>
-            <li><a id="navARCO283A" href="arco283a${suffix}">${ARCO283ALabel}</a></li>
-            <li><a id="navARCO306B" href="arco306b${suffix}">${ARCO306BLabel}</a></li>
-            <li><a id="navARCO307A" href="arco307a${suffix}">${ARCO307ALabel}</a></li>
-            <li><a id="navARCO53C" href="arco53c${suffix}">${ARCO53CLabel}</a></li>
-            <li><a id="navLAPIDE1" href="lapide1${suffix}">${LAPIDE1Label}</a></li>
-            <li><a id="navLAPIDE2" href="lapide2${suffix}">${LAPIDE2Label}</a></li>
-            <li><a id="navPSONTUOSO" href="psontuoso${suffix}">${PSONTUOSOLabel}</a></li>
+
+            <li><a id="navHome" href="#">Home</a></li>
+            <li><a id="navARCO119" href="#">ARCO119</a></li>
+            <li><a id="navARCO126B" href="#">ARCO126B</a></li>
+            <li><a id="navARCO132A" href="#">ARCO132A</a></li>
+            <li><a id="navARCO133A" href="#">ARCO133A</a></li>
+            <li><a id="navARCO136B" href="#">ARCO136B</a></li>
+            <li><a id="navARCO142A" href="#">ARCO142A</a></li>
+            <li><a id="navARCO143C" href="#">ARCO143C</a></li>
+            <li><a id="navARCO148" href="#">ARCO148</a></li>
+            <li><a id="navARCO163" href="#">ARCO163</a></li>
+            <li><a id="navARCO171B" href="#">ARCO171B</a></li>
+            <li><a id="navARCO180" href="#">ARCO180</a></li>
+            <li><a id="navARCO182" href="#">ARCO182</a></li>
+            <li><a id="navARCO183" href="#">ARCO183</a></li>
+            <li><a id="navARCO186B" href="#">ARCO186B</a></li>
+            <li><a id="navARCO188B" href="#">ARCO188B</a></li>
+            <li><a id="navARCO190" href="#">ARCO190</a></li>
+            <li><a id="navARCO192C" href="#">ARCO192C</a></li>
+            <li><a id="navARCO201A" href="#">ARCO201A</a></li>
+            <li><a id="navARCO202A" href="#">ARCO202A</a></li>
+            <li><a id="navARCO203B" href="#">ARCO203B</a></li>
+            <li><a id="navARCO208B" href="#">ARCO208B</a></li>
+            <li><a id="navARCO211B" href="#">ARCO211B</a></li>
+            <li><a id="navARCO218B" href="#">ARCO218B</a></li>
+            <li><a id="navARCO249A" href="#">ARCO249A</a></li>
+            <li><a id="navARCO252A" href="#">ARCO252A</a></li>
+            <li><a id="navARCO256" href="#">ARCO256</a></li>
+            <li><a id="navARCO282A" href="#">ARCO282A</a></li>
+            <li><a id="navARCO283A" href="#">ARCO283A</a></li>
+            <li><a id="navARCO306B" href="#">ARCO306B</a></li>
+            <li><a id="navARCO307A" href="#">ARCO307A</a></li>
+            <li><a id="navARCO53C" href="#">ARCO53C</a></li>
+            <li><a id="navLAPIDE1" href="#">LAPIDE1</a></li>
+            <li><a id="navLAPIDE2" href="#">LAPIDE2</a></li>
+            <li><a id="navPSONTUOSO" href="#">PSONTUOSO</a></li>
     </ul>
 </nav>
 `;
