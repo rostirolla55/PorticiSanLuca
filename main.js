@@ -168,7 +168,11 @@ const handleAudioEnded = function () {
 };
 
 
-// --- GESTIONE LINGUA (Pezzo mancante nel tuo invio) ---
+// ===========================================
+// FUNZIONI DI GESTIONE EVENTI LINGUA
+// ===========================================
+
+/** Aggiorna lo stato 'active' dei bottoni bandiera. */
 function updateLanguageSelectorActiveState(lang) {
     document.querySelectorAll('.language-selector button').forEach(button => {
         if (button.getAttribute('data-lang') === lang) {
@@ -179,6 +183,7 @@ function updateLanguageSelectorActiveState(lang) {
     });
 }
 
+/** Gestisce il click sulla bandiera e reindirizza alla pagina tradotta. */
 function handleLanguageChange(event) {
     const newLang = event.currentTarget.getAttribute('data-lang');
 
@@ -188,12 +193,18 @@ function handleLanguageChange(event) {
         const urlPath = document.location.pathname;
         const fileName = urlPath.substring(urlPath.lastIndexOf('/') + 1);
         let fileBase = fileName.replace(/-[a-z]{2}\.html$/, '');
-        if (fileBase === '') fileBase = 'index';
+        
+        // Assicura che la base del file sia sempre 'index' se è vuota
+        if (fileBase === '') fileBase = 'index'; 
 
+        // Crea il nuovo percorso: es. index-en.html o meloncello-es.html
         const newPath = `${fileBase}-${newLang}.html`;
+        
+        // Reindirizza l'utente
         document.location.href = newPath; 
     }
 }
+
 
 
 // ===========================================
@@ -253,10 +264,13 @@ function initEventListeners(currentLang) {
     }
 
 
-    // --- Logica Selettore Lingua ---
+    // --- Logica Selettore Lingua (FIX APPLICATO QUI) ---
     document.querySelectorAll('.language-selector button').forEach(button => {
-        // Rimuovi per evitare listener duplicati e poi assegna
+        // 1. Rimuovi sempre l'event listener precedente per evitare duplicati.
+        //    Questo è il FIX principale per i problemi di "blocco" dopo il reindirizzamento.
         button.removeEventListener('click', handleLanguageChange); 
+        
+        // 2. Aggiungi il nuovo event listener.
         button.addEventListener('click', handleLanguageChange);
     });
 }
