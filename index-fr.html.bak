@@ -9,24 +9,16 @@
 
     <link rel="stylesheet" href="public/style.css">
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MK5NEJP81L"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        // 🔥 CONFIGURAZIONE: Associa 'dimension1' al nome parametro 'lingua_pagina'
-        gtag('config', 'G-MK5NEJP81L', {
-            'custom_map': { 'dimension1': 'lingua_pagina' }
-        });
-    </script>
-
-    <script>
-        // Rimuoviamo qui la definizione di getDestinationPageName e redirectToPage.
-        // Queste funzioni DEVONO essere definite SOLTANTO in public/main.js
+        // Funzione helper per ottenere il nome del file di destinazione (coerente con la nuova struttura)
+        function getDestinationPageName(pageId, langCode) {
+            // Es. ('index', 'en') -> index-en.html
+            // Es. ('pugliole', 'it') -> pugliole-it.html
+            return `${pageId}-${langCode}.html`;
+        }
 
         // 🖱️ CAMBIO MANUALE LINGUA (Chiamato dai pulsanti bandiera)
-        function setLanguage(langCode) {
+        function setLanguageRedirect(langCode) {
             // 1. Salva la lingua scelta dall'utente (Requisito 11)
             localStorage.setItem('userLanguage', langCode);
 
@@ -35,9 +27,9 @@
             let pageId = path.substring(path.lastIndexOf('/') + 1).replace(/-[a-z]{2}\.html/i, '').replace('.html', '').toLowerCase();
             if (pageId === '') pageId = 'index';
 
-            // 3. 🔥 CHIAMATA CORRETTA: Chiamiamo redirectToPage() definita in main.js
-            // che ora saprà come costruire l'URL e reindirizzare.
-            redirectToPage(pageId, langCode);
+            // 3. Reindirizza alla pagina HTML corretta (es. pugliole-en.html)
+            const destinationPage = getDestinationPageName(pageId, langCode);
+            window.location.href = destinationPage;
         }
     </script>
 </head>
@@ -45,20 +37,26 @@
 <body id="home">
     <header class="main-header">
 
+        <button class="menu-toggle" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
         <div id="nav-container">
-        </div>
+            </div>
 
         <div class="language-selector">
-            <button onclick="setLanguage('it')"><img src="public/flag/it.png" alt="Italiano"></button>
-            <button onclick="setLanguage('en')"><img src="public/flag/en.png" alt="English"></button>
-            <button onclick="setLanguage('fr')"><img src="public/flag/fr.png" alt="Français"></button>
-            <button onclick="setLanguage('es')"><img src="public/flag/es.png" alt="Español"></button>
+            <button onclick="setLanguageRedirect('it')"><img src="public/flag/it.png" alt="Italiano"></button>
+            <button onclick="setLanguageRedirect('en')"><img src="public/flag/en.png" alt="English"></button>
+            <button onclick="setLanguageRedirect('fr')"><img src="public/flag/fr.png" alt="Français"></button>
+            <button onclick="setLanguageRedirect('es')"><img src="public/flag/es.png" alt="Español"></button>
         </div>
     </header>
 
     <div class="header-image-container">
         <img id="headerImage" src="public/images/Meloncello.jpg" alt="Meloncello Bologna">
-        <h1 class="header-title" id="pageTitle">Benvenuti ai Portici di San Luca</h1>
+        <h1 class="header-title" id="pageTitle">Benvenuto nel Quartiere Porto</h1>
     </div>
 
     <main class="content-body">
@@ -83,6 +81,8 @@
             <p>Date de création: <span id="infoCreatedDate"></span></p>
             <p>Dernière mise à jour: <span id="infoUpdatedDate"></span></p>
         </div>
+
+
     </main>
 
     <script src="public/main.js"></script>
