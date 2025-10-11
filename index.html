@@ -1,34 +1,44 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
-    <title>Caricamento Sito...</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portici San Luca - Redirecting...</title>
+
     <script>
-        function getDestinationPageName(langCode) {
-            return `index-${langCode}.html`;
-        }
-        
-        document.addEventListener('DOMContentLoaded', function () {
-            const savedLang = localStorage.getItem('userLanguage');
-            const userLang = navigator.language || navigator.userLanguage;
-            const browserLangCode = userLang.toLowerCase().split('-')[0];
+        /**
+         * Reindirizza l'utente alla pagina lingua corretta (index-[lang].html).
+         * Priorità: Lingua salvata > Lingua del browser > Default (it).
+         * * Questo script è una prima linea di difesa, ma la logica completa 
+         * di persistenza e browser detection è gestita nel file main.js 
+         * dopo il caricamento della pagina specifica (es. index-it.html).
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+            const preferredLang = localStorage.getItem('porticiSanLuca_lastLang');
+            const browserLang = (navigator.language || navigator.userLanguage).substring(0, 2);
 
-            const supportedLangs = ['it', 'en', 'es', 'fr'];
-            let finalLangCode = 'it';
+            let targetLang = 'it';
+            const supportedLangs = ['it', 'en', 'es', 'fr', 'de', 'pt', 'ma'];
 
-            if (savedLang && supportedLangs.includes(savedLang)) {
-                 finalLangCode = savedLang;
-            } else if (supportedLangs.includes(browserLangCode)) {
-                 finalLangCode = browserLangCode;
+            // 1. Priorità: Lingua salvata
+            if (preferredLang && supportedLangs.includes(preferredLang)) {
+                targetLang = preferredLang;
             }
+            // 2. Priorità: Lingua del browser (solo se non ha una preferenza salvata)
+            else if (supportedLangs.includes(browserLang)) {
+                targetLang = browserLang;
+            }
+            // 3. Altrimenti, resta 'it'
 
-            const destinationPage = getDestinationPageName(finalLangCode);
-            window.location.replace(destinationPage);
+            // Reindirizza al file specifico della lingua
+            window.location.replace(`index-${targetLang}.html`);
         });
     </script>
 </head>
+
 <body>
-    <p>Reindirizzamento alla pagina corretta in base alla lingua del browser...</p>
+    <p style="text-align: center; margin-top: 50px;">Reindirizzamento in corso...</p>
 </body>
+
 </html>
