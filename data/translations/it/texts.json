@@ -1,14 +1,12 @@
 {
     "home": {
         "pageTitle": "Benvenuti ai Portici di San Luca",
+        "mainText": "Benvenuto nel nuovo progetto PorticiSanLuca. Sostituisci questo testo.",
         "mainText1": "Sono Ruggero e sono la tua guida camminando sotto i portici",
         "mainText2": "",
         "mainText3": "",
         "mainText4": "",
         "mainText5": "",
-        "mainText": "Benvenuto nel nuovo progetto PorticiSanLuca. Sostituisci questo testo.",
-        "playAudioButton": "Ascolta l'audio in italiano!",
-        "pauseAudioButton": "Metti in pausa",
         "imageSource1": "public/images/Meloncello.jpg",
         "imageSource2": "",
         "imageSource3": "",
@@ -17,6 +15,8 @@
         "sourceText": "Archivio Storico del Comune di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
+        "playAudioButton": "Ascolta l'audio in italiano!",
+        "pauseAudioButton": "Metti in pausa",
         "audioSource": "Assets/Audio/it/Home.mp3"
     },
     "nav": {

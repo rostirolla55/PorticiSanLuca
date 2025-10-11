@@ -1,17 +1,27 @@
 {
   "home": {
-    "pageTitle": "Home Page Portici San Luca (ES)",
-    "mainText": "Benvenuto nel nuovo progetto PorticiSanLuca. Sostituisci questo testo.",
-    "playAudioButton": "Escucha el audio en español!",
-    "pauseAudioButton": "Pausa",
+    "pageTitle": "Bienvenidos a Portici San Luca",
+    "mainText": "Bienvenidos al nuevo proyecto PorticiSanLuca. Reemplazar este texto.",
+    "mainText1": "Soy Ruggero y seré su guía mientras caminan bajo los pórticos",
+    "mainText2": "",
+    "mainText3": "",
+    "mainText4": "",
+    "mainText5": "",
+    "imageSource1": "public/images/Meloncello.jpg",
+    "imageSource2": "",
+    "imageSource3": "",
+    "imageSource4": "",
+    "imageSource5": "",
     "sourceText": "Archivo Histórico del Ayuntamiento de Bolonia.",
     "creationDate": "30-08-2025",
     "lastUpdate": "01-10-2025",
+    "playAudioButton": "Escucha el audio en español!",
+    "pauseAudioButton": "Pausa",
     "audioSource": "Assets/Audio/es/Home.mp3"
   },
-    "nav": {
-        "nav_content": "<nav class=\"nav-bar nav-list\"><ul class=\"nav-links\"><li><a id=\"navHome\" href=\"index-es.html\">Home (ES)</a></li><li><a id=\"navARCO119\" href=\"arco119-es.html\">ARCO119</a></li><li><a id=\"navARCO126B\" href=\"arco126b-es.html\">ARCO126B</a></li><li><a id=\"navARCO132A\" href=\"arco132a-es.html\">ARCO132A</a></li><li><a id=\"navARCO133A\" href=\"arco133a-es.html\">ARCO133A</a></li><li><a id=\"navARCO136B\" href=\"arco136b-es.html\">ARCO136B</a></li><li><a id=\"navARCO142A\" href=\"arco142a-es.html\">ARCO142A</a></li><li><a id=\"navARCO143C\" href=\"arco143c-es.html\">ARCO143C</a></li><li><a id=\"navARCO148\" href=\"arco148-es.html\">ARCO148</a></li><li><a id=\"navARCO163\" href=\"arco163-es.html\">ARCO163</a></li><li><a id=\"navARCO171B\" href=\"arco171b-es.html\">ARCO171B</a></li><li><a id=\"navARCO180\" href=\"arco180-es.html\">ARCO180</a></li><li><a id=\"navARCO182\" href=\"arco182-es.html\">ARCO182</a></li><li><a id=\"navARCO183\" href=\"arco183-es.html\">ARCO183</a></li><li><a id=\"navARCO186B\" href=\"arco186b-es.html\">ARCO186B</a></li><li><a id=\"navARCO188B\" href=\"arco188b-es.html\">ARCO188B</a></li><li><a id=\"navARCO190\" href=\"arco190-es.html\">ARCO190</a></li><li><a id=\"navARCO192C\" href=\"arco192c-es.html\">ARCO192C</a></li><li><a id=\"navARCO201A\" href=\"arco201a-es.html\">ARCO201A</a></li><li><a id=\"navARCO202A\" href=\"arco202a-es.html\">ARCO202A</a></li><li><a id=\"navARCO203B\" href=\"arco203b-es.html\">ARCO203B</a></li><li><a id=\"navARCO208B\" href=\"arco208b-es.html\">ARCO208B</a></li><li><a id=\"navARCO211B\" href=\"arco211b-es.html\">ARCO211B</a></li><li><a id=\"navARCO218B\" href=\"arco218b-es.html\">ARCO218B</a></li><li><a id=\"navARCO249A\" href=\"arco249a-es.html\">ARCO249A</a></li><li><a id=\"navARCO252A\" href=\"arco252a-es.html\">ARCO252A</a></li><li><a id=\"navARCO256\" href=\"arco256-es.html\">ARCO256</a></li><li><a id=\"navARCO282A\" href=\"arco282a-es.html\">ARCO282A</a></li><li><a id=\"navARCO283A\" href=\"arco283a-es.html\">ARCO283A</a></li><li><a id=\"navARCO306B\" href=\"arco306b-es.html\">ARCO306B</a></li><li><a id=\"navARCO307A\" href=\"arco307a-es.html\">ARCO307A</a></li><li><a id=\"navARCO53C\" href=\"arco53c-es.html\">ARCO53C</a></li><li><a id=\"navLAPIDE1\" href=\"lapide1-es.html\">LAPIDE 1</a></li><li><a id=\"navLAPIDE2\" href=\"lapide2-es.html\">LAPIDE 2</a></li><li><a id=\"navPSONTUOSO\" href=\"psontuoso-es.html\">PORTICO SONTUOSO</a></li></ul></nav>"
-    },
+  "nav": {
+    "nav_content": "<nav class=\"nav-bar nav-list\"><ul class=\"nav-links\"><li><a id=\"navHome\" href=\"index-es.html\">Home (ES)</a></li><li><a id=\"navARCO119\" href=\"arco119-es.html\">ARCO119</a></li><li><a id=\"navARCO126B\" href=\"arco126b-es.html\">ARCO126B</a></li><li><a id=\"navARCO132A\" href=\"arco132a-es.html\">ARCO132A</a></li><li><a id=\"navARCO133A\" href=\"arco133a-es.html\">ARCO133A</a></li><li><a id=\"navARCO136B\" href=\"arco136b-es.html\">ARCO136B</a></li><li><a id=\"navARCO142A\" href=\"arco142a-es.html\">ARCO142A</a></li><li><a id=\"navARCO143C\" href=\"arco143c-es.html\">ARCO143C</a></li><li><a id=\"navARCO148\" href=\"arco148-es.html\">ARCO148</a></li><li><a id=\"navARCO163\" href=\"arco163-es.html\">ARCO163</a></li><li><a id=\"navARCO171B\" href=\"arco171b-es.html\">ARCO171B</a></li><li><a id=\"navARCO180\" href=\"arco180-es.html\">ARCO180</a></li><li><a id=\"navARCO182\" href=\"arco182-es.html\">ARCO182</a></li><li><a id=\"navARCO183\" href=\"arco183-es.html\">ARCO183</a></li><li><a id=\"navARCO186B\" href=\"arco186b-es.html\">ARCO186B</a></li><li><a id=\"navARCO188B\" href=\"arco188b-es.html\">ARCO188B</a></li><li><a id=\"navARCO190\" href=\"arco190-es.html\">ARCO190</a></li><li><a id=\"navARCO192C\" href=\"arco192c-es.html\">ARCO192C</a></li><li><a id=\"navARCO201A\" href=\"arco201a-es.html\">ARCO201A</a></li><li><a id=\"navARCO202A\" href=\"arco202a-es.html\">ARCO202A</a></li><li><a id=\"navARCO203B\" href=\"arco203b-es.html\">ARCO203B</a></li><li><a id=\"navARCO208B\" href=\"arco208b-es.html\">ARCO208B</a></li><li><a id=\"navARCO211B\" href=\"arco211b-es.html\">ARCO211B</a></li><li><a id=\"navARCO218B\" href=\"arco218b-es.html\">ARCO218B</a></li><li><a id=\"navARCO249A\" href=\"arco249a-es.html\">ARCO249A</a></li><li><a id=\"navARCO252A\" href=\"arco252a-es.html\">ARCO252A</a></li><li><a id=\"navARCO256\" href=\"arco256-es.html\">ARCO256</a></li><li><a id=\"navARCO282A\" href=\"arco282a-es.html\">ARCO282A</a></li><li><a id=\"navARCO283A\" href=\"arco283a-es.html\">ARCO283A</a></li><li><a id=\"navARCO306B\" href=\"arco306b-es.html\">ARCO306B</a></li><li><a id=\"navARCO307A\" href=\"arco307a-es.html\">ARCO307A</a></li><li><a id=\"navARCO53C\" href=\"arco53c-es.html\">ARCO53C</a></li><li><a id=\"navLAPIDE1\" href=\"lapide1-es.html\">LAPIDE 1</a></li><li><a id=\"navLAPIDE2\" href=\"lapide2-es.html\">LAPIDE 2</a></li><li><a id=\"navPSONTUOSO\" href=\"psontuoso-es.html\">PORTICO SONTUOSO</a></li></ul></nav>"
+  },
   "arco119": {
     "pageTitle": "arco119 - Portico di San Luca",
     "mainText": "Testo base per l'arco o la lapide arco119...",
