@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,28 +20,34 @@
 </head>
 
 <body>
-
+    
     <header class="main-header">
+        
         <button class="menu-toggle" aria-label="Apri menu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </button>
+        
+        <div class="right-header-group">
+            
+            <div class="language-selector">
+                <button data-lang="it"><img src="public/flag/it.png" alt="Italiano"></button>
+                <button data-lang="en"><img src="public/flag/en.png" alt="English"></button>
+                <button data-lang="es"><img src="public/flag/es.png" alt="Español"></button>
+                <button data-lang="fr"><img src="public/flag/fr.png" alt="Français"></button>
+            </div>
 
-        <div id="navPlaceholder">
-            <p>Menu in caricamento...</p>
+            <button id="nearbyPoiButton" style="display:none;" aria-label="Punti di interesse vicini"></button>
         </div>
-
-        <button id="nearbyPoiButton" style="display:none;"></button>
-        <div id="nearbyMenuPlaceholder" class="nav-bar-nearby"></div>
-
-        <div class="language-selector">
-            <button data-lang="it"><img src="public/flag/it.png" alt="Italiano"></button>
-            <button data-lang="en"><img src="public/flag/en.png" alt="English"></button>
-            <button data-lang="es"><img src="public/flag/es.png" alt="Español"></button>
-            <button data-lang="fr"><img src="public/flag/fr.png" alt="Français"></button>
-        </div>
+        
     </header>
+
+    <div id="navPlaceholder">
+        </div>
+
+    <div id="nearbyMenuPlaceholder" class="nav-bar-nearby"></div>
+
 
     <main class="content-body">
 
@@ -59,20 +64,19 @@
             <button id="playAudio" class="play-style">Ascolta</button>
 
             <p id="mainText1"></p>
-            <img id="pageImage2" src="" style="display: none;" alt="Immagine 2">
+            <img id="pageImage2" src="" style="display: none;" alt="Immagine 2 corpo">
 
             <p id="mainText2"></p>
-            <img id="pageImage3" src="" style="display: none;" alt="Immagine 3">
+            <img id="pageImage3" src="" style="display: none;" alt="Immagine 3 corpo">
 
             <p id="mainText3"></p>
-            <img id="pageImage4" src="" style="display: none;" alt="Immagine 4">
+            <img id="pageImage4" src="" style="display: none;" alt="Immagine 4 corpo">
 
             <p id="mainText4"></p>
-            <img id="pageImage5" src="" style="display: none;" alt="Immagine 5">
+            <img id="pageImage5" src="" style="display: none;" alt="Immagine 5 corpo">
 
             <p id="mainText5"></p>
-            <img id="pageImage6" src="" style="display: none;" alt="Immagine 6">
-        </div>
+            </div>
 
 
         <footer class="info-footer">
