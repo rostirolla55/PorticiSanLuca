@@ -23,15 +23,11 @@
     </script>
 
     <script>
-        // Funzione helper per ottenere il nome del file di destinazione (coerente con la nuova struttura)
-        function getDestinationPageName(pageId, langCode) {
-            // Es. ('index', 'en') -> index-en.html
-            // Es. ('pugliole', 'it') -> pugliole-en.html
-            return `${pageId}-${langCode}.html`;
-        }
+        // Rimuoviamo qui la definizione di getDestinationPageName e redirectToPage.
+        // Queste funzioni DEVONO essere definite SOLTANTO in public/main.js
 
         // 🖱️ CAMBIO MANUALE LINGUA (Chiamato dai pulsanti bandiera)
-        function setLanguageRedirect(langCode) {
+        function setLanguage(langCode) {
             // 1. Salva la lingua scelta dall'utente (Requisito 11)
             localStorage.setItem('userLanguage', langCode);
 
@@ -40,9 +36,9 @@
             let pageId = path.substring(path.lastIndexOf('/') + 1).replace(/-[a-z]{2}\.html/i, '').replace('.html', '').toLowerCase();
             if (pageId === '') pageId = 'index';
 
-            // 3. Reindirizza alla pagina HTML corretta (es. pugliole-en.html)
-            const destinationPage = getDestinationPageName(pageId, langCode);
-            window.location.href = destinationPage;
+            // 3. 🔥 CHIAMATA CORRETTA: Chiamiamo redirectToPage() definita in main.js
+            // che ora saprà come costruire l'URL e reindirizzare.
+            redirectToPage(pageId, langCode);
         }
     </script>
 </head>
@@ -53,12 +49,16 @@
     <div id="nav-container">
     </div>
 
-    <div class="language-selector">
+        <div class="language-selector">
+            <button onclick="setLanguage('it')"><img src="public/flag/it.png" alt="Italiano"></button>
+            <button onclick="setLanguage('en')"><img src="public/flag/en.png" alt="English"></button>
+            <button onclick="setLanguage('fr')"><img src="public/flag/fr.png" alt="Français"></button>
+            <button onclick="setLanguage('es')"><img src="public/flag/es.png" alt="Español"></button>
         </div>
 </header>
     <div class="header-image-container">
         <img id="headerImage" src="public/images/Meloncello.jpg" alt="Meloncello Bologna">
-        <h1 class="header-title" id="pageTitle">Benvenuto nel Quartiere Porto</h1>
+        <h1 class="header-title" id="pageTitle">Benvenuti ai Portici di San Luca</h1>
     </div>
 
     <main class="content-body">
