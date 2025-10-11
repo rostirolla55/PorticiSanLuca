@@ -27,7 +27,7 @@
         // Queste funzioni DEVONO essere definite SOLTANTO in public/main.js
 
         // 🖱️ CAMBIO MANUALE LINGUA (Chiamato dai pulsanti bandiera)
-        function setLanguage(langCode) {
+        function setLanguageRedirect(langCode) {
             // 1. Salva la lingua scelta dall'utente (Requisito 11)
             localStorage.setItem('userLanguage', langCode);
 
