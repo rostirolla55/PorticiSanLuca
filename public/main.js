@@ -25,7 +25,7 @@ function updateTextContent(id, content) {
 function getCurrentPageId() {
     const urlPath = document.location.pathname;
     const fileName = urlPath.substring(urlPath.lastIndexOf('/') + 1);
-    
+
     // Rimuove la lingua e l'estensione (es. index-it.html -> index)
     let pageName = fileName.replace(/-[a-z]{2}\.html$/, '');
 
@@ -59,7 +59,7 @@ function injectNavigation(navData) {
 
 const loadContent = async (lang) => {
     document.documentElement.lang = lang;
-    
+
     // Recupera gli elementi audio e bottone una sola volta all'inizio
     const audioPlayer = document.getElementById('audioPlayer');
     const playButton = document.getElementById('playAudio');
@@ -74,7 +74,7 @@ const loadContent = async (lang) => {
 
         if (!response.ok) {
             console.error(`File di traduzione non trovato per la lingua: ${lang}. Tentativo di fallback su 'it'. Status: ${response.status}`);
-            
+
             // Logica di Fallback: Se il file specifico non esiste, prova con l'italiano
             if (lang !== 'it') {
                 loadContent('it');
@@ -84,16 +84,16 @@ const loadContent = async (lang) => {
         }
 
         const data = await response.json();
-        
+
         // La tua struttura JSON precedente usava la chiave pageId direttamente.
         // Se la tua nuova struttura usa 'pages': const pageData = data.pages[pageId];
         // Manteniamo la tua vecchia implementazione:
-        const pageData = data[pageId]; 
+        const pageData = data[pageId];
 
         if (!pageData) {
             console.warn(`Dati non trovati per la chiave pagina: ${pageId} nel file JSON per la lingua: ${lang}.`);
             updateTextContent('headerTitle', `[ERRORE] Dati mancanti (${pageId}/${lang})`);
-            
+
             // Rendi visibile anche in caso di errore dati per non bloccare la pagina
             document.body.classList.add('content-loaded');
             return;
@@ -138,7 +138,7 @@ const loadContent = async (lang) => {
             const displayTitle = pageData.pageTitle.replace(' - Portico di San Luca', '');
             headerTitleElement.textContent = displayTitle;
         }
-        
+
         updateTextContent('mainText', pageData.mainText);
         updateTextContent('mainText1', pageData.mainText1);
         updateTextContent('mainText2', pageData.mainText2);
@@ -168,16 +168,16 @@ const loadContent = async (lang) => {
 
             playButton.classList.remove('pause-style');
             playButton.classList.add('play-style');
-            
+
             // Inizializza l'event listener audio (deve essere separato dal DOMContentLoaded)
-            initAudioListener(audioPlayer, playButton); 
+            initAudioListener(audioPlayer, playButton);
         }
 
         // AGGIORNAMENTO IMMAGINI DINAMICHE (Requisito 9: Max 5 immagini)
         for (let i = 1; i <= 5; i++) {
             // Nota: Ho cambiato l'ID da 'imageX' a 'pageImageX' per chiarezza, 
             // ma usa l'ID che hai effettivamente nell'HTML.
-            const imageElement = document.getElementById(`pageImage${i}`); 
+            const imageElement = document.getElementById(`pageImage${i}`);
             const imageSource = pageData[`imageSource${i}`];
 
             if (imageElement) {
@@ -188,7 +188,7 @@ const loadContent = async (lang) => {
         }
 
         // 2. Inizializza gli altri event listener (Hamburger, Lingua)
-        initOtherEventListeners(lang); 
+        initOtherEventListeners(lang);
 
         console.log(`✅ Contenuto caricato con successo per la lingua: ${lang} e pagina: ${pageId}`);
 
@@ -214,7 +214,7 @@ function initAudioListener(audioPlayer, playButton) {
     // Rimuove eventuali listener precedenti prima di aggiungerne uno nuovo per la pagina corrente
     const newPlayButton = playButton.cloneNode(true);
     playButton.parentNode.replaceChild(newPlayButton, playButton);
-    
+
     newPlayButton.addEventListener('click', () => {
         if (audioPlayer.paused) {
             audioPlayer.play();
@@ -266,7 +266,7 @@ function initOtherEventListeners(currentLang) {
             menuToggle.dataset.listenerAttached = 'true';
         }
     }
-    
+
     // --- Logica Selettore Lingua ---
     const langButtons = document.querySelectorAll('.language-selector button');
     langButtons.forEach(button => {
@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Determina la lingua corrente dall'URL
     const urlPath = document.location.pathname;
     const langMatch = urlPath.match(/-([a-z]{2})\.html/);
-    const currentLang = langMatch ? langMatch[1] : 'it'; 
+    const currentLang = langMatch ? langMatch[1] : 'it';
 
     // 2. Avvia il caricamento del contenuto asincrono
     loadContent(currentLang);
