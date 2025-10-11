@@ -5,69 +5,71 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('assets/translations.json')
         .then(response => {
             if (!response.ok) {
+                // Se il file non esiste (es. 404), lancia un errore
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
         })
         .then(data => {
-            // Determina la lingua corrente (es. "it", "en")
-            // Basato sul nome del file HTML, ad es. index-it.html -> 'it'
-            const langMatch = document.location.pathname.match(/-([a-z]{2})\.html/);
-            const lang = langMatch ? langMatch[1] : 'it'; 
+            // Determina la lingua e il nome della pagina in base all'URL
+            const urlPath = document.location.pathname;
+            const langMatch = urlPath.match(/-([a-z]{2})\.html/);
+            const currentLang = langMatch ? langMatch[1] : 'it'; 
 
-            // Determina il nome della pagina (es. index-it.html -> 'home')
-            const pageMatch = document.location.pathname.match(/\/([a-z0-9]+)-/);
-            const pageName = pageMatch ? pageMatch[1] : 'home';
+            const pageMatch = urlPath.match(/\/([a-z0-9]+)-/);
+            // Assume 'index-it.html' come 'home' se il match fallisce
+            const pageName = pageMatch ? pageMatch[1] : (urlPath.includes('index-') ? 'home' : null);
 
-            // Estrae i dati specifici della pagina e della navigazione
+            // Verifica se i dati essenziali sono disponibili
             const pageData = data[pageName];
             const navData = data.nav;
 
+            if (navData) {
+                // 2. INIEZIONE DEL MENU DI NAVIGAZIONE
+                injectNavigation(navData);
+            }
+            
             if (pageData) {
-                // 2. INIEZIONE DEL CONTENUTO DINAMICO
+                // 3. INIEZIONE DEL CONTENUTO DINAMICO E TRADUZIONE
                 applyContent(pageData, pageName);
             }
 
-            if (navData) {
-                // 3. INIEZIONE DEL MENU DI NAVIGAZIONE
-                injectNavigation(navData);
-            }
-
             // 4. INIZIALIZZAZIONE EVENTI (DOPO IL CARICAMENTO DEI TESTI)
-            initEventListeners(pageData, lang);
+            initEventListeners(pageData, currentLang);
 
-            // 5. ANTI-FOUT: Mostra il contenuto solo dopo il caricamento (Aggiunge la classe al body)
+            // 5. ANTI-FOUT: Mostra il contenuto solo dopo il caricamento completo (aggiunge la classe al body)
             document.body.classList.add('content-loaded');
 
         })
         .catch(error => {
-            console.error('Errore nel caricamento dei dati JSON:', error);
-            // In caso di errore, mostra comunque la pagina statica
+            console.error('Errore nel caricamento o nell\'elaborazione dei dati:', error);
+            // In caso di errore critico (es. JSON non trovato), mostra comunque il body 
+            // per non bloccare l'utente su uno schermo vuoto.
             document.body.classList.add('content-loaded');
         });
 });
 
 
 /**
- * Applica il contenuto dinamico alla pagina corrente.
+ * Applica il contenuto dinamico alla pagina corrente, basandosi sugli ID.
  * @param {object} data - Oggetto dati per la pagina corrente.
  * @param {string} pageName - Nome della pagina (es. 'home', 'arco119').
  */
 function applyContent(data, pageName) {
-    // 1. Inietta il Titolo della Pagina
+    // Inietta il Titolo della Pagina (nel tag <title>)
     if (data.pageTitle && document.title) {
         document.title = data.pageTitle;
     }
 
-    // 2. Inietta il Titolo di Testata (Header)
+    // Inietta il Titolo di Testata (Header)
     const headerTitleElement = document.getElementById('headerTitle');
     if (headerTitleElement && data.pageTitle) {
-        // Usa il titolo della pagina come titolo visibile, ma rimuovi il suffisso
+        // Usa il titolo della pagina come titolo visibile, rimuovendo il suffisso standard
         const displayTitle = data.pageTitle.replace(' - Portico di San Luca', '');
         headerTitleElement.textContent = displayTitle;
     }
 
-    // 3. Inietta il Testo Principale (supporta mainText e mainText1-5)
+    // Inietta il Testo Principale e i suoi blocchi (mainText1-5)
     const mainTextElement = document.getElementById('mainText');
     if (mainTextElement) {
         mainTextElement.innerHTML = data.mainText || '';
@@ -79,14 +81,14 @@ function applyContent(data, pageName) {
         }
     }
 
-    // 4. Inietta l'Immagine Principale
+    // Inietta l'Immagine Principale (header)
     const headerImageContainer = document.querySelector('.header-image-container img');
     if (headerImageContainer && data.imageSource1) {
         headerImageContainer.src = data.imageSource1;
-        headerImageContainer.alt = pageName; // Alt dinamico
+        headerImageContainer.alt = pageName; 
     }
     
-    // 5. Inietta Immagini Aggiuntive (se presenti)
+    // Inietta Immagini Aggiuntive (se presenti)
     for (let i = 2; i <= 5; i++) {
         const imgElement = document.getElementById(`image${i}`);
         if (imgElement && data[`imageSource${i}`]) {
@@ -95,7 +97,16 @@ function applyContent(data, pageName) {
         }
     }
 
-    // 6. Inietta Testi del Footer
+    // Inietta Testi Pulsanti Audio 
+    const playButton = document.getElementById('playAudio');
+    if (playButton) {
+        playButton.textContent = data.playAudioButton || 'Play Audio';
+        playButton.classList.add('play-style'); // Stile iniziale
+        playButton.setAttribute('data-play-text', data.playAudioButton || 'Play Audio');
+        playButton.setAttribute('data-pause-text', data.pauseAudioButton || 'Metti in Pausa');
+    }
+
+    // Inietta Testi del Footer
     const sourceTextElement = document.getElementById('sourceText');
     if (sourceTextElement && data.sourceText) {
         sourceTextElement.textContent = data.sourceText;
@@ -107,14 +118,6 @@ function applyContent(data, pageName) {
     const lastUpdateElement = document.getElementById('lastUpdate');
     if (lastUpdateElement && data.lastUpdate) {
         lastUpdateElement.textContent = data.lastUpdate;
-    }
-
-    // 7. Inietta Testi Pulsanti Audio (importante prima di inizializzare l'audio)
-    const playButton = document.getElementById('playAudio');
-    if (playButton) {
-        playButton.textContent = data.playAudioButton || 'Play Audio';
-        playButton.setAttribute('data-play-text', data.playAudioButton || 'Play Audio');
-        playButton.setAttribute('data-pause-text', data.pauseAudioButton || 'Pause');
     }
 }
 
@@ -151,7 +154,7 @@ function initEventListeners(pageData, currentLang) {
         const navLinks = document.querySelectorAll('.nav-bar .nav-links a');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
-                // Aggiungi un piccolo ritardo per permettere al click di essere registrato
+                // Ritardo per permettere la navigazione prima di chiudere il menu
                 setTimeout(() => {
                     menuToggle.classList.remove('active');
                     navBar.classList.remove('active');

@@ -98,19 +98,16 @@ body.content-loaded {
         z-index: auto;
         overflow-y: visible;
         
-        /* FIX: Rende i link sempre visibili su desktop */
-        visibility: visible !important;
+        /* FIX: Rende i link sempre visibili su desktop e annulla gli stili mobile */
         opacity: 1 !important;
+        pointer-events: auto !important;
     }
     .nav-bar .nav-links {
         display: flex;
         gap: 15px;
-        /* FIX: Rende i link sempre visibili su desktop */
-        visibility: visible !important;
-        opacity: 1 !important;
     }
     .nav-bar .nav-links li {
-        display: block; /* Assicura che <li> sia standard */
+        display: block; 
     }
     .nav-bar .nav-links li a {
         color: #333;
@@ -167,13 +164,13 @@ body.content-loaded {
     z-index: 999;
     overflow-y: auto; 
     
-    /* FIX CRITICO: Nasconde il menu PRIMA che il contenuto sia pronto */
+    /* 🔥 FIX CRITICO: Nasconde il menu PRIMA che il contenuto sia pronto */
     opacity: 0;
     pointer-events: none; /* Impedisce interazione accidentale */
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
-/* FIX CRITICO: Il menu può apparire solo quando il body è pronto (tradotto) */
+/* 🔥 FIX CRITICO: Il menu può apparire solo quando il body è pronto (tradotto) */
 body.content-loaded .nav-bar {
     opacity: 1; /* Il menu diventa "apribile" ma è ancora fuori schermo */
     pointer-events: auto;
