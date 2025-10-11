@@ -13,7 +13,8 @@ let currentLang = 'it';
 let audioPlayer = null;
 let playButton = null;
 
-// ... (omitted helper functions: getDistance, getCurrentPageId, updateContent) ...
+// Le posizioni dei POI per la geolocalizzazione (Requisito 10) sono qui o in un file separato
+// const poiLocations = { /* ... */ }; 
 
 /**
  * Ottiene l'ID della pagina corrente basato sul nome del file HTML.
@@ -25,6 +26,9 @@ function getCurrentPageId() {
     return (pageName === 'index' || pageName === '') ? 'home' : pageName;
 }
 
+/**
+ * Aggiorna il contenuto di un elemento tramite ID.
+ */
 function updateContent(id, content, isHtml = false) {
     const element = document.getElementById(id);
     if (element && content) {
@@ -36,14 +40,17 @@ function updateContent(id, content, isHtml = false) {
     }
 }
 
-
 // ===========================================
 // LOGICA CARICAMENTO CONTENUTI 
 // ===========================================
 
 const loadContent = async (lang) => {
     document.documentElement.lang = lang;
-    // ... (omitted gtag analytics call) ...
+    
+    // Inizializzazione Analytics (gtag omesso per brevità, assumiamo sia nel vostro HTML)
+    if (typeof gtag === 'function') {
+        gtag('set', { 'lingua_pagina': lang });
+    }
 
     try {
         const pageId = getCurrentPageId();
@@ -52,46 +59,73 @@ const loadContent = async (lang) => {
         const response = await fetch(`data/translations/${lang}/texts.json`); 
 
         if (!response.ok) {
-            console.error(`File di traduzione non trovato per la lingua: ${lang}.`);
+            console.error(`File di traduzione non trovato per la lingua: ${lang}. Tentativo lingua predefinita (it).`);
             if (lang !== 'it') { loadContent('it'); return; }
             throw new Error(`Impossibile caricare i dati per ${lang}.`);
         }
 
         const data = await response.json();
-        const pageData = data[pageId]; 
+        const pageData = data[pageId] || {}; // Usa un oggetto vuoto se i dati non esistono
 
-        // ... (omitted content updates: pageTitle, headerTitle, mainText, Footer) ...
+        // 2. AGGIORNAMENTO TESTI PRINCIPALI
+        updateContent('pageTitle', pageData.pageTitle || 'Portici San Luca');
+        updateContent('headerTitle', pageData.pageTitle || '');
+        updateContent('mainText', pageData.mainText || '');
+
+        updateContent('mainText1', pageData.mainText1 || '');
+        updateContent('mainText2', pageData.mainText2 || '');
+        updateContent('mainText3', pageData.mainText3 || '');
+        updateContent('mainText4', pageData.mainText4 || '');
+        updateContent('mainText5', pageData.mainText5 || '');
         
-        // 5. REQUISITO: AGGIORNAMENTO NAVIGAZIONE (Menu Hamburger)
+        // 3. AGGIORNAMENTO IMMAGINI (Requisito 8 & 9)
+        const imageIds = ['pageImage1', 'pageImage2', 'pageImage3', 'pageImage4', 'pageImage5'];
+        imageIds.forEach((id, index) => {
+            const imgSrc = pageData[`imageSource${index + 1}`];
+            const imgElement = document.getElementById(id);
+
+            if (imgElement && imgSrc) {
+                imgElement.src = imgSrc;
+                imgElement.alt = pageData.pageTitle || ''; // Usa il titolo come alt
+                imgElement.style.display = 'block'; // Mostra l'immagine
+            } else if (imgElement) {
+                imgElement.style.display = 'none'; // Nasconde se non c'è URL
+            }
+        });
+
+        // 4. AGGIORNAMENTO FOOTER (RISOLVE IL PROBLEMA "NON COMPAIONO")
+        updateContent('infoSource', pageData.sourceText || '');
+        updateContent('infoCreatedDate', pageData.creationDate || '');
+        updateContent('infoUpdatedDate', pageData.lastUpdate || '');
+        
+        // 5. AGGIORNAMENTO NAVIGAZIONE (Menu Hamburger)
+        // FIX: Usa la chiave corretta "nav_content" che è presente nel tuo JSON
         const navPlaceholder = document.getElementById('navPlaceholder');
-        if (navPlaceholder && data.nav && data.nav.nav_html) {
-            updateContent('navPlaceholder', data.nav.nav_html, true);
+        const navContent = data.nav ? data.nav.nav_content : null; 
+
+        if (navPlaceholder && navContent) {
+            updateContent('navPlaceholder', navContent, true);
         }
         
-        // 3. REQUISITO: AGGIORNAMENTO AUDIO E BOTTONE
+        // 6. AGGIORNAMENTO AUDIO E BOTTONE
         if (audioPlayer && playButton && pageData.audioSource) {
             if (!audioPlayer.paused) { audioPlayer.pause(); audioPlayer.currentTime = 0; }
 
-            // Usa i testi dal JSON per il bottone
             playButton.textContent = pageData.playAudioButton || 'Ascolta';
             playButton.dataset.playText = pageData.playAudioButton || 'Ascolta';
             playButton.dataset.pauseText = pageData.pauseAudioButton || 'Metti in pausa';
             
-            // I percorsi risorse (Assets/Audio/...) funzionano bene da qui
             audioPlayer.src = pageData.audioSource; 
             audioPlayer.load();
 
-            // Imposta lo stile iniziale (Blu/Play)
             playButton.classList.remove('pause-style');
             playButton.classList.add('play-style');
             playButton.style.display = 'block';
         } else if (playButton) {
             playButton.style.display = 'none';
         }
-
-        // ... (omitted image updates) ...
         
-        // Finalizza
+        // 7. FINALIZZA
         initEventListeners(lang); 
         updateLanguageSelectorActiveState(lang); 
         localStorage.setItem(LAST_LANG_KEY, lang); 
@@ -99,6 +133,7 @@ const loadContent = async (lang) => {
     } catch (error) {
         console.error('Errore critico nel caricamento dei testi:', error);
     } finally {
+        // Rimuove il "Flash of Unstyled Text" (Requisito 6)
         document.body.classList.add('content-loaded');
     }
 };
@@ -115,13 +150,11 @@ function toggleAudioPlayback() {
 
     if (audioPlayer.paused || audioPlayer.ended) {
         audioPlayer.play();
-        // Diventa ARANCIONE e PAUSA
         playButton.textContent = playButton.dataset.pauseText;
         playButton.classList.remove('play-style');
         playButton.classList.add('pause-style');
     } else {
         audioPlayer.pause();
-        // Diventa BLU e ASCOLTA
         playButton.textContent = playButton.dataset.playText;
         playButton.classList.remove('pause-style');
         playButton.classList.add('play-style');
@@ -143,7 +176,6 @@ function updateLanguageSelectorActiveState(lang) {
 
 /**
  * Gestore del cambio lingua (Requisito 4 & 11).
- * Risolve il problema del cambio pagina.
  */
 function handleLanguageChange(event) {
     const newLang = event.currentTarget.getAttribute('data-lang');
@@ -151,12 +183,11 @@ function handleLanguageChange(event) {
     if (newLang && LANGUAGES.includes(newLang) && newLang !== currentLang) {
         localStorage.setItem(LAST_LANG_KEY, newLang); 
         
-        // Costruisce il nome file corretto: es. 'arco119-it.html' -> 'arco119-en.html'
         const urlPath = document.location.pathname;
         const fileName = urlPath.substring(urlPath.lastIndexOf('/') + 1);
-        const fileBase = fileName.replace(/-[a-z]{2}\.html$/, '');
+        let fileBase = fileName.replace(/-[a-z]{2}\.html$/, '');
+        if (fileBase === '') fileBase = 'index';
 
-        // Reindirizza al nuovo file specifico per la lingua
         const newPath = `${fileBase}-${newLang}.html`;
         document.location.href = newPath; 
     }
@@ -168,32 +199,33 @@ function handleLanguageChange(event) {
  */
 function initEventListeners(currentLang) {
     
-    // --- Logica Menu Hamburger (RISOLVE IL PROBLEMA "NON SI VEDE") ---
+    // --- Logica Menu Hamburger ---
     const menuToggle = document.querySelector('.menu-toggle');
     const navBar = document.getElementById('navPlaceholder');
 
+    // Usiamo 'once' per evitare l'attaccamento multiplo se loadContent viene richiamato
     if (menuToggle && navBar && !menuToggle.dataset.listenerAttached) {
+        
+        // Toggle menu visibilità
         menuToggle.addEventListener('click', () => {
             menuToggle.classList.toggle('active');
             navBar.classList.toggle('active');
         });
         
         // Chiude il menu quando si clicca un link
-        navBar.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
+        navBar.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
                 menuToggle.classList.remove('active');
                 navBar.classList.remove('active');
-            });
+            }
         });
         menuToggle.dataset.listenerAttached = 'true';
     }
 
 
-    // --- Logica Audio (RISOLVE IL PROBLEMA "NON FUNZIONA") ---
+    // --- Logica Audio ---
     if (audioPlayer && playButton && !playButton.dataset.listenerAttached) {
         playButton.addEventListener('click', toggleAudioPlayback);
-
-        // Reset del pulsante quando l'audio finisce 
         audioPlayer.addEventListener('ended', () => {
             playButton.textContent = playButton.dataset.playText;
             playButton.classList.remove('pause-style');
@@ -203,11 +235,14 @@ function initEventListeners(currentLang) {
     }
 
 
-    // --- Logica Selettore Lingua (RISOLVE IL PROBLEMA "NON CAMBIA PAGINA") ---
+    // --- Logica Selettore Lingua ---
     document.querySelectorAll('.language-selector button').forEach(button => {
+        // Rimuove e riattacca per evitare duplicati ad ogni loadContent
         button.removeEventListener('click', handleLanguageChange); 
         button.addEventListener('click', handleLanguageChange);
     });
+    
+    // --- Logica POI (Omessa per brevità, ma andrebbe qui) ---
 }
 
 
@@ -219,7 +254,6 @@ document.addEventListener('DOMContentLoaded', () => {
     audioPlayer = document.getElementById('audioPlayer');
     playButton = document.getElementById('playAudio');
     
-    // Logica di reindirizzamento omessa per semplicità; usiamo la lingua nell'URL
     const urlPath = document.location.pathname;
     const langMatch = urlPath.match(/-([a-z]{2})\.html/);
     const urlLang = langMatch ? langMatch[1] : 'it'; 
