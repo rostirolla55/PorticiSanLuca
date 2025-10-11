@@ -7,13 +7,13 @@ body {
     padding-top: 60px; /* Spazio per l'header fisso */
     background-color: #f4f4f4;
     
-    /* 🔥 NUOVO: Nasconde il contenuto statico all'avvio */
+    /* 🔥 ANTI-FOUT: Nasconde il contenuto statico all'avvio */
     opacity: 0;
     /* Aggiunge una transizione per un effetto di dissolvenza più fluido */
     transition: opacity 0.3s ease-in; 
 }
 
-/* 🔥 NUOVO: La classe per rendere il contenuto visibile */
+/* 🔥 ANTI-FOUT: La classe per rendere il contenuto visibile (aggiunta da JS) */
 body.content-loaded {
     opacity: 1;
 }
@@ -65,9 +65,8 @@ body.content-loaded {
     bottom: 0;
     left: 0;
     
-    /* 🔥 FIX CRITICO: Rimuovi 'width: 100%' e usa 'display: inline-block' */
-    /* Questo fa restringere il blocco alla larghezza del suo contenuto (il testo) */
-    width: auto; /* Annulliamo l'effetto di width: 100% */
+    /* FIX CRITICO: Usa 'display: inline-block' per restringere il blocco al testo */
+    width: auto; 
     display: inline-block; 
     
     /* Manteniamo gli stili di sfondo e testo */
@@ -98,14 +97,25 @@ body.content-loaded {
         padding-top: 0;
         z-index: auto;
         overflow-y: visible;
+        
+        /* FIX: Rende i link sempre visibili su desktop */
+        visibility: visible !important;
+        opacity: 1 !important;
     }
     .nav-bar .nav-links {
         display: flex;
         gap: 15px;
+        /* FIX: Rende i link sempre visibili su desktop */
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    .nav-bar .nav-links li {
+        display: block; /* Assicura che <li> sia standard */
     }
     .nav-bar .nav-links li a {
         color: #333;
         padding: 0;
+        border-bottom: none; /* Rimuove il separatore orizzontale su desktop */
     }
 }
 
@@ -156,10 +166,22 @@ body.content-loaded {
     padding-top: 60px; /* Spazio sotto l'header */
     z-index: 999;
     overflow-y: auto; 
+    
+    /* FIX CRITICO: Nasconde il menu PRIMA che il contenuto sia pronto */
+    opacity: 0;
+    pointer-events: none; /* Impedisce interazione accidentale */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* FIX CRITICO: Il menu può apparire solo quando il body è pronto (tradotto) */
+body.content-loaded .nav-bar {
+    opacity: 1; /* Il menu diventa "apribile" ma è ancora fuori schermo */
+    pointer-events: auto;
 }
 
 .nav-bar.active {
     transform: translateX(0); /* Mostrato quando ha la classe 'active' */
+    opacity: 1; /* Garantisce la visibilità */
 }
 
 /* Link del menu in colonna */
@@ -167,8 +189,8 @@ body.content-loaded {
     list-style: none;
     margin: 0; 
     padding: 0; 
-    display: flex; /* Mantiene flexbox */
-    flex-direction: column; /* FORZA la colonna */
+    display: flex; 
+    flex-direction: column; 
     text-align: center;
 }
 
@@ -179,7 +201,6 @@ body.content-loaded {
     display: block;
     padding: 15px 0;
     
-    /* Se vuoi eliminare le righe alternate, RIMUOVI questa riga: */
     border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
 }
 
@@ -219,7 +240,7 @@ body.content-loaded {
 }
 
 .play-style {
-    background-color: #3d1ce3; /* Verde */
+    background-color: #3d1ce3; /* Blu/Viola */
 }
 
 .pause-style {
@@ -230,8 +251,7 @@ body.content-loaded {
     display: none; /* Nasconde il player nativo */
 }
 
-/* File: public/style.css (Aggiungi alla fine del file) */
-
+/* Info Footer */
 .info-footer {
     border-top: 1px solid #ccc;
     padding-top: 15px;
