@@ -196,7 +196,7 @@ function updatePoiMenu(locations, userLat, userLon, userLang) {
         menuHtml += '<ul class="poi-links">';
         uniquePois.forEach(poi => {
             const distanceText = formatDistance(poi.distance);
-            
+
             // 🔥 CORREZIONE CRUCIALE: Converti l'ID in minuscolo prima di costruire l'URL
             const fileBaseName = poi.id.toLowerCase();
             const poiLink = `${fileBaseName}${langSuffix}.html`;
@@ -268,151 +268,153 @@ async function loadContent(lang) {
             return;
         }
 
-        // AGGIORNAMENTO NAVIGAZIONE (Assicurati che l'HTML sia corretto per 'navHome', ecc.)
-        if (data.nav) {
-            const suffix = `-${lang}.html`;
-            // AGGIORNA HREF E TESTO PER TUTTI I LINK DEL MENU PRINCIPALE
-            document.getElementById('navARCO119').href = `arco119${suffix}`;
-            document.getElementById('navARCO126B').href = `arco126b${suffix}`;
-            document.getElementById('navARCO132A').href = `arco132a${suffix}`;
-            document.getElementById('navARCO133A').href = `arco133a${suffix}`;
-            document.getElementById('navARCO136B').href = `arco136b${suffix}`;
-            document.getElementById('navARCO142A').href = `arco142a${suffix}`;
-            document.getElementById('navARCO143C').href = `arco143c${suffix}`;
-            document.getElementById('navARCO148').href = `arco148${suffix}`;
-            document.getElementById('navARCO163').href = `arco163${suffix}`;
-            document.getElementById('navARCO171B').href = `arco171b${suffix}`;
-            document.getElementById('navARCO180').href = `arco180${suffix}`;
-            document.getElementById('navARCO182').href = `arco182${suffix}`;
-            document.getElementById('navARCO183').href = `arco183${suffix}`;
-            document.getElementById('navARCO186B').href = `arco186b${suffix}`;
-            document.getElementById('navARCO188B').href = `arco188b${suffix}`;
-            document.getElementById('navARCO190').href = `arco190${suffix}`;
-            document.getElementById('navARCO192C').href = `arco192c${suffix}`;
-            document.getElementById('navARCO201A').href = `arco201a${suffix}`;
-            document.getElementById('navARCO202A').href = `arco202a${suffix}`;
-            document.getElementById('navARCO203B').href = `arco203b${suffix}`;
-            document.getElementById('navARCO208B').href = `arco208b${suffix}`;
-            document.getElementById('navARCO211B').href = `arco211b${suffix}`;
-            document.getElementById('navARCO218B').href = `arco218b${suffix}`;
-            document.getElementById('navARCO249A').href = `arco249a${suffix}`;
-            document.getElementById('navARCO252A').href = `arco252a${suffix}`;
-            document.getElementById('navARCO256').href = `arco256${suffix}`;
-            document.getElementById('navARCO282A').href = `arco282a${suffix}`;
-            document.getElementById('navARCO283A').href = `arco283a${suffix}`;
-            document.getElementById('navARCO306B').href = `arco306b${suffix}`;
-            document.getElementById('navARCO307A').href = `arco307a${suffix}`;
-            document.getElementById('navARCO53C').href = `arco53c${suffix}`;
-            document.getElementById('navHome').href = `index${suffix}`;
-            document.getElementById('navLAPIDE1').href = `lapide1${suffix}`;
-            document.getElementById('navLAPIDE2').href = `lapide2${suffix}`;
-            document.getElementById('navPSONTUOSO').href = `psontuoso${suffix}`;
-            updateTextContent('navARCO119', data.nav.navARCO119);
-            updateTextContent('navARCO126B', data.nav.navARCO126B);
-            updateTextContent('navARCO132A', data.nav.navARCO132A);
-            updateTextContent('navARCO133A', data.nav.navARCO133A);
-            updateTextContent('navARCO136B', data.nav.navARCO136B);
-            updateTextContent('navARCO142A', data.nav.navARCO142A);
-            updateTextContent('navARCO143C', data.nav.navARCO143C);
-            updateTextContent('navARCO148', data.nav.navARCO148);
-            updateTextContent('navARCO163', data.nav.navARCO163);
-            updateTextContent('navARCO171B', data.nav.navARCO171B);
-            updateTextContent('navARCO180', data.nav.navARCO180);
-            updateTextContent('navARCO182', data.nav.navARCO182);
-            updateTextContent('navARCO183', data.nav.navARCO183);
-            updateTextContent('navARCO186B', data.nav.navARCO186B);
-            updateTextContent('navARCO188B', data.nav.navARCO188B);
-            updateTextContent('navARCO190', data.nav.navARCO190);
-            updateTextContent('navARCO192C', data.nav.navARCO192C);
-            updateTextContent('navARCO201A', data.nav.navARCO201A);
-            updateTextContent('navARCO202A', data.nav.navARCO202A);
-            updateTextContent('navARCO203B', data.nav.navARCO203B);
-            updateTextContent('navARCO208B', data.nav.navARCO208B);
-            updateTextContent('navARCO211B', data.nav.navARCO211B);
-            updateTextContent('navARCO218B', data.nav.navARCO218B);
-            updateTextContent('navARCO249A', data.nav.navARCO249A);
-            updateTextContent('navARCO252A', data.nav.navARCO252A);
-            updateTextContent('navARCO256', data.nav.navARCO256);
-            updateTextContent('navARCO282A', data.nav.navARCO282A);
-            updateTextContent('navARCO283A', data.nav.navARCO283A);
-            updateTextContent('navARCO306B', data.nav.navARCO306B);
-            updateTextContent('navARCO307A', data.nav.navARCO307A);
-            updateTextContent('navARCO53C', data.nav.navARCO53C);
-            updateTextContent('navHome', data.nav.navHome);
-            updateTextContent('navLAPIDE1', data.nav.navLAPIDE1);
-            updateTextContent('navLAPIDE2', data.nav.navLAPIDE2);
-            updateTextContent('navPSONTUOSO', data.nav.navPSONTUOSO);
-        }
+            // AGGIORNAMENTO NAVIGAZIONE (Assicurati che l'HTML sia corretto per 'navHome', ecc.)
+            if (data.nav) {
+                const suffix = `-${lang}.html`;
+                // AGGIORNA HREF E TESTO PER TUTTI I LINK DEL MENU PRINCIPALE
 
-        // AGGIORNAMENTO TESTATA (Titolo e Immagine)
-        updateTextContent('pageTitle', pageData.pageTitle);
-        // 🔥 FIX: Uso updateHTMLContent per consentire <strong> nell'H1
-        updateHTMLContent('headerTitle', pageData.pageTitle);
-
-        // AGGIORNAMENTO IMMAGINE DI FONDO TESTATA (Usando l'ID corretto 'pageImage1')
-        const headerImage = document.getElementById('pageImage1');
-        if (headerImage && pageData.imageSource1) {
-            headerImage.src = pageData.imageSource1;
-            headerImage.alt = pageData.pageTitle || "Immagine di testata";
-        }
-
-
-        // AGGIORNAMENTO DEL CONTENUTO (Testi principali)
-        // 🔥 FIX: Uso updateHTMLContent per consentire <strong>, <p> ecc. nei testi
-        updateHTMLContent('mainText', pageData.mainText || '');
-        updateHTMLContent('mainText1', pageData.mainText1 || '');
-        updateHTMLContent('mainText2', pageData.mainText2 || '');
-        updateHTMLContent('mainText3', pageData.mainText3 || '');
-        updateHTMLContent('mainText4', pageData.mainText4 || '');
-        updateHTMLContent('mainText5', pageData.mainText5 || '');
-
-        // AGGIORNAMENTO INFORMAZIONI SULLA FONTE E DATA
-        if (pageData.sourceText) {
-            updateTextContent('infoSource', `Fonte: ${pageData.sourceText}`);
-        }
-        if (pageData.creationDate) {
-            updateTextContent('infoCreatedDate', pageData.creationDate);
-        }
-        if (pageData.lastUpdate) {
-            updateTextContent('infoUpdatedDate', pageData.lastUpdate);
-        }
-
-        // AGGIORNAMENTO AUDIO E BOTTONE
-        if (audioPlayer && playButton && pageData.audioSource) {
-            if (!audioPlayer.paused) {
-                audioPlayer.pause();
-                audioPlayer.currentTime = 0;
+                // 🔥 CORREZIONE: Tutti gli ID sono ora in minuscolo (navarco119, navarco126b, etc.)
+                document.getElementById('navarco119').href = `arco119${suffix}`;
+                document.getElementById('navarco126b').href = `arco126b${suffix}`;
+                document.getElementById('navarco132a').href = `arco132a${suffix}`;
+                document.getElementById('navarco133a').href = `arco133a${suffix}`;
+                document.getElementById('navarco136b').href = `arco136b${suffix}`;
+                document.getElementById('navarco142a').href = `arco142a${suffix}`;
+                document.getElementById('navarco143c').href = `arco143c${suffix}`;
+                document.getElementById('navarco148').href = `arco148${suffix}`;
+                document.getElementById('navarco163').href = `arco163${suffix}`;
+                document.getElementById('navarco171b').href = `arco171b${suffix}`;
+                document.getElementById('navarco180').href = `arco180${suffix}`;
+                document.getElementById('navarco182').href = `arco182${suffix}`;
+                document.getElementById('navarco183').href = `arco183${suffix}`;
+                document.getElementById('navarco186b').href = `arco186b${suffix}`;
+                document.getElementById('navarco188b').href = `arco188b${suffix}`;
+                document.getElementById('navarco190').href = `arco190${suffix}`;
+                document.getElementById('navarco192c').href = `arco192c${suffix}`;
+                document.getElementById('navarco201a').href = `arco201a${suffix}`;
+                document.getElementById('navarco202a').href = `arco202a${suffix}`;
+                document.getElementById('navarco203b').href = `arco203b${suffix}`;
+                document.getElementById('navarco208b').href = `arco208b${suffix}`;
+                document.getElementById('navarco211b').href = `arco211b${suffix}`;
+                document.getElementById('navarco218b').href = `arco218b${suffix}`;
+                document.getElementById('navarco249a').href = `arco249a${suffix}`;
+                document.getElementById('navarco252a').href = `arco252a${suffix}`;
+                document.getElementById('navarco256').href = `arco256${suffix}`;
+                document.getElementById('navarco282a').href = `arco282a${suffix}`;
+                document.getElementById('navarco283a').href = `arco283a${suffix}`;
+                document.getElementById('navarco306b').href = `arco306b${suffix}`;
+                document.getElementById('navarco307a').href = `arco307a${suffix}`;
+                document.getElementById('navarco53c').href = `arco53c${suffix}`;
+                document.getElementById('navHome').href = `index${suffix}`;
+                document.getElementById('navlapide1').href = `lapide1${suffix}`;
+                document.getElementById('navlapide2').href = `lapide2${suffix}`;
+                document.getElementById('navpsontuoso').href = `psontuoso${suffix}`;
+                updateTextContent('navARCO119', data.nav.navARCO119);
+                updateTextContent('navARCO126B', data.nav.navARCO126B);
+                updateTextContent('navARCO132A', data.nav.navARCO132A);
+                updateTextContent('navARCO133A', data.nav.navARCO133A);
+                updateTextContent('navARCO136B', data.nav.navARCO136B);
+                updateTextContent('navARCO142A', data.nav.navARCO142A);
+                updateTextContent('navARCO143C', data.nav.navARCO143C);
+                updateTextContent('navARCO148', data.nav.navARCO148);
+                updateTextContent('navARCO163', data.nav.navARCO163);
+                updateTextContent('navARCO171B', data.nav.navARCO171B);
+                updateTextContent('navARCO180', data.nav.navARCO180);
+                updateTextContent('navARCO182', data.nav.navARCO182);
+                updateTextContent('navARCO183', data.nav.navARCO183);
+                updateTextContent('navARCO186B', data.nav.navARCO186B);
+                updateTextContent('navARCO188B', data.nav.navARCO188B);
+                updateTextContent('navARCO190', data.nav.navARCO190);
+                updateTextContent('navARCO192C', data.nav.navARCO192C);
+                updateTextContent('navARCO201A', data.nav.navARCO201A);
+                updateTextContent('navARCO202A', data.nav.navARCO202A);
+                updateTextContent('navARCO203B', data.nav.navARCO203B);
+                updateTextContent('navARCO208B', data.nav.navARCO208B);
+                updateTextContent('navARCO211B', data.nav.navARCO211B);
+                updateTextContent('navARCO218B', data.nav.navARCO218B);
+                updateTextContent('navARCO249A', data.nav.navARCO249A);
+                updateTextContent('navARCO252A', data.nav.navARCO252A);
+                updateTextContent('navARCO256', data.nav.navARCO256);
+                updateTextContent('navARCO282A', data.nav.navARCO282A);
+                updateTextContent('navARCO283A', data.nav.navARCO283A);
+                updateTextContent('navARCO306B', data.nav.navARCO306B);
+                updateTextContent('navARCO307A', data.nav.navARCO307A);
+                updateTextContent('navARCO53C', data.nav.navARCO53C);
+                updateTextContent('navHome', data.nav.navHome);
+                updateTextContent('navLAPIDE1', data.nav.navLAPIDE1);
+                updateTextContent('navLAPIDE2', data.nav.navLAPIDE2);
+                updateTextContent('navPSONTUOSO', data.nav.navPSONTUOSO);
             }
-            playButton.textContent = pageData.playAudioButton;
-            playButton.dataset.playText = pageData.playAudioButton;
-            playButton.dataset.pauseText = pageData.pauseAudioButton;
-            audioPlayer.src = pageData.audioSource;
-            audioPlayer.load();
-            playButton.classList.remove('pause-style');
-            playButton.classList.add('play-style');
-        }
 
-        // AGGIORNAMENTO IMMAGINI DINAMICHE (dalla 2 alla 5)
-        for (let i = 2; i <= 5; i++) {
-            const imageElement = document.getElementById(`pageImage${i}`);
-            const imageSource = pageData[`imageSource${i}`];
+            // AGGIORNAMENTO TESTATA (Titolo e Immagine)
+            updateTextContent('pageTitle', pageData.pageTitle);
+            // 🔥 FIX: Uso updateHTMLContent per consentire <strong> nell'H1
+            updateHTMLContent('headerTitle', pageData.pageTitle);
 
-            if (imageElement) {
-                imageElement.src = imageSource || '';
-                // Nasconde l'elemento se non c'è una sorgente
-                imageElement.style.display = imageSource ? 'block' : 'none';
-                imageElement.alt = pageData.pageTitle || `Immagine ${i}`;
+            // AGGIORNAMENTO IMMAGINE DI FONDO TESTATA (Usando l'ID corretto 'pageImage1')
+            const headerImage = document.getElementById('pageImage1');
+            if (headerImage && pageData.imageSource1) {
+                headerImage.src = pageData.imageSource1;
+                headerImage.alt = pageData.pageTitle || "Immagine di testata";
             }
+
+
+            // AGGIORNAMENTO DEL CONTENUTO (Testi principali)
+            // 🔥 FIX: Uso updateHTMLContent per consentire <strong>, <p> ecc. nei testi
+            updateHTMLContent('mainText', pageData.mainText || '');
+            updateHTMLContent('mainText1', pageData.mainText1 || '');
+            updateHTMLContent('mainText2', pageData.mainText2 || '');
+            updateHTMLContent('mainText3', pageData.mainText3 || '');
+            updateHTMLContent('mainText4', pageData.mainText4 || '');
+            updateHTMLContent('mainText5', pageData.mainText5 || '');
+
+            // AGGIORNAMENTO INFORMAZIONI SULLA FONTE E DATA
+            if (pageData.sourceText) {
+                updateTextContent('infoSource', `Fonte: ${pageData.sourceText}`);
+            }
+            if (pageData.creationDate) {
+                updateTextContent('infoCreatedDate', pageData.creationDate);
+            }
+            if (pageData.lastUpdate) {
+                updateTextContent('infoUpdatedDate', pageData.lastUpdate);
+            }
+
+            // AGGIORNAMENTO AUDIO E BOTTONE
+            if (audioPlayer && playButton && pageData.audioSource) {
+                if (!audioPlayer.paused) {
+                    audioPlayer.pause();
+                    audioPlayer.currentTime = 0;
+                }
+                playButton.textContent = pageData.playAudioButton;
+                playButton.dataset.playText = pageData.playAudioButton;
+                playButton.dataset.pauseText = pageData.pauseAudioButton;
+                audioPlayer.src = pageData.audioSource;
+                audioPlayer.load();
+                playButton.classList.remove('pause-style');
+                playButton.classList.add('play-style');
+            }
+
+            // AGGIORNAMENTO IMMAGINI DINAMICHE (dalla 2 alla 5)
+            for (let i = 2; i <= 5; i++) {
+                const imageElement = document.getElementById(`pageImage${i}`);
+                const imageSource = pageData[`imageSource${i}`];
+
+                if (imageElement) {
+                    imageElement.src = imageSource || '';
+                    // Nasconde l'elemento se non c'è una sorgente
+                    imageElement.style.display = imageSource ? 'block' : 'none';
+                    imageElement.alt = pageData.pageTitle || `Immagine ${i}`;
+                }
+            }
+
+            console.log(`✅ Contenuto caricato con successo per la lingua: ${lang} e pagina: ${pageId}`);
+            document.body.classList.add('content-loaded');
+
+        } catch (error) {
+            console.error('Errore critico nel caricamento dei testi:', error);
+            document.body.classList.add('content-loaded');
         }
-
-        console.log(`✅ Contenuto caricato con successo per la lingua: ${lang} e pagina: ${pageId}`);
-        document.body.classList.add('content-loaded');
-
-    } catch (error) {
-        console.error('Errore critico nel caricamento dei testi:', error);
-        document.body.classList.add('content-loaded');
     }
-}
 
 
 // ===========================================
@@ -421,209 +423,209 @@ async function loadContent(lang) {
 
 // Calcola la distanza tra due coordinate (Formula di Haversine)
 const calculateDistance = (lat1, lon1, lat2, lon2) => {
-    const R = 6371e3; // Raggio della terra in metri
-    const φ1 = lat1 * Math.PI / 180;
-    const φ2 = lat2 * Math.PI / 180;
-    const Δφ = (lat2 - lat1) * Math.PI / 180;
-    const Δλ = (lon2 - lon1) * Math.PI / 180;
+        const R = 6371e3; // Raggio della terra in metri
+        const φ1 = lat1 * Math.PI / 180;
+        const φ2 = lat2 * Math.PI / 180;
+        const Δφ = (lat2 - lat1) * Math.PI / 180;
+        const Δλ = (lon2 - lon1) * Math.PI / 180;
 
-    const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-        Math.cos(φ1) * Math.cos(φ2) *
-        Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+            Math.cos(φ1) * Math.cos(φ2) *
+            Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-    return R * c; // Distanza in metri
-};
+        return R * c; // Distanza in metri
+    };
 
-// Funzione principale che verifica la vicinanza (per reindirizzamento automatico)
-const checkProximity = (position) => {
-    const userLat = position.coords.latitude;
-    const userLon = position.coords.longitude;
-    const userLang = document.documentElement.lang || 'it';
+    // Funzione principale che verifica la vicinanza (per reindirizzamento automatico)
+    const checkProximity = (position) => {
+        const userLat = position.coords.latitude;
+        const userLon = position.coords.longitude;
+        const userLang = document.documentElement.lang || 'it';
 
-    // Logica di reindirizzamento
-    for (const location of ARCO_LOCATIONS) {
-        const distance = calculateDistance(userLat, userLon, location.lat, location.lon);
+        // Logica di reindirizzamento
+        for (const location of ARCO_LOCATIONS) {
+            const distance = calculateDistance(userLat, userLon, location.lat, location.lon);
 
-        if (distance <= location.distanceThreshold) {
-            console.log(`Vicino a ${location.id}! Distanza: ${distance.toFixed(1)}m`);
+            if (distance <= location.distanceThreshold) {
+                console.log(`Vicino a ${location.id}! Distanza: ${distance.toFixed(1)}m`);
 
-            const currentPath = window.location.pathname;
-            
-            // 🔥 CORREZIONE: Converti l'ID del POI in minuscolo prima di costruire l'URL
-            const fileBaseName = location.id.toLowerCase();
-            let targetPage = `${fileBaseName}.html`;
+                const currentPath = window.location.pathname;
 
-            if (userLang !== 'it') {
-                targetPage = `${fileBaseName}-${userLang}.html`;
+                // 🔥 CORREZIONE: Converti l'ID del POI in minuscolo prima di costruire l'URL
+                const fileBaseName = location.id.toLowerCase();
+                let targetPage = `${fileBaseName}.html`;
+
+                if (userLang !== 'it') {
+                    targetPage = `${fileBaseName}-${userLang}.html`;
+                }
+
+                if (!currentPath.includes(targetPage)) {
+                    window.location.href = targetPage;
+                }
+                return;
             }
+        }
 
-            if (!currentPath.includes(targetPage)) {
-                window.location.href = targetPage;
+        // Logica per aggiornare il menu POI del pulsante verde
+        if (nearbyPoiButton) {
+            nearbyPoiButton.style.display = 'block';
+            if (typeof updatePoiMenu === 'function') {
+                updatePoiMenu(ARCO_LOCATIONS, userLat, userLon, userLang);
             }
-            return;
         }
-    }
+    };
 
-    // Logica per aggiornare il menu POI del pulsante verde
-    if (nearbyPoiButton) {
-        nearbyPoiButton.style.display = 'block';
-        if (typeof updatePoiMenu === 'function') {
-            updatePoiMenu(ARCO_LOCATIONS, userLat, userLon, userLang);
-        }
-    }
-};
-
-// Funzione di gestione degli errori GPS
-const handleGeolocationError = (error) => {
-    console.warn(`ERRORE GPS: ${error.code}: ${error.message}`);
-    // Se c'è un errore, è meglio nascondere il pulsante POI per evitare confusione
-    if (nearbyPoiButton) { nearbyPoiButton.style.display = 'none'; }
-};
-
-// Funzione per avviare il monitoraggio GPS
-const startGeolocation = () => {
-    if (navigator.geolocation) {
-        // Avvia il monitoraggio con le opzioni desiderate
-        navigator.geolocation.watchPosition(checkProximity, handleGeolocationError, {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0
-        });
-        console.log("Monitoraggio GPS avviato.");
-    } else {
-        console.error("Il tuo browser non supporta la geolocalizzazione.");
+    // Funzione di gestione degli errori GPS
+    const handleGeolocationError = (error) => {
+        console.warn(`ERRORE GPS: ${error.code}: ${error.message}`);
+        // Se c'è un errore, è meglio nascondere il pulsante POI per evitare confusione
         if (nearbyPoiButton) { nearbyPoiButton.style.display = 'none'; }
-    }
-};
+    };
 
-// ===========================================
-// FUNZIONI LINGUA E BANDIERE
-// ===========================================
-
-/** Aggiorna lo stato 'active' dei bottoni bandiera. */
-function updateLanguageSelectorActiveState(lang) {
-    document.querySelectorAll('.language-selector button').forEach(button => {
-        if (button.getAttribute('data-lang') === lang) {
-            button.classList.add('active');
+    // Funzione per avviare il monitoraggio GPS
+    const startGeolocation = () => {
+        if (navigator.geolocation) {
+            // Avvia il monitoraggio con le opzioni desiderate
+            navigator.geolocation.watchPosition(checkProximity, handleGeolocationError, {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            });
+            console.log("Monitoraggio GPS avviato.");
         } else {
-            button.classList.remove('active');
+            console.error("Il tuo browser non supporta la geolocalizzazione.");
+            if (nearbyPoiButton) { nearbyPoiButton.style.display = 'none'; }
         }
-    });
-}
+    };
 
-/** Gestisce il click sulla bandiera e reindirizza alla pagina tradotta. */
-function handleLanguageChange(event) {
-    const newLang = event.currentTarget.getAttribute('data-lang');
+    // ===========================================
+    // FUNZIONI LINGUA E BANDIERE
+    // ===========================================
 
-    if (newLang && LANGUAGES.includes(newLang) && newLang !== currentLang) {
-        localStorage.setItem(LAST_LANG_KEY, newLang);
+    /** Aggiorna lo stato 'active' dei bottoni bandiera. */
+    function updateLanguageSelectorActiveState(lang) {
+        document.querySelectorAll('.language-selector button').forEach(button => {
+            if (button.getAttribute('data-lang') === lang) {
+                button.classList.add('active');
+            } else {
+                button.classList.remove('active');
+            }
+        });
+    }
 
+    /** Gestisce il click sulla bandiera e reindirizza alla pagina tradotta. */
+    function handleLanguageChange(event) {
+        const newLang = event.currentTarget.getAttribute('data-lang');
+
+        if (newLang && LANGUAGES.includes(newLang) && newLang !== currentLang) {
+            localStorage.setItem(LAST_LANG_KEY, newLang);
+
+            const urlPath = document.location.pathname;
+            const fileName = urlPath.substring(urlPath.lastIndexOf('/') + 1);
+            let fileBase = fileName.replace(/-[a-z]{2}\.html$/, '').replace('.html', '');
+
+            if (fileBase === '') fileBase = 'index';
+
+            const newPath = `${fileBase}-${newLang}.html`;
+
+            document.location.href = newPath;
+        }
+    }
+
+
+    // ===========================================
+    // ASSEGNAZIONE EVENT LISTENER (Menu Hamburger, Pulsante Verde, Audio)
+    // ===========================================
+
+    function initEventListeners(currentLang) {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navBar = document.getElementById('navPlaceholder');
+
+        // --- Logica Menu Hamburger Principale ---
+        if (menuToggle && navBar && !menuToggle.dataset.listenerAttached) {
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                navBar.classList.toggle('active');
+
+                // Chiudi il menu POI
+                if (nearbyMenuPlaceholder) {
+                    nearbyMenuPlaceholder.classList.remove('poi-active');
+                }
+            });
+
+            navBar.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    menuToggle.classList.remove('active');
+                    navBar.classList.remove('active');
+                }
+            });
+            menuToggle.dataset.listenerAttached = 'true';
+        }
+
+        // --- Logica Menu Hamburger POI (Pulsante Verde) ---
+        if (nearbyPoiButton && nearbyMenuPlaceholder && !nearbyPoiButton.dataset.listenerAttached) {
+            nearbyPoiButton.addEventListener('click', () => {
+                nearbyMenuPlaceholder.classList.toggle('poi-active');
+
+                // Chiudi il menu principale
+                if (menuToggle && navBar) {
+                    menuToggle.classList.remove('active');
+                    navBar.classList.remove('active');
+                }
+            });
+
+            nearbyMenuPlaceholder.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    nearbyMenuPlaceholder.classList.remove('poi-active');
+                }
+            });
+            nearbyPoiButton.dataset.listenerAttached = 'true';
+        }
+
+        // --- Logica Audio ---
+        if (audioPlayer && playButton && !playButton.dataset.listenerAttached) {
+            playButton.addEventListener('click', toggleAudioPlayback);
+            audioPlayer.addEventListener('ended', handleAudioEnded);
+            playButton.dataset.listenerAttached = 'true';
+        }
+
+
+        // --- Logica Selettore Lingua (Bandiere) ---
+        document.querySelectorAll('.language-selector button').forEach(button => {
+            button.removeEventListener('click', handleLanguageChange);
+            button.addEventListener('click', handleLanguageChange);
+        });
+    }
+
+
+    // ===========================================
+    // PUNTO DI INGRESSO (DOM LOADED)
+    // ===========================================
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. ASSEGNAZIONE DEGLI ELEMENTI DOM ALLE VARIABILI GLOBALI
+        audioPlayer = document.getElementById('audioPlayer');
+        playButton = document.getElementById('playAudio');
+        nearbyPoiButton = document.getElementById('nearbyPoiButton');
+        nearbyMenuPlaceholder = document.getElementById('nearbyMenuPlaceholder');
+
+        // 2. DETERMINAZIONE LINGUA CORRENTE
         const urlPath = document.location.pathname;
-        const fileName = urlPath.substring(urlPath.lastIndexOf('/') + 1);
-        let fileBase = fileName.replace(/-[a-z]{2}\.html$/, '').replace('.html', '');
+        const langMatch = urlPath.match(/-([a-z]{2})\.html/);
+        const urlLang = langMatch ? langMatch[1] : 'it';
 
-        if (fileBase === '') fileBase = 'index';
+        currentLang = urlLang;
 
-        const newPath = `${fileBase}-${newLang}.html`;
+        // 3. INIZIALIZZA LA SELEZIONE LINGUA
+        updateLanguageSelectorActiveState(currentLang);
 
-        document.location.href = newPath;
-    }
-}
+        // 4. CARICAMENTO CONTENUTO (maintext)
+        loadContent(currentLang);
 
+        // 5. AVVIA IL MONITORAGGIO GPS
+        startGeolocation();
 
-// ===========================================
-// ASSEGNAZIONE EVENT LISTENER (Menu Hamburger, Pulsante Verde, Audio)
-// ===========================================
-
-function initEventListeners(currentLang) {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navBar = document.getElementById('navPlaceholder');
-
-    // --- Logica Menu Hamburger Principale ---
-    if (menuToggle && navBar && !menuToggle.dataset.listenerAttached) {
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            navBar.classList.toggle('active');
-
-            // Chiudi il menu POI
-            if (nearbyMenuPlaceholder) {
-                nearbyMenuPlaceholder.classList.remove('poi-active');
-            }
-        });
-
-        navBar.addEventListener('click', (e) => {
-            if (e.target.tagName === 'A') {
-                menuToggle.classList.remove('active');
-                navBar.classList.remove('active');
-            }
-        });
-        menuToggle.dataset.listenerAttached = 'true';
-    }
-
-    // --- Logica Menu Hamburger POI (Pulsante Verde) ---
-    if (nearbyPoiButton && nearbyMenuPlaceholder && !nearbyPoiButton.dataset.listenerAttached) {
-        nearbyPoiButton.addEventListener('click', () => {
-            nearbyMenuPlaceholder.classList.toggle('poi-active');
-
-            // Chiudi il menu principale
-            if (menuToggle && navBar) {
-                menuToggle.classList.remove('active');
-                navBar.classList.remove('active');
-            }
-        });
-
-        nearbyMenuPlaceholder.addEventListener('click', (e) => {
-            if (e.target.tagName === 'A') {
-                nearbyMenuPlaceholder.classList.remove('poi-active');
-            }
-        });
-        nearbyPoiButton.dataset.listenerAttached = 'true';
-    }
-
-    // --- Logica Audio ---
-    if (audioPlayer && playButton && !playButton.dataset.listenerAttached) {
-        playButton.addEventListener('click', toggleAudioPlayback);
-        audioPlayer.addEventListener('ended', handleAudioEnded);
-        playButton.dataset.listenerAttached = 'true';
-    }
-
-
-    // --- Logica Selettore Lingua (Bandiere) ---
-    document.querySelectorAll('.language-selector button').forEach(button => {
-        button.removeEventListener('click', handleLanguageChange);
-        button.addEventListener('click', handleLanguageChange);
+        // 6. INIZIALIZZA GLI EVENT LISTENER
+        initEventListeners(currentLang);
     });
-}
-
-
-// ===========================================
-// PUNTO DI INGRESSO (DOM LOADED)
-// ===========================================
-
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. ASSEGNAZIONE DEGLI ELEMENTI DOM ALLE VARIABILI GLOBALI
-    audioPlayer = document.getElementById('audioPlayer');
-    playButton = document.getElementById('playAudio');
-    nearbyPoiButton = document.getElementById('nearbyPoiButton');
-    nearbyMenuPlaceholder = document.getElementById('nearbyMenuPlaceholder');
-
-    // 2. DETERMINAZIONE LINGUA CORRENTE
-    const urlPath = document.location.pathname;
-    const langMatch = urlPath.match(/-([a-z]{2})\.html/);
-    const urlLang = langMatch ? langMatch[1] : 'it';
-
-    currentLang = urlLang;
-
-    // 3. INIZIALIZZA LA SELEZIONE LINGUA
-    updateLanguageSelectorActiveState(currentLang);
-
-    // 4. CARICAMENTO CONTENUTO (maintext)
-    loadContent(currentLang);
-
-    // 5. AVVIA IL MONITORAGGIO GPS
-    startGeolocation();
-
-    // 6. INIZIALIZZA GLI EVENT LISTENER
-    initEventListeners(currentLang);
-});
