@@ -187,6 +187,7 @@ function updatePoiMenu(locations, userLat, userLon, userLang) {
 
     if (nearbyLocations.length > 0) {
         // Rimuovi i duplicati basati sull'ID per mostrare ogni POI una sola volta
+        // Assicurati che l'utente veda ogni POI una sola volta
         const uniquePois = [...new Map(nearbyLocations.map(item => [item['id'], item])).values()];
 
         // Determina il suffisso corretto del file (es. Arco53-en.html)
@@ -195,7 +196,10 @@ function updatePoiMenu(locations, userLat, userLon, userLang) {
         menuHtml += '<ul class="poi-links">';
         uniquePois.forEach(poi => {
             const distanceText = formatDistance(poi.distance);
-            const poiLink = `${poi.id}${langSuffix}.html`;
+            
+            // 🔥 CORREZIONE CRUCIALE: Converti l'ID in minuscolo prima di costruire l'URL
+            const fileBaseName = poi.id.toLowerCase();
+            const poiLink = `${fileBaseName}${langSuffix}.html`;
 
             // Formatta l'ID per renderlo leggibile (es. "Arco53" diventa "Arco 53")
             const displayTitle = poi.id.replace(/_/g, ' ').replace(/([a-z])(\d)/i, '$1 $2');
@@ -208,7 +212,6 @@ function updatePoiMenu(locations, userLat, userLon, userLang) {
         // Nessun POI trovato: mostra un messaggio informativo
         let noPoiMessage;
 
-        // Questo testo ideale dovrebbe provenire dal JSON di traduzione, ma qui usiamo un fallback
         switch (userLang) {
             case 'en':
                 noPoiMessage = `No Points of Interest found within ${minProximity}m.`;
@@ -446,10 +449,13 @@ const checkProximity = (position) => {
             console.log(`Vicino a ${location.id}! Distanza: ${distance.toFixed(1)}m`);
 
             const currentPath = window.location.pathname;
-            let targetPage = `${location.id}.html`;
+            
+            // 🔥 CORREZIONE: Converti l'ID del POI in minuscolo prima di costruire l'URL
+            const fileBaseName = location.id.toLowerCase();
+            let targetPage = `${fileBaseName}.html`;
 
             if (userLang !== 'it') {
-                targetPage = `${location.id}-${userLang}.html`;
+                targetPage = `${fileBaseName}-${userLang}.html`;
             }
 
             if (!currentPath.includes(targetPage)) {
