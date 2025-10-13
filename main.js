@@ -156,7 +156,7 @@ function updatePoiMenu(locations, userLat, userLon, userLang) {
     // 2. Filtra i POI entro un raggio (es. 500m)
     // 3. Ordina per distanza
     // 4. Genera HTML e inseriscilo in nearbyMenuPlaceholder.innerHTML
-    
+
     if (nearbyMenuPlaceholder) {
         // Esempio:
         // nearbyMenuPlaceholder.innerHTML = '<li><a href="#">POI più vicino: Arco X (200m)</a></li>';
@@ -302,7 +302,7 @@ const checkProximity = (position) => {
 
         if (distance <= location.distanceThreshold) {
             console.log(`Vicino a ${location.id}! Distanza: ${distance.toFixed(1)}m`);
-            
+
             const currentPath = window.location.pathname;
             let targetPage = `${location.id}.html`;
 
@@ -313,7 +313,7 @@ const checkProximity = (position) => {
             if (!currentPath.includes(targetPage)) {
                 window.location.href = targetPage;
             }
-            return; 
+            return;
         }
     }
 
@@ -321,7 +321,7 @@ const checkProximity = (position) => {
     if (nearbyPoiButton) {
         nearbyPoiButton.style.display = 'block';
         if (typeof updatePoiMenu === 'function') {
-            updatePoiMenu(ARCO_LOCATIONS, userLat, userLon, userLang); 
+            updatePoiMenu(ARCO_LOCATIONS, userLat, userLon, userLang);
         }
     }
 };
@@ -469,9 +469,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. INIZIALIZZA LA SELEZIONE LINGUA
     updateLanguageSelectorActiveState(currentLang);
-    
+
     // 4. CARICAMENTO CONTENUTO (maintext)
-    loadContent(currentLang); 
+    loadContent(currentLang);
 
     // 5. AVVIA IL MONITORAGGIO GPS
     startGeolocation();
