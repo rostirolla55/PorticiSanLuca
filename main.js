@@ -146,20 +146,91 @@ const handleAudioEnded = function () {
 // ===========================================
 
 /**
- * Funzione placeholder per il pulsante POI (pulsante verde). 
- * DEVI SOSTITUIRE questo con la tua logica per popolare il menu dei POI vicini.
+ * Formatta la distanza in metri (m) o chilometri (km).
+ */
+const formatDistance = (distance) => {
+    if (distance < 1000) {
+        return `${Math.round(distance)}m`;
+    }
+    return `${(distance / 1000).toFixed(1)}km`;
+};
+
+// ===========================================
+// FUNZIONE POI (PULSANTE VERDE) - LOGICA COMPLETA
+// ===========================================
+
+/**
+ * Filtra, ordina e genera l'HTML per il menu dei POI vicini.
  */
 function updatePoiMenu(locations, userLat, userLon, userLang) {
-    // console.warn("ATTENZIONE: updatePoiMenu() è una funzione placeholder. Aggiungi la logica di filtraggio.");
-    // Esempio di logica POI:
-    // 1. Calcola la distanza di tutti i POI dall'utente
-    // 2. Filtra i POI entro un raggio (es. 500m)
-    // 3. Ordina per distanza
-    // 4. Genera HTML e inseriscilo in nearbyMenuPlaceholder.innerHTML
+    const nearbyLocations = [];
+    const minProximity = 500; // Distanza massima per essere considerato 'vicino' (500 metri)
 
+    // 1. Calcola la distanza e filtra i POI vicini
+    locations.forEach(location => {
+        // La funzione calculateDistance deve esistere altrove nel tuo main.js
+        const distance = calculateDistance(userLat, userLon, location.lat, location.lon); 
+        
+        if (distance <= minProximity) {
+            nearbyLocations.push({
+                ...location,
+                distance: distance
+            });
+        }
+    });
+
+    // 2. Ordina per distanza crescente
+    nearbyLocations.sort((a, b) => a.distance - b.distance);
+
+    // 3. Genera l'HTML del menu
+    let menuHtml = '';
+
+    if (nearbyLocations.length > 0) {
+        // Rimuovi i duplicati basati sull'ID per mostrare ogni POI una sola volta
+        const uniquePois = [...new Map(nearbyLocations.map(item => [item['id'], item])).values()];
+        
+        // Determina il suffisso corretto del file (es. Arco53-en.html)
+        const langSuffix = userLang === 'it' ? '' : `-${userLang}`;
+
+        menuHtml += '<ul class="poi-links">';
+        uniquePois.forEach(poi => {
+            const distanceText = formatDistance(poi.distance);
+            const poiLink = `${poi.id}${langSuffix}.html`;
+
+            // Formatta l'ID per renderlo leggibile (es. "Arco53" diventa "Arco 53")
+            const displayTitle = poi.id.replace(/_/g, ' ').replace(/([a-z])(\d)/i, '$1 $2'); 
+
+            menuHtml += `<li><a href="${poiLink}">${displayTitle} (${distanceText})</a></li>`;
+        });
+        menuHtml += '</ul>';
+        
+    } else {
+        // Nessun POI trovato: mostra un messaggio informativo
+        let noPoiMessage;
+        
+        // Questo testo ideale dovrebbe provenire dal JSON di traduzione, ma qui usiamo un fallback
+        switch (userLang) {
+            case 'en':
+                noPoiMessage = `No Points of Interest found within ${minProximity}m.`;
+                break;
+            case 'es':
+                noPoiMessage = `No se encontraron Puntos de Interés a menos de ${minProximity}m.`;
+                break;
+            case 'fr':
+                noPoiMessage = `Aucun Point d'Intérêt trouvé à moins de ${minProximity}m.`;
+                break;
+            case 'it':
+            default:
+                noPoiMessage = `Nessun Punto di Interesse trovato entro ${minProximity}m.`;
+                break;
+        }
+
+        menuHtml = `<div style="color:white; padding: 20px; text-align: center; font-size: 0.9em;">${noPoiMessage}</div>`;
+    }
+
+    // 4. Inietta l'HTML nel placeholder
     if (nearbyMenuPlaceholder) {
-        // Esempio:
-        // nearbyMenuPlaceholder.innerHTML = '<li><a href="#">POI più vicino: Arco X (200m)</a></li>';
+        nearbyMenuPlaceholder.innerHTML = menuHtml;
     }
 }
 
