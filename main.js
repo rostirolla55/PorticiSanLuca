@@ -194,9 +194,10 @@ async function loadContent(lang) {
             return;
         }
 
-        // AGGIORNAMENTO NAVIGAZIONE
+        // AGGIORNAMENTO NAVIGAZIONE (Assicurati che l'HTML sia corretto per 'navHome', ecc.)
         if (data.nav) {
             const suffix = `-${lang}.html`;
+            // AGGIORNA HREF E TESTO PER TUTTI I LINK DEL MENU PRINCIPALE
             document.getElementById('navHome').href = `index${suffix}`;
             document.getElementById('navCarracci').href = `carracci${suffix}`;
             document.getElementById('navLastre').href = `lastre${suffix}`;
@@ -208,20 +209,27 @@ async function loadContent(lang) {
             updateTextContent('navPugliole', data.nav.navPugliole);
         }
 
-        // AGGIORNAMENTO IMMAGINE DI FONDO TESTATA
-        const headerImage = document.getElementById('headerImage');
-        if (headerImage && pageData.headerImageSource) {
-            headerImage.src = pageData.headerImageSource;
+        // AGGIORNAMENTO TESTATA (Titolo e Immagine)
+        updateTextContent('pageTitle', pageData.pageTitle);
+        // 🔥 FIX: Uso updateHTMLContent per consentire <strong> nell'H1
+        updateHTMLContent('headerTitle', pageData.pageTitle);
+
+        // AGGIORNAMENTO IMMAGINE DI FONDO TESTATA (Usando l'ID corretto 'pageImage1')
+        const headerImage = document.getElementById('pageImage1');
+        if (headerImage && pageData.imageSource1) {
+            headerImage.src = pageData.imageSource1;
+            headerImage.alt = pageData.pageTitle || "Immagine di testata";
         }
 
+
         // AGGIORNAMENTO DEL CONTENUTO (Testi principali)
-        updateTextContent('pageTitle', pageData.pageTitle);
-        updateTextContent('mainText', pageData.mainText);
-        updateTextContent('mainText1', pageData.mainText1);
-        updateTextContent('mainText2', pageData.mainText2);
-        updateTextContent('mainText3', pageData.mainText3);
-        updateTextContent('mainText4', pageData.mainText4);
-        updateTextContent('mainText5', pageData.mainText5);
+        // 🔥 FIX: Uso updateHTMLContent per consentire <strong>, <p> ecc. nei testi
+        updateHTMLContent('mainText', pageData.mainText || '');
+        updateHTMLContent('mainText1', pageData.mainText1 || '');
+        updateHTMLContent('mainText2', pageData.mainText2 || '');
+        updateHTMLContent('mainText3', pageData.mainText3 || '');
+        updateHTMLContent('mainText4', pageData.mainText4 || '');
+        updateHTMLContent('mainText5', pageData.mainText5 || '');
 
         // AGGIORNAMENTO INFORMAZIONI SULLA FONTE E DATA
         if (pageData.sourceText) {
@@ -249,14 +257,16 @@ async function loadContent(lang) {
             playButton.classList.add('play-style');
         }
 
-        // AGGIORNAMENTO IMMAGINI DINAMICHE
-        for (let i = 1; i <= 5; i++) {
+        // AGGIORNAMENTO IMMAGINI DINAMICHE (dalla 2 alla 5)
+        for (let i = 2; i <= 5; i++) {
             const imageElement = document.getElementById(`pageImage${i}`);
             const imageSource = pageData[`imageSource${i}`];
 
             if (imageElement) {
                 imageElement.src = imageSource || '';
+                // Nasconde l'elemento se non c'è una sorgente
                 imageElement.style.display = imageSource ? 'block' : 'none';
+                imageElement.alt = pageData.pageTitle || `Immagine ${i}`;
             }
         }
 
