@@ -1,124 +1,96 @@
-/**
- * Script principale (Situato nella RADICE del progetto).
- * Versione Unificata Finale e Completa.
- */
-
 // ===========================================
-// CONSTANTI & SETUP INIZIALE
+// DATI: Punti di Interesse GPS (DA COMPILARE)
+// ===========================================
+const ARCO_LOCATIONS = [
+    // Devi popolare questa lista con le coordinate reali dei tuoi archi.
+    // L'ID deve corrispondere al nome del file HTML (es. 'arco119')
+    // Esempio:
+    // { id: 'arco119', lat: 44.4984, lon: 11.3392, distanceThreshold: 20 }, 
+];
+// ===========================================
+// FINE DATI GPS
 // ===========================================
 
-const LAST_LANG_KEY = 'porticiSanLuca_lastLang'; 
-const LANGUAGES = ['it', 'en', 'fr', 'es', 'de', 'pt', 'ma']; 
-let currentLang = 'it';
-let audioPlayer = null;
-let playButton = null;
-let nearbyPoiButton = null; 
-let nearbyMenuPlaceholder = null; 
 
-// Nota: ARCO_LOCATIONS, calculateDistance, initGeoLocation, updatePoiMenu sono omessi qui
-// perché non erano nell'ultima versione che mi hai inviato e li gestiamo a parte.
+// Funzione per determinare l'ID della pagina corrente
+const getCurrentPageId = () => {
+    const path = window.location.pathname;
+    const fileName = path.substring(path.lastIndexOf('/') + 1);
 
-/** Ottiene l'ID della pagina corrente. */
-function getCurrentPageId() {
-    const urlPath = document.location.pathname;
-    const fileName = urlPath.substring(urlPath.lastIndexOf('/') + 1);
-    let pageName = fileName.replace(/-[a-z]{2}\.html$/, '');
-    return (pageName === 'index' || pageName === '') ? 'home' : pageName;
-}
+    // 🔥 FIX: Gestisce index.html o index-xx.html
+    if (fileName === '' || fileName.startsWith('index')) {
+        return 'home';
+    }
 
-/** Aggiorna il contenuto di un elemento tramite ID. */
-function updateContent(id, content, isHtml = false) {
+    // Rimuove l'estensione e qualsiasi suffisso di lingua (-en, -fr, ecc.)
+    return fileName.replace(/-[a-z]{2}\.html/i, '').replace('.html', '').toLowerCase();
+};
+
+// Funzione flessibile per aggiornare il contenuto solo se l'elemento esiste
+const updateTextContent = (id, value) => {
     const element = document.getElementById(id);
-    if (element && content) {
-        if (isHtml) {
-            element.innerHTML = content;
-        } else {
-            element.textContent = content;
-        }
+    if (element) {
+        element.textContent = value || '';
     }
-}
+};
+
+// Funzione flessibile per iniettare HTML solo se l'elemento esiste
+const updateHTMLContent = (id, htmlContent) => {
+    const element = document.getElementById(id);
+    if (element) {
+        element.innerHTML = htmlContent || '';
+    }
+};
 
 // ===========================================
-// LOGICA CARICAMENTO CONTENUTI 
+// FUNZIONI UTILITY PER GPS
 // ===========================================
 
-const loadContent = async (lang) => {
-    document.documentElement.lang = lang;
-    
-    if (typeof gtag === 'function') {
-        gtag('set', { 'lingua_pagina': lang });
-    }
+// Calcola la distanza tra due coordinate (Formula di Haversine)
+const calculateDistance = (lat1, lon1, lat2, lon2) => {
+    const R = 6371e3; // Raggio della terra in metri
+    const φ1 = lat1 * Math.PI / 180;
+    const φ2 = lat2 * Math.PI / 180;
+    const Δφ = (lat2 - lat1) * Math.PI / 180;
+    const Δλ = (lon2 - lon1) * Math.PI / 180;
 
-    try {
-        const pageId = getCurrentPageId();
-        const response = await fetch(`data/translations/${lang}/texts.json`); 
-        
-        if (!response.ok) {
-            console.error(`File di traduzione non trovato per la lingua: ${lang}. Tentativo lingua predefinita (it).`);
-            if (lang !== 'it') { loadContent('it'); return; }
-            throw new Error(`Impossibile caricare i dati per ${lang}.`);
-        }
+    const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+        Math.cos(φ1) * Math.cos(φ2) *
+        Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-        const data = await response.json();
-        const pageData = data[pageId] || {}; 
+    return R * c; // Distanza in metri
+};
 
-        // 1. AGGIORNAMENTO TESTI PRINCIPALI e Immagine Testata
-        updateContent('pageTitle', pageData.pageTitle || 'Portici San Luca');
-        updateContent('headerTitle', pageData.pageTitle || '');
-        updateContent('mainText', pageData.mainText || '');
-        updateContent('mainText1', pageData.mainText1 || '');
-        // Aggiungi qui gli altri updateContent('mainText...')
-        
-        // 2. AGGIORNAMENTO IMMAGINI (Logica completa e corretta per tutte le immagini)
-        const imageIds = ['pageImage1', 'pageImage2', 'pageImage3', 'pageImage4', 'pageImage5'];
-        imageIds.forEach((id, index) => {
-            const imgSrc = pageData[`imageSource${index + 1}`];
-            const imgElement = document.getElementById(id);
+// Funzione principale che verifica la vicinanza
+const checkProximity = (position) => {
+    const userLat = position.coords.latitude;
+    const userLon = position.coords.longitude;
+    const userLang = document.documentElement.lang || 'it';
 
-            if (imgElement) {
-                if (imgSrc) {
-                    imgElement.src = imgSrc;
-                    imgElement.alt = pageData.pageTitle || `Immagine ${index + 1} del contenuto`;
-                    imgElement.style.display = 'block';
-                } else {
-                    imgElement.src = '';
-                    imgElement.alt = '';
-                    if (id !== 'pageImage1') imgElement.style.display = 'none'; // L'immagine testata rimane se non c'è una sorgente
-                }
+    for (const location of ARCO_LOCATIONS) {
+        const distance = calculateDistance(userLat, userLon, location.lat, location.lon);
+
+        if (distance <= location.distanceThreshold) {
+            console.log(`Vicino a ${location.id}! Distanza: ${distance.toFixed(1)}m`);
+
+            const currentPath = window.location.pathname;
+            let targetPage = `${location.id}.html`;
+
+            if (userLang !== 'it') {
+                targetPage = `${location.id}-${userLang}.html`;
             }
-        });
 
-        // 3. AGGIORNAMENTO FOOTER
-        updateContent('infoSource', `Fonte: ${pageData.sourceText || 'N/A'}`);
-        updateContent('infoCreatedDate', `Data Creazione: ${pageData.creationDate || 'N/A'}`);
-        updateContent('infoUpdatedDate', `Ultimo Aggiornamento: ${pageData.lastUpdate || 'N/A'}`);
-        
-        // 4. AGGIORNAMENTO NAVIGAZIONE PRINCIPALE
-        const navPlaceholder = document.getElementById('navPlaceholder');
-        const navContent = data.nav ? data.nav.nav_content : null; 
-        if (navPlaceholder && navContent) {
-            updateContent('navPlaceholder', navContent, true);
-        }
-        
-        // 5. AGGIORNAMENTO AUDIO E BOTTONE
-        if (audioPlayer && playButton) {
-            if (pageData.audioSource) {
-                if (!audioPlayer.paused) { audioPlayer.pause(); audioPlayer.currentTime = 0; }
-                playButton.textContent = pageData.playAudioButton || 'Ascolta';
-                playButton.dataset.playText = pageData.playAudioButton || 'Ascolta';
-                playButton.dataset.pauseText = pageData.pauseAudioButton || 'Metti in pausa';
-                audioPlayer.src = pageData.audioSource; 
-                audioPlayer.load();
-                playButton.style.display = 'block'; 
-            } else {
-                playButton.style.display = 'none'; 
+            if (!currentPath.includes(targetPage)) {
+                window.location.href = targetPage;
             }
+            return;
         }
-        
+
         // 6. VISIBILITÀ BOTTONE POI (Senza logica GPS)
         if (nearbyPoiButton && nearbyMenuPlaceholder) {
             nearbyPoiButton.textContent = pageData.nearbyButtonText || 'POI Vicini';
-            nearbyPoiButton.style.display = 'block'; 
+            nearbyPoiButton.style.display = 'block';
 
             // MOCKUP del contenuto POI (Sostituire con updatePoiMenu(poiList, lang) quando la logica GPS è pronta)
             const mockPoiContent = `
@@ -127,11 +99,11 @@ const loadContent = async (lang) => {
             `;
             nearbyMenuPlaceholder.innerHTML = mockPoiContent;
         }
-        
+
         // 7. FINALIZZA
-        initEventListeners(lang); 
+        initEventListeners(lang);
         updateLanguageSelectorActiveState(lang); // Assicura che le bandiere siano correttamente attive
-        localStorage.setItem(LAST_LANG_KEY, lang); 
+        localStorage.setItem(LAST_LANG_KEY, lang);
 
     } catch (error) {
         console.error('Errore critico nel caricamento dei testi:', error);
@@ -140,36 +112,27 @@ const loadContent = async (lang) => {
     }
 };
 
-// ===========================================
-// FUNZIONI DI GESTIONE EVENTI
-// ===========================================
+// Funzione di gestione degli errori GPS
+const handleGeolocationError = (error) => {
+    console.warn(`ERRORE GPS: ${error.code}: ${error.message}`);
+};
 
-// --- GESTIONE AUDIO (Versione robusta e corretta) ---
-const toggleAudioPlayback = function () {
-    const currentPlayText = playButton.dataset.playText || "Ascolta";
-    const currentPauseText = playButton.dataset.pauseText || "Pausa";
-
-    if (audioPlayer.paused) {
-        audioPlayer.play();
-        playButton.textContent = currentPauseText;
-        playButton.classList.replace('play-style', 'pause-style');
+// Funzione per avviare il monitoraggio GPS
+const startGeolocation = () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(checkProximity, handleGeolocationError, {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+        });
+        console.log("Monitoraggio GPS avviato.");
     } else {
-        audioPlayer.pause();
-        playButton.textContent = currentPlayText;
-        playButton.classList.replace('pause-style', 'play-style');
+        console.error("Il tuo browser non supporta la geolocalizzazione.");
     }
 };
 
-const handleAudioEnded = function () {
-    const currentPlayText = playButton.dataset.playText || "Ascolta";
-    audioPlayer.currentTime = 0;
-    playButton.textContent = currentPlayText;
-    playButton.classList.replace('pause-style', 'play-style');
-};
-
-
 // ===========================================
-// FUNZIONI DI GESTIONE EVENTI LINGUA
+// FINE FUNZIONI UTILITY PER GPS
 // ===========================================
 
 /** Aggiorna lo stato 'active' dei bottoni bandiera. */
@@ -188,20 +151,20 @@ function handleLanguageChange(event) {
     const newLang = event.currentTarget.getAttribute('data-lang');
 
     if (newLang && LANGUAGES.includes(newLang) && newLang !== currentLang) {
-        localStorage.setItem(LAST_LANG_KEY, newLang); 
-        
+        localStorage.setItem(LAST_LANG_KEY, newLang);
+
         const urlPath = document.location.pathname;
         const fileName = urlPath.substring(urlPath.lastIndexOf('/') + 1);
         let fileBase = fileName.replace(/-[a-z]{2}\.html$/, '');
-        
+
         // Assicura che la base del file sia sempre 'index' se è vuota
-        if (fileBase === '') fileBase = 'index'; 
+        if (fileBase === '') fileBase = 'index';
 
         // Crea il nuovo percorso: es. index-en.html o meloncello-es.html
         const newPath = `${fileBase}-${newLang}.html`;
-        
+
         // Reindirizza l'utente
-        document.location.href = newPath; 
+        document.location.href = newPath;
     }
 }
 
@@ -220,13 +183,13 @@ function initEventListeners(currentLang) {
         menuToggle.addEventListener('click', () => {
             menuToggle.classList.toggle('active');
             navBar.classList.toggle('active');
-            
+
             // Chiudi il menu POI
             if (nearbyMenuPlaceholder) {
-                 nearbyMenuPlaceholder.classList.remove('poi-active');
+                nearbyMenuPlaceholder.classList.remove('poi-active');
             }
         });
-        
+
         navBar.addEventListener('click', (e) => {
             if (e.target.tagName === 'A') {
                 menuToggle.classList.remove('active');
@@ -235,19 +198,19 @@ function initEventListeners(currentLang) {
         });
         menuToggle.dataset.listenerAttached = 'true';
     }
-    
+
     // --- Logica Menu Hamburger POI ---
     if (nearbyPoiButton && nearbyMenuPlaceholder && !nearbyPoiButton.dataset.listenerAttached) {
         nearbyPoiButton.addEventListener('click', () => {
             nearbyMenuPlaceholder.classList.toggle('poi-active');
-            
+
             // Chiudi il menu principale
             if (menuToggle && navBar) {
-                 menuToggle.classList.remove('active');
-                 navBar.classList.remove('active');
+                menuToggle.classList.remove('active');
+                navBar.classList.remove('active');
             }
         });
-        
+
         nearbyMenuPlaceholder.addEventListener('click', (e) => {
             if (e.target.tagName === 'A') {
                 nearbyMenuPlaceholder.classList.remove('poi-active');
@@ -268,8 +231,8 @@ function initEventListeners(currentLang) {
     document.querySelectorAll('.language-selector button').forEach(button => {
         // 1. Rimuovi sempre l'event listener precedente per evitare duplicati.
         //    Questo è il FIX principale per i problemi di "blocco" dopo il reindirizzamento.
-        button.removeEventListener('click', handleLanguageChange); 
-        
+        button.removeEventListener('click', handleLanguageChange);
+
         // 2. Aggiungi il nuovo event listener.
         button.addEventListener('click', handleLanguageChange);
     });
@@ -286,11 +249,14 @@ document.addEventListener('DOMContentLoaded', () => {
     playButton = document.getElementById('playAudio');
     nearbyPoiButton = document.getElementById('nearbyPoiButton');
     nearbyMenuPlaceholder = document.getElementById('nearbyMenuPlaceholder');
-    
+
     const urlPath = document.location.pathname;
     const langMatch = urlPath.match(/-([a-z]{2})\.html/);
-    const urlLang = langMatch ? langMatch[1] : 'it'; 
+    const urlLang = langMatch ? langMatch[1] : 'it';
 
-    currentLang = urlLang; 
+    currentLang = urlLang;
     loadContent(currentLang);
+
+    // AVVIA IL MONITORAGGIO GPS
+    startGeolocation();
 });
