@@ -169,8 +169,8 @@ function updatePoiMenu(locations, userLat, userLon, userLang) {
     // 1. Calcola la distanza e filtra i POI vicini
     locations.forEach(location => {
         // La funzione calculateDistance deve esistere altrove nel tuo main.js
-        const distance = calculateDistance(userLat, userLon, location.lat, location.lon); 
-        
+        const distance = calculateDistance(userLat, userLon, location.lat, location.lon);
+
         if (distance <= minProximity) {
             nearbyLocations.push({
                 ...location,
@@ -188,7 +188,7 @@ function updatePoiMenu(locations, userLat, userLon, userLang) {
     if (nearbyLocations.length > 0) {
         // Rimuovi i duplicati basati sull'ID per mostrare ogni POI una sola volta
         const uniquePois = [...new Map(nearbyLocations.map(item => [item['id'], item])).values()];
-        
+
         // Determina il suffisso corretto del file (es. Arco53-en.html)
         const langSuffix = userLang === 'it' ? '' : `-${userLang}`;
 
@@ -198,16 +198,16 @@ function updatePoiMenu(locations, userLat, userLon, userLang) {
             const poiLink = `${poi.id}${langSuffix}.html`;
 
             // Formatta l'ID per renderlo leggibile (es. "Arco53" diventa "Arco 53")
-            const displayTitle = poi.id.replace(/_/g, ' ').replace(/([a-z])(\d)/i, '$1 $2'); 
+            const displayTitle = poi.id.replace(/_/g, ' ').replace(/([a-z])(\d)/i, '$1 $2');
 
             menuHtml += `<li><a href="${poiLink}">${displayTitle} (${distanceText})</a></li>`;
         });
         menuHtml += '</ul>';
-        
+
     } else {
         // Nessun POI trovato: mostra un messaggio informativo
         let noPoiMessage;
-        
+
         // Questo testo ideale dovrebbe provenire dal JSON di traduzione, ma qui usiamo un fallback
         switch (userLang) {
             case 'en':
@@ -269,15 +269,76 @@ async function loadContent(lang) {
         if (data.nav) {
             const suffix = `-${lang}.html`;
             // AGGIORNA HREF E TESTO PER TUTTI I LINK DEL MENU PRINCIPALE
+            document.getElementById('navARCO119').href = `ARCO119${suffix}`;
+            document.getElementById('navARCO126B').href = `ARCO126b${suffix}`;
+            document.getElementById('navARCO132A').href = `ARCO132a${suffix}`;
+            document.getElementById('navARCO133A').href = `ARCO133a${suffix}`;
+            document.getElementById('navARCO136B').href = `ARCO136b${suffix}`;
+            document.getElementById('navARCO142A').href = `ARCO142a${suffix}`;
+            document.getElementById('navARCO143C').href = `ARCO143c${suffix}`;
+            document.getElementById('navARCO148').href = `ARCO148${suffix}`;
+            document.getElementById('navARCO163').href = `ARCO163${suffix}`;
+            document.getElementById('navARCO171B').href = `ARCO171b${suffix}`;
+            document.getElementById('navARCO180').href = `ARCO180${suffix}`;
+            document.getElementById('navARCO182').href = `ARCO182${suffix}`;
+            document.getElementById('navARCO183').href = `ARCO183${suffix}`;
+            document.getElementById('navARCO186B').href = `ARCO186b${suffix}`;
+            document.getElementById('navARCO188B').href = `ARCO188b${suffix}`;
+            document.getElementById('navARCO190').href = `ARCO190${suffix}`;
+            document.getElementById('navARCO192C').href = `ARCO192c${suffix}`;
+            document.getElementById('navARCO201A').href = `ARCO201a${suffix}`;
+            document.getElementById('navARCO202A').href = `ARCO202a${suffix}`;
+            document.getElementById('navARCO203B').href = `ARCO203b${suffix}`;
+            document.getElementById('navARCO208B').href = `ARCO208b${suffix}`;
+            document.getElementById('navARCO211B').href = `ARCO211b${suffix}`;
+            document.getElementById('navARCO218B').href = `ARCO218b${suffix}`;
+            document.getElementById('navARCO249A').href = `ARCO249a${suffix}`;
+            document.getElementById('navARCO252A').href = `ARCO252a${suffix}`;
+            document.getElementById('navARCO256').href = `ARCO256${suffix}`;
+            document.getElementById('navARCO282A').href = `ARCO282a${suffix}`;
+            document.getElementById('navARCO283A').href = `ARCO283a${suffix}`;
+            document.getElementById('navARCO306B').href = `ARCO306b${suffix}`;
+            document.getElementById('navARCO307A').href = `ARCO307a${suffix}`;
+            document.getElementById('navARCO53C').href = `ARCO53c${suffix}`;
             document.getElementById('navHome').href = `index${suffix}`;
-            document.getElementById('navCarracci').href = `carracci${suffix}`;
-            document.getElementById('navLastre').href = `lastre${suffix}`;
-            document.getElementById('navPugliole').href = `pugliole${suffix}`;
-
+            document.getElementById('navLAPIDE1').href = `LAPIDE1${suffix}`;
+            document.getElementById('navLAPIDE2').href = `LAPIDE2${suffix}`;
+            document.getElementById('navPSONTUOSO').href = `PSONTUOSO${suffix}`;
+            updateTextContent('navARCO119', data.nav.navARCO119);
+            updateTextContent('navARCO126B', data.nav.navARCO126B);
+            updateTextContent('navARCO132A', data.nav.navARCO132A);
+            updateTextContent('navARCO133A', data.nav.navARCO133A);
+            updateTextContent('navARCO136B', data.nav.navARCO136B);
+            updateTextContent('navARCO142A', data.nav.navARCO142A);
+            updateTextContent('navARCO143C', data.nav.navARCO143C);
+            updateTextContent('navARCO148', data.nav.navARCO148);
+            updateTextContent('navARCO163', data.nav.navARCO163);
+            updateTextContent('navARCO171B', data.nav.navARCO171B);
+            updateTextContent('navARCO180', data.nav.navARCO180);
+            updateTextContent('navARCO182', data.nav.navARCO182);
+            updateTextContent('navARCO183', data.nav.navARCO183);
+            updateTextContent('navARCO186B', data.nav.navARCO186B);
+            updateTextContent('navARCO188B', data.nav.navARCO188B);
+            updateTextContent('navARCO190', data.nav.navARCO190);
+            updateTextContent('navARCO192C', data.nav.navARCO192C);
+            updateTextContent('navARCO201A', data.nav.navARCO201A);
+            updateTextContent('navARCO202A', data.nav.navARCO202A);
+            updateTextContent('navARCO203B', data.nav.navARCO203B);
+            updateTextContent('navARCO208B', data.nav.navARCO208B);
+            updateTextContent('navARCO211B', data.nav.navARCO211B);
+            updateTextContent('navARCO218B', data.nav.navARCO218B);
+            updateTextContent('navARCO249A', data.nav.navARCO249A);
+            updateTextContent('navARCO252A', data.nav.navARCO252A);
+            updateTextContent('navARCO256', data.nav.navARCO256);
+            updateTextContent('navARCO282A', data.nav.navARCO282A);
+            updateTextContent('navARCO283A', data.nav.navARCO283A);
+            updateTextContent('navARCO306B', data.nav.navARCO306B);
+            updateTextContent('navARCO307A', data.nav.navARCO307A);
+            updateTextContent('navARCO53C', data.nav.navARCO53C);
             updateTextContent('navHome', data.nav.navHome);
-            updateTextContent('navCarracci', data.nav.navCarracci);
-            updateTextContent('navLastre', data.nav.navLastre);
-            updateTextContent('navPugliole', data.nav.navPugliole);
+            updateTextContent('navLAPIDE1', data.nav.navLAPIDE1);
+            updateTextContent('navLAPIDE2', data.nav.navLAPIDE2);
+            updateTextContent('navPSONTUOSO', data.nav.navPSONTUOSO);
         }
 
         // AGGIORNAMENTO TESTATA (Titolo e Immagine)
