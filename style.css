@@ -82,7 +82,7 @@ body.menu-open {
 }
 
 /* Contenitore Menu Principale (Scivola da Sinistra) */
-#navPlaceholder {
+#navBarMain {
     position: fixed;
     /* FIX: Inizia esattamente sotto l'header */
     top: 60px;
@@ -101,7 +101,7 @@ body.menu-open {
     overflow-y: auto;
 }
 
-#navPlaceholder.active {
+#navBarMain.active {
     /* Mostrato */
     transform: translateX(0);
 }
