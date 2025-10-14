@@ -268,153 +268,153 @@ async function loadContent(lang) {
             return;
         }
 
-            // AGGIORNAMENTO NAVIGAZIONE (Assicurati che l'HTML sia corretto per 'navHome', ecc.)
-            if (data.nav) {
-                const suffix = `-${lang}.html`;
-                // AGGIORNA HREF E TESTO PER TUTTI I LINK DEL MENU PRINCIPALE
+        // AGGIORNAMENTO NAVIGAZIONE (Assicurati che l'HTML sia corretto per 'navHome', ecc.)
+        if (data.nav) {
+            const suffix = `-${lang}.html`;
+            // AGGIORNA HREF E TESTO PER TUTTI I LINK DEL MENU PRINCIPALE
 
-                // 🔥 CORREZIONE: Tutti gli ID sono ora in minuscolo (navarco119, navarco126b, etc.)
-                document.getElementById('navarco119').href = `arco119${suffix}`;
-                document.getElementById('navarco126b').href = `arco126b${suffix}`;
-                document.getElementById('navarco132a').href = `arco132a${suffix}`;
-                document.getElementById('navarco133a').href = `arco133a${suffix}`;
-                document.getElementById('navarco136b').href = `arco136b${suffix}`;
-                document.getElementById('navarco142a').href = `arco142a${suffix}`;
-                document.getElementById('navarco143c').href = `arco143c${suffix}`;
-                document.getElementById('navarco148').href = `arco148${suffix}`;
-                document.getElementById('navarco163').href = `arco163${suffix}`;
-                document.getElementById('navarco171b').href = `arco171b${suffix}`;
-                document.getElementById('navarco180').href = `arco180${suffix}`;
-                document.getElementById('navarco182').href = `arco182${suffix}`;
-                document.getElementById('navarco183').href = `arco183${suffix}`;
-                document.getElementById('navarco186b').href = `arco186b${suffix}`;
-                document.getElementById('navarco188b').href = `arco188b${suffix}`;
-                document.getElementById('navarco190').href = `arco190${suffix}`;
-                document.getElementById('navarco192c').href = `arco192c${suffix}`;
-                document.getElementById('navarco201a').href = `arco201a${suffix}`;
-                document.getElementById('navarco202a').href = `arco202a${suffix}`;
-                document.getElementById('navarco203b').href = `arco203b${suffix}`;
-                document.getElementById('navarco208b').href = `arco208b${suffix}`;
-                document.getElementById('navarco211b').href = `arco211b${suffix}`;
-                document.getElementById('navarco218b').href = `arco218b${suffix}`;
-                document.getElementById('navarco249a').href = `arco249a${suffix}`;
-                document.getElementById('navarco252a').href = `arco252a${suffix}`;
-                document.getElementById('navarco256').href = `arco256${suffix}`;
-                document.getElementById('navarco282a').href = `arco282a${suffix}`;
-                document.getElementById('navarco283a').href = `arco283a${suffix}`;
-                document.getElementById('navarco306b').href = `arco306b${suffix}`;
-                document.getElementById('navarco307a').href = `arco307a${suffix}`;
-                document.getElementById('navarco53c').href = `arco53c${suffix}`;
-                document.getElementById('navHome').href = `index${suffix}`;
-                document.getElementById('navlapide1').href = `lapide1${suffix}`;
-                document.getElementById('navlapide2').href = `lapide2${suffix}`;
-                document.getElementById('navpsontuoso').href = `psontuoso${suffix}`;
-                updateTextContent('navarco119', data.nav.navARCO119);
-                updateTextContent('navarco126b', data.nav.navARCO126B);
-                updateTextContent('navarco132a', data.nav.navARCO132A);
-                updateTextContent('navarco133a', data.nav.navARCO133A);
-                updateTextContent('navarco136b', data.nav.navARCO136B);
-                updateTextContent('navarco142a', data.nav.navARCO142A);
-                updateTextContent('navarco143c', data.nav.navARCO143C);
-                updateTextContent('navarco148', data.nav.navARCO148);
-                updateTextContent('navarco163', data.nav.navARCO163);
-                updateTextContent('navarco171b', data.nav.navARCO171B);
-                updateTextContent('navarco180', data.nav.navARCO180);
-                updateTextContent('navarco182', data.nav.navARCO182);
-                updateTextContent('navarco183', data.nav.navARCO183);
-                updateTextContent('navarco186b', data.nav.navARCO186B);
-                updateTextContent('navarco188b', data.nav.navARCO188B);
-                updateTextContent('navarco190', data.nav.navARCO190);
-                updateTextContent('navarco192c', data.nav.navARCO192C);
-                updateTextContent('navarco201a', data.nav.navARCO201A);
-                updateTextContent('navarco202a', data.nav.navARCO202A);
-                updateTextContent('navarco203b', data.nav.navARCO203B);
-                updateTextContent('navarco208b', data.nav.navARCO208B);
-                updateTextContent('navarco211b', data.nav.navARCO211B);
-                updateTextContent('navarco218b', data.nav.navARCO218B);
-                updateTextContent('navarco249a', data.nav.navARCO249A);
-                updateTextContent('navarco252a', data.nav.navARCO252A);
-                updateTextContent('navarco256', data.nav.navARCO256);
-                updateTextContent('navarco282a', data.nav.navARCO282A);
-                updateTextContent('navarco283a', data.nav.navARCO283A);
-                updateTextContent('navarco306b', data.nav.navARCO306B);
-                updateTextContent('navarco307a', data.nav.navARCO307A);
-                updateTextContent('navarco53c', data.nav.navARCO53C);
-                updateTextContent('navHome', data.nav.navHome);
-                updateTextContent('navlapide1', data.nav.navLAPIDE1);
-                updateTextContent('navlapide2', data.nav.navLAPIDE2);
-                updateTextContent('navpsontuoso', data.nav.navPSONTUOSO);
-            }
-
-            // AGGIORNAMENTO TESTATA (Titolo e Immagine)
-            updateTextContent('pageTitle', pageData.pageTitle);
-            // 🔥 FIX: Uso updateHTMLContent per consentire <strong> nell'H1
-            updateHTMLContent('headerTitle', pageData.pageTitle);
-
-            // AGGIORNAMENTO IMMAGINE DI FONDO TESTATA (Usando l'ID corretto 'pageImage1')
-            const headerImage = document.getElementById('pageImage1');
-            if (headerImage && pageData.imageSource1) {
-                headerImage.src = pageData.imageSource1;
-                headerImage.alt = pageData.pageTitle || "Immagine di testata";
-            }
-
-
-            // AGGIORNAMENTO DEL CONTENUTO (Testi principali)
-            // 🔥 FIX: Uso updateHTMLContent per consentire <strong>, <p> ecc. nei testi
-            updateHTMLContent('mainText', pageData.mainText || '');
-            updateHTMLContent('mainText1', pageData.mainText1 || '');
-            updateHTMLContent('mainText2', pageData.mainText2 || '');
-            updateHTMLContent('mainText3', pageData.mainText3 || '');
-            updateHTMLContent('mainText4', pageData.mainText4 || '');
-            updateHTMLContent('mainText5', pageData.mainText5 || '');
-
-            // AGGIORNAMENTO INFORMAZIONI SULLA FONTE E DATA
-            if (pageData.sourceText) {
-                updateTextContent('infoSource', `Fonte: ${pageData.sourceText}`);
-            }
-            if (pageData.creationDate) {
-                updateTextContent('infoCreatedDate',`Data Creazione: ${pageData.creationDate}`);
-            }
-            if (pageData.lastUpdate) {
-                updateTextContent('infoUpdatedDate', `Ultimo Aggiornamento: ${pageData.lastUpdate}`);
-            }
-
-            // AGGIORNAMENTO AUDIO E BOTTONE
-            if (audioPlayer && playButton && pageData.audioSource) {
-                if (!audioPlayer.paused) {
-                    audioPlayer.pause();
-                    audioPlayer.currentTime = 0;
-                }
-                playButton.textContent = pageData.playAudioButton;
-                playButton.dataset.playText = pageData.playAudioButton;
-                playButton.dataset.pauseText = pageData.pauseAudioButton;
-                audioPlayer.src = pageData.audioSource;
-                audioPlayer.load();
-                playButton.classList.remove('pause-style');
-                playButton.classList.add('play-style');
-            }
-
-            // AGGIORNAMENTO IMMAGINI DINAMICHE (dalla 2 alla 5)
-            for (let i = 2; i <= 5; i++) {
-                const imageElement = document.getElementById(`pageImage${i}`);
-                const imageSource = pageData[`imageSource${i}`];
-
-                if (imageElement) {
-                    imageElement.src = imageSource || '';
-                    // Nasconde l'elemento se non c'è una sorgente
-                    imageElement.style.display = imageSource ? 'block' : 'none';
-                    imageElement.alt = pageData.pageTitle || `Immagine ${i}`;
-                }
-            }
-
-            console.log(`✅ Contenuto caricato con successo per la lingua: ${lang} e pagina: ${pageId}`);
-            document.body.classList.add('content-loaded');
-
-        } catch (error) {
-            console.error('Errore critico nel caricamento dei testi:', error);
-            document.body.classList.add('content-loaded');
+            // 🔥 CORREZIONE: Tutti gli ID sono ora in minuscolo (navarco119, navarco126b, etc.)
+            document.getElementById('navarco119').href = `arco119${suffix}`;
+            document.getElementById('navarco126b').href = `arco126b${suffix}`;
+            document.getElementById('navarco132a').href = `arco132a${suffix}`;
+            document.getElementById('navarco133a').href = `arco133a${suffix}`;
+            document.getElementById('navarco136b').href = `arco136b${suffix}`;
+            document.getElementById('navarco142a').href = `arco142a${suffix}`;
+            document.getElementById('navarco143c').href = `arco143c${suffix}`;
+            document.getElementById('navarco148').href = `arco148${suffix}`;
+            document.getElementById('navarco163').href = `arco163${suffix}`;
+            document.getElementById('navarco171b').href = `arco171b${suffix}`;
+            document.getElementById('navarco180').href = `arco180${suffix}`;
+            document.getElementById('navarco182').href = `arco182${suffix}`;
+            document.getElementById('navarco183').href = `arco183${suffix}`;
+            document.getElementById('navarco186b').href = `arco186b${suffix}`;
+            document.getElementById('navarco188b').href = `arco188b${suffix}`;
+            document.getElementById('navarco190').href = `arco190${suffix}`;
+            document.getElementById('navarco192c').href = `arco192c${suffix}`;
+            document.getElementById('navarco201a').href = `arco201a${suffix}`;
+            document.getElementById('navarco202a').href = `arco202a${suffix}`;
+            document.getElementById('navarco203b').href = `arco203b${suffix}`;
+            document.getElementById('navarco208b').href = `arco208b${suffix}`;
+            document.getElementById('navarco211b').href = `arco211b${suffix}`;
+            document.getElementById('navarco218b').href = `arco218b${suffix}`;
+            document.getElementById('navarco249a').href = `arco249a${suffix}`;
+            document.getElementById('navarco252a').href = `arco252a${suffix}`;
+            document.getElementById('navarco256').href = `arco256${suffix}`;
+            document.getElementById('navarco282a').href = `arco282a${suffix}`;
+            document.getElementById('navarco283a').href = `arco283a${suffix}`;
+            document.getElementById('navarco306b').href = `arco306b${suffix}`;
+            document.getElementById('navarco307a').href = `arco307a${suffix}`;
+            document.getElementById('navarco53c').href = `arco53c${suffix}`;
+            document.getElementById('navHome').href = `index${suffix}`;
+            document.getElementById('navlapide1').href = `lapide1${suffix}`;
+            document.getElementById('navlapide2').href = `lapide2${suffix}`;
+            document.getElementById('navpsontuoso').href = `psontuoso${suffix}`;
+            updateTextContent('navarco119', data.nav.navARCO119);
+            updateTextContent('navarco126b', data.nav.navARCO126B);
+            updateTextContent('navarco132a', data.nav.navARCO132A);
+            updateTextContent('navarco133a', data.nav.navARCO133A);
+            updateTextContent('navarco136b', data.nav.navARCO136B);
+            updateTextContent('navarco142a', data.nav.navARCO142A);
+            updateTextContent('navarco143c', data.nav.navARCO143C);
+            updateTextContent('navarco148', data.nav.navARCO148);
+            updateTextContent('navarco163', data.nav.navARCO163);
+            updateTextContent('navarco171b', data.nav.navARCO171B);
+            updateTextContent('navarco180', data.nav.navARCO180);
+            updateTextContent('navarco182', data.nav.navARCO182);
+            updateTextContent('navarco183', data.nav.navARCO183);
+            updateTextContent('navarco186b', data.nav.navARCO186B);
+            updateTextContent('navarco188b', data.nav.navARCO188B);
+            updateTextContent('navarco190', data.nav.navARCO190);
+            updateTextContent('navarco192c', data.nav.navARCO192C);
+            updateTextContent('navarco201a', data.nav.navARCO201A);
+            updateTextContent('navarco202a', data.nav.navARCO202A);
+            updateTextContent('navarco203b', data.nav.navARCO203B);
+            updateTextContent('navarco208b', data.nav.navARCO208B);
+            updateTextContent('navarco211b', data.nav.navARCO211B);
+            updateTextContent('navarco218b', data.nav.navARCO218B);
+            updateTextContent('navarco249a', data.nav.navARCO249A);
+            updateTextContent('navarco252a', data.nav.navARCO252A);
+            updateTextContent('navarco256', data.nav.navARCO256);
+            updateTextContent('navarco282a', data.nav.navARCO282A);
+            updateTextContent('navarco283a', data.nav.navARCO283A);
+            updateTextContent('navarco306b', data.nav.navARCO306B);
+            updateTextContent('navarco307a', data.nav.navARCO307A);
+            updateTextContent('navarco53c', data.nav.navARCO53C);
+            updateTextContent('navHome', data.nav.navHome);
+            updateTextContent('navlapide1', data.nav.navLAPIDE1);
+            updateTextContent('navlapide2', data.nav.navLAPIDE2);
+            updateTextContent('navpsontuoso', data.nav.navPSONTUOSO);
         }
+
+        // AGGIORNAMENTO TESTATA (Titolo e Immagine)
+        updateTextContent('pageTitle', pageData.pageTitle);
+        // 🔥 FIX: Uso updateHTMLContent per consentire <strong> nell'H1
+        updateHTMLContent('headerTitle', pageData.pageTitle);
+
+        // AGGIORNAMENTO IMMAGINE DI FONDO TESTATA (Usando l'ID corretto 'pageImage1')
+        const headerImage = document.getElementById('pageImage1');
+        if (headerImage && pageData.imageSource1) {
+            headerImage.src = pageData.imageSource1;
+            headerImage.alt = pageData.pageTitle || "Immagine di testata";
+        }
+
+
+        // AGGIORNAMENTO DEL CONTENUTO (Testi principali)
+        // 🔥 FIX: Uso updateHTMLContent per consentire <strong>, <p> ecc. nei testi
+        updateHTMLContent('mainText', pageData.mainText || '');
+        updateHTMLContent('mainText1', pageData.mainText1 || '');
+        updateHTMLContent('mainText2', pageData.mainText2 || '');
+        updateHTMLContent('mainText3', pageData.mainText3 || '');
+        updateHTMLContent('mainText4', pageData.mainText4 || '');
+        updateHTMLContent('mainText5', pageData.mainText5 || '');
+
+        // AGGIORNAMENTO INFORMAZIONI SULLA FONTE E DATA
+        if (pageData.sourceText) {
+            updateTextContent('infoSource', `Fonte: ${pageData.sourceText}`);
+        }
+        if (pageData.creationDate) {
+            updateTextContent('infoCreatedDate', `Data Creazione: ${pageData.creationDate}`);
+        }
+        if (pageData.lastUpdate) {
+            updateTextContent('infoUpdatedDate', `Ultimo Aggiornamento: ${pageData.lastUpdate}`);
+        }
+
+        // AGGIORNAMENTO AUDIO E BOTTONE
+        if (audioPlayer && playButton && pageData.audioSource) {
+            if (!audioPlayer.paused) {
+                audioPlayer.pause();
+                audioPlayer.currentTime = 0;
+            }
+            playButton.textContent = pageData.playAudioButton;
+            playButton.dataset.playText = pageData.playAudioButton;
+            playButton.dataset.pauseText = pageData.pauseAudioButton;
+            audioPlayer.src = pageData.audioSource;
+            audioPlayer.load();
+            playButton.classList.remove('pause-style');
+            playButton.classList.add('play-style');
+        }
+
+        // AGGIORNAMENTO IMMAGINI DINAMICHE (dalla 2 alla 5)
+        for (let i = 2; i <= 5; i++) {
+            const imageElement = document.getElementById(`pageImage${i}`);
+            const imageSource = pageData[`imageSource${i}`];
+
+            if (imageElement) {
+                imageElement.src = imageSource || '';
+                // Nasconde l'elemento se non c'è una sorgente
+                imageElement.style.display = imageSource ? 'block' : 'none';
+                imageElement.alt = pageData.pageTitle || `Immagine ${i}`;
+            }
+        }
+
+        console.log(`✅ Contenuto caricato con successo per la lingua: ${lang} e pagina: ${pageId}`);
+        document.body.classList.add('content-loaded');
+
+    } catch (error) {
+        console.error('Errore critico nel caricamento dei testi:', error);
+        document.body.classList.add('content-loaded');
     }
+}
 
 
 // ===========================================
@@ -423,209 +423,235 @@ async function loadContent(lang) {
 
 // Calcola la distanza tra due coordinate (Formula di Haversine)
 const calculateDistance = (lat1, lon1, lat2, lon2) => {
-        const R = 6371e3; // Raggio della terra in metri
-        const φ1 = lat1 * Math.PI / 180;
-        const φ2 = lat2 * Math.PI / 180;
-        const Δφ = (lat2 - lat1) * Math.PI / 180;
-        const Δλ = (lon2 - lon1) * Math.PI / 180;
+    const R = 6371e3; // Raggio della terra in metri
+    const φ1 = lat1 * Math.PI / 180;
+    const φ2 = lat2 * Math.PI / 180;
+    const Δφ = (lat2 - lat1) * Math.PI / 180;
+    const Δλ = (lon2 - lon1) * Math.PI / 180;
 
-        const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-            Math.cos(φ1) * Math.cos(φ2) *
-            Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+        Math.cos(φ1) * Math.cos(φ2) *
+        Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-        return R * c; // Distanza in metri
-    };
+    return R * c; // Distanza in metri
+};
 
-    // Funzione principale che verifica la vicinanza (per reindirizzamento automatico)
-    const checkProximity = (position) => {
-        const userLat = position.coords.latitude;
-        const userLon = position.coords.longitude;
-        const userLang = document.documentElement.lang || 'it';
+// Funzione principale che verifica la vicinanza (per reindirizzamento automatico)
+const checkProximity = (position) => {
+    const userLat = position.coords.latitude;
+    const userLon = position.coords.longitude;
+    const userLang = document.documentElement.lang || 'it';
 
-        // Logica di reindirizzamento
-        for (const location of ARCO_LOCATIONS) {
-            const distance = calculateDistance(userLat, userLon, location.lat, location.lon);
+    // Logica di reindirizzamento
+    for (const location of ARCO_LOCATIONS) {
+        const distance = calculateDistance(userLat, userLon, location.lat, location.lon);
 
-            if (distance <= location.distanceThreshold) {
-                console.log(`Vicino a ${location.id}! Distanza: ${distance.toFixed(1)}m`);
+        if (distance <= location.distanceThreshold) {
+            console.log(`Vicino a ${location.id}! Distanza: ${distance.toFixed(1)}m`);
 
-                const currentPath = window.location.pathname;
+            const currentPath = window.location.pathname;
 
-                // 🔥 CORREZIONE: Converti l'ID del POI in minuscolo prima di costruire l'URL
-                const fileBaseName = location.id.toLowerCase();
-                let targetPage = `${fileBaseName}.html`;
+            // 🔥 CORREZIONE: Converti l'ID del POI in minuscolo prima di costruire l'URL
+            const fileBaseName = location.id.toLowerCase();
+            let targetPage = `${fileBaseName}.html`;
 
-                if (userLang !== 'it') {
-                    targetPage = `${fileBaseName}-${userLang}.html`;
-                }
-
-                if (!currentPath.includes(targetPage)) {
-                    window.location.href = targetPage;
-                }
-                return;
+            if (userLang !== 'it') {
+                targetPage = `${fileBaseName}-${userLang}.html`;
             }
-        }
 
-        // Logica per aggiornare il menu POI del pulsante verde
-        if (nearbyPoiButton) {
-            nearbyPoiButton.style.display = 'block';
-            if (typeof updatePoiMenu === 'function') {
-                updatePoiMenu(ARCO_LOCATIONS, userLat, userLon, userLang);
+            if (!currentPath.includes(targetPage)) {
+                window.location.href = targetPage;
             }
+            return;
         }
-    };
+    }
 
-    // Funzione di gestione degli errori GPS
-    const handleGeolocationError = (error) => {
-        console.warn(`ERRORE GPS: ${error.code}: ${error.message}`);
-        // Se c'è un errore, è meglio nascondere il pulsante POI per evitare confusione
+    // Logica per aggiornare il menu POI del pulsante verde
+    if (nearbyPoiButton) {
+        nearbyPoiButton.style.display = 'block';
+        if (typeof updatePoiMenu === 'function') {
+            updatePoiMenu(ARCO_LOCATIONS, userLat, userLon, userLang);
+        }
+    }
+};
+
+// Funzione di gestione degli errori GPS
+const handleGeolocationError = (error) => {
+    console.warn(`ERRORE GPS: ${error.code}: ${error.message}`);
+    // Se c'è un errore, è meglio nascondere il pulsante POI per evitare confusione
+    if (nearbyPoiButton) { nearbyPoiButton.style.display = 'none'; }
+};
+
+// Funzione per avviare il monitoraggio GPS
+const startGeolocation = () => {
+    if (navigator.geolocation) {
+        // Avvia il monitoraggio con le opzioni desiderate
+        navigator.geolocation.watchPosition(checkProximity, handleGeolocationError, {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+        });
+        console.log("Monitoraggio GPS avviato.");
+    } else {
+        console.error("Il tuo browser non supporta la geolocalizzazione.");
         if (nearbyPoiButton) { nearbyPoiButton.style.display = 'none'; }
-    };
+    }
+};
 
-    // Funzione per avviare il monitoraggio GPS
-    const startGeolocation = () => {
-        if (navigator.geolocation) {
-            // Avvia il monitoraggio con le opzioni desiderate
-            navigator.geolocation.watchPosition(checkProximity, handleGeolocationError, {
-                enableHighAccuracy: true,
-                timeout: 5000,
-                maximumAge: 0
-            });
-            console.log("Monitoraggio GPS avviato.");
+// ===========================================
+// FUNZIONI LINGUA E BANDIERE
+// ===========================================
+
+/** Aggiorna lo stato 'active' dei bottoni bandiera. */
+function updateLanguageSelectorActiveState(lang) {
+    document.querySelectorAll('.language-selector button').forEach(button => {
+        if (button.getAttribute('data-lang') === lang) {
+            button.classList.add('active');
         } else {
-            console.error("Il tuo browser non supporta la geolocalizzazione.");
-            if (nearbyPoiButton) { nearbyPoiButton.style.display = 'none'; }
+            button.classList.remove('active');
         }
-    };
+    });
+}
 
-    // ===========================================
-    // FUNZIONI LINGUA E BANDIERE
-    // ===========================================
+/** Gestisce il click sulla bandiera e reindirizza alla pagina tradotta. */
+function handleLanguageChange(event) {
+    const newLang = event.currentTarget.getAttribute('data-lang');
 
-    /** Aggiorna lo stato 'active' dei bottoni bandiera. */
-    function updateLanguageSelectorActiveState(lang) {
-        document.querySelectorAll('.language-selector button').forEach(button => {
-            if (button.getAttribute('data-lang') === lang) {
-                button.classList.add('active');
-            } else {
-                button.classList.remove('active');
+    if (newLang && LANGUAGES.includes(newLang) && newLang !== currentLang) {
+        localStorage.setItem(LAST_LANG_KEY, newLang);
+
+        const urlPath = document.location.pathname;
+        const fileName = urlPath.substring(urlPath.lastIndexOf('/') + 1);
+        let fileBase = fileName.replace(/-[a-z]{2}\.html$/, '').replace('.html', '');
+
+        if (fileBase === '') fileBase = 'index';
+
+        const newPath = `${fileBase}-${newLang}.html`;
+
+        document.location.href = newPath;
+    }
+}
+
+
+// ===========================================
+// ASSEGNAZIONE EVENT LISTENER (Menu Hamburger, Pulsante Verde, Audio)
+// ===========================================
+
+// main.js - Sostituisci l'intera funzione initEventListeners
+
+function initEventListeners(currentLang) {
+    const menuToggle = document.querySelector('.menu-toggle');
+    // 🔥 CORREZIONE: Usa l'ID corretto #navBarMain
+    const navBarMain = document.getElementById('navBarMain');
+    const body = document.body;
+
+    // --- Logica Menu Hamburger Principale ---
+    if (menuToggle && navBarMain && !menuToggle.dataset.listenerAttached) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navBarMain.classList.toggle('active');
+
+            // Blocca/Sblocca lo scroll del body
+            body.classList.toggle('menu-open');
+
+            // Chiudi il menu POI
+            if (nearbyMenuPlaceholder) {
+                nearbyMenuPlaceholder.classList.remove('poi-active');
             }
         });
-    }
 
-    /** Gestisce il click sulla bandiera e reindirizza alla pagina tradotta. */
-    function handleLanguageChange(event) {
-        const newLang = event.currentTarget.getAttribute('data-lang');
+        // Chiudi il menu quando si clicca su un link al suo interno
+        navBarMain.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                menuToggle.classList.remove('active');
+                navBarMain.classList.remove('active');
 
-        if (newLang && LANGUAGES.includes(newLang) && newLang !== currentLang) {
-            localStorage.setItem(LAST_LANG_KEY, newLang);
-
-            const urlPath = document.location.pathname;
-            const fileName = urlPath.substring(urlPath.lastIndexOf('/') + 1);
-            let fileBase = fileName.replace(/-[a-z]{2}\.html$/, '').replace('.html', '');
-
-            if (fileBase === '') fileBase = 'index';
-
-            const newPath = `${fileBase}-${newLang}.html`;
-
-            document.location.href = newPath;
-        }
-    }
-
-
-    // ===========================================
-    // ASSEGNAZIONE EVENT LISTENER (Menu Hamburger, Pulsante Verde, Audio)
-    // ===========================================
-
-    function initEventListeners(currentLang) {
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navBar = document.getElementById('navPlaceholder');
-
-        // --- Logica Menu Hamburger Principale ---
-        if (menuToggle && navBar && !menuToggle.dataset.listenerAttached) {
-            menuToggle.addEventListener('click', () => {
-                menuToggle.classList.toggle('active');
-                navBar.classList.toggle('active');
-
-                // Chiudi il menu POI
-                if (nearbyMenuPlaceholder) {
-                    nearbyMenuPlaceholder.classList.remove('poi-active');
-                }
-            });
-
-            navBar.addEventListener('click', (e) => {
-                if (e.target.tagName === 'A') {
-                    menuToggle.classList.remove('active');
-                    navBar.classList.remove('active');
-                }
-            });
-            menuToggle.dataset.listenerAttached = 'true';
-        }
-
-        // --- Logica Menu Hamburger POI (Pulsante Verde) ---
-        if (nearbyPoiButton && nearbyMenuPlaceholder && !nearbyPoiButton.dataset.listenerAttached) {
-            nearbyPoiButton.addEventListener('click', () => {
-                nearbyMenuPlaceholder.classList.toggle('poi-active');
-
-                // Chiudi il menu principale
-                if (menuToggle && navBar) {
-                    menuToggle.classList.remove('active');
-                    navBar.classList.remove('active');
-                }
-            });
-
-            nearbyMenuPlaceholder.addEventListener('click', (e) => {
-                if (e.target.tagName === 'A') {
-                    nearbyMenuPlaceholder.classList.remove('poi-active');
-                }
-            });
-            nearbyPoiButton.dataset.listenerAttached = 'true';
-        }
-
-        // --- Logica Audio ---
-        if (audioPlayer && playButton && !playButton.dataset.listenerAttached) {
-            playButton.addEventListener('click', toggleAudioPlayback);
-            audioPlayer.addEventListener('ended', handleAudioEnded);
-            playButton.dataset.listenerAttached = 'true';
-        }
-
-
-        // --- Logica Selettore Lingua (Bandiere) ---
-        document.querySelectorAll('.language-selector button').forEach(button => {
-            button.removeEventListener('click', handleLanguageChange);
-            button.addEventListener('click', handleLanguageChange);
+                // Rimuovi il blocco dello scroll
+                body.classList.remove('menu-open');
+            }
         });
+        menuToggle.dataset.listenerAttached = 'true';
+    }
+
+    // --- Logica Menu Hamburger POI (Pulsante Verde) ---
+    if (nearbyPoiButton && nearbyMenuPlaceholder && !nearbyPoiButton.dataset.listenerAttached) {
+        nearbyPoiButton.addEventListener('click', () => {
+            nearbyMenuPlaceholder.classList.toggle('poi-active');
+
+            // Chiudi il menu principale
+            if (menuToggle && navBarMain) {
+                menuToggle.classList.remove('active');
+                navBarMain.classList.remove('active');
+                // IMPORTANTE: Rimuovi il blocco scroll se il menu principale si stava chiudendo
+                if (!nearbyMenuPlaceholder.classList.contains('poi-active')) {
+                    body.classList.remove('menu-open');
+                }
+            }
+
+            // Gestione dello scroll quando apri/chiudi il POI menu
+            if (nearbyMenuPlaceholder.classList.contains('poi-active')) {
+                body.classList.add('menu-open');
+            } else {
+                // Rilascia solo se il menu principale è già chiuso
+                if (!navBarMain.classList.contains('active')) {
+                    body.classList.remove('menu-open');
+                }
+            }
+        });
+
+        nearbyMenuPlaceholder.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                nearbyMenuPlaceholder.classList.remove('poi-active');
+                // Rimuovi il blocco dello scroll
+                body.classList.remove('menu-open');
+            }
+        });
+        nearbyPoiButton.dataset.listenerAttached = 'true';
+    }
+
+    // --- Logica Audio ---
+    if (audioPlayer && playButton && !playButton.dataset.listenerAttached) {
+        playButton.addEventListener('click', toggleAudioPlayback);
+        audioPlayer.addEventListener('ended', handleAudioEnded);
+        playButton.dataset.listenerAttached = 'true';
     }
 
 
-    // ===========================================
-    // PUNTO DI INGRESSO (DOM LOADED)
-    // ===========================================
-
-    document.addEventListener('DOMContentLoaded', () => {
-        // 1. ASSEGNAZIONE DEGLI ELEMENTI DOM ALLE VARIABILI GLOBALI
-        audioPlayer = document.getElementById('audioPlayer');
-        playButton = document.getElementById('playAudio');
-        nearbyPoiButton = document.getElementById('nearbyPoiButton');
-        nearbyMenuPlaceholder = document.getElementById('nearbyMenuPlaceholder');
-
-        // 2. DETERMINAZIONE LINGUA CORRENTE
-        const urlPath = document.location.pathname;
-        const langMatch = urlPath.match(/-([a-z]{2})\.html/);
-        const urlLang = langMatch ? langMatch[1] : 'it';
-
-        currentLang = urlLang;
-
-        // 3. INIZIALIZZA LA SELEZIONE LINGUA
-        updateLanguageSelectorActiveState(currentLang);
-
-        // 4. CARICAMENTO CONTENUTO (maintext)
-        loadContent(currentLang);
-
-        // 5. AVVIA IL MONITORAGGIO GPS
-        startGeolocation();
-
-        // 6. INIZIALIZZA GLI EVENT LISTENER
-        initEventListeners(currentLang);
+    // --- Logica Selettore Lingua (Bandiere) ---
+    document.querySelectorAll('.language-selector button').forEach(button => {
+        button.removeEventListener('click', handleLanguageChange);
+        button.addEventListener('click', handleLanguageChange);
     });
+}
+
+// ===========================================
+// PUNTO DI INGRESSO (DOM LOADED)
+// ===========================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. ASSEGNAZIONE DEGLI ELEMENTI DOM ALLE VARIABILI GLOBALI
+    audioPlayer = document.getElementById('audioPlayer');
+    playButton = document.getElementById('playAudio');
+    nearbyPoiButton = document.getElementById('nearbyPoiButton');
+    nearbyMenuPlaceholder = document.getElementById('nearbyMenuPlaceholder');
+
+    // 2. DETERMINAZIONE LINGUA CORRENTE
+    const urlPath = document.location.pathname;
+    const langMatch = urlPath.match(/-([a-z]{2})\.html/);
+    const urlLang = langMatch ? langMatch[1] : 'it';
+
+    currentLang = urlLang;
+
+    // 3. INIZIALIZZA LA SELEZIONE LINGUA
+    updateLanguageSelectorActiveState(currentLang);
+
+    // 4. CARICAMENTO CONTENUTO (maintext)
+    loadContent(currentLang);
+
+    // 5. AVVIA IL MONITORAGGIO GPS
+    startGeolocation();
+
+    // 6. INIZIALIZZA GLI EVENT LISTENER
+    initEventListeners(currentLang);
+});
