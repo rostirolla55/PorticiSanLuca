@@ -38,7 +38,13 @@ body.content-loaded {
     margin: 0 auto;
     text-align: justify;
 }
+/* style.css - Aggiunta Cruciale per bloccare lo scroll */
 
+/* -------------------- GESTIONE BLOCCO SCROLL -------------------- */
+/* Questa classe impedisce lo scroll del contenuto principale quando il menu è aperto */
+body.menu-open {
+    overflow: hidden; /* Impedisce lo scorrimento verticale e orizzontale */
+}
 /* -------------------- MENU PRINCIPALE (A Sinistra) -------------------- */
 
 .menu-toggle {
