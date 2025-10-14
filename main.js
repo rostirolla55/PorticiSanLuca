@@ -272,7 +272,7 @@ async function loadContent(lang) {
             if (data.nav) {
                 const suffix = `-${lang}.html`;
                 // AGGIORNA HREF E TESTO PER TUTTI I LINK DEL MENU PRINCIPALE
-
+                
                 // 🔥 CORREZIONE: Tutti gli ID sono ora in minuscolo (navarco119, navarco126b, etc.)
                 document.getElementById('navarco119').href = `arco119${suffix}`;
                 document.getElementById('navarco126b').href = `arco126b${suffix}`;
