@@ -17,7 +17,7 @@
     "lastUpdate": "01-10-2025",
     "playAudioButton": "Listen to the audio in Italian!",
     "pauseAudioButton": "Pause",
-    "audioSource": "Assets/Audio/it/Home.mp3"
+    "audioSource": "Assets/Audio/en/Home.mp3"
   },
   "nav": {
     "navARCO119": "Arco 119 - Nome della strada",
