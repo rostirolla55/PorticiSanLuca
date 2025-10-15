@@ -84,7 +84,7 @@
                 <li><a id="navpsontuoso" href="#"></a></li>
             </ul>
         </div>
-
+    </nav>
     <div id="nearbyMenuPlaceholder" class="nav-bar-nearby"></div>
 
 
@@ -116,7 +116,7 @@
             <audio id="audioPlayer"></audio>
             <button id="playAudio" class="play-style">Ascolta</button>
 
-            </div>
+        </div>
 
 
         <footer class="info-footer">
