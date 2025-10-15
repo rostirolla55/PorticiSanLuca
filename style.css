@@ -124,6 +124,32 @@ body.menu-open {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Stili per il Menu Principale (navBarMain) */
+
+/* Assicura che la lista interna non abbia pallini */
+#navBarMain .nav-bar-content ul {
+    list-style: none;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Stili specifici per i link (testo bianco senza sottolineatura) */
+#navBarMain .nav-bar-content ul li a {
+    color: white;             /* Testo in bianco */
+    text-decoration: none;    /* Rimuove la sottolineatura */
+    font-size: 1.2em;
+    display: block;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Stile per l'hover (quando il mouse passa sopra) */
+#navBarMain .nav-bar-content ul li a:hover {
+    color: #cccccc; /* Un grigio chiaro per l'effetto hover */
+}
+
 /* -------------------- ELEMENTI DI DESTRA (Bandiere e POI) -------------------- */
 
 .right-header-group {
