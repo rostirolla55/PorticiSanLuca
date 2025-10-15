@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -21,17 +21,17 @@
 </head>
 
 <body>
-
+    
     <header class="main-header">
-
+        
         <button class="menu-toggle" aria-label="Apri menu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </button>
-
+        
         <div class="right-header-group">
-
+            
             <div class="language-selector">
                 <button data-lang="it"><img src="public/flag/it.png" alt="Italiano"></button>
                 <button data-lang="en"><img src="public/flag/en.png" alt="English"></button>
@@ -41,50 +41,12 @@
 
             <button id="nearbyPoiButton" style="display:none;" aria-label="Punti di interesse vicini"></button>
         </div>
-
+        
     </header>
 
-    <nav class="nav-bar-main" id="navBarMain">
-        <div class="nav-bar-content">
-            <ul>
-                <li><a id="navHome" href="index-it.html"></a></li>
-                <li><a id="navarco119" href="#"></a></li>
-                <li><a id="navarco126b" href="#"></a></li>
-                <li><a id="navarco132a" href="#"></a></li>
-                <li><a id="navarco133a" href="#"></a></li>
-                <li><a id="navarco136b" href="#"></a></li>
-                <li><a id="navarco142a" href="#"></a></li>
-                <li><a id="navarco143c" href="#"></a></li>
-                <li><a id="navarco148" href="#"></a></li>
-                <li><a id="navarco163" href="#"></a></li>
-                <li><a id="navarco171b" href="#"></a></li>
-                <li><a id="navarco180" href="#"></a></li>
-                <li><a id="navarco182" href="#"></a></li>
-                <li><a id="navarco183" href="#"></a></li>
-                <li><a id="navarco186b" href="#"></a></li>
-                <li><a id="navarco188b" href="#"></a></li>
-                <li><a id="navarco190" href="#"></a></li>
-                <li><a id="navarco192c" href="#"></a></li>
-                <li><a id="navarco201a" href="#"></a></li>
-                <li><a id="navarco202a" href="#"></a></li>
-                <li><a id="navarco203b" href="#"></a></li>
-                <li><a id="navarco208b" href="#"></a></li>
-                <li><a id="navarco211b" href="#"></a></li>
-                <li><a id="navarco218b" href="#"></a></li>
-                <li><a id="navarco249a" href="#"></a></li>
-                <li><a id="navarco252a" href="#"></a></li>
-                <li><a id="navarco256" href="#"></a></li>
-                <li><a id="navarco282a" href="#"></a></li>
-                <li><a id="navarco283a" href="#"></a></li>
-                <li><a id="navarco306b" href="#"></a></li>
-                <li><a id="navarco307a" href="#"></a></li>
-                <li><a id="navarco53c" href="#"></a></li>
-                <li><a id="navlapide1" href="#"></a></li>
-                <li><a id="navlapide2" href="#"></a></li>
-                <li><a id="navpsontuoso" href="#"></a></li>
-            </ul>
+    <div id="navPlaceholder">
         </div>
-    </nav>
+
     <div id="nearbyMenuPlaceholder" class="nav-bar-nearby"></div>
 
 
@@ -116,13 +78,13 @@
             <audio id="audioPlayer"></audio>
             <button id="playAudio" class="play-style">Ascolta</button>
 
-        </div>
+            </div>
 
 
         <footer class="info-footer">
             <p id="infoSource"></p>
-            <p Data Creazione id="infoCreatedDate"></p>
-            <p Data ultimo aggiornamento id="infoUpdatedDate"></p>
+            <p id="infoCreatedDate"></p>
+            <p id="infoUpdatedDate"></p>
         </footer>
 
     </main>
