@@ -286,21 +286,7 @@ body.menu-open {
     margin: 0;
     font-size: 1.5em;
     box-sizing: border-box;
-    text-align: center;
-}
-
-/* Il header-title è già position: absolute, quindi funzionerà */
-.header-title {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    padding: 10px 15px;
-    margin: 0;
-    font-size: 1.5em;
-    box-sizing: border-box;
+    text-align: center; /* 🔥 Mantieni solo la regola che vuoi applicare */
 }
 
 
