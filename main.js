@@ -406,7 +406,7 @@ const calculateDistance = (lat1, lon1, lat2, lon2) => {
 };
 
 // Funzione principale che verifica la vicinanza (per reindirizzamento automatico)
-const checkProximity = (position) => {
+/* const checkProximity = (position) => {
     const userLat = position.coords.latitude;
     const userLon = position.coords.longitude;
     const userLang = currentLang; // <-- Usa la variabile globale aggiornata
@@ -442,7 +442,7 @@ const checkProximity = (position) => {
             updatePoiMenu(ARCO_LOCATIONS, userLat, userLon, userLang);
         }
     }
-};
+}; */
 
 // Funzione di gestione degli errori GPS
 const handleGeolocationError = (error) => {

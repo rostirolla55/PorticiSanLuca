@@ -4,41 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portici San Luca - Redirecting...</title>
+    <title>Portici San Luca</title>
+    <link rel="stylesheet" href="style.css">
 
-    <script>
-        /**
-         * Reindirizza l'utente alla pagina lingua corretta (index-[lang].html).
-         * Priorità: Lingua salvata > Lingua del browser > Default (it).
-         * * Questo script è una prima linea di difesa, ma la logica completa 
-         * di persistenza e browser detection è gestita nel file main.js 
-         * dopo il caricamento della pagina specifica (es. index-it.html).
-         */
-        document.addEventListener('DOMContentLoaded', () => {
-            const preferredLang = localStorage.getItem('porticiSanLuca_lastLang');
-            const browserLang = (navigator.language || navigator.userLanguage).substring(0, 2);
-
-            let targetLang = 'it';
-            const supportedLangs = ['it', 'en', 'es', 'fr', 'de', 'pt', 'ma'];
-
-            // 1. Priorità: Lingua salvata
-            if (preferredLang && supportedLangs.includes(preferredLang)) {
-                targetLang = preferredLang;
-            }
-            // 2. Priorità: Lingua del browser (solo se non ha una preferenza salvata)
-            else if (supportedLangs.includes(browserLang)) {
-                targetLang = browserLang;
-            }
-            // 3. Altrimenti, resta 'it'
-
-            // Reindirizza al file specifico della lingua
-            window.location.replace(`index-${targetLang}.html`);
-        });
-    </script>
 </head>
 
 <body>
-    <p style="text-align: center; margin-top: 50px;">Reindirizzamento in corso...</p>
+    <div class="app-container">
+        <p style="text-align: center; margin-top: 50px;">Caricamento dell'applicazione in corso...</p>
+    </div>
+
+    <script src="main.js"></script>
 </body>
 
 </html>
