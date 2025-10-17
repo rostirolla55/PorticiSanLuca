@@ -409,7 +409,7 @@ const calculateDistance = (lat1, lon1, lat2, lon2) => {
 const checkProximity = (position) => {
     const userLat = position.coords.latitude;
     const userLon = position.coords.longitude;
-    const userLang = document.documentElement.lang || 'it';
+    const userLang = currentLang; // <-- Usa la variabile globale aggiornata
 
     // Logica di reindirizzamento
     for (const location of ARCO_LOCATIONS) {
@@ -605,7 +605,7 @@ document.addEventListener('DOMContentLoaded', () => {
     nearbyMenuPlaceholder = document.getElementById('nearbyMenuPlaceholder');
 
     // 2. DETERMINAZIONE LINGUA CORRENTE (LOGICA CORRETTA)
-    
+
     let finalLang = 'it'; // 🥇 Default di base: Italiano
 
     // A) Controlla se una lingua è stata salvata dall'ultima visita
@@ -623,11 +623,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // E salviamo la scelta per la prossima navigazione interna (es. clic su POI)
         localStorage.setItem(LAST_LANG_KEY, finalLang);
     }
-    
+
     // Imposta la lingua globale
     currentLang = finalLang;
     document.documentElement.lang = currentLang; // Aggiorna il tag <html>
-    
+
 
     // 3. INIZIALIZZA LA SELEZIONE LINGUA
     updateLanguageSelectorActiveState(currentLang);
