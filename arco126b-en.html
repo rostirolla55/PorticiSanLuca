@@ -4,11 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google" content="notranslate">
-
-    <title>Benvenuto nel Quartiere Porto</title>
-
-    <link rel="stylesheet" href="style.css"> 
+    <title id="pageTitle">Caricamento...</title>
+    <link rel="stylesheet" href="style.css">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MK5NEJP81L"></script>
     <script>
@@ -16,85 +13,120 @@
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
-        // 🔥 CONFIGURAZIONE: Associa 'dimension1' al nome parametro 'lingua_pagina'
+        // CONFIGURAZIONE: Associa 'dimension1' al nome parametro 'lingua_pagina'
         gtag('config', 'G-MK5NEJP81L', {
             'custom_map': { 'dimension1': 'lingua_pagina' }
         });
     </script>
 
-    <script>
-        // Funzione helper per ottenere il nome del file di destinazione (coerente con la nuova struttura)
-        function getDestinationPageName(pageId, langCode) {
-            // Es. ('index', 'en') -> index-en.html
-            // Es. ('pugliole', 'it') -> pugliole-en.html
-            return `${pageId}-${langCode}.html`;
-        }
-
-        // 🖱️ CAMBIO MANUALE LINGUA (Chiamato dai pulsanti bandiera)
-        function setLanguageRedirect(langCode) {
-            // 1. Salva la lingua scelta dall'utente (Requisito 11)
-            localStorage.setItem('userLanguage', langCode);
-
-            // 2. Determina l'ID base della pagina corrente (es. 'index', 'pugliole')
-            const path = window.location.pathname;
-            let pageId = path.substring(path.lastIndexOf('/') + 1).replace(/-[a-z]{2}\.html/i, '').replace('.html', '').toLowerCase();
-            if (pageId === '') pageId = 'index';
-
-            // 3. Reindirizza alla pagina HTML corretta (es. pugliole-en.html)
-            const destinationPage = getDestinationPageName(pageId, langCode);
-            window.location.href = destinationPage;
-        }
-    </script>
 </head>
 
-<body id="home">
+<body>
+
     <header class="main-header">
 
-        <button class="menu-toggle" aria-label="Toggle menu">
+        <button class="menu-toggle" aria-label="Apri menu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </button>
 
+        <div class="right-header-group">
 
-        <div id="nav-container">
+            <div class="language-selector">
+                <button data-lang="it"><img src="public/flag/it.png" alt="Italiano"></button>
+                <button data-lang="en"><img src="public/flag/en.png" alt="English"></button>
+                <button data-lang="es"><img src="public/flag/es.png" alt="Español"></button>
+                <button data-lang="fr"><img src="public/flag/fr.png" alt="Français"></button>
+            </div>
+
+            <button id="nearbyPoiButton" style="display:none;" aria-label="Punti di interesse vicini"></button>
         </div>
 
-        <div class="language-selector">
-            <button onclick="setLanguageRedirect('it')"><img src="public/flag/it.png" alt="Italiano"></button>
-            <button onclick="setLanguageRedirect('en')"><img src="public/flag/en.png" alt="English"></button>
-            <button onclick="setLanguageRedirect('fr')"><img src="public/flag/fr.png" alt="Français"></button>
-            <button onclick="setLanguageRedirect('es')"><img src="public/flag/es.png" alt="Español"></button>
-        </div>
     </header>
 
-    <div class="header-image-container">
-        <img id="headerImage" src="public/images/Meloncello.jpg" alt="Meloncello Bologna">
-        <h1 class="header-title" id="pageTitle">Benvenuto nel Quartiere Porto</h1>
-    </div>
+    <nav class="nav-bar-main" id="navBarMain">
+        <div class="nav-bar-content">
+            <ul>
+                <li><a id="navHome" href="index-it.html"></a></li>
+                <li><a id="navarco119" href="#"></a></li>
+                <li><a id="navarco126b" href="#"></a></li>
+                <li><a id="navarco132a" href="#"></a></li>
+                <li><a id="navarco133a" href="#"></a></li>
+                <li><a id="navarco136b" href="#"></a></li>
+                <li><a id="navarco142a" href="#"></a></li>
+                <li><a id="navarco143c" href="#"></a></li>
+                <li><a id="navarco148" href="#"></a></li>
+                <li><a id="navarco163" href="#"></a></li>
+                <li><a id="navarco171b" href="#"></a></li>
+                <li><a id="navarco180" href="#"></a></li>
+                <li><a id="navarco182" href="#"></a></li>
+                <li><a id="navarco183" href="#"></a></li>
+                <li><a id="navarco186b" href="#"></a></li>
+                <li><a id="navarco188b" href="#"></a></li>
+                <li><a id="navarco190" href="#"></a></li>
+                <li><a id="navarco192c" href="#"></a></li>
+                <li><a id="navarco201a" href="#"></a></li>
+                <li><a id="navarco202a" href="#"></a></li>
+                <li><a id="navarco203b" href="#"></a></li>
+                <li><a id="navarco208b" href="#"></a></li>
+                <li><a id="navarco211b" href="#"></a></li>
+                <li><a id="navarco218b" href="#"></a></li>
+                <li><a id="navarco249a" href="#"></a></li>
+                <li><a id="navarco252a" href="#"></a></li>
+                <li><a id="navarco256" href="#"></a></li>
+                <li><a id="navarco282a" href="#"></a></li>
+                <li><a id="navarco283a" href="#"></a></li>
+                <li><a id="navarco306b" href="#"></a></li>
+                <li><a id="navarco307a" href="#"></a></li>
+                <li><a id="navarco53c" href="#"></a></li>
+                <li><a id="navlapide1" href="#"></a></li>
+                <li><a id="navlapide2" href="#"></a></li>
+                <li><a id="navpsontuoso" href="#"></a></li>
+            </ul>
+        </div>
+    </nav>
+    <div id="nearbyMenuPlaceholder" class="nav-bar-nearby"></div>
+
 
     <main class="content-body">
-        <p id="mainText"></p>
-        <p id="mainText1"></p>
-        <p id="mainText2"></p>
-        <p id="mainText3"></p>
-        <p id="mainText4"></p>
-        <p id="mainText5"></p>
 
-        <button id="playAudio" class="play-style">Ascolta l'audio!</button>
-        <audio id="audioPlayer"></audio>
-
-        <img id="pageImage1" src="" style="display:none;">
-        <img id="pageImage2" src="" style="display:none;">
-        <img id="pageImage3" src="" style="display:none;">
-        <img id="pageImage4" src="" style="display:none;">
-        <img id="pageImage5" src="" style="display:none;">
-
-        <div class="info-footer">
-            <p><span id="infoSource"></span></p>
-            <p>Creation Date: <span id="infoCreatedDate"></span></p>
-            <p>Last Updated: <span id="infoUpdatedDate"></span></p>
+        <div class="header-image-container">
+            <img id="pageImage1" src="" alt="Immagine di sfondo testata">
+            <h1 class="header-title" id="headerTitle"></h1>
         </div>
+
+        <div class="main-content-area">
+
+            <p id="mainText"></p>
+
+            <p id="mainText1"></p>
+            <img id="pageImage2" src="" style="display: none;" alt="Immagine 2 corpo">
+
+            <p id="mainText2"></p>
+            <img id="pageImage3" src="" style="display: none;" alt="Immagine 3 corpo">
+
+            <p id="mainText3"></p>
+            <img id="pageImage4" src="" style="display: none;" alt="Immagine 4 corpo">
+
+            <p id="mainText4"></p>
+            <img id="pageImage5" src="" style="display: none;" alt="Immagine 5 corpo">
+
+            <p id="mainText5"></p>
+
+            <audio id="audioPlayer"></audio>
+            <button id="playAudio" class="play-style">Ascolta</button>
+
+
+        </div>
+
+
+        <footer class="info-footer">
+            <p id="infoSource"></p>
+            <p Creation Date id="infoCreatedDate"></p>
+            <p Last Update Date id="infoUpdatedDate"></p>
+        </footer>
+
     </main>
 
     <script src="main.js"></script>
