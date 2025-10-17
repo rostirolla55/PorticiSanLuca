@@ -604,12 +604,30 @@ document.addEventListener('DOMContentLoaded', () => {
     nearbyPoiButton = document.getElementById('nearbyPoiButton');
     nearbyMenuPlaceholder = document.getElementById('nearbyMenuPlaceholder');
 
-    // 2. DETERMINAZIONE LINGUA CORRENTE
+    // 2. DETERMINAZIONE LINGUA CORRENTE (LOGICA CORRETTA)
+    
+    let finalLang = 'it'; // 🥇 Default di base: Italiano
+
+    // A) Controlla se una lingua è stata salvata dall'ultima visita
+    const savedLang = localStorage.getItem(LAST_LANG_KEY);
+    if (savedLang && LANGUAGES.includes(savedLang)) {
+        finalLang = savedLang;
+    }
+
+    // B) Controlla la lingua nell'URL. Se presente, prevale sulla persistenza.
     const urlPath = document.location.pathname;
     const langMatch = urlPath.match(/-([a-z]{2})\.html/);
-    const urlLang = langMatch ? langMatch[1] : 'it';
-
-    currentLang = urlLang;
+    if (langMatch && LANGUAGES.includes(langMatch[1])) {
+        // Se si naviga a un URL specifico (es. index-fr.html), usiamo quella lingua
+        finalLang = langMatch[1];
+        // E salviamo la scelta per la prossima navigazione interna (es. clic su POI)
+        localStorage.setItem(LAST_LANG_KEY, finalLang);
+    }
+    
+    // Imposta la lingua globale
+    currentLang = finalLang;
+    document.documentElement.lang = currentLang; // Aggiorna il tag <html>
+    
 
     // 3. INIZIALIZZA LA SELEZIONE LINGUA
     updateLanguageSelectorActiveState(currentLang);
