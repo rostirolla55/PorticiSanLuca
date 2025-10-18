@@ -4,7 +4,9 @@
 const LANGUAGES = ['it', 'en', 'fr', 'es']; // Lista delle lingue supportate per le bandiere
 const LAST_LANG_KEY = 'last_selected_lang'; // Chiave per salvare l'ultima lingua in localStorage
 let currentLang = 'it'; // Lingua corrente, inizializzata a 'it'
-let nearbyPoiButton, nearbyMenuPlaceholder; // Variabili per elementi DOM (lascia solo quelle usate globalmente, come nel GPS)
+// RIMOZIONE DI audioPlayer e playButton dalla dichiarazione globale
+let nearbyPoiButton, nearbyMenuPlaceholder; // Variabili per elementi DOM
+
 // ===========================================
 // DATI: Punti di Interesse GPS (DA COMPILARE)
 // ⚠️ Consigliato: aumentare 'distanceThreshold' a 10-15m per affidabilità GPS in città!
@@ -80,7 +82,6 @@ const updateHTMLContent = (id, htmlContent) => {
         element.innerHTML = htmlContent || '';
     }
 };
-
 
 // ===========================================
 // FUNZIONI AUDIO (Corrette per argomenti locali)
@@ -210,7 +211,6 @@ function updatePoiMenu(locations, userLat, userLon, userLang) {
 // FUNZIONI DI CARICAMENTO CONTENUTI (loadContent)
 // ===========================================
 
-// main.js - Sostituire l'intera funzione loadContent
 async function loadContent(lang) {
     document.documentElement.lang = lang;
 
@@ -238,14 +238,11 @@ async function loadContent(lang) {
         }
 
         // AGGIORNAMENTO NAVIGAZIONE
-        // Il codice eseguirà l'aggiornamento SOLO se esistono i dati di navigazione (data.nav)
-        // E se l'elemento contenitore principale del menu (#navBarMain) è presente nella pagina (es. arcoXX.html)
         const navBarMain = document.getElementById('navBarMain');
 
         if (data.nav && navBarMain) {
-            // Determina il suffisso corretto: vuoto per 'it', '-en' per 'en', ecc.
             const langSuffix = lang === 'it' ? '' : `-${lang}`;
-
+            
             // Lista di tutti gli ID del menu che devono essere aggiornati
             const navLinksData = [
                 { id: 'navarco119', key: 'navARCO119', base: 'arco119' },
@@ -289,37 +286,29 @@ async function loadContent(lang) {
             // Aggiorna HREF e Testo per tutti i link del menu principale
             navLinksData.forEach(link => {
                 const linkElement = document.getElementById(link.id);
-                if (linkElement) { // IL CONTROLLO DI ESISTENZA CHE PREVIENE L'ERRORE
-                    // Costruzione dell'URL: arco119-en.html O arco119.html
+                if (linkElement) {
                     linkElement.href = `${link.base}${langSuffix}.html`;
-
-                    // Aggiornamento del testo
+                    
                     if (data.nav[link.key]) {
                         linkElement.textContent = data.nav[link.key];
                     }
-                } else {
-                    // Ignora questo warning sull'homepage (index.html)
-                    // console.warn(`[Nav Warning] Elemento di navigazione non trovato con ID: ${link.id}`);
-                }
+                } 
             });
         }
         // FINE AGGIORNAMENTO NAVIGAZIONE
 
         // AGGIORNAMENTO TESTATA (Titolo e Immagine)
         updateTextContent('pageTitle', pageData.pageTitle);
-        // FIX: Uso updateHTMLContent per consentire <strong> nell'H1
         updateHTMLContent('headerTitle', pageData.pageTitle);
 
-        // AGGIORNAMENTO IMMAGINE DI FONDO TESTATA (Usando l'ID corretto 'pageImage1')
+        // AGGIORNAMENTO IMMAGINE DI FONDO TESTATA
         const headerImage = document.getElementById('pageImage1');
         if (headerImage && pageData.imageSource1) {
             headerImage.src = pageData.imageSource1;
             headerImage.alt = pageData.pageTitle || "Immagine di testata";
         }
 
-
         // AGGIORNAMENTO DEL CONTENUTO (Testi principali)
-        // FIX: Uso updateHTMLContent per consentire <strong>, <p> ecc. nei testi
         updateHTMLContent('mainText', pageData.mainText || '');
         updateHTMLContent('mainText1', pageData.mainText1 || '');
         updateHTMLContent('mainText2', pageData.mainText2 || '');
@@ -339,11 +328,10 @@ async function loadContent(lang) {
         }
 
         // AGGIORNAMENTO AUDIO E BOTTONE
-        // Individua gli elementi solo quando necessario (sono globali, ma la ricerca qui garantisce null/elemento)
+        // Ricerca degli elementi audio *qui* per assicurare la presenza
         const currentAudioPlayer = document.getElementById('audioPlayer');
-        const currentPlayButton = document.getElementById('playAudio'); // Usa l'ID corretto 'playAudio'
+        const currentPlayButton = document.getElementById('playAudio'); 
 
-        // Controlla se gli elementi audio *esistono* sulla pagina (non sono null)
         if (currentAudioPlayer && currentPlayButton && pageData.audioSource) {
             if (!currentAudioPlayer.paused) {
                 currentAudioPlayer.pause();
@@ -406,29 +394,10 @@ const checkProximity = (position) => {
     const userLon = position.coords.longitude;
     const userLang = currentLang; // <-- Usa la variabile globale aggiornata
 
-    // Logica di reindirizzamento
+    // Logica di reindirizzamento (disattivata)
     /*
     for (const location of ARCO_LOCATIONS) {
-        const distance = calculateDistance(userLat, userLon, location.lat, location.lon);
- 
-        if (distance <= location.distanceThreshold) {
-            console.log(`Vicino a ${location.id}! Distanza: ${distance.toFixed(1)}m`);
- 
-            const currentPath = window.location.pathname;
- 
-            // 🔥 CORREZIONE: Converti l'ID del POI in minuscolo prima di costruire l'URL
-            const fileBaseName = location.id.toLowerCase();
-            let targetPage = `${fileBaseName}.html`;
- 
-            if (userLang !== 'it') {
-                targetPage = `${fileBaseName}-${userLang}.html`;
-            }
- 
-            if (!currentPath.includes(targetPage)) {
-                window.location.href = targetPage;
-            }
-            return;
-        }
+        // ...
     }
     */
 
@@ -492,7 +461,10 @@ function handleLanguageChange(event) {
 
         if (fileBase === '') fileBase = 'index';
 
-        const newPath = `${fileBase}-${newLang}.html`;
+        // L'homepage è 'index.html' o 'index-xx.html'
+        const newPath = (fileBase === 'index' && newLang === 'it') 
+            ? 'index.html' 
+            : `${fileBase}-${newLang}.html`;
 
         document.location.href = newPath;
     }
@@ -503,11 +475,8 @@ function handleLanguageChange(event) {
 // ASSEGNAZIONE EVENT LISTENER (Menu Hamburger, Pulsante Verde, Audio)
 // ===========================================
 
-// main.js - Sostituisci l'intera funzione initEventListeners
-
 function initEventListeners(currentLang) {
     const menuToggle = document.querySelector('.menu-toggle');
-    // 🔥 CORREZIONE: Usa l'ID corretto #navBarMain
     const navBarMain = document.getElementById('navBarMain');
     const body = document.body;
 
@@ -576,11 +545,11 @@ function initEventListeners(currentLang) {
     }
 
     // --- Logica Audio ---
+    // Ricerca locale e assegnazione a funzioni che accettano parametri
     const localAudioPlayer = document.getElementById('audioPlayer');
-    const localPlayButton = document.getElementById('playAudio'); // Usa l'ID corretto
+    const localPlayButton = document.getElementById('playAudio'); 
 
     if (localAudioPlayer && localPlayButton && !localPlayButton.dataset.listenerAttached) {
-        // Assegna gli event listener alle funzioni che useranno questi elementi
         localPlayButton.addEventListener('click', toggleAudioPlayback.bind(null, localAudioPlayer, localPlayButton));
         localAudioPlayer.addEventListener('ended', handleAudioEnded.bind(null, localAudioPlayer, localPlayButton));
         localPlayButton.dataset.listenerAttached = 'true';
@@ -599,9 +568,8 @@ function initEventListeners(currentLang) {
 // ===========================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. ASSEGNAZIONE DEGLI ELEMENTI DOM ALLE VARIABILI GLOBALI
-    audioPlayer = document.getElementById('audioPlayer');
-    playButton = document.getElementById('playAudio');
+    // 1. ASSEGNAZIONE DEGLI ELEMENTI DOM ALLE VARIABILI GLOBALI (Solo quelle rimaste)
+    // AudioPlayer e PlayButton NON sono più qui.
     nearbyPoiButton = document.getElementById('nearbyPoiButton');
     nearbyMenuPlaceholder = document.getElementById('nearbyMenuPlaceholder');
 
@@ -633,12 +601,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. INIZIALIZZA LA SELEZIONE LINGUA
     updateLanguageSelectorActiveState(currentLang);
 
-    // 4. CARICAMENTO CONTENUTO (maintext)
+    // 4. INIZIALIZZA GLI EVENT LISTENER (deve avvenire qui, prima del loadContent)
+    initEventListeners(currentLang);
+    
+    // 5. CARICAMENTO CONTENUTO (maintext)
+    // loadContent può ora usare gli elementi audio in modo sicuro, perché sono controllati all'interno.
     loadContent(currentLang);
 
-    // 5. AVVIA IL MONITORAGGIO GPS
+    // 6. AVVIA IL MONITORAGGIO GPS
     startGeolocation();
 
-    // 6. INIZIALIZZA GLI EVENT LISTENER
-    initEventListeners(currentLang);
 });
