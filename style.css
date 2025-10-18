@@ -1,4 +1,4 @@
-/* style.css - Versione Finale Completa con Doppio Menu Hamburger */
+/* style.css - Versione Finale Completa con Doppio Menu Hamburger e FIX Caricamento */
 
 /* -------------------- RESET & BASE -------------------- */
 body {
@@ -7,6 +7,7 @@ body {
     /* Spazio per l'header fisso */
     padding-top: 60px;
     background-color: #f4f4f4;
+    /* La tua logica di opacità: l'ho mantenuta, ma gestisce solo l'effetto fade */
     opacity: 0;
     transition: opacity 0.3s ease-in;
 }
@@ -137,8 +138,8 @@ body.menu-open {
 
 /* Stili specifici per i link (testo bianco senza sottolineatura) */
 #navBarMain .nav-bar-content ul li a {
-    color: white;             /* Testo in bianco */
-    text-decoration: none;    /* Rimuove la sottolineatura */
+    color: white; 			/* Testo in bianco */
+    text-decoration: none; 	/* Rimuove la sottolineatura */
     font-size: 1.2em;
     display: block;
     padding: 10px 0;
@@ -334,3 +335,48 @@ body.menu-open {
     line-height: 1.4;
     text-align: center;
 }
+
+/* =========================================== */
+/* INIZIO BLOCCO: GESTIONE CARICAMENTO PAGINA (SOLUZIONE AL BLOCCO) */
+/* =========================================== */
+
+/* 1. Stile dell'overlay di caricamento (visibile di default) */
+/* Questo copre lo schermo con un background bianco e centra il messaggio */
+#loading-message {
+    position: fixed; /* Essenziale per coprire l'intera finestra */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    z-index: 10000; /* Assicurati che sia sopra ogni altro elemento */
+    display: flex; /* Centra il testo "Caricamento in corso..." */
+    align-items: center;
+    justify-content: center;
+    /* Aggiungo una transizione per un effetto di dissolvenza quando sparisce */
+    transition: opacity 0.3s ease-out, visibility 0s 0.3s; 
+}
+
+/* 2. Nascondi il messaggio di caricamento quando il JS è pronto */
+/* Quando body ha la classe 'content-loaded', questo elemento sparisce. */
+body.content-loaded #loading-message {
+    opacity: 0; /* Dissolvenza */
+    visibility: hidden; /* Nasconde l'elemento dopo la dissolvenza */
+    /* display: none; è un'alternativa più immediata se non vuoi la dissolvenza */
+}
+
+/* 3. Nascondi il contenuto principale dell'app all'inizio */
+/* Questo impedisce che l'app sia visibile per un istante prima che il JS sia pronto */
+#app-wrapper {
+    display: none; 
+}
+
+/* 4. Mostra il contenuto principale quando il JS è pronto */
+/* body.content-loaded è la condizione per mostrare l'app */
+body.content-loaded #app-wrapper {
+    display: block; 
+}
+
+/* =========================================== */
+/* FINE BLOCCO: GESTIONE CARICAMENTO PAGINA */
+/* =========================================== */
