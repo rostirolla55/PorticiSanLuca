@@ -2,7 +2,7 @@
 // DICHIARAZIONE VARIABILI GLOBALI (NECESSARIE)
 // ====================================================================
 const LANGUAGES = ['it', 'en', 'fr', 'es']; // Lista delle lingue supportate per le bandiere
-const LAST_LANG_KEY = 'last_selected_lang'; // Chiave per salvare l'ultima lingua in localStorage
+const LAST_LANG_KEY = 'porticiSanLuca_lastLang'; // Chiave per salvare l'ultima lingua in localStorage
 let currentLang = 'it'; // Lingua corrente, inizializzata a 'it'
 // RIMOZIONE DI audioPlayer e playButton dalla dichiarazione globale
 let nearbyPoiButton, nearbyMenuPlaceholder; // Variabili per elementi DOM
@@ -567,48 +567,62 @@ function initEventListeners(currentLang) {
 // PUNTO DI INGRESSO (DOM LOADED)
 // ===========================================
 
+// ===========================================
+// PUNTO DI INGRESSO (DOM LOADED)
+// ===========================================
+
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. ASSEGNAZIONE DEGLI ELEMENTI DOM ALLE VARIABILI GLOBALI (Solo quelle rimaste)
-    // AudioPlayer e PlayButton NON sono più qui.
+    // 1. ASSEGNAZIONE DELLE VARIABILI GLOBALI
     nearbyPoiButton = document.getElementById('nearbyPoiButton');
     nearbyMenuPlaceholder = document.getElementById('nearbyMenuPlaceholder');
 
-    // 2. DETERMINAZIONE LINGUA CORRENTE (LOGICA CORRETTA)
+    // 2. DETERMINAZIONE LINGUA CORRENTE
+    // Qui recuperiamo la lingua finale in modo che 'currentLang' sia corretta.
+    let finalLang = 'it'; // Default di base
 
-    let finalLang = 'it'; // 🥇 Default di base: Italiano
-
-    // A) Controlla se una lingua è stata salvata dall'ultima visita
+    // A) Controlla la lingua salvata
     const savedLang = localStorage.getItem(LAST_LANG_KEY);
     if (savedLang && LANGUAGES.includes(savedLang)) {
         finalLang = savedLang;
     }
 
-    // B) Controlla la lingua nell'URL. Se presente, prevale sulla persistenza.
+    // B) Controlla la lingua nell'URL (prevale sulla persistenza)
+    // Questo è fondamentale per sapere quale lingua caricare
     const urlPath = document.location.pathname;
     const langMatch = urlPath.match(/-([a-z]{2})\.html/);
     if (langMatch && LANGUAGES.includes(langMatch[1])) {
-        // Se si naviga a un URL specifico (es. index-fr.html), usiamo quella lingua
         finalLang = langMatch[1];
-        // E salviamo la scelta per la prossima navigazione interna (es. clic su POI)
         localStorage.setItem(LAST_LANG_KEY, finalLang);
     }
 
     // Imposta la lingua globale
     currentLang = finalLang;
-    document.documentElement.lang = currentLang; // Aggiorna il tag <html>
+    document.documentElement.lang = currentLang;
 
+    // 🔥 Tutta la logica di reindirizzamento per index.html è stata rimossa,
+    // poiché viene gestita dallo script in linea del file index.html.
 
     // 3. INIZIALIZZA LA SELEZIONE LINGUA
     updateLanguageSelectorActiveState(currentLang);
 
-    // 4. INIZIALIZZA GLI EVENT LISTENER (deve avvenire qui, prima del loadContent)
+    // 4. INIZIALIZZA GLI EVENT LISTENER
+    // Passiamo currentLang per coerenza, anche se initEventListeners non lo usa direttamente.
     initEventListeners(currentLang);
     
     // 5. CARICAMENTO CONTENUTO (maintext)
-    // loadContent può ora usare gli elementi audio in modo sicuro, perché sono controllati all'interno.
+    // loadContent ora caricherà il contenuto del JSON corretto.
     loadContent(currentLang);
 
     // 6. AVVIA IL MONITORAGGIO GPS
     startGeolocation();
+
+    // Invio dati a Google Analytics dopo che il contenuto è caricato
+    if (typeof gtag === 'function') {
+        gtag('event', 'page_view', {
+            'page_title': document.title,
+            'page_path': window.location.pathname,
+            'lingua_pagina': currentLang
+        });
+    }
 
 });
