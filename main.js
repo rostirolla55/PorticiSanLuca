@@ -235,84 +235,75 @@ async function loadContent(lang) {
             document.body.classList.add('content-loaded');
             return;
         }
-
         // AGGIORNAMENTO NAVIGAZIONE (Assicurati che l'HTML sia corretto per 'navHome', ecc.)
         if (data.nav) {
-            const suffix = `-${lang}.html`;
-            // AGGIORNA HREF E TESTO PER TUTTI I LINK DEL MENU PRINCIPALE
+            // Determina il suffisso corretto. Per 'it', usiamo '' (es. index.html)
+            const langSuffix = lang === 'it' ? '' : `-${lang}`;
 
-            // 🔥 CORREZIONE: Tutti gli ID sono ora in minuscolo (navarco119, navarco126b, etc.)
-            document.getElementById('navarco119').href = `arco119${suffix}`;
-            document.getElementById('navarco126b').href = `arco126b${suffix}`;
-            document.getElementById('navarco132a').href = `arco132a${suffix}`;
-            document.getElementById('navarco133a').href = `arco133a${suffix}`;
-            document.getElementById('navarco136b').href = `arco136b${suffix}`;
-            document.getElementById('navarco142a').href = `arco142a${suffix}`;
-            document.getElementById('navarco143c').href = `arco143c${suffix}`;
-            document.getElementById('navarco148').href = `arco148${suffix}`;
-            document.getElementById('navarco163').href = `arco163${suffix}`;
-            document.getElementById('navarco171b').href = `arco171b${suffix}`;
-            document.getElementById('navarco180').href = `arco180${suffix}`;
-            document.getElementById('navarco182').href = `arco182${suffix}`;
-            document.getElementById('navarco183').href = `arco183${suffix}`;
-            document.getElementById('navarco186b').href = `arco186b${suffix}`;
-            document.getElementById('navarco188b').href = `arco188b${suffix}`;
-            document.getElementById('navarco190').href = `arco190${suffix}`;
-            document.getElementById('navarco192c').href = `arco192c${suffix}`;
-            document.getElementById('navarco201a').href = `arco201a${suffix}`;
-            document.getElementById('navarco202a').href = `arco202a${suffix}`;
-            document.getElementById('navarco203b').href = `arco203b${suffix}`;
-            document.getElementById('navarco208b').href = `arco208b${suffix}`;
-            document.getElementById('navarco211b').href = `arco211b${suffix}`;
-            document.getElementById('navarco218b').href = `arco218b${suffix}`;
-            document.getElementById('navarco249a').href = `arco249a${suffix}`;
-            document.getElementById('navarco252a').href = `arco252a${suffix}`;
-            document.getElementById('navarco256').href = `arco256${suffix}`;
-            document.getElementById('navarco282a').href = `arco282a${suffix}`;
-            document.getElementById('navarco283a').href = `arco283a${suffix}`;
-            document.getElementById('navarco306b').href = `arco306b${suffix}`;
-            document.getElementById('navarco307a').href = `arco307a${suffix}`;
-            document.getElementById('navarco53c').href = `arco53c${suffix}`;
-            document.getElementById('navHome').href = `index${suffix}`;
-            document.getElementById('navlapide1').href = `lapide1${suffix}`;
-            document.getElementById('navlapide2').href = `lapide2${suffix}`;
-            document.getElementById('navpsontuoso').href = `psontuoso${suffix}`;
-            updateTextContent('navarco119', data.nav.navARCO119);
-            updateTextContent('navarco126b', data.nav.navARCO126B);
-            updateTextContent('navarco132a', data.nav.navARCO132A);
-            updateTextContent('navarco133a', data.nav.navARCO133A);
-            updateTextContent('navarco136b', data.nav.navARCO136B);
-            updateTextContent('navarco142a', data.nav.navARCO142A);
-            updateTextContent('navarco143c', data.nav.navARCO143C);
-            updateTextContent('navarco148', data.nav.navARCO148);
-            updateTextContent('navarco163', data.nav.navARCO163);
-            updateTextContent('navarco171b', data.nav.navARCO171B);
-            updateTextContent('navarco180', data.nav.navARCO180);
-            updateTextContent('navarco182', data.nav.navARCO182);
-            updateTextContent('navarco183', data.nav.navARCO183);
-            updateTextContent('navarco186b', data.nav.navARCO186B);
-            updateTextContent('navarco188b', data.nav.navARCO188B);
-            updateTextContent('navarco190', data.nav.navARCO190);
-            updateTextContent('navarco192c', data.nav.navARCO192C);
-            updateTextContent('navarco201a', data.nav.navARCO201A);
-            updateTextContent('navarco202a', data.nav.navARCO202A);
-            updateTextContent('navarco203b', data.nav.navARCO203B);
-            updateTextContent('navarco208b', data.nav.navARCO208B);
-            updateTextContent('navarco211b', data.nav.navARCO211B);
-            updateTextContent('navarco218b', data.nav.navARCO218B);
-            updateTextContent('navarco249a', data.nav.navARCO249A);
-            updateTextContent('navarco252a', data.nav.navARCO252A);
-            updateTextContent('navarco256', data.nav.navARCO256);
-            updateTextContent('navarco282a', data.nav.navARCO282A);
-            updateTextContent('navarco283a', data.nav.navARCO283A);
-            updateTextContent('navarco306b', data.nav.navARCO306B);
-            updateTextContent('navarco307a', data.nav.navARCO307A);
-            updateTextContent('navarco53c', data.nav.navARCO53C);
-            updateTextContent('navHome', data.nav.navHome);
-            updateTextContent('navlapide1', data.nav.navLAPIDE1);
-            updateTextContent('navlapide2', data.nav.navLAPIDE2);
-            updateTextContent('navpsontuoso', data.nav.navPSONTUOSO);
+            // Lista di tutti gli ID del menu che devono essere aggiornati
+            const navLinksData = [
+                { id: 'navarco119', key: 'navARCO119', base: 'arco119' },
+                { id: 'navarco126b', key: 'navARCO126B', base: 'arco126b' },
+                { id: 'navarco132a', key: 'navARCO132A', base: 'arco132a' },
+                { id: 'navarco133a', key: 'navARCO133A', base: 'arco133a' },
+                { id: 'navarco136b', key: 'navARCO136B', base: 'arco136b' },
+                { id: 'navarco142a', key: 'navARCO142A', base: 'arco142a' },
+                { id: 'navarco143c', key: 'navARCO143C', base: 'arco143c' },
+                { id: 'navarco148', key: 'navARCO148', base: 'arco148' },
+                { id: 'navarco163', key: 'navARCO163', base: 'arco163' },
+                { id: 'navarco171b', key: 'navARCO171B', base: 'arco171b' },
+                { id: 'navarco180', key: 'navARCO180', base: 'arco180' },
+                { id: 'navarco182', key: 'navARCO182', base: 'arco182' },
+                { id: 'navarco183', key: 'navARCO183', base: 'arco183' },
+                { id: 'navarco186b', key: 'navARCO186B', base: 'arco186b' },
+                { id: 'navarco188b', key: 'navARCO188B', base: 'arco188b' },
+                { id: 'navarco190', key: 'navARCO190', base: 'arco190' },
+                { id: 'navarco192c', key: 'navARCO192C', base: 'arco192c' },
+                { id: 'navarco201a', key: 'navARCO201A', base: 'arco201a' },
+                { id: 'navarco202a', key: 'navARCO202A', base: 'arco202a' },
+                { id: 'navarco203b', key: 'navARCO203B', base: 'arco203b' },
+                { id: 'navarco208b', key: 'navARCO208B', base: 'arco208b' },
+                { id: 'navarco211b', key: 'navARCO211B', base: 'arco211b' },
+                { id: 'navarco218b', key: 'navARCO218B', base: 'arco218b' },
+                { id: 'navarco249a', key: 'navARCO249A', base: 'arco249a' },
+                { id: 'navarco252a', key: 'navARCO252A', base: 'arco252a' },
+                { id: 'navarco256', key: 'navARCO256', base: 'arco256' },
+                { id: 'navarco282a', key: 'navARCO282A', base: 'arco282a' },
+                { id: 'navarco283a', key: 'navARCO283A', base: 'arco283a' },
+                { id: 'navarco306b', key: 'navARCO306B', base: 'arco306b' },
+                { id: 'navarco307a', key: 'navARCO307A', base: 'arco307a' },
+                { id: 'navarco53c', key: 'navARCO53C', base: 'arco53c' },
+                // Link pagine speciali
+                { id: 'navHome', key: 'navHome', base: 'index' },
+                { id: 'navlapide1', key: 'navLAPIDE1', base: 'lapide1' },
+                { id: 'navlapide2', key: 'navLAPIDE2', base: 'lapide2' },
+                { id: 'navpsontuoso', key: 'navPSONTUOSO', base: 'psontuoso' }
+            ];
+
+            // Aggiorna HREF e Testo per tutti i link del menu principale
+            navLinksData.forEach(link => {
+                const linkElement = document.getElementById(link.id);
+                if (linkElement) { // <-- IL CONTROLLO DI ESISTENZA CHE PREVIENE L'ERRORE
+                    // Costruzione dell'URL: arco119-en.html O arco119.html
+                    linkElement.href = `${link.base}${langSuffix}.html`;
+
+                    // Aggiornamento del testo
+                    if (data.nav[link.key]) {
+                        linkElement.textContent = data.nav[link.key];
+                    }
+                } else {
+                    // Se vedi questo, devi aggiungere l'ID mancante al tuo HTML
+                    console.warn(`[Nav Warning] Elemento di navigazione non trovato con ID: ${link.id}`);
+                }
+            });
+
+            // 🔥 MOLTO IMPORTANTE: Rimuovi qui TUTTI i vecchi getElementById e updateTextContent
+            // che aggiornavano i link di navigazione (navarcoXXX e navHome, navlapide, ecc.).
         }
+
+
+        // AGGIORNAMENTO NAVIGAZIONE (Assicurati che l'HTML sia corretto per 'navHome', ecc.)
+
 
         // AGGIORNAMENTO TESTATA (Titolo e Immagine)
         updateTextContent('pageTitle', pageData.pageTitle);
@@ -436,7 +427,7 @@ const checkProximity = (position) => {
         }
     }
     */
-   
+
     // Logica per aggiornare il menu POI del pulsante verde
     if (nearbyPoiButton) {
         nearbyPoiButton.style.display = 'block';
@@ -444,7 +435,7 @@ const checkProximity = (position) => {
             updatePoiMenu(ARCO_LOCATIONS, userLat, userLon, userLang);
         }
     }
-}; 
+};
 
 // Funzione di gestione degli errori GPS
 const handleGeolocationError = (error) => {
