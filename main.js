@@ -116,7 +116,7 @@ const formatDistance = (distance) => {
 
 function updatePoiMenu(locations, userLat, userLon, userLang) {
     const nearbyLocations = [];
-    const minProximity = 500; // 500 metri
+    const minProximity = 50; // 50 metri
 
     // 1. Calcola la distanza e filtra
     locations.forEach(location => {
