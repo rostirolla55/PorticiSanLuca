@@ -1,20 +1,16 @@
 /* style.css - Versione Finale Completa con Doppio Menu Hamburger e FIX Caricamento */
 
-/* -------------------- RESET & BASE -------------------- */
+/* -------------------- RESET & BASE (AGGIORNATO) -------------------- */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     /* Spazio per l'header fisso */
     padding-top: 60px;
     background-color: #f4f4f4;
-    /* La tua logica di opacità: l'ho mantenuta, ma gestisce solo l'effetto fade */
-    opacity: 0;
-    transition: opacity 0.3s ease-in;
+    /* RIMOSSO: opacity: 0; e transition: opacity... - Ora gestiti da #app-wrapper */
 }
 
-body.content-loaded {
-    opacity: 1;
-}
+/* RIMOSSO: body.content-loaded { opacity: 1; } - Ora gestito da #app-wrapper */
 
 .main-header {
     position: fixed;
@@ -353,28 +349,31 @@ body.menu-open {
     display: flex; /* Centra il testo "Caricamento in corso..." */
     align-items: center;
     justify-content: center;
-    /* Aggiungo una transizione per un effetto di dissolvenza quando sparisce */
-    transition: opacity 0.3s ease-out, visibility 0s 0.3s; 
 }
 
-/* 2. Nascondi il messaggio di caricamento quando il JS è pronto */
-/* Quando body ha la classe 'content-loaded', questo elemento sparisce. */
+/* 2. Nascondi il messaggio di caricamento quando il JS è pronto (immediato) */
+/* body.content-loaded è la condizione che fa sparire l'overlay di caricamento */
 body.content-loaded #loading-message {
-    opacity: 0; /* Dissolvenza */
-    visibility: hidden; /* Nasconde l'elemento dopo la dissolvenza */
-    /* display: none; è un'alternativa più immediata se non vuoi la dissolvenza */
-}
-
-/* 3. Nascondi il contenuto principale dell'app all'inizio */
-/* Questo impedisce che l'app sia visibile per un istante prima che il JS sia pronto */
-#app-wrapper {
+    /* Uso 'display: none' per assicurare che sparisca e non blocchi interazioni */
     display: none; 
 }
 
-/* 4. Mostra il contenuto principale quando il JS è pronto */
+
+/* 3. Nascondi il contenuto principale dell'app all'inizio e gestisci il fade-in */
+/* Questo contenitore (#app-wrapper) ha ora la responsabilità dell'effetto di dissolvenza. */
+#app-wrapper {
+    /* Nascosto e pronto per la transizione di fade-in */
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+    /* Mettiamo subito display: block per non interferire con l'opacità, 
+       dato che è il #loading-message a nascondere *tutto* all'inizio. */
+    display: block;
+}
+
+/* 4. Mostra il contenuto principale (fade-in) quando il JS è pronto */
 /* body.content-loaded è la condizione per mostrare l'app */
 body.content-loaded #app-wrapper {
-    display: block; 
+    opacity: 1; /* Il contenuto svanisce (fade-in) */
 }
 
 /* =========================================== */
