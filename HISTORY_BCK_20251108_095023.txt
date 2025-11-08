@@ -1,0 +1,50 @@
+C:\Users\User\Documents\GitHub\PorticiSanLuca\text_files\it_Arco135_mainText.txt
+cls
+cd text_files
+findstr  '"' *.txt 
+findstr  "\"" *.txt 
+esegui_all_update_json
+cd  ..
+cls
+esegui_all_update_json
+S
+esegui_all_update_json
+S
+cd text_files
+dir *.py
+dir *.bat
+convert_all_texts.bat
+cd ..
+esegui_all_update_json.bat
+S
+cd text_files
+dir
+dir *.txt /b
+it_Arco140_mainText.txt
+cls
+help findstr
+cls
+convert_all_texts.bat
+cd ..
+esegui_all_update_json.bat
+S
+CALL update_json.bat it Arco133.mainText it_Arco135_mainText.txt
+CALL update_json.bat it Arco135.mainText it_Arco135_mainText.txt
+CALL update_json.bat it Arco133.mainText it_Arco133_mainText.txt
+cd text_files
+convert_all_texts.bat
+cd ..
+CALL update_json.bat it Arco133.mainText it_Arco133_mainText.txt
+esegui_all_update_json.bat
+S
+cd text_files
+convert_all_texts.bat
+cd ..
+esegui_all_update_json.bat
+S
+cd text_files
+convert_all_texts.bat
+cd ..
+esegui_all_update_json.bat
+S
+esci
