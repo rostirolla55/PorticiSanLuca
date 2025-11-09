@@ -16,7 +16,6 @@ let nearbyPoiButton, nearbyMenuPlaceholder;
 // in C:\Users\User\Documents\salvataggi_github\ARCO_LOCATIONS_PORTICISANLUCA_js.txt
 const ARCO_LOCATIONS = [
     // I tuoi dati GPS reali di PORTICISANLUCA
-// ** MARKER: START NEW POIS **
     { id: 'Arco', lat: 44.4887916666667, lon: 11.3164027777778, distanceThreshold: 15 },
     { id: 'Arco119', lat: 44.4899416666667, lon: 11.3221583333333, distanceThreshold: 15 },
     { id: 'Arco126', lat: 44.4898138888889, lon: 11.3217194444444, distanceThreshold: 15 },
@@ -286,7 +285,6 @@ async function loadContent(lang) {
                 { id: 'navlapide1', key: 'navLAPIDE1', base: 'lapide1' },
                 { id: 'navlapide2', key: 'navLAPIDE2', base: 'lapide2' },
                 { id: 'navpsontuoso', key: 'navPSONTUOSO', base: 'psontuoso' }
-// ** MARKER: START NEW NAV LINKS **
             ];
 
             // Aggiorna HREF e Testo per tutti i link del menu principale
