@@ -429,7 +429,7 @@ const checkProximity = (position, allPageData) => {
         nearbyPoiButton.style.display = 'block';
         if (typeof updatePoiMenu === 'function') {
             // PASSAGGIO CHIAVE: Passa allPageData a updatePoiMenu
-            updatePoiMenu(POIS_LOCATIONS, userLat, userLon, userLang, allPageData);
+            updatePoiMenu(ARCO_LOCATIONS, userLat, userLon, userLang, allPageData);
         }
     }
 };
