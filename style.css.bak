@@ -204,10 +204,8 @@ body.menu-open {
     flex-direction: column;
 }
 
-/* Trova la regola esistente per .poi-links li a */
-.poi-links li a,
-.poi-links li a:visited { /* <-- ASSOLUTAMENTE CRITICO: AGGIUNGI :visited */
-    color: #f4f4f4; /* Colore chiaro per NON visitati E visitati */
+.poi-links li a {
+    color: #f4f4f4;
     text-decoration: none;
     font-size: 1em;
     display: block;
@@ -215,12 +213,6 @@ body.menu-open {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Applichiamo lo stesso colore chiaro anche allo stato hover/focus */
-.poi-links li a:hover,
-.poi-links li a:focus {
-    color: #00ff00; /* Il tuo colore hover originale (verde brillante) */
-    background-color: #444; /* Leggero sfondo per evidenziare */
-}
 
 /* -------------------- SELETTORE LINGUA -------------------- */
 

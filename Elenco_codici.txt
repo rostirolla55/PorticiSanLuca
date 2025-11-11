@@ -1,0 +1,23 @@
+C:\Users\User\Documents\GitHub\PorticiSanLuca\add_page.py
+C:\Users\User\Documents\GitHub\PorticiSanLuca\docx_to_html_base.py
+C:\Users\User\Documents\GitHub\PorticiSanLuca\extract_gps.py
+C:\Users\User\Documents\GitHub\PorticiSanLuca\update_json.py
+C:\Users\User\Documents\GitHub\PorticiSanLuca\update_json_image.py
+
+C:\Users\User\Documents\GitHub\PorticiSanLuca\text_files\sanitize_text.py
+
+C:\Users\User\Documents\GitHub\PorticiSanLuca\genera_json_4lingue.rex
+
+C:\Users\User\Documents\GitHub\PorticiSanLuca\add_template.bat
+C:\Users\User\Documents\GitHub\PorticiSanLuca\copia_pagina.bat
+C:\Users\User\Documents\GitHub\PorticiSanLuca\copia_tutte_pagina.bat
+C:\Users\User\Documents\GitHub\PorticiSanLuca\esegui_all_update_json.bat
+C:\Users\User\Documents\GitHub\PorticiSanLuca\get_coords_from_img.bat {extract_gps.py}
+C:\Users\User\Documents\GitHub\PorticiSanLuca\update_json.bat {update_json.py}
+C:\Users\User\Documents\GitHub\PorticiSanLuca\update_json_image.bat {update_json_image.py}
+C:\Users\User\Documents\GitHub\PorticiSanLuca\vai.bat
+
+C:\Users\User\Documents\GitHub\PorticiSanLuca\text_files\convert_all_texts.bat [text_files\sanitize_text.py]
+C:\Users\User\Documents\GitHub\PorticiSanLuca\text_files\htmltojson.bat [text_files\sanitize_text.py]
+
+C:\Users\User\Documents\GitHub\PorticiSanLuca\Utilities\salvag.bat

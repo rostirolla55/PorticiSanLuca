@@ -1,0 +1,18 @@
+goluca
+dir *.bat
+cat update_json.bat
+dir *.bat
+cat esegui_all_update_json.bat
+cat update_json.bat
+dir Utilities
+touch extract_gps.py
+extract_gps.py
+dir /s /b arcoxy*
+cd public\images
+cp C:\Users\User\Documents\GitHub\PorticiSanLuca\Assets\images\arcoxy.jpg .
+cd ..\..
+get_coords_from_img.bat
+temp_coords.txt
+temp_coords.err
+get_coords_from_img.bat
+esci
