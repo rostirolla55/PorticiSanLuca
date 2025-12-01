@@ -2,12 +2,12 @@
     "home": {
         "pageTitle": "Benvenuti ai Portici di San Luca",
         "mainText": "<p>Storia:</p> <p><br /><br /></p> <p>La Chiesa in origine dedicata a San Bartolomeo, ospita un dipinto raffigurante la Madonna col Bambino, l&rsquo;opera &egrave; stata attribuita al pittore bolognese del &lsquo;400 Michele di Matteo. La tavola viene considerata miracolosa sin dal suo rinvenimento, infatti, venne ritrovata completamente integra, sotto le macerie di un edificio distrutto dalle fiamme. Altri prodigi si attribuiscono alla tavola, come la restituzione della vista ad un cieco e l&rsquo;aiuto offerto ai Bolognesi durante un lungo periodo di siccit&agrave; avvenuto nel Cinquecento (da qui la dedica alla Madonna della Pioggia).</p> <p><br /><br /></p> <p>Santuario:</p> <p><br /><br /></p> <p>Inizialmente (1449) l&rsquo;immagine miracolosa venne collocata al primo piano dell&rsquo;oratorio. Qualche secolo dopo (1732) la Chiesa venne ricostruita e la tavola venne collocata nella nicchia sopra l&rsquo;altare, lo stesso anno venne celebrata la processione e venne presenziata dal Cardinale Lambertini, futuro Papa Benedetto XIV.</p> <p><br /><br /></p> <p>La facciata dell&rsquo;edificio &egrave; un alto portico colonnato. L&rsquo;interno &egrave; a navata singola coperta da una volta a botte decorata con affreschi, e con quattro cappelle di modeste dimensioni ai lati. Le decorazioni che adornano sia le cappelle che l&rsquo;altare maggiore, sono figlie dei restauri del 1929-31.</p> <p><br /><br /></p> <p>Nella prima cappella a sinistra &egrave; conservato il dipinto dal pittore e incisore bolognese Agostino Carracci, rappresentante l&rsquo;Adorazione dei Pastori, purtroppo l&rsquo;opera &egrave; stata danneggiata da un incendio divampato durante la Seconda Guerra Mondiale. Nella cappella opposta, si trova il dipinto cinquecentesco attribuito a Lorenzo Sabbatini raffigurante la Madonna col Bambino in trono, fra le Sante Caterina e Lucia.</p> <p><br /><br /></p> <p>Nel Santuario viene anche conservata la veste da infermiere appartenuta a San Camillo de Lellis, che nel 1575, fond&ograve; l&rsquo;ordine dei Camilliani. A sinistra rispetto all&rsquo;altare maggiore &egrave; posta la Statua di origine duecentesca rappresentante la Madonna della Provvidenza, conosciuta anche come Madonna del Serraglio.</p>",
-        "mainText1": "Sono Ruggero e sono la tua guida camminando sotto i portici",
+        "mainText1": "it_home_maintext1.html",
         "mainText2": "",
         "mainText3": "",
         "mainText4": "",
         "mainText5": "",
-        "imageSource1": "Assets/images/Meloncello.jpg",
+        "imageSource1": "Meloncello.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -17,7 +17,7 @@
         "lastUpdate": "01-10-2025",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "audioSource": "Assets/Audio/it/Home.mp3",
+        "audioSource": "it/Home.mp3",
         "maintext": "<p>Storia:</p> <p><br /><br /></p> <p>La Chiesa in origine dedicata a San Bartolomeo, ospita un dipinto raffigurante la Madonna col Bambino, l&rsquo;opera &egrave; stata attribuita al pittore bolognese del &lsquo;400 Michele di Matteo. La tavola viene considerata miracolosa sin dal suo rinvenimento, infatti, venne ritrovata completamente integra, sotto le macerie di un edificio distrutto dalle fiamme. Altri prodigi si attribuiscono alla tavola, come la restituzione della vista ad un cieco e l&rsquo;aiuto offerto ai Bolognesi durante un lungo periodo di siccit&agrave; avvenuto nel Cinquecento (da qui la dedica alla Madonna della Pioggia).</p> <p><br /><br /></p> <p>Santuario:</p> <p><br /><br /></p> <p>Inizialmente (1449) l&rsquo;immagine miracolosa venne collocata al primo piano dell&rsquo;oratorio. Qualche secolo dopo (1732) la Chiesa venne ricostruita e la tavola venne collocata nella nicchia sopra l&rsquo;altare, lo stesso anno venne celebrata la processione e venne presenziata dal Cardinale Lambertini, futuro Papa Benedetto XIV.</p> <p><br /><br /></p> <p>La facciata dell&rsquo;edificio &egrave; un alto portico colonnato. L&rsquo;interno &egrave; a navata singola coperta da una volta a botte decorata con affreschi, e con quattro cappelle di modeste dimensioni ai lati. Le decorazioni che adornano sia le cappelle che l&rsquo;altare maggiore, sono figlie dei restauri del 1929-31.</p> <p><br /><br /></p> <p>Nella prima cappella a sinistra &egrave; conservato il dipinto dal pittore e incisore bolognese Agostino Carracci, rappresentante l&rsquo;Adorazione dei Pastori, purtroppo l&rsquo;opera &egrave; stata danneggiata da un incendio divampato durante la Seconda Guerra Mondiale. Nella cappella opposta, si trova il dipinto cinquecentesco attribuito a Lorenzo Sabbatini raffigurante la Madonna col Bambino in trono, fra le Sante Caterina e Lucia.</p> <p><br /><br /></p> <p>Nel Santuario viene anche conservata la veste da infermiere appartenuta a San Camillo de Lellis, che nel 1575, fond&ograve; l&rsquo;ordine dei Camilliani. A sinistra rispetto all&rsquo;altare maggiore &egrave; posta la Statua di origine duecentesca rappresentante la Madonna della Provvidenza, conosciuta anche come Madonna del Serraglio.</p>"
     },
     "nav": {
@@ -68,7 +68,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco119.jpg",
+        "imageSource1": "Arco119.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -76,7 +76,7 @@
         "sourceText": "",
         "creationDate": "30-10-2025",
         "lastUpdate": "31-10-2025",
-        "audioSource": "Assets/Audio/it/SanLuca.mp3",
+        "audioSource": "it/SanLuca.mp3",
         "maintext": "<p>Storia:</p> <p><br /><br /></p> <p>La Chiesa in origine dedicata a San Bartolomeo, ospita un dipinto raffigurante la Madonna col Bambino, l&rsquo;opera &egrave; stata attribuita al pittore bolognese del &lsquo;400 Michele di Matteo. La tavola viene considerata miracolosa sin dal suo rinvenimento, infatti, venne ritrovata completamente integra, sotto le macerie di un edificio distrutto dalle fiamme. Altri prodigi si attribuiscono alla tavola, come la restituzione della vista ad un cieco e l&rsquo;aiuto offerto ai Bolognesi durante un lungo periodo di siccit&agrave; avvenuto nel Cinquecento (da qui la dedica alla Madonna della Pioggia).</p> <p><br /><br /></p> <p>Santuario:</p> <p><br /><br /></p> <p>Inizialmente (1449) l&rsquo;immagine miracolosa venne collocata al primo piano dell&rsquo;oratorio. Qualche secolo dopo (1732) la Chiesa venne ricostruita e la tavola venne collocata nella nicchia sopra l&rsquo;altare, lo stesso anno venne celebrata la processione e venne presenziata dal Cardinale Lambertini, futuro Papa Benedetto XIV.</p> <p><br /><br /></p> <p>La facciata dell&rsquo;edificio &egrave; un alto portico colonnato. L&rsquo;interno &egrave; a navata singola coperta da una volta a botte decorata con affreschi, e con quattro cappelle di modeste dimensioni ai lati. Le decorazioni che adornano sia le cappelle che l&rsquo;altare maggiore, sono figlie dei restauri del 1929-31.</p> <p><br /><br /></p> <p>Nella prima cappella a sinistra &egrave; conservato il dipinto dal pittore e incisore bolognese Agostino Carracci, rappresentante l&rsquo;Adorazione dei Pastori, purtroppo l&rsquo;opera &egrave; stata danneggiata da un incendio divampato durante la Seconda Guerra Mondiale. Nella cappella opposta, si trova il dipinto cinquecentesco attribuito a Lorenzo Sabbatini raffigurante la Madonna col Bambino in trono, fra le Sante Caterina e Lucia.</p> <p><br /><br /></p> <p>Nel Santuario viene anche conservata la veste da infermiere appartenuta a San Camillo de Lellis, che nel 1575, fond&ograve; l&rsquo;ordine dei Camilliani. A sinistra rispetto all&rsquo;altare maggiore &egrave; posta la Statua di origine duecentesca rappresentante la Madonna della Provvidenza, conosciuta anche come Madonna del Serraglio.</p>"
     },
     "arco119": {
@@ -89,7 +89,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco119.jpg",
+        "imageSource1": "Arco119.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -97,7 +97,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco119.mp3"
+        "audioSource": "it/Arco119.mp3"
     },
     "arco126b": {
         "pageTitle": "arco126b - Portico di San Luca",
@@ -109,7 +109,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco126b.jpg",
+        "imageSource1": "Arco126b.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -117,7 +117,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco126b.mp3"
+        "audioSource": "it/Arco126b.mp3"
     },
     "arco132a": {
         "pageTitle": "arco132a - Portico di San Luca",
@@ -129,7 +129,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco132a.jpg",
+        "imageSource1": "Arco132a.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -137,7 +137,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco132a.mp3"
+        "audioSource": "it/Arco132a.mp3"
     },
     "arco133a": {
         "pageTitle": "arco133a - Portico di San Luca",
@@ -149,7 +149,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco133a.jpg",
+        "imageSource1": "Arco133a.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -157,7 +157,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco133a.mp3"
+        "audioSource": "it/Arco133a.mp3"
     },
     "arco136b": {
         "pageTitle": "arco136b - Portico di San Luca",
@@ -169,7 +169,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco136b.jpg",
+        "imageSource1": "Arco136b.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -177,7 +177,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco136b.mp3"
+        "audioSource": "it/Arco136b.mp3"
     },
     "arco142a": {
         "pageTitle": "arco142a - Portico di San Luca",
@@ -189,7 +189,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco142a.jpg",
+        "imageSource1": "Arco142a.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -197,7 +197,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco142a.mp3"
+        "audioSource": "it/Arco142a.mp3"
     },
     "arco143c": {
         "pageTitle": "arco143c - Portico di San Luca",
@@ -209,7 +209,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco143c.jpg",
+        "imageSource1": "Arco143c.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -217,7 +217,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco143c.mp3"
+        "audioSource": "it/Arco143c.mp3"
     },
     "arco148": {
         "pageTitle": "arco148 - Portico di San Luca",
@@ -229,7 +229,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco148.jpg",
+        "imageSource1": "Arco148.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -237,7 +237,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco148.mp3"
+        "audioSource": "it/Arco148.mp3"
     },
     "arco163": {
         "pageTitle": "arco163 - Portico di San Luca",
@@ -249,7 +249,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco163.jpg",
+        "imageSource1": "Arco163.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -257,7 +257,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco163.mp3"
+        "audioSource": "it/Arco163.mp3"
     },
     "arco171b": {
         "pageTitle": "arco171b - Portico di San Luca",
@@ -269,7 +269,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco171b.jpg",
+        "imageSource1": "Arco171b.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -277,7 +277,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco171b.mp3"
+        "audioSource": "it/Arco171b.mp3"
     },
     "arco180": {
         "pageTitle": "arco180 - Portico di San Luca",
@@ -289,7 +289,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco180.jpg",
+        "imageSource1": "Arco180.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -297,7 +297,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco180.mp3"
+        "audioSource": "it/Arco180.mp3"
     },
     "arco182": {
         "pageTitle": "arco182 - Portico di San Luca",
@@ -309,7 +309,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco182.jpg",
+        "imageSource1": "Arco182.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -317,7 +317,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco182.mp3"
+        "audioSource": "it/Arco182.mp3"
     },
     "arco183": {
         "pageTitle": "arco183 - Portico di San Luca",
@@ -329,7 +329,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco183.jpg",
+        "imageSource1": "Arco183.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -337,7 +337,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco183.mp3"
+        "audioSource": "it/Arco183.mp3"
     },
     "arco186b": {
         "pageTitle": "arco186b - Portico di San Luca",
@@ -349,7 +349,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco186b.jpg",
+        "imageSource1": "Arco186b.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -357,7 +357,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco186b.mp3"
+        "audioSource": "it/Arco186b.mp3"
     },
     "arco188b": {
         "pageTitle": "arco188b - Portico di San Luca",
@@ -369,7 +369,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco188b.jpg",
+        "imageSource1": "Arco188b.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -377,7 +377,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco188b.mp3"
+        "audioSource": "it/Arco188b.mp3"
     },
     "arco190": {
         "pageTitle": "arco190 - Portico di San Luca",
@@ -389,7 +389,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco190.jpg",
+        "imageSource1": "Arco190.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -397,7 +397,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco190.mp3"
+        "audioSource": "it/Arco190.mp3"
     },
     "arco192c": {
         "pageTitle": "arco192c - Portico di San Luca",
@@ -409,7 +409,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco192c.jpg",
+        "imageSource1": "Arco192c.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -417,7 +417,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco192c.mp3"
+        "audioSource": "it/Arco192c.mp3"
     },
     "arco201a": {
         "pageTitle": "arco201a - Portico di San Luca",
@@ -429,7 +429,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco201a.jpg",
+        "imageSource1": "Arco201a.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -437,7 +437,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco201a.mp3"
+        "audioSource": "it/Arco201a.mp3"
     },
     "arco202a": {
         "pageTitle": "arco202a - Portico di San Luca",
@@ -449,7 +449,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco202a.jpg",
+        "imageSource1": "Arco202a.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -457,7 +457,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco202a.mp3"
+        "audioSource": "it/Arco202a.mp3"
     },
     "arco203b": {
         "pageTitle": "arco203b - Portico di San Luca",
@@ -469,7 +469,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco203b.jpg",
+        "imageSource1": "Arco203b.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -477,7 +477,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco203b.mp3"
+        "audioSource": "it/Arco203b.mp3"
     },
     "arco208b": {
         "pageTitle": "arco208b - Portico di San Luca",
@@ -489,7 +489,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco208b.jpg",
+        "imageSource1": "Arco208b.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -497,7 +497,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco208b.mp3"
+        "audioSource": "it/Arco208b.mp3"
     },
     "arco211b": {
         "pageTitle": "arco211b - Portico di San Luca",
@@ -509,7 +509,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco211b.jpg",
+        "imageSource1": "Arco211b.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -517,7 +517,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco211b.mp3"
+        "audioSource": "it/Arco211b.mp3"
     },
     "arco218b": {
         "pageTitle": "arco218b - Portico di San Luca",
@@ -529,7 +529,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco218b.jpg",
+        "imageSource1": "Arco218b.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -537,7 +537,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco218b.mp3"
+        "audioSource": "it/Arco218b.mp3"
     },
     "arco249a": {
         "pageTitle": "arco249a - Portico di San Luca",
@@ -549,7 +549,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco249a.jpg",
+        "imageSource1": "Arco249a.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -557,7 +557,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco249a.mp3"
+        "audioSource": "it/Arco249a.mp3"
     },
     "arco252a": {
         "pageTitle": "arco252a - Portico di San Luca",
@@ -569,7 +569,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco252a.jpg",
+        "imageSource1": "Arco252a.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -577,7 +577,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco252a.mp3"
+        "audioSource": "it/Arco252a.mp3"
     },
     "arco256": {
         "pageTitle": "arco256 - Portico di San Luca",
@@ -589,7 +589,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco256.jpg",
+        "imageSource1": "Arco256.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -597,7 +597,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco256.mp3"
+        "audioSource": "it/Arco256.mp3"
     },
     "arco282a": {
         "pageTitle": "arco282a - Portico di San Luca",
@@ -609,7 +609,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco282a.jpg",
+        "imageSource1": "Arco282a.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -617,7 +617,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco282a.mp3"
+        "audioSource": "it/Arco282a.mp3"
     },
     "arco283a": {
         "pageTitle": "arco283a - Portico di San Luca",
@@ -629,7 +629,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco283a.jpg",
+        "imageSource1": "Arco283a.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -637,7 +637,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco283a.mp3"
+        "audioSource": "it/Arco283a.mp3"
     },
     "arco306b": {
         "pageTitle": "arco306b - Portico di San Luca",
@@ -649,7 +649,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco306b.jpg",
+        "imageSource1": "Arco306b.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -657,7 +657,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco306b.mp3"
+        "audioSource": "it/Arco306b.mp3"
     },
     "arco307a": {
         "pageTitle": "arco307a - Portico di San Luca",
@@ -669,7 +669,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco307a.jpg",
+        "imageSource1": "Arco307a.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -677,7 +677,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco307a.mp3"
+        "audioSource": "it/Arco307a.mp3"
     },
     "arco53c": {
         "pageTitle": "arco53c - Portico di San Luca",
@@ -689,7 +689,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Arco53c.jpg",
+        "imageSource1": "Arco53c.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -697,7 +697,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Arco53c.mp3"
+        "audioSource": "it/Arco53c.mp3"
     },
     "lapide1": {
         "pageTitle": "lapide1 - Portico di San Luca",
@@ -709,7 +709,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Lapide1.jpg",
+        "imageSource1": "Lapide1.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -717,7 +717,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Lapide1.mp3"
+        "audioSource": "it/Lapide1.mp3"
     },
     "lapide2": {
         "pageTitle": "lapide2 - Portico di San Luca",
@@ -729,7 +729,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/Lapide2.jpg",
+        "imageSource1": "Lapide2.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -737,7 +737,7 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/Lapide2.mp3"
+        "audioSource": "it/Lapide2.mp3"
     },
     "psontuoso": {
         "pageTitle": "psontuoso - Portico di San Luca",
@@ -749,7 +749,7 @@
         "mainText5": "",
         "playAudioButton": "Ascolta l'audio in italiano!",
         "pauseAudioButton": "Metti in pausa",
-        "imageSource1": "Assets/images/PorticoSontuoso.jpg",
+        "imageSource1": "PorticoSontuoso.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -757,30 +757,30 @@
         "sourceText": "Origine di Bologna.",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "Assets/Audio/it/PSontuoso.mp3"
+        "audioSource": "it/PSontuoso.mp3"
     },
     "arco135": {
-        "mainText": "<p>Arco 135 Arco 135 - Risulta finanziato da Vincenzo Luigi Manzoli.</p>"
+        "mainText1": "it_arco135_maintext1.html"
     },
     "arco140": {
-        "mainText": "<p>Arco 140 Arco 139 - Risulta finanziato dal Senatore Marchese Girolamo Albergati. Arco dello Stradello degli Orbi.</p>"
+        "mainText1": "it_arco140_maintext1.html"
     },
     "arco179": {
-        "mainText": "<p>Arco 179 - Arco 178 - Risulta finanziato dalla Compagnia degli Orefici.</p> <p>Miracolo di S.Eligio, commissionato dall'Universit&agrave; dell'Arte degli Orefici. Sotto la scritta (Gabriella Gherardi) (non pi&ugrave; leggibile) c'era:</p> <p>Ricusa l'oro e cristian segno chiede ad Eligio e l'ottien con santo amore e versando per gl'occhi il sangue fuore il primier sentimento acquista e vede.</p>"
+        "mainText1": "it_arco179_maintext1.html"
     },
     "arco200": {
-        "mainText": "<p>Arco 200 - Arco 199 - Risulta finanziato dalla Nazione Alemana.</p> <p>Iscrizione quasi illeggibile a seguito di evidente tentativo di cancellazione.</p> <p>Si distinguono le parole \\\\\"L'impero Germanico\\\\\". Ricorda gli studenti della Nazione Germanica.</p>"
+        "mainText1": "it_arco200_maintext1.html"
     },
     "arco202": {
-        "mainText": "<p>Arco 202 - Arco 201 - Non risulta finanziatore. Catalogo de' Devoti - Arco 450 - Risulta finanziato da Giacinto e fratello Antinori.</p> <p>Affresco della Madonna di San Luca retta da due angeli, sotto la scritta (Gabriella Gherardi): dottor Pasquale, zio Luigi e dottor D. Giuseppe, nipoti, Antinori (forse un restauro, la scritta originale diceva solo: Giacinto e Fratelli Antinori - 1716). Si legge \\\\\"Dott. Pasquale Zio Luigi Dott D...\\\\\".</p>"
+        "mainText1": "it_arco202_maintext1.html"
     },
     "arco29": {
-        "mainText": "<p>Arco 53 Arco 53 - Risulta finanziato dai Tribuni e Massari dell'Arti del 2 Quad. 1674. L'arco 53 corrisponde al passaggio di via Alessandro Guidotti .</p> <p>AD ONORE DI MARIA V. DI S. LUCA D. AGOSTINO RICCI PARROCO DECANO A S.M. DELLA CARITA' COMPIENDO IL PIO DESIDERIO DEL PADRE SUO FU GIAN FILIPPO DOTTORE IN MEDICINA RESTAURO' QUEST'ARCO L'ANNO 1859 - O REGINA DEL CIEL MADRE D'AMORE SALVA COL FIDO GREGGE IL SUO PASTORE</p>"
+        "mainText1": "it_arco29_maintext1.html"
     },
     "arco305": {
-        "mainText": "<p>Arco 305 - Arco 304 - Risulta finanziato dai Devoti della Parrocchia di San Donato.</p> <p>Questo arco, assieme agli archi 302, 303 e 304, &egrave; stato inglobato nei tre fornici monumentali costruiti nel 1931 da Enrico Gasperini. Da qui si apre il portico della Certosa (angolo Bar Billi).</p>"
+        "mainText1": "it_arco305_maintext1.html"
     },
     "arco3": {
-        "mainText": "<p>Arco 3. Finanziato dal Co: Gioseffo Carpegna.</p> <p>CHRISTO PONT. OPTIMO AUGUSTAE V.M. MATRI HIPPOLYTUS ABBA FORNASARIUS BON. G. NOB. IN PATR. ARCHIGYM.I.C. DE MANE PRIM. EMER.D. Eminet Illa Caput Tuscorum in Vertice Montis Illuc Productis Felsina Porticibus Templi muro Hanc Virgo auget Domus Aurea Caeli Porta Vigil Turris David in Hospitium Fitque sequens Ventrem Partus vum Virgine Civis Filius utque Videns Optimus Excubitor Sic Caput imminuit Quod Roma in Civibus est Urbs Augustae et Primi Regia Pontificum Anno 1693</p> <p>Lapide Fornasari, con scultura in arenaria di Francesco Albertoni. Ippolito di Antonio Fornasari, arciprete abate di Poggiorenatico e docente nello studio bolognese; mor&igrave; a settantenne nel 1697.</p> <p>traduzione del testo latino da Google Traduttore: CHRISTO PONT. OPTIMO</p> <p>AUGUSTAE V.M. MATRI</p> <p>IPPOLITO ABBA FORNASARIUS BON. G. NOB.</p> <p>IN PATR. ARCHIGYM.I.C. DE MANE PRIM. EMER.D.</p> <p>Ella si erge come capo dei Toscani sulla cima del monte</p> <p>L&igrave;, con i Portici Felsini, il muro del tempio, la Vergine accresce questa casa dorata del cielo</p> <p>La porta del guardiano della Torre di Davide in un ospedale</p> <p>E diventa il grembo successivo della Vergine, la Cittadina</p> <p>Il Figlio, cos&igrave; come il Veggente, il Migliore Vegliante</p> <p>Cos&igrave; il capo &egrave; diminuito, Che Roma &egrave; una citt&agrave; tra i Cittadini</p> <p>Augusta e il Primo Reale Pontefice</p>"
+        "mainText1": "it_arco3_maintext1.html"
     }
 }

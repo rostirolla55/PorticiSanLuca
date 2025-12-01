@@ -1,0 +1,22 @@
+goluca
+dir /s /b *.py
+docx_to_html_base.py
+dir /od
+dir ..\portoreno
+dir /s /b *.py
+dir /od
+cp convert_docx_to_html.bat ..\PortoReno
+cp convert_docx_to_html.bat ..\Quadrilatero
+cp convert_docx_to_html.bat ..\QuartierePorto
+cp docx_to_html_base.py ..\PortoReno
+cp docx_to_html_base.py ..\Quadrilatero
+cp docx_to_html_base.py ..\QuartierePorto
+cd ..\quart
+cd ..\QuartierePorto
+findsstr /s arc *
+findstr /s arc *
+findstr /s arc * | findstr /v git
+findstr /s arco * | findstr /v git
+findstr /m /s arco * | findstr /v git
+goluca
+esci
