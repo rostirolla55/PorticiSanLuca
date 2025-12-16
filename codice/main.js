@@ -2,25 +2,12 @@
 // ====================================================================
 // DICHIARAZIONE VARIABILI GLOBALI (NECESSARIE)
 // ====================================================================
-// NOTA: Le importazioni Firebase sono mantenute anche se non usate in loadContent
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-const APP_VERSION = '1.2.16 - inserito gestione fetch html in loadContent';
+const APP_VERSION = '1.2.14 - Fix POI Multipli';
 
 const LANGUAGES = ['it', 'en', 'fr', 'es'];
 const LAST_LANG_KEY = 'porticiSanLuca_lastLang'; // Chiave per salvare l'ultima lingua in localStorage (Coerente con index.html)
 let currentLang = 'it';
 let nearbyPoiButton, nearbyMenuPlaceholder;
-
-// Variabili Firebase (anche se loadContent usa fetch locale)
-const app_id = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-let db, auth;
-let currentUserId = null;
-let isAuthReady = false;
-
 
 // ===========================================
 // DATI: Punti di Interesse GPS (DA COMPILARE)
@@ -106,41 +93,6 @@ const updateHTMLContent = (id, htmlContent) => {
 };
 
 // ===========================================
-// NUOVE FUNZIONI ASINCRONE PER CARICAMENTO FILE
-// ===========================================
-
-/**
- * Funzione helper per determinare se una stringa è probabilmente un percorso di file (es. frammento HTML).
- * @param {string} value Il valore della chiave JSON.
- * @returns {boolean} True se sembra un percorso di file.
- */
-function isFilePath(value) {
-    if (typeof value !== 'string') return false;
-    // Cerca pattern tipici di file (es. che finiscono con .html, .txt)
-    return /\.(html|txt)$/i.test(value.trim());
-}
-
-/**
- * Carica il contenuto di un file in modo asincrono tramite fetch.
- * @param {string} filePath Il percorso del file da caricare (es. "text_files/it_manifattura_maintext1.html")
- * @returns {Promise<string>} Il contenuto del file come stringa.
- */
-
-async function fetchFileContent(filePath) {
-    try {
-        const response = await fetch(filePath);
-        if (!response.ok) {
-            throw new Error(`Errore HTTP: ${response.status} per ${filePath}`);
-        }
-        return await response.text();
-    } catch (error) {
-        console.error(`ERRORE: Impossibile caricare il frammento ${filePath}`, error);
-        return `[ERRORE: Caricamento fallito per ${filePath}. ${error.message}]`;
-    }
-}
-
-
-// ===========================================
 // FUNZIONI AUDIO (Corrette per argomenti locali)
 // ===========================================
 
@@ -166,6 +118,7 @@ const handleAudioEnded = function (audioPlayer, playButton) {
     playButton.classList.replace('pause-style', 'play-style');
 };
 
+// BLOCCO UNO - FINE 
 // BLOCCO DUE - INIZIO 
 
 // ===========================================
@@ -212,16 +165,20 @@ function updatePoiMenu(locations, userLat, userLon, userLang, allPageData) {
         uniquePois.forEach(poi => {
             const poiContent = allPageData ? allPageData[poi.id] : null;
 
-            // CORREZIONE 1: Aggiungi .trim() per pulire gli spazi bianchi e rimuovi l'indentazione del template literal
             const displayTitle = (poiContent && poiContent.pageTitle)
-                ? poiContent.pageTitle.trim() // Rimuovi spazi all'inizio/fine
+                ? poiContent.pageTitle
                 : `[Titolo mancante: ${poi.id}]`;
 
             const langSuffix = userLang === 'it' ? '-it' : `-${userLang}`;
             const href = `${poi.id}${langSuffix}.html`;
 
-            // CORREZIONE 2: Rimuovi gli a capo e l'indentazione eccessiva
-            listItems += `<li><a href="${href}">${displayTitle} <span class="poi-distance">(${poi.distance.toFixed(0)}m)</span></a></li>`;
+            listItems += `
+                <li>
+                    <a href="${href}">
+                        ${displayTitle} 
+                        <span class="poi-distance">(${poi.distance.toFixed(0)}m)</span>
+                    </a>
+                </li>`;
         });
 
         menuHtml = `<ul class="poi-links">${listItems}</ul>`;
@@ -232,9 +189,9 @@ function updatePoiMenu(locations, userLat, userLon, userLang, allPageData) {
 
         let noPoiMessage;
         switch (userLang) {
-            case 'es': noPoiMessage = `No se encontraron puntos de interés dentro ${maxThreshold}m.`; break;
-            case 'en': noPoiMessage = `No Points of Interest found within ${maxThreshold}m.`; break;
-            case 'fr': noPoiMessage = `Aucun point d'interet trouve dans les environs ${maxThreshold}m.`; break;
+            case 'en': noPoiMessage = `No Points of Interest found within ${minProximity}m.`; break;
+            case 'es': noPoiMessage = `No se encontraron Puntos de Interés a menos de ${minProximity}m.`; break;
+            case 'fr': noPoiMessage = `Aucun Point d'Intérêt trouvé à moins de ${minProximity}m.`; break;
             case 'it':
             default: noPoiMessage = `Nessun Punto di Interesse trovato entro ${maxThreshold}m.`; break;
         }
@@ -284,44 +241,7 @@ async function loadContent(lang) {
             return;
         }
 
-        // ====================================================================
-        // 🔥 NUOVA LOGICA: CARICAMENTO ASINCRONO DEI FRAMMENTI HTML/TESTO
-        // ====================================================================
-        const fragmentPromises = [];
-        const textKeysToUpdate = ['mainText', 'mainText1', 'mainText2', 'mainText3', 'mainText4', 'mainText5'];
-
-        for (const key of textKeysToUpdate) {
-            const value = pageData[key];
-            if (value && isFilePath(value)) {
-            // ************************************************************
-            // CORREZIONE CHIAVE: Prependi 'text_files/' al nome del file
-            const fullPath = "text_files/" + value; 
-            // ************************************************************
-
-            console.log(`Caricamento frammento asincrono per ${key}: ${fullPath}`);
-            
-            // Usa il percorso completo per il fetch
-            const promise = fetchFileContent(fullPath).then(content => ({ key, content }));
-            fragmentPromises.push(promise);
-            } else if (value !== undefined) {
-                // Se è testo normale o non definito -> risolvi immediatamente
-                fragmentPromises.push(Promise.resolve({ key, content: value }));
-            }
-        }
-
-        // Attendi che tutti i frammenti siano stati caricati
-        const fragmentResults = await Promise.all(fragmentPromises);
-
-        // Sovrascrivi i percorsi file con il contenuto caricato in pageData
-        fragmentResults.forEach(item => {
-            pageData[item.key] = item.content;
-        });
-        // ====================================================================
-        // 🔥 FINE LOGICA ASINCRONA
-        // ====================================================================
-
-
-        // AGGIORNAMENTO NAVIGAZIONE (Resto della funzione invariato)
+        // AGGIORNAMENTO NAVIGAZIONE
         const navBarMain = document.getElementById('navBarMain');
 
         if (data.nav && navBarMain) {
@@ -394,14 +314,13 @@ async function loadContent(lang) {
         updateHTMLContent('headerTitle', pageData.pageTitle);
 
         // AGGIORNAMENTO IMMAGINE DI FONDO TESTATA
-        const headerImage = document.getElementById('headImage');
-        if (headerImage && pageData.headImage) {
-            headerImage.src = `public/images/${pageData.headImage}`; // CORRETTO (usa headImage)
+        const headerImage = document.getElementById('pageImage1');
+        if (headerImage && pageData.imageSource1) {
+            headerImage.src = pageData.imageSource1;
             headerImage.alt = pageData.pageTitle || "Immagine di testata";
         }
 
         // AGGIORNAMENTO DEL CONTENUTO (Testi principali)
-        // Ora pageData.mainTextX contiene il testo finale (dal JSON o dal file caricato)
         updateHTMLContent('mainText', pageData.mainText || '');
         updateHTMLContent('mainText1', pageData.mainText1 || '');
         updateHTMLContent('mainText2', pageData.mainText2 || '');
@@ -432,7 +351,7 @@ async function loadContent(lang) {
             currentPlayButton.textContent = pageData.playAudioButton;
             currentPlayButton.dataset.playText = pageData.playAudioButton;
             currentPlayButton.dataset.pauseText = pageData.pauseAudioButton;
-            currentAudioPlayer.src = `Assets/Audio/${pageData.audioSource}`; // <-- CORREZIONE
+            currentAudioPlayer.src = pageData.audioSource;
             currentAudioPlayer.load();
             currentPlayButton.classList.remove('pause-style');
             currentPlayButton.classList.add('play-style');
@@ -441,22 +360,19 @@ async function loadContent(lang) {
             currentPlayButton.style.display = 'none';
         }
 
-        // AGGIORNAMENTO IMMAGINI DINAMICHE (dalla 1 alla 5)
-        for (let i = 1; i <= 5; i++) {
+        // AGGIORNAMENTO IMMAGINI DINAMICHE (dalla 2 alla 5)
+        for (let i = 2; i <= 5; i++) {
             const imageElement = document.getElementById(`pageImage${i}`);
-            const imageSource = pageData[`imageSource${i}`]; // Nome file (es. 'manifattura0.jpg')
-
-            // Costruisce il percorso completo solo se l'immagine è definita
-            const fullImagePath = imageSource ? `Assets/images/${imageSource}` : '';
+            const imageSource = pageData[`imageSource${i}`];
 
             if (imageElement) {
-                // USA IL PERCORSO COMPLETO
-                imageElement.src = fullImagePath;
+                imageElement.src = imageSource || '';
                 // Nasconde l'elemento se non c'è una sorgente
                 imageElement.style.display = imageSource ? 'block' : 'none';
                 imageElement.alt = pageData.pageTitle || `Immagine ${i}`;
             }
         }
+
         console.log(`✅ Contenuto caricato con successo per la lingua: ${lang} e pagina: ${pageId}`);
 
         // 🔥 NUOVA CHIAMATA: Avvia il monitoraggio GPS DOPO aver caricato il contenuto
@@ -746,31 +662,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. LOGICA DI AUTENTICAZIONE FIREBASE (Mantenuta in background)
-    // Non strettamente necessaria per il fetch locale, ma utile se passi a Firestore.
-    // L'ascolto dei dati non è attivo in questa versione dato che loadContent usa fetch.
-    if (typeof initializeApp !== 'undefined') {
-        const app = initializeApp(firebaseConfig);
-        db = getFirestore(app);
-        auth = getAuth(app);
-
-        const authenticateUser = async () => {
-            try {
-                if (typeof __initial_auth_token !== 'undefined') {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
-                onAuthStateChanged(auth, (user) => {
-                    currentUserId = user ? user.uid : null;
-                    isAuthReady = true;
-                });
-            } catch (error) {
-                console.error("Errore nell'autenticazione Firebase:", error);
-            }
-        };
-        authenticateUser();
-    }
-
 });
-// BLOCCO SEI - FINE
+// BLOCCO SEI - FINE 
