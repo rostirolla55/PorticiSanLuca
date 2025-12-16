@@ -86,6 +86,7 @@ def update_texts_json_nav(repo_root, page_id, nav_key_id, translations):
         "imageSource3": "",
         "imageSource4": "",
         "imageSource5": "",
+        "headImage": "",
         "sourceText": "",
         "creationDate": current_date,
         "lastUpdate": current_date,
