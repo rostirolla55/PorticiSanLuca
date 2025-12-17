@@ -1,24 +1,24 @@
 {
     "home": {
-        "pageTitle": "Bienvenidos a Portici San Luca",
-        "mainText": "Bienvenidos al nuevo proyecto PorticiSanLuca. Reemplazar este texto.",
+        "pageTitle": "Bienvenido",
+        "mainText": "",
         "mainText1": "es_home_maintext1.html",
         "mainText2": "",
         "mainText3": "",
         "mainText4": "",
         "mainText5": "",
-        "imageSource1": "Meloncello.jpg",
+        "imageSource1": "",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
         "imageSource5": "",
-        "headImage": "",
-        "sourceText": "Origine di Bologna.",
+        "headImage": "Meloncello.jpg",
+        "sourceText": "Vaticano.com Santuarios y alrededores",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "playAudioButton": "Escucha el audio en español!",
-        "pauseAudioButton": "Pausa",
-        "audioSource": "es/Home.mp3"
+        "playAudioButton": "Escuchar la historia",
+        "pauseAudioButton": "Detener la reproducción",
+        "audioSource": "es/Meloncello.mp3"
     },
     "nav": {
         "navARCO119": "Arco 119 - Nome della strada",
