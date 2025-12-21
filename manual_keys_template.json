@@ -7,7 +7,8 @@
             "pauseAudioButton": "Ferma la riproduzione",
             "sourceText": "Vaticano.com Santuari e Dintorni",
             "headImage": "Meloncello.jpg",
-            "audioSource": "it/Meloncello.mp3"
+            "audioSource": "it/home_portici.mp3",
+            "maintext": ""
         },
         "es": {
             "pageTitle": "Bienvenido",
@@ -15,7 +16,8 @@
             "pauseAudioButton": "Detener la reproducción",
             "sourceText": "Vaticano.com Santuarios y alrededores",
             "headImage": "Meloncello.jpg",
-            "audioSource": "es/Meloncello.mp3"
+            "audioSource": "es/home_portici.mp3",
+            "maintext": ""
         },
         "fr": {
             "pageTitle": "Bienvenue",
@@ -23,7 +25,8 @@
             "pauseAudioButton": "Arrêter la lecture",
             "sourceText": "Vaticano.com Sanctuaires et environs",
             "headImage": "Meloncello.jpg",
-            "audioSource": "fr/Meloncello.mp3"
+            "audioSource": "fr/home_portici.mp3",
+            "maintext": ""
         },
         "en": {
             "pageTitle": "Welcome",
@@ -31,7 +34,8 @@
             "pauseAudioButton": "Pause",
             "sourceText": "Vaticano.com Santuari e Dintorni",
             "headImage": "Meloncello.jpg",
-            "audioSource": "en/Meloncello.mp3"
+            "audioSource": "en/home_portici.mp3",
+            "maintext": ""
         }
     }
 
