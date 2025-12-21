@@ -36,14 +36,10 @@ def get_translations_for_nav(page_title_it):
 
     translations = {'it': page_title_it}
     
-    # Logica di traduzione semplificata:
-    # Se il titolo contiene parole note, le traduciamo, altrimenti manteniamo il titolo originale
-    # (spesso i nomi dei luoghi non cambiano drasticamente).
     for lang in ['en', 'es', 'fr']:
         translated_title = page_title_it
         for word_it, trans_dict in mapping.items():
             if word_it.lower() in page_title_it.lower():
-                # Sostituzione case-insensitive
                 reg = re.compile(re.escape(word_it), re.IGNORECASE)
                 translated_title = reg.sub(trans_dict[lang], translated_title)
         
@@ -53,8 +49,10 @@ def get_translations_for_nav(page_title_it):
     return translations
 
 def update_main_js(repo_root, page_id, nav_key_id, lat, lon, distance):
-    """Aggiorna POIS_LOCATIONS e navLinksData in main.js."""
+    """Aggiorna POIS_LOCATIONS e navLinksData in main.js aggiungendo la virgola finale."""
     js_path = os.path.join(repo_root, 'main.js')
+    
+    # AGGIUNTA VIRGOLA FINALE: Assicura che la sintassi dell'array JS rimanga valida
     new_poi = f"    {{ id: '{page_id}', lat: {lat}, lon: {lon}, distanceThreshold: {distance} }},"
     new_nav = f"    {{ id: '{nav_key_id}', key: '{nav_key_id}', base: '{page_id}' }},"
     
@@ -67,12 +65,14 @@ def update_main_js(repo_root, page_id, nav_key_id, lat, lon, distance):
 
         if POI_MARKER in content:
             content = content.replace(POI_MARKER, new_poi_injection)
+            print(f"✅ Inserito POI in main.js")
         if NAV_MARKER in content:
             content = content.replace(NAV_MARKER, new_nav_injection)
+            print(f"✅ Inserito navLinksData in main.js (con virgola)")
             
         with open(js_path, 'w', encoding='utf-8') as f:
             f.write(content)
-        print(f"✅ main.js aggiornato.")
+            
     except Exception as e:
         print(f"ERRORE aggiornando main.js: {e}")
 
@@ -133,7 +133,6 @@ def update_html_files(repo_root, page_id, nav_key_id, translations, page_title_i
         print("ERRORE: Template non trovato.")
         return
 
-    # Creazione pagine specifiche per lingua
     for lang in LANGUAGES:
         new_page_filename = f'{page_id}-{lang}.html'
         new_page_path = os.path.join(repo_root, new_page_filename)
@@ -150,7 +149,6 @@ def update_html_files(repo_root, page_id, nav_key_id, translations, page_title_i
                 f.write(content)
             print(f"✅ Creato {new_page_filename}")
 
-    # Aggiornamento link di navigazione in tutti i file
     all_html_files = [os.path.join(repo_root, f) for f in os.listdir(repo_root) if f.endswith('.html')]
     for existing_path in all_html_files:
         filename = os.path.basename(existing_path)
