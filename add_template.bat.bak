@@ -1,0 +1,35 @@
+@echo off
+ECHO =========================================================
+ECHO AGGIUNTA NUOVA PAGINA: TEMPLATE
+ECHO =========================================================
+
+:: --- CONFIGURAZIONE PAGINA ---
+SET "PAGE_ID=template"
+SET "NAV_KEY_ID=navtemplate"
+SET "PAGE_TITLE_IT=.??.. Template .??.."
+:: inserire le coordinate Latitudine della foto scelta
+SET "LAT=44.50085"  
+:: inserire le coordinate Longitudine della foto scelta
+SET "LON=11.33610"
+SET "DISTANCE=50"
+SET "REPO_ROOT=C:\Users\User\Documents\GitHub\PorticiSanLuca"
+SET "UTILITIES=%REPO_ROOT%\Utilities"
+:: -----------------------------
+
+ECHO 1. Eseguo il backup dei file critici...
+
+:: Esegue il backup di main.js e dei 4 JSON prima di modificarli
+CALL "%UTILITIES%\salvag.bat" "%REPO_ROOT%\main.js"
+CALL "%UTILITIES%\salvag.bat" "%REPO_ROOT%\data\translations\it\texts.json"
+CALL "%UTILITIES%\salvag.bat" "%REPO_ROOT%\data\translations\en\texts.json"
+CALL "%UTILITIES%\salvag.bat" "%REPO_ROOT%\data\translations\es\texts.json"
+CALL "%UTILITIES%\salvag.bat" "%REPO_ROOT%\data\translations\fr\texts.json"
+
+ECHO.
+ECHO 2. Esecuzione dello script Python per gli interventi globali...
+
+python add_page.py "%PAGE_ID%" "%NAV_KEY_ID%" "%PAGE_TITLE_IT%" "%LAT%" "%LON%" "%DISTANCE%" "%REPO_ROOT%"
+
+ECHO.
+ECHO Operazione completata. Controlla i file modificati.
+PAUSE

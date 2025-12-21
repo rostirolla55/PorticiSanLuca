@@ -37,6 +37,82 @@
             "audioSource": "en/home_portici.mp3",
             "maintext": ""
         }
+    },    
+    "psontuoso": {
+        "it": {
+            "pageTitle": "Arco 1 - Portico Sontuoso",
+            "playAudioButton": "Ascolta la storia",
+            "pauseAudioButton": "Ferma la riproduzione",
+            "sourceText": "Vaticano.com Santuari e Dintorni",
+            "headImage": "Meloncello.jpg",
+            "audioSource": "it/home_portici.mp3",
+            "maintext": ""
+        },
+        "es": {
+            "pageTitle": "Bienvenido",
+            "playAudioButton": "Escuchar la historia",
+            "pauseAudioButton": "Detener la reproducción",
+            "sourceText": "Vaticano.com Santuarios y alrededores",
+            "headImage": "Meloncello.jpg",
+            "audioSource": "es/home_portici.mp3",
+            "maintext": ""
+        },
+        "fr": {
+            "pageTitle": "Bienvenue",
+            "playAudioButton": "Écouter le récit",
+            "pauseAudioButton": "Arrêter la lecture",
+            "sourceText": "Vaticano.com Sanctuaires et environs",
+            "headImage": "Meloncello.jpg",
+            "audioSource": "fr/home_portici.mp3",
+            "maintext": ""
+        },
+        "en": {
+            "pageTitle": "Welcome",
+            "playAudioButton": "Listen with headphones",
+            "pauseAudioButton": "Pause",
+            "sourceText": "Vaticano.com Santuari e Dintorni",
+            "headImage": "Meloncello.jpg",
+            "audioSource": "en/home_portici.mp3",
+            "maintext": ""
+        }
+    },    
+    "arco101": {
+        "it": {
+            "pageTitle": "Arco 101 - Carlo Antonio Facci",
+            "playAudioButton": "Ascolta la storia",
+            "pauseAudioButton": "Ferma la riproduzione",
+            "sourceText": "Vaticano.com Santuari e Dintorni",
+            "headImage": "Meloncello.jpg",
+            "audioSource": "it/home_portici.mp3",
+            "maintext": ""
+        },
+        "es": {
+            "pageTitle": "Arco 101 - Carlo Antonio Facci",
+            "playAudioButton": "Escuchar la historia",
+            "pauseAudioButton": "Detener la reproducción",
+            "sourceText": "Vaticano.com Santuarios y alrededores",
+            "headImage": "Meloncello.jpg",
+            "audioSource": "es/home_portici.mp3",
+            "maintext": ""
+        },
+        "fr": {
+            "pageTitle": "Arc 101 - Carlo Antonio Facci",
+            "playAudioButton": "Écouter le récit",
+            "pauseAudioButton": "Arrêter la lecture",
+            "sourceText": "Vaticano.com Sanctuaires et environs",
+            "headImage": "Meloncello.jpg",
+            "audioSource": "fr/home_portici.mp3",
+            "maintext": ""
+        },
+        "en": {
+            "pageTitle": "Arch 101 - Carlo Antonio Facci",
+            "playAudioButton": "Listen with headphones",
+            "pauseAudioButton": "Pause",
+            "sourceText": "Vaticano.com Santuari e Dintorni",
+            "headImage": "Meloncello.jpg",
+            "audioSource": "en/home_portici.mp3",
+            "maintext": ""
+        }
     }
 
 }
