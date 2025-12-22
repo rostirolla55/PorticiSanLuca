@@ -228,21 +228,40 @@ function updatePoiMenu(locations, userLat, userLon, userLang, allPageData) {
         menuHtml = `<ul class="poi-links">${listItems}</ul>`;
 
     } else {
-        // Nessun POI trovato: mostra un messaggio informativo
-        let maxThreshold = locations.reduce((max, loc) => Math.max(max, loc.distanceThreshold || 50), 0);
+let titlePart;
+let instructionPart;
 
-        let noPoiMessage;
-        switch (userLang) {
-            case 'es': noPoiMessage = `No se encontraron puntos de interés dentro ${maxThreshold}m. Pulse de nuevo el botón verde para cerrar la lista.`; break;
-            case 'en': noPoiMessage = `No Points of Interest found within ${maxThreshold}m. Press the green button again to close the list.`; break;
-            case 'fr': noPoiMessage = `Aucun point d'interet trouve dans les environs ${maxThreshold}m. Appuyez à nouveau sur le bouton vert pour fermer la liste.`; break;
-            case 'it':
-            default: noPoiMessage = `Nessun Punto di Interesse trovato entro ${maxThreshold}m. Premere di nuovo il bottone verde per chiudere la lista.`; break;
-        }
+switch (userLang) {
+    case 'es': 
+        titlePart = `No se encontraron puntos de interés dentro ${maxThreshold}m.`;
+        instructionPart = `Pulse de nuevo el botón verde para cerrar la lista.`; 
+        break;
+    case 'en': 
+        titlePart = `No Points of Interest found within ${maxThreshold}m.`;
+        instructionPart = `Press the green button again to close the list.`; 
+        break;
+    case 'fr': 
+        titlePart = `Aucun point d'interet trouve dans les environs ${maxThreshold}m.`;
+        instructionPart = `Appuyez à nouveau sur le bouton vert pour fermer la liste.`; 
+        break;
+    case 'it':
+    default: 
+        titlePart = `Nessun Punto di Interesse trovato entro ${maxThreshold}m.`;
+        instructionPart = `Premere di nuovo il bottone verde per chiudere la lista.`; 
+        break;
+}
 
+// Composizione dell'HTML con colori diversi e due righe di spazio (<br><br>)
+menuHtml = `
+    <div style="padding: 20px; text-align: center; font-size: 0.9em;">
+        <span style="color: yellow;">${titlePart}</span>
+        <br><br>
+        <span style="color: red;">${instructionPart}</span>
+    </div>`;
         // Uso colore giallo per i test
-        menuHtml = `<div style="color:green; padding: 20px; text-align: center; font-size: 0.9em;">${noPoiMessage}</div>`;
+        // menuHtml = `<div style="color:yellow; padding: 20px; text-align: center; font-size: 0.9em;">${noPoiMessage}</div>`;
     }
+
 
     // 4. Inietta l'HTML nel placeholder
     if (nearbyMenuPlaceholder) {
