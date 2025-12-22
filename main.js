@@ -30,7 +30,7 @@ let isAuthReady = false;
 const ARCO_LOCATIONS = [
     // I tuoi dati GPS reali di PORTICISANLUCA
     { id: 'arco101', lat: 44.50085, lon: 11.33610, distanceThreshold: 50 },
-// ** MARKER: START NEW POIS **
+    // ** MARKER: START NEW POIS **
     { id: 'Arco', lat: 44.4887916666667, lon: 11.3164027777778, distanceThreshold: 15 },
     { id: 'Arco119', lat: 44.4899416666667, lon: 11.3221583333333, distanceThreshold: 15 },
     { id: 'Arco126', lat: 44.4898138888889, lon: 11.3217194444444, distanceThreshold: 15 },
@@ -228,39 +228,40 @@ function updatePoiMenu(locations, userLat, userLon, userLang, allPageData) {
         menuHtml = `<ul class="poi-links">${listItems}</ul>`;
 
     } else {
-let titlePart;
-let instructionPart;
+        let titlePart;
+        let instructionPart;
 
-switch (userLang) {
-    case 'es': 
-        titlePart = `No se encontraron puntos de interés dentro ${maxThreshold}m.`;
-        instructionPart = `Pulse de nuevo el botón verde para cerrar la lista.`; 
-        break;
-    case 'en': 
-        titlePart = `No Points of Interest found within ${maxThreshold}m.`;
-        instructionPart = `Press the green button again to close the list.`; 
-        break;
-    case 'fr': 
-        titlePart = `Aucun point d'interet trouve dans les environs ${maxThreshold}m.`;
-        instructionPart = `Appuyez à nouveau sur le bouton vert pour fermer la liste.`; 
-        break;
-    case 'it':
-    default: 
-        titlePart = `Nessun Punto di Interesse trovato entro ${maxThreshold}m.`;
-        instructionPart = `Premere di nuovo il bottone verde per chiudere la lista.`; 
-        break;
-}
+        switch (userLang) {
+            case 'es':
+                titlePart = `No se encontraron puntos de interés dentro ${maxThreshold}m.`;
+                instructionPart = `Pulse de nuevo el botón verde para cerrar la lista.`;
+                break;
+            case 'en':
+                titlePart = `No Points of Interest found within ${maxThreshold}m.`;
+                instructionPart = `Press the green button again to close the list.`;
+                break;
+            case 'fr':
+                titlePart = `Aucun point d'interet trouve dans les environs ${maxThreshold}m.`;
+                instructionPart = `Appuyez à nouveau sur le bouton vert pour fermer la liste.`;
+                break;
+            case 'it':
+            default:
+                titlePart = `Nessun Punto di Interesse trovato entro ${maxThreshold}m.`;
+                instructionPart = `Premere di nuovo il bottone verde per chiudere la lista.`;
+                break;
+        }
 
-// Composizione dell'HTML con colori diversi e due righe di spazio (<br><br>)
-menuHtml = `
-    <div style="padding: 20px; text-align: center; font-size: 0.9em;">
-        <span style="color: yellow;">${titlePart}</span>
-        <br><br>
-        <span style="color: red;">${instructionPart}</span>
-    </div>`;
+        // Composizione dell'HTML con colori diversi e due righe di spazio (<br><br>)
+        menuHtml = `
+            <div style="padding: 20px; text-align: center; font-size: 0.9em;">
+                <span style="color: yellow;">${titlePart}</span>
+                <br><br>
+                <span style="color: red;">${instructionPart}</span>
+            </div>`;
         // Uso colore giallo per i test
         // menuHtml = `<div style="color:yellow; padding: 20px; text-align: center; font-size: 0.9em;">${noPoiMessage}</div>`;
     }
+
 
 
     // 4. Inietta l'HTML nel placeholder
@@ -313,16 +314,16 @@ async function loadContent(lang) {
         for (const key of textKeysToUpdate) {
             const value = pageData[key];
             if (value && isFilePath(value)) {
-            // ************************************************************
-            // CORREZIONE CHIAVE: Prependi 'text_files/' al nome del file
-            const fullPath = "text_files/" + value; 
-            // ************************************************************
+                // ************************************************************
+                // CORREZIONE CHIAVE: Prependi 'text_files/' al nome del file
+                const fullPath = "text_files/" + value;
+                // ************************************************************
 
-            console.log(`Caricamento frammento asincrono per ${key}: ${fullPath}`);
-            
-            // Usa il percorso completo per il fetch
-            const promise = fetchFileContent(fullPath).then(content => ({ key, content }));
-            fragmentPromises.push(promise);
+                console.log(`Caricamento frammento asincrono per ${key}: ${fullPath}`);
+
+                // Usa il percorso completo per il fetch
+                const promise = fetchFileContent(fullPath).then(content => ({ key, content }));
+                fragmentPromises.push(promise);
             } else if (value !== undefined) {
                 // Se è testo normale o non definito -> risolvi immediatamente
                 fragmentPromises.push(Promise.resolve({ key, content: value }));
