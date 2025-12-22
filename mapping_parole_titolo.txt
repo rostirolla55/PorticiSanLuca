@@ -1,0 +1,8 @@
+    mapping = {
+        "Template": {"en": "Template", "es": "Plantilla", "fr": "Modèle"},
+        "Portico": {"en": "Portico", "es": "Pórtico", "fr": "Portique"},
+        "Chiesa": {"en": "Church", "es": "Iglesia", "fr": "Église"},
+        "Arco": {"en": "Arch", "es": "Arco", "fr": "Arc"},
+        "San": {"en": "Saint", "es": "San", "fr": "Saint"},
+        "Centrale": {"en": "Power Station", "es": "Central", "fr": "Centrale"}
+    }
