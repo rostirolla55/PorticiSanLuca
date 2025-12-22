@@ -240,7 +240,7 @@ function updatePoiMenu(locations, userLat, userLon, userLang, allPageData) {
             default: noPoiMessage = `Nessun Punto di Interesse trovato entro ${maxThreshold}m. Premere di nuovo il bottone verde per chiudere la lista.`; break;
         }
 
-        // Uso colore giallo per i test
+        // Uso colore verde per i test
         menuHtml = `<div style="color:green; padding: 20px; text-align: center; font-size: 0.9em;">${noPoiMessage}</div>`;
     }
 
