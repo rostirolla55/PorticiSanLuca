@@ -1,0 +1,7 @@
+goluca
+dir /s /b bsmariamaggiore.mp3
+mv C:\Users\User\Documents\GitHub\PorticiSanLuca\Assets\Audio\es\bsmariamaggiore.mp3 C:\Users\User\Documents\GitHub\QuartierePorto\Assets\Audio\es\bsmariamaggiore.mp3
+mv C:\Users\User\Documents\GitHub\PorticiSanLuca\Assets\Audio\en\bsmariamaggiore.mp3 C:\Users\User\Documents\GitHub\QuartierePorto\Assets\Audio\en\bsmariamaggiore.mp3
+mv C:\Users\User\Documents\GitHub\PorticiSanLuca\Assets\Audio\fr\bsmariamaggiore.mp3 C:\Users\User\Documents\GitHub\QuartierePorto\Assets\Audio\fr\bsmariamaggiore.mp3
+mv C:\Users\User\Documents\GitHub\PorticiSanLuca\Assets\Audio\it\bsmariamaggiore.mp3 C:\Users\User\Documents\GitHub\QuartierePorto\Assets\Audio\it\bsmariamaggiore.mp3
+esci
