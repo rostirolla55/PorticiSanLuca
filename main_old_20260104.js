@@ -366,7 +366,7 @@ async function loadContent(lang) {
                 { id: 'navHome', key: 'navHome', base: 'index' },
                 { id: 'navlapide1', key: 'navLAPIDE1', base: 'lapide1' },
                 { id: 'navlapide2', key: 'navLAPIDE2', base: 'lapide2' },
-                { id: 'navpsontuoso', key: 'navPSONTUOSO', base: 'psontuoso' },
+                { id: 'navpsontuoso', key: 'navPSontuoso', base: 'psontuoso' },
                 { id: 'navarco101', key: 'navarco101', base: 'arco101' }
                 // ** MARKER: START NEW NAV LINKS **
             ];
