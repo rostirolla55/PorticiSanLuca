@@ -294,7 +294,7 @@ function initEvents() {
         };
         player.onended = () => { 
             playBtn.textContent = playBtn.dataset.playText; 
-
+            playBtn.classList.replace('pause-style', 'play-style');
         };
     }
 
