@@ -28,14 +28,14 @@
     "psontuoso": {
         "pageTitle": "Porte somptueux",
         "mainText": "Testo base per l'arco o la lapide psontuoso...",
-        "mainText1": "",
-        "mainText2": "",
+        "mainText1": "fr_psontuoso_maintext1.html",
+        "mainText2": "fr_psontuoso_maintext2.html",
         "mainText3": "",
         "mainText4": "",
         "mainText5": "",
         "playAudioButton": "Écouter le récit",
         "pauseAudioButton": "Arrêter la lecture",
-        "imageSource1": "psontuoso.jpg",
+        "imageSource1": "psontuoso/Portone_Sontuoso.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
@@ -46,5 +46,10 @@
         "lastUpdate": "01-10-2025",
         "audioSource": "fr/psontuoso.mp3",
         "maintext": ""
+    },
+    "arco101": {
+        "headImage": "public/images/panorama_bologna.jpg",
+        "audioSource": "fr/arco101.mp3",
+        "mainText1": "fr_arco101_maintext1.html"
     }
 }

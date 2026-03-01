@@ -36,6 +36,9 @@ SET "DISTANCE={page_data['threshold']}"
 ECHO 1. Backup file...
 CALL "%UTILITIES%\\salvag.bat" "%REPO_ROOT%\\main.js"
 CALL "%UTILITIES%\\salvag.bat" "%REPO_ROOT%\\data\\translations\\it\\texts.json"
+CALL "%UTILITIES%\\salvag.bat" "%REPO_ROOT%\\data\\translations\\es\\texts.json"
+CALL "%UTILITIES%\\salvag.bat" "%REPO_ROOT%\\data\\translations\\fr\\texts.json"
+CALL "%UTILITIES%\\salvag.bat" "%REPO_ROOT%\\data\\translations\\en\\texts.json"
 
 ECHO 2. Esecuzione add_page.py...
 python "%REPO_ROOT%\\add_page.py" %PAGE_ID% %NAV_KEY_ID% "%PAGE_TITLE_IT%" %LAT% %LON% %DISTANCE% "%REPO_ROOT%"

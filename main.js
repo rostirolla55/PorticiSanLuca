@@ -24,7 +24,8 @@ let db, auth, currentUserId = null, isAuthReady = false;
 // DATI: POI GPS
 // ===========================================
 const POIS_LOCATIONS = [
-    { id: 'Arco119', lat: 44.4899416666667, lon: 11.3221583333333, distanceThreshold: 15 }
+    { id: 'arco101', lat: 44.4899416666667, lon: 11.3221583333333, distanceThreshold: 15 },
+    { id: 'psontuoso', lat: 44.49094196335107, lon: 11.329288058136104, distanceThreshold: 15 }
 ];
 
 // ===========================================
@@ -156,8 +157,9 @@ function updateNavigation(navData, lang) {
     const langSuffix = lang === 'it' ? '-it' : `-${lang}`;
 
     const navLinksData = [
-                { id: 'navarco119', key: 'navARCO119', base: 'arco119' },
-                { id: 'navHome', key: 'navHome', base: 'index' }
+    { id: 'navHome', key: 'navHome', base: 'index' },
+    { id: 'navArco101', key: 'navArco101', base: 'arco101' },
+    { id: 'navPSontuoso', key: 'navPSontuoso', base: 'psontuoso' }
 ];
 
     navLinksData.forEach(l => {

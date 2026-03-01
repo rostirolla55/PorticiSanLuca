@@ -1,12 +1,20 @@
 {
   "pois": [
     {
-      "id": "Arco119",
+      "id": "arco101",
       "lat": 44.4899416666667,
       "lon": 11.3221583333333,
       "threshold": 15,
-      "nav_id": "navArco119",
-      "base_name": "Arco119"
+      "nav_id": "navArco101",
+      "base_name": "arco101"
+    },
+    {
+      "id": "psontuoso",
+      "lat": 44.49094196335107,
+      "lon": 11.329288058136104,
+      "threshold": 15,
+      "nav_id": "navPSontuoso",
+      "base_name": "psontuoso"
     }
   ]
 }
