@@ -40,7 +40,7 @@
     },    
     "psontuoso": {
         "it": {
-            "pageTitle": "Portico Sontuoso",
+            "pageTitle": "Portone Sontuoso",
             "playAudioButton": "Ascolta la storia",
             "pauseAudioButton": "Ferma la riproduzione",
             "sourceText": "Vaticano.com Santuari e Dintorni",
@@ -49,7 +49,7 @@
             "maintext": ""
         },
         "es": {
-            "pageTitle": "Pórtico suntuoso",
+            "pageTitle": "Puerta suntuoso",
             "playAudioButton": "Escuchar la historia",
             "pauseAudioButton": "Detener la reproducción",
             "sourceText": "Vaticano.com Santuarios y alrededores",
@@ -58,7 +58,7 @@
             "maintext": ""
         },
         "fr": {
-            "pageTitle": "Portique somptueux",
+            "pageTitle": "Porte somptueux",
             "playAudioButton": "Écouter le récit",
             "pauseAudioButton": "Arrêter la lecture",
             "sourceText": "Vaticano.com Sanctuaires et environs",
@@ -67,7 +67,7 @@
             "maintext": ""
         },
         "en": {
-            "pageTitle": "Sumptuous Portico",
+            "pageTitle": "sumptuous gate",
             "playAudioButton": "Listen with headphones",
             "pauseAudioButton": "Pause",
             "sourceText": "Vaticano.com Santuari e Dintorni",

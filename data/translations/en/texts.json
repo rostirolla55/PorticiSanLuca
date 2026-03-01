@@ -753,7 +753,7 @@
         "audioSource": "it/Lapide2.mp3"
     },
     "psontuoso": {
-        "pageTitle": "Sumptuous Portico",
+        "pageTitle": "sumptuous gate",
         "mainText": "Testo base per l'arco o la lapide psontuoso...",
         "mainText1": "",
         "mainText2": "",
@@ -771,7 +771,7 @@
         "sourceText": "Vaticano.com Santuari e Dintorni",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "en/home_portici.mp3",
+        "audioSource": "en/psontuoso.mp3",
         "maintext": ""
     },
     "arco101": {

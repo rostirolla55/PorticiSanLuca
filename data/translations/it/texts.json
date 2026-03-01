@@ -776,7 +776,7 @@
         "audioSource": "it/Lapide2.mp3"
     },
     "psontuoso": {
-        "pageTitle": "Portico Sontuoso",
+        "pageTitle": "Portone Sontuoso",
         "mainText": "Testo base per l'arco o la lapide psontuoso...",
         "mainText1": "",
         "mainText2": "",
@@ -794,7 +794,7 @@
         "sourceText": "Vaticano.com Santuari e Dintorni",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "it/home_portici.mp3",
+        "audioSource": "it/psontuoso.mp3",
         "maintext": ""
     },
     "arco135": {
