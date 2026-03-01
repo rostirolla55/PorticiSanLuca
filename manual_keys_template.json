@@ -1,6 +1,6 @@
 {
     "description": "<font color=\"#ff0000\">rosso</font>, <font color=\"#3465a4\">blu</font> Questo file contiene gli override manuali per le chiavi in texts.json. Le modifiche qui definite verranno applicate allo specifico PAGE_ID (es. 'manifattura') solo quando il manual_key_updater.py viene eseguito per quella pagina. le chiavi statiche  cono 'audioSource' 'headImage' 'pageTitle' 'pauseAudioButton' 'playAudioButton' 'sourceText' 'creationDate' 'lastUpdate' 'mainText'",
-    "home": {
+      "home": {
         "it": {
             "pageTitle": "Benvenuto",
             "playAudioButton": "Ascolta la storia",
@@ -40,39 +40,39 @@
     },    
     "psontuoso": {
         "it": {
-            "pageTitle": "Arco 1 - Portico Sontuoso",
+            "pageTitle": "Portico Sontuoso",
             "playAudioButton": "Ascolta la storia",
             "pauseAudioButton": "Ferma la riproduzione",
             "sourceText": "Vaticano.com Santuari e Dintorni",
             "headImage": "Meloncello.jpg",
-            "audioSource": "it/home_portici.mp3",
+            "audioSource": "it/psontuoso.mp3",
             "maintext": ""
         },
         "es": {
-            "pageTitle": "Bienvenido",
+            "pageTitle": "Pórtico suntuoso",
             "playAudioButton": "Escuchar la historia",
             "pauseAudioButton": "Detener la reproducción",
             "sourceText": "Vaticano.com Santuarios y alrededores",
             "headImage": "Meloncello.jpg",
-            "audioSource": "es/home_portici.mp3",
+            "audioSource": "es/psontuoso.mp3",
             "maintext": ""
         },
         "fr": {
-            "pageTitle": "Bienvenue",
+            "pageTitle": "Portique somptueux",
             "playAudioButton": "Écouter le récit",
             "pauseAudioButton": "Arrêter la lecture",
             "sourceText": "Vaticano.com Sanctuaires et environs",
             "headImage": "Meloncello.jpg",
-            "audioSource": "fr/home_portici.mp3",
+            "audioSource": "fr/psontuoso.mp3",
             "maintext": ""
         },
         "en": {
-            "pageTitle": "Welcome",
+            "pageTitle": "Sumptuous Portico",
             "playAudioButton": "Listen with headphones",
             "pauseAudioButton": "Pause",
             "sourceText": "Vaticano.com Santuari e Dintorni",
             "headImage": "Meloncello.jpg",
-            "audioSource": "en/home_portici.mp3",
+            "audioSource": "en/psontuoso.mp3",
             "maintext": ""
         }
     },    

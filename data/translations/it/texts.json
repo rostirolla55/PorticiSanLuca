@@ -18,7 +18,8 @@
         "lastUpdate": "01-10-2025",
         "playAudioButton": "Ascolta la storia",
         "pauseAudioButton": "Ferma la riproduzione",
-        "audioSource": "it/home_portici.mp3"
+        "audioSource": "it/home_portici.mp3",
+        "maintext": ""
     },
     "nav": {
         "navSANLUCA": "Santuario Madonna di San Luca",
@@ -775,25 +776,26 @@
         "audioSource": "it/Lapide2.mp3"
     },
     "psontuoso": {
-        "pageTitle": "psontuoso - Portico di San Luca",
+        "pageTitle": "Portico Sontuoso",
         "mainText": "Testo base per l'arco o la lapide psontuoso...",
         "mainText1": "",
         "mainText2": "",
         "mainText3": "",
         "mainText4": "",
         "mainText5": "",
-        "playAudioButton": "Ascolta l'audio in italiano!",
-        "pauseAudioButton": "Metti in pausa",
+        "playAudioButton": "Ascolta la storia",
+        "pauseAudioButton": "Ferma la riproduzione",
         "imageSource1": "PorticoSontuoso.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
         "imageSource5": "",
         "headImage": "Meloncello.jpg",
-        "sourceText": "Origine di Bologna.",
+        "sourceText": "Vaticano.com Santuari e Dintorni",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "it/PSontuoso.mp3"
+        "audioSource": "it/home_portici.mp3",
+        "maintext": ""
     },
     "arco135": {
         "mainText1": "it_arco135_maintext1.html"

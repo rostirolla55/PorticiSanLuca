@@ -18,7 +18,8 @@
         "sourceText": "Vaticano.com Sanctuaires et environs",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "fr/home_portici.mp3"
+        "audioSource": "fr/home_portici.mp3",
+        "maintext": ""
     },
     "nav": {
         "navARCO119": "Arco 119 - Nome della strada",
@@ -752,25 +753,26 @@
         "audioSource": "fr/Lapide2.mp3"
     },
     "psontuoso": {
-        "pageTitle": "psontuoso - Portico di San Luca",
+        "pageTitle": "Portique somptueux",
         "mainText": "Testo base per l'arco o la lapide psontuoso...",
         "mainText1": "",
         "mainText2": "",
         "mainText3": "",
         "mainText4": "",
         "mainText5": "",
-        "playAudioButton": "Écoutez l'audio en français!",
-        "pauseAudioButton": "Pause",
+        "playAudioButton": "Écouter le récit",
+        "pauseAudioButton": "Arrêter la lecture",
         "imageSource1": "psontuoso.jpg",
         "imageSource2": "",
         "imageSource3": "",
         "imageSource4": "",
         "imageSource5": "",
         "headImage": "Meloncello.jpg",
-        "sourceText": "Origine di Bologna.",
+        "sourceText": "Vaticano.com Sanctuaires et environs",
         "creationDate": "30-08-2025",
         "lastUpdate": "01-10-2025",
-        "audioSource": "fr/PSontuoso.mp3"
+        "audioSource": "fr/home_portici.mp3",
+        "maintext": ""
     },
     "arco101": {
         "headImage": "Meloncello.jpg",
