@@ -25,7 +25,7 @@ let db, auth, currentUserId = null, isAuthReady = false;
 // ===========================================
 const POIS_LOCATIONS = [
     { id: 'arco101', lat: 44.4899416666667, lon: 11.3221583333333, distanceThreshold: 15 },
-    { id: 'psontuoso', lat: 44.49094196335107, lon: 11.329288058136104, distanceThreshold: 15 }
+    { id: 'psontuoso', lat: 44.49046395468894, lon: 11.329397374392755, distanceThreshold: 15 }
 ];
 
 // ===========================================
