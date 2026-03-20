@@ -1,163 +1,150 @@
 <!DOCTYPE html>
 <html lang="it">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title id="pageTitle">
-   Mappa - Quadrilatero
-  </title>
-  <link href="style.css" rel="stylesheet"/>
- </head>
- <body>
-  <div id="loading-message">
-   <p>
-    Caricamento mappa...
-   </p>
-  </div>
-  <div id="app-wrapper">
-   <header class="main-header">
-    <div class="left-header-group">
-     <button aria-label="Apri menu" class="menu-toggle">
-      <span class="bar">
-      </span>
-      <span class="bar">
-      </span>
-      <span class="bar">
-      </span>
-     </button>
-     <a class="map-link" href="mappa-it.html" id="mapNavLink">
-      <svg class="pin-icon" viewbox="0 0 24 24">
-       <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z">
-       </path>
-      </svg>
-     </a>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title id="pageTitle">
+        Mappa - Quadrilatero
+    </title>
+    <link href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="loading-message">
+        <p>
+            Caricamento mappa...
+        </p>
     </div>
-    <div class="right-header-group">
-     <div class="language-selector">
-      <button data-lang="it">
-       <img alt="Italiano" src="public/flag/it.png"/>
-      </button>
-      <button data-lang="en">
-       <img alt="English" src="public/flag/en.png"/>
-      </button>
-      <button data-lang="es">
-       <img alt="Espa&ntilde;ol" src="public/flag/es.png"/>
-      </button>
-      <button data-lang="fr">
-       <img alt="Fran&ccedil;ais" src="public/flag/fr.png"/>
-      </button>
-     </div>
-    </div>
-    <nav class="nav-bar-main" id="navBarMain">
-     <div class="nav-bar-content">
-      <ul>
-       <li>
-        <a href="index-it.html" id="navHome">
-         Benvenuto
-        </a>
-       </li>
-       <li>
-        <a href="psontuoso-it.html" id="navPSontuoso">
-         Portone Sontuoso
-        </a>
-       </li>
-      </ul>
-     </div>
-    </nav>
-    <div class="nav-bar-nearby" id="nearbyMenuPlaceholder">
-    </div>
-   </header>
-   <nav class="nav-bar-main" id="navBarMain">
-    <div class="nav-bar-content">
-     <ul>
-      <li>
-       <a href="index-it.html" id="navHome">
-        Home
-       </a>
-      </li>
-     </ul>
-    </div>
-   </nav>
-   <div class="nav-bar-nearby" id="nearbyMenuPlaceholder">
-   </div>
-   <main class="content-body">
-    <div class="header-image-container">
-     <img alt="Mappa" id="headImage" src="public/images/Meloncello.jpg"/>
-     <h1 class="header-title" id="headerTitle">
-      Mappa dei Luoghi
-     </h1>
-    </div>
-    <div class="main-content-area">
-     <p id="mainMapsDesc" style="margin-bottom: 20px; font-style: italic;">
-     </p>
-     <div class="map-container" style="position: relative; padding-bottom: 75%; height: 0; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-      <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
-      <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
-      </script>
-      <div id="map" style="height: 500px; width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
-      </div>
-     </div>
-    </div>
-   </main>
-   <footer class="info-footer">
-    <p>
-     &copy; 2024 Quadrilatero. Tutti i diritti riservati.
-    </p>
-   </footer>
-   <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-                // 1. Rileviamo la lingua corrente dal tag <html lang="...">
+    <div id="app-wrapper">
+        <header class="main-header">
+            <div class="left-header-group">
+                <button aria-label="Apri menu" class="menu-toggle">
+                    <span class="bar">
+                    </span>
+                    <span class="bar">
+                    </span>
+                    <span class="bar">
+                    </span>
+                </button>
+                <a class="map-link" href="mappa-it.html" id="mapNavLink">
+                    <svg class="pin-icon" viewbox="0 0 24 24">
+                        <path
+                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z">
+                        </path>
+                    </svg>
+                </a>
+            </div>
+            <div class="right-header-group">
+                <div class="language-selector">
+                    <button data-lang="it">
+                        <img alt="Italiano" src="public/flag/it.png" />
+                    </button>
+                    <button data-lang="en">
+                        <img alt="English" src="public/flag/en.png" />
+                    </button>
+                    <button data-lang="es">
+                        <img alt="Espa&ntilde;ol" src="public/flag/es.png" />
+                    </button>
+                    <button data-lang="fr">
+                        <img alt="Fran&ccedil;ais" src="public/flag/fr.png" />
+                    </button>
+                </div>
+            </div>
+            <nav class="nav-bar-main" id="navBarMain">
+                <div class="nav-bar-content">
+                    <ul>
+                        <li>
+                            <a href="index-it.html" id="navHome">
+                                Benvenuto
+                            </a>
+                        </li>
+                        <li>
+                            <a href="psontuoso-it.html" id="navPSontuoso">
+                                Portone Sontuoso
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="nav-bar-nearby" id="nearbyMenuPlaceholder">
+            </div>
+        </header>
+        <main class="content-body">
+            <div class="header-image-container">
+                <img alt="Mappa" id="headImage" src="public/images/Meloncello.jpg" />
+                <h1 class="header-title" id="headerTitle">
+                    Mappa dei Luoghi
+                </h1>
+            </div>
+            <div class="main-content-area">
+                <p id="mainMapsDesc" style="margin-bottom: 20px; font-style: italic;">
+                </p>
+                <div class="map-container"
+                    style="position: relative; padding-bottom: 75%; height: 0; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet" />
+                    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+                    </script>
+                    <div id="map"
+                        style="height: 500px; width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="info-footer">
+            <p>
+                &copy; 2024 Quadrilatero. Tutti i diritti riservati.
+            </p>
+        </footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', async () => {
                 const currentLang = document.documentElement.lang || 'it';
 
-                // 2. Inizializziamo la mappa su Bologna
-                // [44.499, 11.340] sono le coordinate centrali del Quadrilatero
-                const map = L.map('map').setView([44.499, 11.340], 16);
+                // 1. Centriamo la mappa sulla zona di San Luca/Meloncello
+                // [44.490, 11.325] è una posizione intermedia tra i tuoi due POI
+                const map = L.map('map').setView([44.490, 11.325], 15);
 
-                // 3. Aggiungiamo lo sfondo (Tiles)
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '© OpenStreetMap'
                 }).addTo(map);
 
                 try {
-                    // 4. Carichiamo contemporaneamente POI e Testi
+                    // 2. Usiamo lo stesso percorso di main.js per i testi
+                    // Se texts.json è nella root, lascia 'texts.json'. 
+                    // Se è nella sottocartella, usa 'data/translations/' + currentLang + '/texts.json'
                     const [poisRes, textsRes] = await Promise.all([
                         fetch('pois_config.json'),
-                        fetch('texts.json')
+                        fetch(`data/translations/${currentLang}/texts.json`).catch(() => fetch('texts.json'))
                     ]);
+
                     const poisData = await poisRes.json();
                     const textsData = await textsRes.json();
-
-                    // Estraiamo i titoli dal blocco "nav" del JSON (come nel tuo script Python)
                     const navTitles = textsData.nav || {};
 
-                    // 5. Posizioniamo i PIN
                     poisData.pois.forEach(poi => {
-                        // Recuperiamo il titolo leggibile (es: "Casa di Ludovico Carracci")
                         const title = navTitles[poi.nav_id] || poi.id;
-
-                        // Creiamo il marker
                         const marker = L.marker([poi.lat, poi.lon]).addTo(map);
 
-                        // HOVER: Mostra il titolo quando si passa il mouse
                         marker.bindTooltip(title, {
                             direction: 'top',
                             sticky: true,
-                            className: 'map-tooltip' // Puoi personalizzarlo nel CSS
+                            className: 'map-tooltip'
                         });
 
-                        // CLICK: Vai alla pagina specifica (es: carracci-it.html)
                         marker.on('click', () => {
-                            window.location.href = `${poi.base_name}-${currentLang}.html`;
+                            const langSuffix = currentLang === 'it' ? '-it' : `-${currentLang}`;
+                            window.location.href = `${poi.base_name}${langSuffix}.html`;
                         });
                     });
 
                 } catch (error) {
                     console.error("Errore nel caricamento dei dati mappa:", error);
+                    // Suggerimento: se vedi questo errore in console, controlla i percorsi dei file JSON
                 }
-            });
-   </script>
-   <script src="main.js" type="module">
-   </script>
-  </div>
- </body>
+            });   </script>
+        <script src="main.js" type="module">
+        </script>
+    </div>
+</body>
+
 </html>

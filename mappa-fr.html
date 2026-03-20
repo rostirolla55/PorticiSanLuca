@@ -70,19 +70,6 @@
             <div class="nav-bar-nearby" id="nearbyMenuPlaceholder">
             </div>
         </header>
-        <nav class="nav-bar-main" id="navBarMain">
-            <div class="nav-bar-content">
-                <ul>
-                    <li>
-                        <a href="index-fr.html" id="navHome">
-                            Home
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <div class="nav-bar-nearby" id="nearbyMenuPlaceholder">
-        </div>
         <main class="content-body">
             <div class="header-image-container">
                 <img alt="Mappa" id="headImage" src="public/images/Meloncello.jpg" />
@@ -111,55 +98,50 @@
         </footer>
         <script>
             document.addEventListener('DOMContentLoaded', async () => {
-                // 1. Rileviamo la lingua corrente dal tag <html lang="...">
                 const currentLang = document.documentElement.lang || 'it';
 
-                // 2. Inizializziamo la mappa su Bologna
-                // [44.499, 11.340] sono le coordinate centrali del Quadrilatero
-                const map = L.map('map').setView([44.499, 11.340], 16);
+                // 1. Centriamo la mappa sulla zona di San Luca/Meloncello
+                // [44.490, 11.325] è una posizione intermedia tra i tuoi due POI
+                const map = L.map('map').setView([44.490, 11.325], 15);
 
-                // 3. Aggiungiamo lo sfondo (Tiles)
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '© OpenStreetMap'
                 }).addTo(map);
 
                 try {
-                    // 4. Carichiamo contemporaneamente POI e Testi
+                    // 2. Usiamo lo stesso percorso di main.js per i testi
+                    // Se texts.json è nella root, lascia 'texts.json'. 
+                    // Se è nella sottocartella, usa 'data/translations/' + currentLang + '/texts.json'
                     const [poisRes, textsRes] = await Promise.all([
                         fetch('pois_config.json'),
-                        fetch('texts.json')
+                        fetch(`data/translations/${currentLang}/texts.json`).catch(() => fetch('texts.json'))
                     ]);
+
                     const poisData = await poisRes.json();
                     const textsData = await textsRes.json();
-
-                    // Estraiamo i titoli dal blocco "nav" del JSON (come nel tuo script Python)
                     const navTitles = textsData.nav || {};
 
-                    // 5. Posizioniamo i PIN
                     poisData.pois.forEach(poi => {
-                        // Recuperiamo il titolo leggibile (es: "Casa di Ludovico Carracci")
                         const title = navTitles[poi.nav_id] || poi.id;
-
-                        // Creiamo il marker
                         const marker = L.marker([poi.lat, poi.lon]).addTo(map);
 
-                        // HOVER: Mostra il titolo quando si passa il mouse
                         marker.bindTooltip(title, {
                             direction: 'top',
                             sticky: true,
-                            className: 'map-tooltip' // Puoi personalizzarlo nel CSS
+                            className: 'map-tooltip'
                         });
 
-                        // CLICK: Vai alla pagina specifica (es: carracci-it.html)
                         marker.on('click', () => {
-                            window.location.href = `${poi.base_name}-${currentLang}.html`;
+                            const langSuffix = currentLang === 'it' ? '-it' : `-${currentLang}`;
+                            window.location.href = `${poi.base_name}${langSuffix}.html`;
                         });
                     });
 
                 } catch (error) {
                     console.error("Errore nel caricamento dei dati mappa:", error);
+                    // Suggerimento: se vedi questo errore in console, controlla i percorsi dei file JSON
                 }
-            });
+            });        
         </script>
         <script src="main.js" type="module">
         </script>
