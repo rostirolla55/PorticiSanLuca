@@ -163,9 +163,7 @@ function updateNavigation(navData, lang) {
     const navLinksData = [
     { id: 'navHome', key: 'navHome', base: 'index' },
     { id: 'navArco101', key: 'navArco101', base: 'arco101' },
-    { id: 'navPsontuoso
-', key: 'navPsontuoso
-', base: 'psontuoso' }
+    { id: 'navPsontuoso', key: 'navPsontuoso', base: 'psontuoso' }
 ];
 
     navLinksData.forEach(l => {
