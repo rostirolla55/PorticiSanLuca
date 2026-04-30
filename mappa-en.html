@@ -138,7 +138,9 @@
                 window.allData = translations;
                 window.navTitles = translations.nav || {}; // Nota: in main.js i titoli sono sotto 'nav'
 
-                const map = L.map('map').setView([44.4949, 11.3426], 16);
+                                // 44.489215911582704, 11.319143506654418
+                const map = L.map('map').setView([44.4892, 11.3191], 16);
+
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
                 // Raggruppiamo i POI per posizione (clustering)
