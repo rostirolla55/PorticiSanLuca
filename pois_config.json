@@ -6,7 +6,8 @@
       "lon": 11.3221583333333,
       "threshold": 15,
       "nav_id": "navArco101",
-      "base_name": "arco101"
+      "base_name": "arco101",
+      "categoria": "edificio"
     },
     {
       "id": "psontuoso",
@@ -14,7 +15,8 @@
       "lon": 11.329397374392755,
       "threshold": 15,
       "nav_id": "navPSontuoso",
-      "base_name": "psontuoso"
+      "base_name": "psontuoso",
+      "categoria": "edificio"
     }
   ]
 }

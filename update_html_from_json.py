@@ -1,90 +1,88 @@
 import os
-import re
 import json
-from bs4 import BeautifulSoup
+import re
 
-def update_html_from_json():
-    """
-    Aggiorna i file HTML inserendo il menu aggiornato dai file JSON.
-    Gestisce sia il formato {'items': [...]} che il formato lista [...].
-    """
-    root_path = os.getcwd()
-    json_folder = os.path.join(root_path, "menu_json")
-    lang_pattern = re.compile(r'-([a-z]{2})\.html$')
+def load_json(path):
+    if os.path.exists(path):
+        with open(path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    return None
+
+def generate_gps_blocks(pois):
+    """Genera i blocchi JS per le coordinate GPS"""
+    loc_js = "const POIS_LOCATIONS = [\n"
+    for i, p in enumerate(pois):
+        sep = "," if i < len(pois) - 1 else ""
+        loc_js += f"    {{ id: '{p['id']}', lat: {p['lat']}, lon: {p['lon']}, distanceThreshold: {p['threshold']}, categoria: '{p['categoria']}' }}{sep}\n"
+    loc_js += "];"
+
+    nav_links_js = "const navLinksData = {\n"
+    for i, p in enumerate(pois):
+        sep = "," if i < len(pois) - 1 else ""
+        nav_links_js += f"    '{p['nav_id']}': '{p['id']}'{sep}\n"
+    nav_links_js += "};"
     
-    if not os.path.exists(json_folder):
-        print(f"Errore: La cartella '{json_folder}' non esiste.")
-        return
+    return loc_js, nav_links_js
 
-    # 1. Caricamento dei JSON
-    menu_data = {}
-    json_files = [f for f in os.listdir(json_folder) if f.startswith("nav-") and f.endswith(".json")]
+def update_all_files():
+    root_path = "."
+    languages = ['it', 'en', 'es', 'fr']
     
-    for jf_name in json_files:
-        lang_code = jf_name.replace("nav-", "").replace(".json", "")
-        try:
-            with open(os.path.join(json_folder, jf_name), 'r', encoding='utf-8') as f:
-                content = json.load(f)
-                # Normalizzazione: vogliamo sempre una lista di items
-                if isinstance(content, dict):
-                    menu_data[lang_code] = content.get('items', [])
-                elif isinstance(content, list):
-                    menu_data[lang_code] = content
-                else:
-                    menu_data[lang_code] = []
-                print(f"Caricato menu {lang_code}: {len(menu_data[lang_code])} voci.")
-        except Exception as e:
-            print(f"Errore caricamento {jf_name}: {e}")
+    # 1. Carichiamo la configurazione GPS
+    pois_data = load_json('pois_config.json')
+    pois = pois_data.get('pois', []) if pois_data else []
+    loc_js, nav_links_js = generate_gps_blocks(pois)
 
-    # 2. Scansione HTML
-    for html_name in os.listdir(root_path):
-        if not html_name.endswith(".html"):
-            continue
-            
-        file_path = os.path.join(root_path, html_name)
-        match = lang_pattern.search(html_name)
-        lang = match.group(1) if match else "it"
+    # 2. Pre-generiamo i menu HTML per ogni lingua
+    menu_blocks = {}
+    for lang in languages:
+        nav_json = load_json(os.path.join('menu_json', f'nav-{lang}.json'))
+        if nav_json:
+            items = nav_json.get('items', [])
+            html = '     <ul>\n'
+            for item in items:
+                html += f'      <li>\n       <a href="{item["href"]}" id="{item["id"]}">{item["text"]}</a>\n      </li>\n'
+            html += '     </ul>'
+            menu_blocks[lang] = html
 
-        if lang not in menu_data:
+    print("--- Inizio Aggiornamento Totale HTML ---")
+
+    # 3. Scansione di TUTTI i file HTML
+    for filename in os.listdir(root_path):
+        if not filename.endswith('.html'):
             continue
 
-        try:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                soup = BeautifulSoup(f, 'html.parser')
+        filepath = os.path.join(root_path, filename)
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
 
-            nav_tag = soup.find('nav', id='navBarMain')
-            if nav_tag:
-                # Pulizia contenuto precedente
-                nav_tag.clear()
-                
-                # Creazione struttura: div class="nav-bar-content" -> ul
-                nav_content_div = soup.new_tag('div', attrs={'class': 'nav-bar-content'})
-                ul = soup.new_tag('ul')
-                
-                for item in menu_data[lang]:
-                    li = soup.new_tag('li')
-                    # Gestione attributi link
-                    a_attrs = {'href': item.get('href', '#')}
-                    if 'id' in item and item['id']:
-                        a_attrs['id'] = item['id']
-                    
-                    a = soup.new_tag('a', attrs=a_attrs)
-                    a.string = item.get('text', 'Link')
-                    li.append(a)
-                    ul.append(li)
-                
-                nav_content_div.append(ul)
-                nav_tag.append(nav_content_div)
-                
-                with open(file_path, 'w', encoding='utf-8') as f:
-                    # Usiamo formatter="html" per mantenere i caratteri speciali corretti
-                    f.write(soup.prettify(formatter="html"))
-                print(f"OK: {html_name} aggiornato.")
-            else:
-                print(f"AVVISO: {html_name} non ha <nav id='navBarMain'>")
-                
-        except Exception as e:
-            print(f"Errore su {html_name}: {e}")
+        # Determina la lingua: se non c'è suffisso, è Italiano (Redirect)
+        is_redirect = True
+        lang = 'it'
+        if filename.endswith('-en.html'): lang = 'en'; is_redirect = False
+        elif filename.endswith('-es.html'): lang = 'es'; is_redirect = False
+        elif filename.endswith('-fr.html'): lang = 'fr'; is_redirect = False
+        elif filename.endswith('-it.html'): lang = 'it'; is_redirect = False
+
+        # AGGIORNAMENTO MENU (navBarMain)
+        if lang in menu_blocks:
+            pattern_nav = r'(<div class="nav-bar-content"[^>]*>\s*)<ul>.*?</ul>'
+            content = re.sub(pattern_nav, r'\1' + menu_blocks[lang], content, flags=re.DOTALL)
+
+        # AGGIORNAMENTO GPS (Solo se è un file di reindirizzamento)
+        if is_redirect:
+            if "const POIS_LOCATIONS" in content:
+                content = re.sub(r"const POIS_LOCATIONS = \[.*?\];", loc_js, content, flags=re.DOTALL)
+                content = re.sub(r"const navLinksData = \{.*?\};", nav_links_js, content, flags=re.DOTALL)
+
+        # Salvataggio se ci sono state modifiche
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        
+        type_str = "(Redirect + Menu)" if is_redirect else f"(Menu {lang.upper()})"
+        print(f" [OK] {filename} {type_str}")
+
+    print("--- Fine Operazione ---")
 
 if __name__ == "__main__":
-    update_html_from_json()
+    update_all_files()

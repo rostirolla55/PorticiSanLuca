@@ -7,9 +7,12 @@ import { getFirestore, doc, onSnapshot, collection, addDoc, serverTimestamp } fr
 
 const APP_VERSION = '1.2.36 - Lingue (Supporta button, img e tag a)';
 const LANGUAGES = ['it', 'en', 'fr', 'es'];
-const LAST_LANG_KEY = 'PorticiSanLuca_lastLang';
+const LAST_LANG_KEY = 'Quadrilatero_lastLang';
 let currentLang = 'it';
 console.log(`Version : ${APP_VERSION}`);
+
+window.navTitles = {};
+window.allData = {};
 
 // Elementi DOM Globali
 let nearbyPoiButton;
@@ -24,8 +27,21 @@ let db, auth, currentUserId = null, isAuthReady = false;
 // DATI: POI GPS
 // ===========================================
 const POIS_LOCATIONS = [
-    { id: 'arco101', lat: 44.4899416666667, lon: 11.3221583333333, distanceThreshold: 15 },
-    { id: 'psontuoso', lat: 44.49046395468894, lon: 11.329397374392755, distanceThreshold: 15 }
+    { id: 'manifattura', lat: 44.4989321, lon: 11.336618, distanceThreshold: 50, categoria: 'edificio' },
+    { id: 'pittoricarracci', lat: 44.49909, lon: 11.340316, distanceThreshold: 50, categoria: 'arte' },
+    { id: 'cavaticcio', lat: 44.500207, lon: 11.338076, distanceThreshold: 50, categoria: 'edificio' },
+    { id: 'bsmariamaggiore', lat: 44.498118, lon: 11.341923, distanceThreshold: 50, categoria: 'edificio' },
+    { id: 'graziaxx', lat: 44.500594, lon: 11.340758, distanceThreshold: 50, categoria: 'esterno' },
+    { id: 'pugliole', lat: 44.500071, lon: 11.339805, distanceThreshold: 50, categoria: 'esterno' },
+    { id: 'carracci', lat: 44.499912, lon: 11.34041, distanceThreshold: 50, categoria: 'edificio' },
+    { id: 'lastre', lat: 44.499312, lon: 11.340714, distanceThreshold: 50, categoria: 'esterno' },
+    { id: 'chiesasbene', lat: 44.5019, lon: 11.343843, distanceThreshold: 120, categoria: 'edificio' },
+    { id: 'santuariopioggia', lat: 44.498891, lon: 11.342148, distanceThreshold: 120, categoria: 'edificio' },
+    { id: 'pioggia1', lat: 44.498921, lon: 11.341923, distanceThreshold: 120, categoria: 'quadro' },
+    { id: 'pioggia2', lat: 44.499023, lon: 11.34176, distanceThreshold: 120, categoria: 'statua' },
+    { id: 'pioggia3', lat: 44.499023, lon: 11.34176, distanceThreshold: 120, categoria: 'quadro' },
+    { id: 'chiesasancarlo', lat: 44.501295, lon: 11.34085, distanceThreshold: 120, categoria: 'edificio' },
+    { id: 'stabile_legno_vandini', lat: 44.502054, lon: 11.338546, distanceThreshold: 120, categoria: 'edificio' }
 ];
 
 // ===========================================
@@ -82,6 +98,7 @@ async function loadContent(lang) {
     try {
         const response = await fetch(`data/translations/${lang}/texts.json`);
         const data = await response.json();
+        window.allData = data; // <--- AGGIUNGI QUESTA RIGA per aggiornare i titoli globali
         const pageData = data[pageId];
 
         if (!pageData) {
@@ -158,15 +175,43 @@ function updateNavigation(navData, lang) {
 
     const navLinksData = [
     { id: 'navHome', key: 'navHome', base: 'index' },
-    { id: 'navArco101', key: 'navArco101', base: 'arco101' },
-    { id: 'navPSontuoso', key: 'navPSontuoso', base: 'psontuoso' }
+    { id: 'navManifattura', key: 'navManifattura', base: 'manifattura' },
+    { id: 'navPittoricarracci', key: 'navPittoricarracci', base: 'pittoricarracci' },
+    { id: 'navCavaticcio', key: 'navCavaticcio', base: 'cavaticcio' },
+    { id: 'navBsmariamaggiore', key: 'navBsmariamaggiore', base: 'bsmariamaggiore' },
+    { id: 'navGraziaxx', key: 'navGraziaxx', base: 'graziaxx' },
+    { id: 'navPugliole', key: 'navPugliole', base: 'pugliole' },
+    { id: 'navCarracci', key: 'navCarracci', base: 'carracci' },
+    { id: 'navLastre', key: 'navLastre', base: 'lastre' },
+    { id: 'navChiesasbene', key: 'navChiesasbene', base: 'chiesasbene' },
+    { id: 'navSantuariopioggia', key: 'navSantuariopioggia', base: 'santuariopioggia' },
+    { id: 'navPioggia1', key: 'navPioggia1', base: 'pioggia1' },
+    { id: 'navPioggia2', key: 'navPioggia2', base: 'pioggia2' },
+    { id: 'navPioggia3', key: 'navPioggia3', base: 'pioggia3' },
+    { id: 'navChiesasancarlo', key: 'navChiesasancarlo', base: 'chiesasancarlo' },
+    { id: 'navStabilevandini', key: 'navStabilevandini', base: 'stabile_legno_vandini' }
 ];
 
     navLinksData.forEach(l => {
         const el = document.getElementById(l.id);
         if (el) {
             el.href = `${l.base}${langSuffix}.html`;
-            el.textContent = navData[l.key] || l.id;
+            // const poiInfo = POIS_LOCATIONS.find(p => p.id === l.base);
+            const poiInfo = POIS_LOCATIONS.find(p => p.id.toLowerCase() === l.base.toLowerCase());
+            const simbolo = (poiInfo && window.getSimboloCategoria) 
+                            ? window.getSimboloCategoria(poiInfo.categoria) 
+                            : '📍';
+            // CERCA TITOLO: 
+            // 1. Prova nel navData (es. navManifattura)
+            // 2. Prova nel titolo della pagina (pageTitle)
+            // 3. Fallback sull'ID pulito
+            const titoloTradotto = navData[l.key] || 
+                                   (window.allData[l.base] && window.allData[l.base].pageTitle) || 
+                                   l.base;
+
+            el.innerHTML = `<span class="menu-icon">${simbolo}</span> ${titoloTradotto}`;
+            // console.log(`DEBUG : <span>${simbolo}</span> ${titoloTradotto} `);
+            // ---------------------
         }
     });
 }
@@ -202,8 +247,13 @@ function startGeolocation(allData) {
             const dist = calculateDistance(lat, lon, poi.lat, poi.lon);
             if (dist <= poi.distanceThreshold) {
                 const title = (allData[poi.id] && allData[poi.id].pageTitle) ? allData[poi.id].pageTitle : poi.id;
+                const simbolo = (typeof window.getSimboloCategoria === 'function') ? window.getSimboloCategoria(poi.categoria) : '📍';
                 const suffix = currentLang === 'it' ? '-it' : `-${currentLang}`;
-                menuHtml += `<li><a href="${poi.id}${suffix}.html">${title} (${dist.toFixed(0)}m)</a></li>`;
+                menuHtml += `<li>
+                    <a href="${poi.id}${suffix}.html">
+                        <span>${simbolo}</span> ${title} (${dist.toFixed(0)}m)
+                    </a>
+                </li>`; 
                 found = true;
             }
         });
@@ -218,10 +268,10 @@ function startGeolocation(allData) {
                 case 'it':
                 default: noPoiMessage = `Nessun Punto di Interesse trovato entro 50 m.<br><br> Premere di nuovo il bottone verde per chiudere la lista.`; break;
             }
-        // Uso colore rosso per i test
-        menuHtml = `<div style="color:red; padding: 20px; text-align: center; font-size: 1em;">${noPoiMessage}</div>`;
+            // Uso colore rosso per i test
+            menuHtml = `<div style="color:red; padding: 20px; text-align: center; font-size: 1em;">${noPoiMessage}</div>`;
 
-//      menuHtml = '<div style="padding:20px;text-align:center;">Nessun punto vicino</div>'
+            //      menuHtml = '<div style="padding:20px;text-align:center;">Nessun punto vicino</div>'
 
         };
         if (nearbyMenuPlaceholder) nearbyMenuPlaceholder.innerHTML = menuHtml;
@@ -292,33 +342,33 @@ function initEvents() {
                 playBtn.classList.replace('pause-style', 'play-style');
             }
         };
-        player.onended = () => { 
-            playBtn.textContent = playBtn.dataset.playText; 
+        player.onended = () => {
+            playBtn.textContent = playBtn.dataset.playText;
             playBtn.classList.replace('pause-style', 'play-style');
         };
     }
 
 
-// Lingue (Supporta button, img e tag 'a' anche nidificati)
+    // Lingue (Supporta button, img e tag 'a' anche nidificati)
     document.querySelectorAll('.language-selector button, .language-selector img, .language-selector a').forEach(el => {
         el.onclick = (e) => {
             // Cerca data-lang sull'elemento cliccato o sul genitore più vicino
             // (Fondamentale se clicchi sull'<img> dentro un <a>)
             const target = e.target.closest('[data-lang]');
             const lang = target ? target.dataset.lang : null;
-            
+
             if (!lang) return;
-            
+
             // Blocca il link HTML per gestire il cambio via JS
             e.preventDefault();
-            e.stopPropagation(); 
-            
+            e.stopPropagation();
+
             console.log("Cambio lingua forzato a:", lang);
-            
+
             localStorage.setItem(LAST_LANG_KEY, lang);
             const pageId = getCurrentPageId();
             const base = (pageId === 'home' || pageId === 'index') ? 'index' : pageId;
-            
+
             // Reindirizzamento esplicito
             window.location.href = `${base}-${lang}.html`;
         };
@@ -353,3 +403,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+// --- ESPORTAZIONE GLOBALE ---
+window.getSimboloCategoria = function(categoria) {
+    // 1. Gestione Benvenuto o valori nulli [cite: 49-51]
+    if (!categoria || categoria === "" || categoria === "undefined") {
+        return '📍'; 
+    }
+
+    // 2. Pulizia assoluta del valore ricevuto
+    const catClean = categoria.toString().toLowerCase().trim();
+
+    // 3. Mappatura completa basata sui tuoi POIS_LOCATIONS [cite: 30-43]
+    const simboli = {
+        'edificio': '🏛️',
+        'esterno': '🌳',
+        'chiesa': '⛪',
+        'quadro': '🎨',
+        'statua': '🗿',
+        'arte': '🎨',
+        'monumento': '🏛️'
+    };
+
+    // 4. Fallback: se la categoria non è in lista, usa il pin rosso 
+    // Invece di restituire nulla (vuoto), restituiamo sempre un carattere visibile.
+    return simboli[catClean] || '📍';
+};  
+
+window.POIS_LOCATIONS = POIS_LOCATIONS;
+// Aggiungi questa riga per esportare i titoli tradotti
+// Inizializziamo l'oggetto se non esiste ancora
+if (!window.navTitles) window.navTitles = {};
