@@ -1,146 +1,243 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="it">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title id="pageTitle">
-        Mapa - Quadrilatero
-    </title>
+    <title>Mappa - Quadrilatero</title>
     <link href="style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        /* FIX: Forza l'altezza e la visibilità */
+        /* FIX: Permetti lo scorrimento della pagina */
+#app-wrapper {
+            display: block; /* Ripristina lo scorrimento verticale */
+            opacity: 1;     /* Assicurati che sia visibile */
+            overflow: visible;
+        }
+
+        #map {
+            width: 100%;
+            height: 500px; /* Come nella versione precedente */
+            z-index: 1;
+        }
+
+        @media (min-width: 992px) {
+            #map {
+                height: 600px;
+                border-radius: 8px;
+                border: 2px solid #ccc;
+                margin-top: 10px;
+            }
+        }
+
+
+
+        /* HEADER: deve stare sopra la mappa */
+        .main-header {
+            z-index: 2000 !important;
+            background: white !important;
+            display: flex !important;
+            align-items: center !important;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #loading-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffeb3b;
+            text-align: center;
+            padding: 10px;
+            z-index: 3000;
+        }
+
+        /* Stile Hamburger manuale per sicurezza visiva */
+        .manual-hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-right: 12px;
+        }
+
+        .manual-hamburger span {
+            width: 22px;
+            height: 3px;
+            background: black;
+            border-radius: 2px;
+        }
+
+		/* Impedisce a regole CSS esterne di spostare i marker della mappa */
+		.leaflet-marker-icon, 
+		.leaflet-marker-shadow {
+			margin: 0 !important;
+			padding: 0 !important;
+			max-width: none !important;
+			max-height: none !important;
+		}
+    </style>
 </head>
 
 <body>
-    <div id="loading-message">
-        <p>
-            cargando mapa...
-        </p>
-    </div>
+
+    <div id="loading-message">Caricamento in corso...</div>
+
     <div id="app-wrapper">
         <header class="main-header">
-            <div class="left-header-group">
-                <button aria-label="Apri menu" class="menu-toggle">
-                    <span class="bar">
-                    </span>
-                    <span class="bar">
-                    </span>
-                    <span class="bar">
-                    </span>
-                </button>
-                <a class="map-link" href="mappa-es.html" id="mapNavLink">
-                    <svg class="pin-icon" viewbox="0 0 24 24">
-                        <path
-                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z">
-                        </path>
-                    </svg>
-                </a>
-            </div>
-            <div class="right-header-group">
-                <div class="language-selector">
-                    <button data-lang="it">
-                        <img alt="Italiano" src="public/flag/it.png" />
-                    </button>
-                    <button data-lang="en">
-                        <img alt="English" src="public/flag/en.png" />
-                    </button>
-                    <button data-lang="es">
-                        <img alt="Espa&ntilde;ol" src="public/flag/es.png" />
-                    </button>
-                    <button data-lang="fr">
-                        <img alt="Fran&ccedil;ais" src="public/flag/fr.png" />
-                    </button>
+            <div class="left-header-group" style="cursor: pointer; display: flex; align-items: center;"
+                onclick="window.location.href='index.html'">
+                <div class="manual-hamburger">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="map-link">
+                    <span style="color: #28a745; font-weight: bold;">Chiudi la mappa</span>
                 </div>
             </div>
         </header>
-        <nav class="nav-bar-main" id="navBarMain">
-            <div class="nav-bar-content">
-                     <ul>
-      <li>
-       <a href="index-es.html" id="navHome">Bienvenido</a>
-      </li>
-      <li>
-       <a href="psontuoso-es.html" id="navPSontuoso">Puerta Suntuosa</a>
-      </li>
-     </ul>
-            </div>
-        </nav>
-        <div class="nav-bar-nearby" id="nearbyMenuPlaceholder">
-        </div>
-        <main class="content-body">
-            <div class="header-image-container">
-                <img alt="Mappa" id="headImage" src="public/images/Meloncello.jpg" />
-                <h1 class="header-title" id="headerTitle">
-                    Mapa de lugares
-                </h1>
-            </div>
-            <div class="main-content-area">
-                <p id="mainMapsDesc" style="margin-bottom: 20px; font-style: italic;">
-                </p>
-                <div class="map-container"
-                    style="position: relative; padding-bottom: 75%; height: 0; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                    <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet" />
-                    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
-                    </script>
-                    <div id="map"
-                        style="height: 500px; width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
-                    </div>
-                </div>
-            </div>
-        </main>
-        <footer class="info-footer">
-            <p>
-                &copy; 2024 Quadrilatero. Todos los derechos reservados.
-            </p>
-        </footer>
-        <script>
-            document.addEventListener('DOMContentLoaded', async () => {
-                const currentLang = document.documentElement.lang || 'it';
-
-                // 1. Centriamo la mappa sulla zona di San Luca/Meloncello
-                // [44.490, 11.325] è una posizione intermedia tra i tuoi due POI
-                const map = L.map('map').setView([44.490, 11.325], 15);
-
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '© OpenStreetMap'
-                }).addTo(map);
-
-                try {
-                    // 2. Usiamo lo stesso percorso di main.js per i testi
-                    // Se texts.json è nella root, lascia 'texts.json'. 
-                    // Se è nella sottocartella, usa 'data/translations/' + currentLang + '/texts.json'
-                    const [poisRes, textsRes] = await Promise.all([
-                        fetch('pois_config.json'),
-                        fetch(`data/translations/${currentLang}/texts.json`).catch(() => fetch('texts.json'))
-                    ]);
-
-                    const poisData = await poisRes.json();
-                    const textsData = await textsRes.json();
-                    const navTitles = textsData.nav || {};
-
-                    poisData.pois.forEach(poi => {
-                        const title = navTitles[poi.nav_id] || poi.id;
-                        const marker = L.marker([poi.lat, poi.lon]).addTo(map);
-
-                        marker.bindTooltip(title, {
-                            direction: 'top',
-                            sticky: true,
-                            className: 'map-tooltip'
-                        });
-
-                        marker.on('click', () => {
-                            const langSuffix = currentLang === 'it' ? '-it' : `-${currentLang}`;
-                            window.location.href = `${poi.base_name}${langSuffix}.html`;
-                        });
-                    });
-
-                } catch (error) {
-                    console.error("Errore nel caricamento dei dati mappa:", error);
-                    // Suggerimento: se vedi questo errore in console, controlla i percorsi dei file JSON
-                }
-            });   </script>
-        <script src="main.js" type="module">
-        </script>
+        <main id="map"></main>
     </div>
+
+    <div id="nearbyMenuPlaceholder-map"></div>
+    <button id="close-cluster-btn-map">CHIUDI ELENCO</button>
+
+    <script type="module" src="main.js"></script>
+
+    <script type="module">
+        const currentLang = 'it';
+        const suffix = '';
+
+        // Definiamo l'icona con la punta "inchiodata" alle coordinate [12, 41]
+        const redPinIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [11,46], // LA SOLUZIONE: metà larghezza, altezza totale
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41],
+            shadowAnchor: [12, 41]
+        });
+
+        async function init() {
+            try {
+                // Carichiamo i dati necessari per la mappa
+                const [poisRes, textsRes] = await Promise.all([
+                    fetch('pois_config.json'),
+                    fetch(`data/translations/${currentLang}/texts.json`)
+                ]);
+
+                const poisConfig = await poisRes.json();
+                const translations = await textsRes.json();
+
+                // Popoliamo le variabili globali in modo che siano disponibili ovunque
+                window.allData = translations;
+                window.navTitles = translations.nav || {}; // Nota: in main.js i titoli sono sotto 'nav'
+
+                const map = L.map('map').setView([44.4949, 11.3426], 16);
+                setTimeout(function () {
+                    map.invalidateSize();
+                }, 400);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+                // Raggruppiamo i POI per posizione (clustering)
+                const clusters = {};
+                // Usiamo i POI dal file config appena caricato
+                poisConfig.pois.forEach(p => {
+                    const k = `${p.lat}_${p.lon}`;
+                    if (!clusters[k]) clusters[k] = [];
+                    clusters[k].push(p);
+                });
+
+                Object.values(clusters).forEach(group => {
+                    const first = group[0];
+                    const latLng = [first.lat, first.lon];
+
+                    if (group.length === 1) {
+                        const marker = L.marker(latLng, { icon: redPinIcon }).addTo(map);
+
+                        // Recupero Titolo: Cerca prima nel nav tradotto, poi nel pageTitle, infine ID
+                        const label = (window.navTitles && window.navTitles[first.nav_id])
+                            ? window.navTitles[first.nav_id]
+                            : (translations[first.id] && translations[first.id].pageTitle)
+                                ? translations[first.id].pageTitle
+                                : first.id;
+
+                        marker.bindTooltip(label, { direction: 'top', offset: [0, -35] });
+                        marker.on('click', () => window.location.href = `${first.id}${suffix}.html`);
+
+                        // L.circleMarker(latLng, { radius: 2, color: 'blue', fillOpacity: 1 }).addTo(map);
+
+                    } else {
+                        // Logica Cluster...
+                        const clusterIcon = L.divIcon({
+                            html: `<div class="cluster-pin">${group.length}</div>`,
+                            className: 'custom-cluster',
+                            iconSize: [35, 35],
+                            iconAnchor: [17, 17]
+                        });
+                        const cMarker = L.marker(latLng, { icon: clusterIcon }).addTo(map);
+
+                        cMarker.on('click', (e) => {
+                            L.DomEvent.stopPropagation(e);
+                            const menu = document.getElementById('nearbyMenuPlaceholder-map');
+                            menu.innerHTML = '';
+                            group.forEach(poi => {
+                                const btn = document.createElement('button');
+                                btn.className = 'cluster-menu-item-map';
+
+                                // Titolo e Icona per il menu del cluster
+                                const t = (window.navTitles && window.navTitles[poi.nav_id])
+                                    ? window.navTitles[poi.nav_id]
+                                    : (translations[poi.id] && translations[poi.id].pageTitle)
+                                        ? translations[poi.id].pageTitle
+                                        : poi.id;
+
+                                // Verifica se la categoria esiste, altrimenti assegna 'default' o un'icona info
+                                const categoriaValida = poi.categoria && poi.categoria !== "" ? poi.categoria : 'info';
+
+                                const s = window.getSimboloCategoria
+                                    ? window.getSimboloCategoria(categoriaValida)
+                                    : '📍';
+                                btn.innerHTML = `<span>${s} ${t}</span>`;
+                                btn.onclick = () => window.location.href = `${poi.id}${suffix}.html`;
+                                menu.appendChild(btn);
+                            });
+                            menu.style.display = 'block';
+                            menu.classList.add('active');
+                            document.getElementById('close-cluster-btn-map').style.display = 'block';
+                        });
+                    }
+                });
+
+ // Nascondiamo il caricamento
+                document.getElementById('loading-message').style.display = 'none';
+
+                // FIX DEFINITIVO PIN:
+                // Eseguiamo il ricalcolo solo quando tutto è visibile
+                setTimeout(function () {
+                    if (typeof map !== 'undefined') {
+                        map.invalidateSize();
+                        // Un piccolo trucco: muoviamo la mappa di 1 pixel e torniamo indietro
+                        // per forzare Leaflet a ridisegnare i layer dei marker
+                        map.panBy([1, 1]);
+                        map.panBy([-1, -1]);
+                    }
+                }, 600);
+            } catch (e) {
+                console.error("Errore inizializzazione:", e);
+                document.getElementById('loading-message').innerHTML = "Errore caricamento dati.";
+            }
+        }
+        document.getElementById('close-cluster-btn-map').onclick = () => {
+            const menu = document.getElementById('nearbyMenuPlaceholder-map');
+            menu.classList.remove('active');
+            menu.style.display = 'none';
+            document.getElementById('close-cluster-btn-map').style.display = 'none';
+        };
+
+        init();
+    </script>
 </body>
 
 </html>
