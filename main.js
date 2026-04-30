@@ -27,21 +27,8 @@ let db, auth, currentUserId = null, isAuthReady = false;
 // DATI: POI GPS
 // ===========================================
 const POIS_LOCATIONS = [
-    { id: 'manifattura', lat: 44.4989321, lon: 11.336618, distanceThreshold: 50, categoria: 'edificio' },
-    { id: 'pittoricarracci', lat: 44.49909, lon: 11.340316, distanceThreshold: 50, categoria: 'arte' },
-    { id: 'cavaticcio', lat: 44.500207, lon: 11.338076, distanceThreshold: 50, categoria: 'edificio' },
-    { id: 'bsmariamaggiore', lat: 44.498118, lon: 11.341923, distanceThreshold: 50, categoria: 'edificio' },
-    { id: 'graziaxx', lat: 44.500594, lon: 11.340758, distanceThreshold: 50, categoria: 'esterno' },
-    { id: 'pugliole', lat: 44.500071, lon: 11.339805, distanceThreshold: 50, categoria: 'esterno' },
-    { id: 'carracci', lat: 44.499912, lon: 11.34041, distanceThreshold: 50, categoria: 'edificio' },
-    { id: 'lastre', lat: 44.499312, lon: 11.340714, distanceThreshold: 50, categoria: 'esterno' },
-    { id: 'chiesasbene', lat: 44.5019, lon: 11.343843, distanceThreshold: 120, categoria: 'edificio' },
-    { id: 'santuariopioggia', lat: 44.498891, lon: 11.342148, distanceThreshold: 120, categoria: 'edificio' },
-    { id: 'pioggia1', lat: 44.498921, lon: 11.341923, distanceThreshold: 120, categoria: 'quadro' },
-    { id: 'pioggia2', lat: 44.499023, lon: 11.34176, distanceThreshold: 120, categoria: 'statua' },
-    { id: 'pioggia3', lat: 44.499023, lon: 11.34176, distanceThreshold: 120, categoria: 'quadro' },
-    { id: 'chiesasancarlo', lat: 44.501295, lon: 11.34085, distanceThreshold: 120, categoria: 'edificio' },
-    { id: 'stabile_legno_vandini', lat: 44.502054, lon: 11.338546, distanceThreshold: 120, categoria: 'edificio' }
+    { id: 'arco101', lat: 44.4899416666667, lon: 11.3221583333333, distanceThreshold: 15, categoria: 'edificio' },
+    { id: 'psontuoso', lat: 44.49046395468894, lon: 11.329397374392755, distanceThreshold: 15, categoria: 'edificio' }
 ];
 
 // ===========================================
@@ -175,21 +162,8 @@ function updateNavigation(navData, lang) {
 
     const navLinksData = [
     { id: 'navHome', key: 'navHome', base: 'index' },
-    { id: 'navManifattura', key: 'navManifattura', base: 'manifattura' },
-    { id: 'navPittoricarracci', key: 'navPittoricarracci', base: 'pittoricarracci' },
-    { id: 'navCavaticcio', key: 'navCavaticcio', base: 'cavaticcio' },
-    { id: 'navBsmariamaggiore', key: 'navBsmariamaggiore', base: 'bsmariamaggiore' },
-    { id: 'navGraziaxx', key: 'navGraziaxx', base: 'graziaxx' },
-    { id: 'navPugliole', key: 'navPugliole', base: 'pugliole' },
-    { id: 'navCarracci', key: 'navCarracci', base: 'carracci' },
-    { id: 'navLastre', key: 'navLastre', base: 'lastre' },
-    { id: 'navChiesasbene', key: 'navChiesasbene', base: 'chiesasbene' },
-    { id: 'navSantuariopioggia', key: 'navSantuariopioggia', base: 'santuariopioggia' },
-    { id: 'navPioggia1', key: 'navPioggia1', base: 'pioggia1' },
-    { id: 'navPioggia2', key: 'navPioggia2', base: 'pioggia2' },
-    { id: 'navPioggia3', key: 'navPioggia3', base: 'pioggia3' },
-    { id: 'navChiesasancarlo', key: 'navChiesasancarlo', base: 'chiesasancarlo' },
-    { id: 'navStabilevandini', key: 'navStabilevandini', base: 'stabile_legno_vandini' }
+    { id: 'navArco101', key: 'navArco101', base: 'arco101' },
+    { id: 'navPSontuoso', key: 'navPSontuoso', base: 'psontuoso' }
 ];
 
     navLinksData.forEach(l => {
