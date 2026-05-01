@@ -1,11 +1,11 @@
 {
     "arco101": {
-        "headImage": "public/images/Meloncello.jpg",
+        "headImage": "/Meloncello.jpg",
         "audioSource": "en/arco101.mp3",
         "mainText1": "en_arco101_maintext1.html"
     },
     "home": {
-        "headImage": "public/images/Meloncello.jpg",
+        "headImage": "/Meloncello.jpg",
         "audioSource": "en/home.mp3",
         "mainText1": "en_index_maintext1.html"
     },
