@@ -10,12 +10,17 @@
         "mainText1": "es_index_maintext1.html"
     },
     "psontuoso": {
-        "headImage": "public/images/panorama_bologna.jpg",
+        "headImage": "Meloncello.jpg",
         "audioSource": "es/psontuoso.mp3",
         "mainText1": "es_psontuoso_maintext1.html",
         "imageSource1": "psontuoso/Portone_Sontuoso.jpg",
         "mainText2": "es_psontuoso_maintext2.html",
         "imageSource2": "psontuoso/Disegno_Bonaccorsi",
-        "mainText3": "es_psontuoso_maintext3.html"
+        "mainText3": "es_psontuoso_maintext3.html",
+        "pageTitle": "Puerta suntuoso",
+        "playAudioButton": "Escuchar la historia",
+        "pauseAudioButton": "Detener la reproducción",
+        "sourceText": "Vaticano.com Santuarios y alrededores",
+        "maintext": ""
     }
 }
