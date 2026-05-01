@@ -37,7 +37,7 @@ STATIC_KEYS = (
 )
 
 # NUOVA CONFIGURAZIONE: Immagine di testata unica e percorso comune
-DEFAULT_HEAD_IMAGE = 'public/images/Meloncello.jpg' 
+DEFAULT_HEAD_IMAGE = 'Meloncello.jpg' 
 
 
 def get_config_files(directory: str) -> list:
