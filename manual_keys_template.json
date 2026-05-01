@@ -8,7 +8,7 @@
             "sourceText": "Vaticano.com Santuari e Dintorni",
             "headImage": "Meloncello.jpg",
             "audioSource": "it/home_portici.mp3",
-            "maintext": ""
+            "mainText": ""
         },
         "es": {
             "pageTitle": "Bienvenido",
@@ -17,7 +17,7 @@
             "sourceText": "Vaticano.com Santuarios y alrededores",
             "headImage": "Meloncello.jpg",
             "audioSource": "es/home_portici.mp3",
-            "maintext": ""
+            "mainText": ""
         },
         "fr": {
             "pageTitle": "Bienvenue",
@@ -26,7 +26,7 @@
             "sourceText": "Vaticano.com Sanctuaires et environs",
             "headImage": "Meloncello.jpg",
             "audioSource": "fr/home_portici.mp3",
-            "maintext": ""
+            "mainText": ""
         },
         "en": {
             "pageTitle": "Welcome",
@@ -35,7 +35,7 @@
             "sourceText": "Vaticano.com Santuari e Dintorni",
             "headImage": "Meloncello.jpg",
             "audioSource": "en/home_portici.mp3",
-            "maintext": ""
+            "mainText": ""
         }
     },    
     "psontuoso": {
@@ -46,7 +46,7 @@
             "sourceText": "Vaticano.com Santuari e Dintorni",
             "headImage": "Meloncello.jpg",
             "audioSource": "it/psontuoso.mp3",
-            "maintext": ""
+            "mainText": ""
         },
         "es": {
             "pageTitle": "Puerta suntuoso",
@@ -55,7 +55,7 @@
             "sourceText": "Vaticano.com Santuarios y alrededores",
             "headImage": "Meloncello.jpg",
             "audioSource": "es/psontuoso.mp3",
-            "maintext": ""
+            "mainText": ""
         },
         "fr": {
             "pageTitle": "Porte somptueux",
@@ -64,7 +64,7 @@
             "sourceText": "Vaticano.com Sanctuaires et environs",
             "headImage": "Meloncello.jpg",
             "audioSource": "fr/psontuoso.mp3",
-            "maintext": ""
+            "mainText": ""
         },
         "en": {
             "pageTitle": "sumptuous gate",
@@ -73,7 +73,7 @@
             "sourceText": "Vaticano.com Santuari e Dintorni",
             "headImage": "Meloncello.jpg",
             "audioSource": "en/psontuoso.mp3",
-            "maintext": ""
+            "mainText": ""
         }
     },    
     "arco101": {
@@ -84,7 +84,7 @@
             "sourceText": "Vaticano.com Santuari e Dintorni",
             "headImage": "Meloncello.jpg",
             "audioSource": "it/home_portici.mp3",
-            "maintext": ""
+            "mainText": ""
         },
         "es": {
             "pageTitle": "Arco 101 - Carlo Antonio Facci",
@@ -93,7 +93,7 @@
             "sourceText": "Vaticano.com Santuarios y alrededores",
             "headImage": "Meloncello.jpg",
             "audioSource": "es/home_portici.mp3",
-            "maintext": ""
+            "mainText": ""
         },
         "fr": {
             "pageTitle": "Arc 101 - Carlo Antonio Facci",
@@ -102,7 +102,7 @@
             "sourceText": "Vaticano.com Sanctuaires et environs",
             "headImage": "Meloncello.jpg",
             "audioSource": "fr/home_portici.mp3",
-            "maintext": ""
+            "mainText": ""
         },
         "en": {
             "pageTitle": "Arch 101 - Carlo Antonio Facci",
@@ -111,7 +111,7 @@
             "sourceText": "Vaticano.com Santuari e Dintorni",
             "headImage": "Meloncello.jpg",
             "audioSource": "en/home_portici.mp3",
-            "maintext": ""
+            "mainText": ""
         }
     }
 
