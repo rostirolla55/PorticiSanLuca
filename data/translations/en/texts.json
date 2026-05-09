@@ -25,9 +25,14 @@
     },
     "arco3_fornasari": {
         "headImage": "Meloncello.jpg",
-        "audioSource": "en/arco3_fornasari.mp3",
+        "audioSource": "en/home_portici.mp3",
         "mainText1": "en_arco3_fornasari_maintext1.html",
         "imageSource1": "arco3_fornasari/Arco3_Carpegna.jpg",
-        "mainText2": "en_arco3_fornasari_maintext2.html"
+        "mainText2": "en_arco3_fornasari_maintext2.html",
+        "pageTitle": "Arch 3 - Tombstone of Abbot Ippolito Fornasari",
+        "playAudioButton": "Listen with headphones",
+        "pauseAudioButton": "Pause",
+        "sourceText": "Vaticano.com Santuari e Dintorni",
+        "mainText": ""
     }
 }
