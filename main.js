@@ -28,7 +28,8 @@ let db, auth, currentUserId = null, isAuthReady = false;
 // ===========================================
 const POIS_LOCATIONS = [
     { id: 'arco101', lat: 44.4899416666667, lon: 11.3221583333333, distanceThreshold: 15, categoria: 'edificio' },
-    { id: 'psontuoso', lat: 44.49046395468894, lon: 11.329397374392755, distanceThreshold: 15, categoria: 'edificio' }
+    { id: 'psontuoso', lat: 44.49046395468894, lon: 11.329397374392755, distanceThreshold: 15, categoria: 'edificio' },
+    { id: 'arco3_fornasari', lat: 44.490472, lon: 11.329162, distanceThreshold: 15, categoria: 'esterno' }
 ];
 
 // ===========================================
@@ -163,7 +164,8 @@ function updateNavigation(navData, lang) {
     const navLinksData = [
     { id: 'navHome', key: 'navHome', base: 'index' },
     { id: 'navArco101', key: 'navArco101', base: 'arco101' },
-    { id: 'navPsontuoso', key: 'navPsontuoso', base: 'psontuoso' }
+    { id: 'navPsontuoso', key: 'navPsontuoso', base: 'psontuoso' },
+    { id: 'navArco3fornasari', key: 'navArco3fornasari', base: 'arco3fornasari' }
 ];
 
     navLinksData.forEach(l => {
