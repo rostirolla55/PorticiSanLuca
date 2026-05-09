@@ -17,6 +17,15 @@
       "nav_id": "navPsontuoso",
       "base_name": "psontuoso",
       "categoria": "edificio"
+    },
+    {
+      "id": "arco3_fornasari",
+      "lat": 44.490472,
+      "lon": 11.329162,
+      "threshold": 15,
+      "nav_id": "navArco3fornasari",
+      "base_name": "arco3fornasari",
+      "categoria": "esterno"
     }
   ]
 }

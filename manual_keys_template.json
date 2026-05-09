@@ -76,9 +76,9 @@
             "mainText": ""
         }
     },    
-    "arco101": {
+    "arco3_fornasari": {
         "it": {
-            "pageTitle": "Arco 101 - Carlo Antonio Facci",
+            "pageTitle": "Arco 3 - Lapide Abate Ippolito Fornasari",
             "playAudioButton": "Ascolta la storia",
             "pauseAudioButton": "Ferma la riproduzione",
             "sourceText": "Vaticano.com Santuari e Dintorni",
@@ -87,7 +87,7 @@
             "mainText": ""
         },
         "es": {
-            "pageTitle": "Arco 101 - Carlo Antonio Facci",
+            "pageTitle": "Arco 3 - Lápida del abad Ippolito Fornasari",
             "playAudioButton": "Escuchar la historia",
             "pauseAudioButton": "Detener la reproducción",
             "sourceText": "Vaticano.com Santuarios y alrededores",
@@ -96,7 +96,7 @@
             "mainText": ""
         },
         "fr": {
-            "pageTitle": "Arc 101 - Carlo Antonio Facci",
+            "pageTitle": "Arc 3 - Pierre tombale de l'abbé Ippolito Fornasari",
             "playAudioButton": "Écouter le récit",
             "pauseAudioButton": "Arrêter la lecture",
             "sourceText": "Vaticano.com Sanctuaires et environs",
@@ -105,7 +105,7 @@
             "mainText": ""
         },
         "en": {
-            "pageTitle": "Arch 101 - Carlo Antonio Facci",
+            "pageTitle": "Arch 3 - Tombstone of Abbot Ippolito Fornasari",
             "playAudioButton": "Listen with headphones",
             "pauseAudioButton": "Pause",
             "sourceText": "Vaticano.com Santuari e Dintorni",
