@@ -165,7 +165,7 @@ function updateNavigation(navData, lang) {
     { id: 'navHome', key: 'navHome', base: 'index' },
     { id: 'navArco101', key: 'navArco101', base: 'arco101' },
     { id: 'navPsontuoso', key: 'navPsontuoso', base: 'psontuoso' },
-    { id: 'navArco3fornasari', key: 'navArco3fornasari', base: 'arco3fornasari' }
+    { id: 'navArco3fornasari', key: 'navArco3fornasari', base: 'arco3_fornasari' }
 ];
 
     navLinksData.forEach(l => {
